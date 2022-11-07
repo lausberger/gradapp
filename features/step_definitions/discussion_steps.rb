@@ -11,7 +11,7 @@ Then(/^I should see the discussion post by "([^"]*)"$/) do |arg|
 end
 
 And(/^I am on the discussions home page$/) do
-  pending
+  visit discussions_path
 end
 
 And(/^I am on the discussion page with the title "([^"]*)" and authored by "([^"]*)"$/) do |arg1, arg2|
