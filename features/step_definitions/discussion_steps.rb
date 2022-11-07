@@ -45,12 +45,10 @@ Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do 
     end
   end
   expect(found_post).to be_truthy
-
 end
 
 Then(/^I should not see the discussion post by "([^"]*)"$/) do |author|
   expect(find_post_by_author(author)).to be_falsey
-  pending
 end
 
 Then(/^I should be redirected to the discussion homepage$/) do
