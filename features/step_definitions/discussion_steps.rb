@@ -1,11 +1,10 @@
 Given(/^I have added a discussion with the title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|
-  pending
-  # TODO Create root discussion post
+  Discussion.create!(:title => title, :body => body, :author => author, :root_id => 0)
 end
 
 Given(/^There is a reply with body "([^"]*)" authored by "([^"]*)"$/) do |body, author|
-  pending
-  # TODO Create root discussion post with reply
+  root_discussion = Discussion.create!(:title => "Main Post", :body => "Body", :author => "Admin", :root_id => 0)
+  Discussion.create!(:title => "", :body => body, :author => author, :root_id => root_discussion.id)
 end
 
 Given(/^I am on the discussion page with the title "([^"]*)" and authored by "([^"]*)"$/) do |title, author|
