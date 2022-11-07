@@ -42,7 +42,17 @@ Then(/^I should see the discussion post by "([^"]*)"$/) do |name|\
   expect(found_author).to be_truthy
 end
 
-Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |arg1, arg2|
+Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
+  found_post = false
+  all("tr").each do |tr|
+    post_body = tr.all("td")[1].test
+    post_author = tr.all("td")[2].text
+    if post_body.eql? body and post_author.eql? author
+      found_post = true
+      break
+    end
+  end
+  expect(found_post).to be_truthy
   pending
 end
 
