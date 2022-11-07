@@ -53,7 +53,7 @@ Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do 
     end
   end
   expect(found_post).to be_truthy
-  pending
+
 end
 
 Then(/^I should not see the discussion post by "([^"]*)"$/) do |arg|
