@@ -10,10 +10,6 @@ Given(/^I am on the discussion page with the title "([^"]*)" and authored by "([
   pending
 end
 
-When(/^I have visited the main "([^"]*)" page$/) do |arg|
-  pending
-end
-
 When(/^I am on the discussions home page$/) do
   visit discussions_path
 end
@@ -34,8 +30,16 @@ When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body
   pending
 end
 
-Then(/^I should see the discussion post by "([^"]*)"$/) do |arg|
-  pending
+Then(/^I should see the discussion post by "([^"]*)"$/) do |name|\
+  found_author = false
+  all("tr").each do |tr|
+    author = tr.all("td")[2].text
+    if author.eql? name
+      found_author = true
+      break
+    end
+  end
+  expect(found_author).to be_truthy
 end
 
 Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |arg1, arg2|
