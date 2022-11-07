@@ -9,4 +9,3 @@ end
 Then(/^I should see the discussion post by "([^"]*)"$/) do |arg|
   pending
 end
-
