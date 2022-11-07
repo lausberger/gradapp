@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe StaticsController do
   describe 'Home Page' do
-    it 'should render the statics template' do
+    it 'should render the statics template for home page' do
       get "/home"
       expect(response).to render_template('home')
     end
