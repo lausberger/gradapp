@@ -30,16 +30,8 @@ When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body
   pending
 end
 
-Then(/^I should see the discussion post by "([^"]*)"$/) do |name|\
-  found_author = false
-  all("tr").each do |tr|
-    author = tr.all("td")[2].text
-    if author.eql? name
-      found_author = true
-      break
-    end
-  end
-  expect(found_author).to be_truthy
+Then(/^I should see the discussion post by "([^"]*)"$/) do |author|\
+  expect(find_post_by_author(author)).to be_truthy
 end
 
 Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
@@ -56,7 +48,8 @@ Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do 
 
 end
 
-Then(/^I should not see the discussion post by "([^"]*)"$/) do |arg|
+Then(/^I should not see the discussion post by "([^"]*)"$/) do |author|
+  expect(find_post_by_author(author)).to be_falsey
   pending
 end
 
@@ -70,4 +63,16 @@ end
 
 Then(/^I should see the discussion post by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |arg1, arg2, arg3|
   pending
+end
+
+def find_post_by_author author
+  found_author = false
+  all("tr").each do |tr|
+    post_author = tr.all("td")[2].text
+    if post_author.eql? author
+      found_author = true
+      break
+    end
+  end
+  found_author
 end
