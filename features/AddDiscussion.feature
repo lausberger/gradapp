@@ -4,7 +4,7 @@ Feature: Allow user to create a new Discussion post
 
     When I have added a discussion with the title "Any recommendations on program" and body "I am having issues determining which program I want to go into does anyone have any suggestions?" and author "Jack Stockley"
 
-    And I am on the discussions home page
+    When I am on the discussions home page
 
     Then I should see the discussion post by "Jack Stockley"
 
@@ -13,7 +13,7 @@ Feature: Allow user to create a new Discussion post
 
     Given I have added a discussion with the title "Any recommendations on program" and body "I am having issues determining which program I want to go into does anyone have any suggestions?" and author "Jack Stockley"
 
-    And I am on the discussion page with the title "Any recommendations on program" and authored by "Jack Stockley"
+    Given I am on the discussion page with the title "Any recommendations on program" and authored by "Jack Stockley"
 
     When I post a reply with body "I heard the CSE Graduate program is really good" and authored by "Hans Johnson"
 
