@@ -14,7 +14,7 @@ When(/^I am on the discussions home page$/) do
   visit discussions_path
 end
 
-When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |arg1, arg2|
+When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
   pending
 end
 
@@ -37,7 +37,7 @@ end
 Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
   found_post = false
   all("tr").each do |tr|
-    post_body = tr.all("td")[1].test
+    post_body = tr.all("td")[1].text
     post_author = tr.all("td")[2].text
     if post_body.eql? body and post_author.eql? author
       found_post = true
@@ -54,15 +54,29 @@ Then(/^I should not see the discussion post by "([^"]*)"$/) do |author|
 end
 
 Then(/^I should be redirected to the discussion homepage$/) do
-  pending
+  page_title = page.title
+  expected_page_title = "Student Discussions"
+  expect(page_title).eql? expected_page_title
 end
 
-Then(/^I should be redirected to the discussion page for the discussion with title "([^"]*)" authored by "([^"]*)"$/) do |arg1, arg2|
-  pending
+Then(/^I should be redirected to the discussion page for the discussion with title "([^"]*)" authored by "([^"]*)"$/) do |title, author|
+  page_title = page.title
+  expected_page_title = "#{title} - #{author}"
+  expect(page_title).eql? expected_page_title
 end
 
-Then(/^I should see the discussion post by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |arg1, arg2, arg3|
-  pending
+Then(/^I should see the discussion post by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |author, title, body|
+  found_post = false
+  all("tr").each do |tr|
+    post_title = tr.all("td")[0].text
+    post_body = tr.all("td")[1].text
+    post_author = tr.all("td")[2].text
+    if post_title.eql? title and post_body.eql? body and post_author.eql? author
+      found_post = true
+      break
+    end
+  end
+  expect(found_post).to be_truthy
 end
 
 def find_post_by_author author
