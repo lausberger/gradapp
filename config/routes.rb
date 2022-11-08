@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resource :statics
   root :to => redirect('/home')
   get 'home' => 'statics'
+  get 'faq' => 'statics'
 
 
   # Example resource route with options:
