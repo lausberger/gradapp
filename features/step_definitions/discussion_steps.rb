@@ -42,7 +42,7 @@ end
 
 When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body "([^"]*)"$/) do |old_body, author, new_body|
   pending
-  # todo Find root post in db, find reply using body and author, update body
+  # TODO Find root post in db, find reply using body and author, update body
 end
 
 Then(/^I should see the discussion post by "([^"]*)"$/) do |author|
