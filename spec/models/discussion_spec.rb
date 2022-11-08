@@ -22,10 +22,32 @@ describe Discussion do
   end
   describe "Edit existing discussion" do
     context "root discussion" do
-
+      post_title = "Root Discussion"
+      post_body = "Root discussion body"
+      post_author = "Admin"
+      discussion = Discussion.create!(title: post_title, body: post_body, author: post_author, root_discussion_id: 0)
+      expect(Discussion.get_root_posts).to include? discussion
+      expect(Discussion.get_root_post(discussion.id)).to eql? discussion
+      discussion[:title] = "New Root Discussion"
+      discussion[:body] = "New Root Discussion Body"
+      discussion[:author] = "Jack Stockley"
+      discussion.save
+      expect(Discussion.get_root_post(discussion.id)).to eql? discussion
     end
     context "reply to discussion" do
-
+      root_post_title = "Root Discussion"
+      root_post_body = "Root discussion body"
+      root_post_author = "Admin"
+      root_discussion = Discussion.create!(title: root_post_title, body: root_post_body, author: root_post_author, root_discussion_id: 0)
+      reply_post_title = "Root Discussion"
+      reply_post_body = "Root discussion body"
+      reply_post_author = "Admin"
+      reply_discussion = Discussion.create!(title: reply_post_title, body: reply_post_body, author: reply_post_author, root_discussion_id: root_discussion.id)
+      expect(Discussion.get_post_replies(root_discussion.id)).to include? reply_discussion
+      reply_discussion[:body] = "New Root Discussion body"
+      reply_discussion[:author] = "Jack Stockley"
+      reply_discussion.save
+      expect(Discussion.get_post_replies(root_discussion.id)).to include? reply_discussion
     end
   end
   describe "delete discussion" do
