@@ -3,7 +3,7 @@ Given(/^I have added a discussion with the title "([^"]*)" and body "([^"]*)" an
 end
 
 Given(/^There is a reply with body "([^"]*)" authored by "([^"]*)"$/) do |body, author|
-  root_discussion = Discussion.create!(:title => "Main Post", :body => "Body", :author => "Admin", :root_id => 0)
+  root_discussion = Discussion.create!(:title => "Main Post", :body => "Body", :author => "Admin", :root_discussion_id => 0)
   Discussion.create!(:title => "", :body => body, :author => author, :root_discussion_id => root_discussion.id)
 end
 
