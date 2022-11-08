@@ -1,0 +1,26 @@
+%h1 Create Account
+
+= form_tag register_path do
+
+  = label :account, "First Name"
+  = text_field :account, :first_name
+
+  = label :account, "Last Name"
+  = text_field :account, :last_name
+
+  = label :account, "Email"
+  = text_field :account, :email
+
+  = label :account, "Password"
+  = password_field :account, :password
+
+  = label :account, "Confirm Password"
+  = password_field :account, :password_confirm
+
+  = label :account, "I am a"
+
+  %select{ :name=> "account[type]" }
+    %option{:value => "Student" }= Student
+    %option{:value => "Faculty" }= Faculty
+
+  = submit_tag 'Register'
