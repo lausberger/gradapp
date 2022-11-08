@@ -35,9 +35,13 @@ When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]
   Discussion.destroy(discussion)
 end
 
-When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |old_title, author, new_title, new_body|
+When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |old_title, post_author, new_title, new_body|
   pending
   # TODO Find discussion by title, author and update title and body
+  discussion = Discussion.find_by(title: old_title, author: post_author)
+  discussion[:title] = new_title
+  discussion[:body] = new_body
+  discussion.save
 end
 
 When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body "([^"]*)"$/) do |old_body, author, new_body|
