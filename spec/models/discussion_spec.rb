@@ -27,7 +27,7 @@ describe Discussion do
     context "all root discussions" do
 
     end
-    context "all replys to discussion" do
+    context "all replies to discussion" do
 
     end
   end
