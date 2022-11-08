@@ -30,9 +30,9 @@ When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body,
   # TODO Find root post in db, get id, set reply root_id to id
 end
 
-When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |title, author|
-  pending
-  # TODO Find discussion by title and author, delete it
+When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |post_title, post_author|
+  discussion = Discussion.find_by(title: post_title, author: post_author)
+  Discussion.destroy(discussion)
 end
 
 When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |old_title, author, new_title, new_body|
@@ -92,7 +92,7 @@ Then(/^I should see the discussion post by "([^"]*)" with title "([^"]*)" and bo
   expect(found_post).to be_truthy
 end
 
-def find_post_by_author author
+def find_post_by_author(author)
   found_author = false
   all("tr").each do |tr|
     post_author = tr.all("td")[2].text
