@@ -1,6 +1,9 @@
+require 'spec_helper'
+require 'rails_helper'
+
 describe AccountsController do
     describe 'creating an account' do
-        before.each do 
+        before(:each) do 
             @account = {
                 :first_name => "Lucas", 
                 :last_name => "Ausberger", 
@@ -23,8 +26,9 @@ describe AccountsController do
 
         context 'with invalid info' do
             context 'non-matching passwords' do
-                before.each do
+                before(:each) do
                     @account[:password_confirm] = "different"
+                end
                 it 'should redirect back to registration page' do
                     post :register, {:account => @account}
                 end
@@ -34,7 +38,7 @@ describe AccountsController do
             end
 
             context 'empty fields' do
-                before.each do
+                before(:each) do
                     @account[:last_name] = ""
                 end
                 it 'should redirect back to registration page' do
@@ -49,7 +53,7 @@ describe AccountsController do
     end
 
     describe 'logging in' do
-        before.each do 
+        before(:each) do 
             @account = {
                 :first_name => "Lucas", 
                 :last_name => "Ausberger", 
@@ -63,7 +67,7 @@ describe AccountsController do
 
         context 'with correct information' do
             it 'should redirect back to home page' do
-                post :login, {:credentials => {:email => @account[:email], :password => @account[:password]}
+                post :login, {:credentials => {:email => @account[:email], :password => @account[:password]}}
                 expect(response).to redirect_to root_path
             end
             it 'should flash a success notice' do
@@ -73,7 +77,7 @@ describe AccountsController do
 
         context 'with incorrect information' do
             it 'should redirect back to login page' do
-                post :login, {:credentials => {:email => "bademail@mail.com", :password => @account[:password]}
+                post :login, {:credentials => {:email => "bademail@mail.com", :password => @account[:password]}}
                 expect(response).to redirect_to login_path
             end
             it 'should flash an alert informing the user of incorrect credentials' do
@@ -84,7 +88,7 @@ describe AccountsController do
         context 'with invalid information' do
             context 'missing email' do
                 it 'should redirect back to login page' do
-                    post :login, {:credentials => {:email => "", :password => @account[:password]}
+                    post :login, {:credentials => {:email => "", :password => @account[:password]}}
                     expect(response).to redirect_to login_path
                 end
                 it 'should inform the user of an empty email field' do
@@ -94,7 +98,7 @@ describe AccountsController do
 
             context 'invalid email' do
                 it 'should redirect back to login page' do
-                    post :login, {:credentials => {:email => "lausberger", :password => @account[:password]}
+                    post :login, {:credentials => {:email => "lausberger", :password => @account[:password]}}
                     expect(response).to redirect_to login_path
                 end
                 it 'should inform the user of an invalid email' do
@@ -104,7 +108,7 @@ describe AccountsController do
 
             context 'missing password' do
                 it 'should redirect back to login page' do
-                    post :login, {:credentials => {:email => @account[:email], :password => ""}
+                    post :login, {:credentials => {:email => @account[:email], :password => ""}}
                     expect(response).to redirect_to login_path
                 end
                 it 'should inform the user of an empty password field' do
