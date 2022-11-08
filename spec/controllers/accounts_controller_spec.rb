@@ -1,0 +1,2 @@
+describe AccountsController do
+end
