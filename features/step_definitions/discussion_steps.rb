@@ -27,18 +27,22 @@ end
 
 When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
   pending
+  # TODO Find root post in db, get id, set reply root_id to id
 end
 
 When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |title, author|
   pending
+  # TODO Find discussion by title and author, delete it
 end
 
 When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |old_title, author, new_title, new_body|
   pending
+  # TODO Find discussion by title, author and update title and body
 end
 
 When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body "([^"]*)"$/) do |old_body, author, new_body|
   pending
+  # todo Find root post in db, find reply using body and author, update body
 end
 
 Then(/^I should see the discussion post by "([^"]*)"$/) do |author|
