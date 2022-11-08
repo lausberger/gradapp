@@ -1,0 +1,13 @@
+= content_for(:title, "#{@root_discussion[:title]} - #{@root_discussion[:author]}")
+
+%h1= @root_discussion[:title]
+
+%table
+  %thead
+    %th Body
+    %th Author
+  %tbody
+    - @discussions_with_replies.each do | discussion_with_reply|
+      %tr
+        %td= discussion_with_reply[:body]
+        %td= discussion_with_reply[:author]
