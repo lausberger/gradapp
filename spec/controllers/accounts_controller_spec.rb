@@ -5,8 +5,8 @@ describe AccountsController do
     describe 'creating an account' do
         before(:each) do 
             @account = {
-                :first_name => "Lucas", 
-                :last_name => "Ausberger", 
+                :first => "Lucas", 
+                :last => "Ausberger", 
                 :email => "lausberger@uiowa.edu", 
                 :password => "password", 
                 :password_confirm => "password", 

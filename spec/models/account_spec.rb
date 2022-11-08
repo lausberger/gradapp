@@ -4,8 +4,8 @@ require 'spec_helper'
 describe Account do
     before(:each) do
         @account_params = {
-            :first_name => "Lucas", 
-            :last_name => "Ausberger", 
+            :first => "Lucas", 
+            :last => "Ausberger", 
             :email => "lausberger@uiowa.edu", 
             :password_digest => "password", 
             :type => "Student"
