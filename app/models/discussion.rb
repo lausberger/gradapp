@@ -8,7 +8,7 @@ class Discussion < ActiveRecord::Base
     Discussion.find_by(id: root_discussion_id)
   end
 
-  def get_post_replies(post_root_discussion_id)
-    Discussion.find_by(root_discussion_id: post_root_discussion_id)
+  def get_post_replies(post_discussion_id)
+    Discussion.find_by(root_discussion_id: post_discussion_id)
   end
 end
