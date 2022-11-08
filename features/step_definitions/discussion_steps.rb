@@ -26,8 +26,11 @@ When(/^I am on the discussions home page$/) do
 end
 
 When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |post_body, post_author|
-  pending
-  # TODO Find root post in db, get id, set reply root_id to id
+  page_title = page.title.split(/ - /, 2)
+  root_post_title = page_title[0]
+  root_post_author = page_title[1]
+  discussion = Discussion.find_by(title: root_post_title, author: root_post_author)
+  discussion_reply = Discussion.create!(:title => "", :body => post_body, :author => post_author, :root_discussion_id => discussion.id)
 end
 
 When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |post_title, post_author|
