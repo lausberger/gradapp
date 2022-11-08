@@ -1,1 +1,16 @@
+%h1 Student Discussion Posts
+
+%table
+  %thead
+    %th Title
+    %th Body
+    %th Author
+    %th View Replies
+  %tbody
+    - @discussions.each do | discussion |
+      %tr
+        %td= discussion[:title]
+        %td= discussion[:body]
+        %td= discussion[:author]
+        %td= link_to "View Replies", discussion_path(discussion)
 
