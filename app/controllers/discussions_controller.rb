@@ -34,8 +34,17 @@ class DiscussionsController < ApplicationController
   end
 
   def update
-    # TODO
     puts "Params #{params}"
+    id = params[:id]
+    new_title = params[:discussion][:title]
+    new_body = params[:discussion][:body]
+    discussion = Discussion.find(id)
+    discussion[:title] = new_title
+    discussion[:body] = new_body
+    Discussion.update(discussion)
+    if discussion[:root_discussion_id] != -1
+      return redirect_to discussion_path(discussion[:root_discussion_id])
+    end
     redirect_to discussions_path
   end
 
