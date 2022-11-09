@@ -1,6 +1,6 @@
 %h1 Edit Discussion Post
 
-= form_tag discussions_path do
+= form_tag discussion_path(@discussion), :method => :put do
 
   - if !@discussion[:title].empty?
     = label :discussion, :title, 'Title'

@@ -15,10 +15,7 @@ class DiscussionsController < ApplicationController
   end
 
   def create
-    # TODO
-    # puts "ID: #{@root_discussion[:id]}"
     discussion = params[:discussion]
-    puts "Params: #{params}"
     root_id = -1
     if discussion.has_key? :root_discussion_id
       root_id = discussion[:root_discussion_id]
@@ -38,6 +35,8 @@ class DiscussionsController < ApplicationController
 
   def update
     # TODO
+    puts "Params #{params}"
+    redirect_to discussions_path
   end
 
   def destroy
