@@ -1,25 +1,41 @@
 %h1 Create Account
 
+- if flash[:notice]
+  = "Notice: "
+  = flash[:notice]
+- elsif flash[:warning]
+  = "Warning: "
+  = flash[:warning]
+- elsif flash[:alert]
+  = "Alert: "
+  = flash[:alert]
+
 = form_tag register_path do
 
-  = label :account, :first, "First Name"
-  = text_field :account, :first
+  = label :account, :first_name, "First Name"
+  = text_field :account, :first_name
 
-  = label :account, :last, "Last Name"
-  = text_field :account, :last
+  %div
+  = label :account, :last_name, "Last Name"
+  = text_field :account, :last_name
 
+  %div
   = label :account, :email, "Email"
   = text_field :account, :email
 
+  %div
   = label :account, :password, "Password"
   = password_field :account, :password
 
+  %div
   = label :account, :password_confirm, "Confirm Password"
   = password_field :account, :password_confirm
 
+  %div
   = label :account, :type, "I am a"
   %select{ :name=> "account[type]" }
     %option{ :value => "Student" }= Student
     %option{ :value => "Faculty" }= Faculty
 
+  %div
   = submit_tag 'Register'
