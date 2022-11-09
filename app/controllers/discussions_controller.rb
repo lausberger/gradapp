@@ -25,7 +25,11 @@ class DiscussionsController < ApplicationController
   end
 
   def create_reply
-    puts "Create reply: #{params}"
+    root_discussion_id = params[:root_discussion_id]
+    body = params[:body]
+    author = params[:author]
+    discussion_reply = Discussion.create!(:title => '', :body => body, :author => author, :root_discussion_id => root_discussion_id)
+    redirect_to discussion_path(root_discussion_id)
   end
 
   def edit
