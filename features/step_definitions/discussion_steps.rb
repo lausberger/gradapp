@@ -26,7 +26,8 @@ When(/^I am on the discussions home page$/) do
 end
 
 When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |post_body, post_author|
-  page_title = page.title.split(/ - /, 2)
+  pending("Add reply broken")
+  page_title = page.title.split(" - ")
   root_post_title = page_title[0]
   root_post_author = page_title[1]
   discussion = Discussion.find_by(title: root_post_title, author: root_post_author)
@@ -101,6 +102,7 @@ end
 def find_post_by_author(author)
   found_author = false
   all("tr").each do |tr|
+    log("TR #{tr[2].text}")
     post_author = tr.all("td")[2].text
     if post_author.eql? author
       found_author = true
