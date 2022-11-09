@@ -28,7 +28,7 @@ And /^the application's name is "(.*?)" "(.*?)"$/ do |first, last|
   # TODO: Check if names match found
 end
 
-When /^I sort graduate applications based on "(.*?)""$/ do |score|
+When /^I sort graduate applications based on "(.*?)"$/ do |score|
   click_on score
 end
 
@@ -38,4 +38,8 @@ end
 
 Then /^I should see the application status "(.*?)"$/ do |status|
   # TODO: Check if status match found
+end
+
+Then /^I should see "(.*?)"'s application before "(.*?)"'s$/ do |higher_name, lower_name|
+  # TODO: Check if higher_name occurs before lower_name in applications table
 end
