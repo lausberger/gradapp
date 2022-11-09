@@ -18,4 +18,4 @@
 
 %br
 
-=link_to "Post Reply", new_discussion_path, root_discussion_id: @root_discussion[:id]
+=link_to "Post Reply", discussions_create_reply_path(@root_discussion), method: :post
