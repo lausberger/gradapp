@@ -13,6 +13,8 @@
         %td= discussion[:body]
         %td= discussion[:author]
         %td= link_to "View Replies", discussion_path(discussion)
+        %td
+        %td= link_to "Delete", discussion_path(discussion), method: :delete
 
 %br
 

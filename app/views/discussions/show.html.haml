@@ -11,3 +11,9 @@
       %tr
         %td= discussion_with_reply[:body]
         %td= discussion_with_reply[:author]
+        %td
+        %td= link_to "Delete", discussion_path(discussion_with_reply), method: :delete
+
+%br
+
+=link_to "Post Reply", new_discussion_path, root_discussion_id: @root_discussion[:id]
