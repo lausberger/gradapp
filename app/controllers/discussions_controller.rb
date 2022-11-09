@@ -40,7 +40,6 @@ class DiscussionsController < ApplicationController
   end
 
   def destroy
-    # TODO
     id = params[:id]
     discussion = Discussion.find(id)
     discussion.destroy

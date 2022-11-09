@@ -12,6 +12,8 @@
         %td= discussion_with_reply[:body]
         %td= discussion_with_reply[:author]
         %td
+        %td= link_to "Edit", edit_discussion_path(discussion_with_reply)
+        %td
         %td= link_to "Delete", discussion_path(discussion_with_reply), method: :delete
 
 %br
