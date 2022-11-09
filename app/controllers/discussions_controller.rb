@@ -11,12 +11,18 @@ class DiscussionsController < ApplicationController
   end
 
   def new
-    discussion = params[:discussion]
-    Discussion.create!(:title => discussion[:title], :body => discussion[:body], :author => discussion[:author], :root_discussion_id => -1)
+
   end
 
   def create
     # TODO
+    discussion = params[:discussion]
+    root_id = -1
+    if discussion.has_key? :root_discussion_id
+      root_id = discussion[:root_discussion_id]
+    end
+    Discussion.create!(:title => discussion[:title], :body => discussion[:body], :author => discussion[:author], :root_discussion_id => root_id)
+    redirect_to discussions_path
   end
 
   def edit

@@ -1,10 +1,14 @@
 %h1 Post new Discussion
 
-%form
-  = label :discussion, :title
-  = text_field :discussion, :title
-  = label :discussion, :body
-  = text_field :discussion, :body
-  = label :discussion, :author
-  = text_field :discussion, :author
-  %input{:type => "submit", :value => "Add Discussion Post"}
+= form_tag discussions_path do
+
+  = label :discussion, :title, 'Title'
+  = text_field :discussion, 'title'
+
+  = label :discussion, :body, 'Body'
+  = text_field :discussion, 'body'
+
+  = label :discussion, :author, 'Author'
+  = text_field :discussion, 'author'
+
+  = submit_tag 'Post Discussion'
