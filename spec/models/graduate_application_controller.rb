@@ -1,0 +1,4 @@
+
+describe GraduateApplication do
+
+end

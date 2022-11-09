@@ -1,0 +1,4 @@
+
+describe GraduateApplicationsController do
+
+end
