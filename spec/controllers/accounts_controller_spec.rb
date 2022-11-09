@@ -19,21 +19,22 @@ end
 describe AccountsController do
     describe 'creating an account' do
         context 'with valid info' do
-            before(:each) do 
+            before(:all) do 
                 @account = {
-                    :first_name => "Lucas", 
-                    :last_name => "Ausberger", 
-                    :email => "lausberger@uiowa.edu", 
+                    :first_name => "Not Lucas", 
+                    :last_name => "Not Ausberger", 
+                    :email => "exampleemail@uiowa.edu", 
                     :password => "password", 
                     :password_confirm => "password", 
-                    :type => "Student"
+                    :type => "Faculty"
                 }
             end
             it 'should redirect to home page' do
-                post :create, { :account => @account }
-                expect(response).to render_template root_path 
+                post :create, {:account => @account}
+                expect(response).to redirect_to root_path 
             end
             it 'should flash a success message' do 
+                post :create, {:account => @account}
                 expect(flash[:notice]).to eq "Account registration successful"
             end
         end
@@ -46,16 +47,16 @@ describe AccountsController do
                         :last_name => "Ausberger", 
                         :email => "lausberger@uiowa.edu", 
                         :password => "password", 
-                        :password_confirm => "password", 
+                        :password_confirm => "diff password", 
                         :type => "Student"
                     }
-                    @account[:password_confirm] = "different"
-                    post :create, { :account => @account }
                 end
                 it 'should redirect back to registration page' do
+                    post :create, {:account => @account}
                     expect(response).to render_template :new
                 end
                 it 'should flash a warning about non-matching passwords' do
+                    post :create, {:account => @account}
                     expect(flash[:warning]).to eq "Passwords do not match"
                 end
             end
@@ -71,7 +72,7 @@ describe AccountsController do
                         :type => "Student"
                     }
                     @account[:last_name] = ""
-                    post :create, { :account => @account }
+                    post :create, {:account => @account}
                 end
                 it 'should redirect back to registration page' do
                     expect(response).to render_template :new
@@ -92,7 +93,7 @@ describe AccountsController do
                         :type => "Student"
                     }
                     @account[:email] = "lausberger"
-                    post :create, { :account => @account }
+                    post :create, {:account => @account}
                 end
                 it 'should redirect back to registration page' do
                     expect(response).to render_template :new
@@ -115,7 +116,7 @@ describe AccountsController do
                 :password_confirm => "password", 
                 :type => "Student"
             }
-            post :register, { :account => @account }
+            post '/register', {:account => @account}
         end
 
         context 'with correct information' do
