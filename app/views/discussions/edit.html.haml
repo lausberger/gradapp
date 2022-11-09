@@ -1,0 +1,13 @@
+%h1 Edit Discussion Post
+
+= form_tag discussions_path do
+
+  - if !@discussion[:title].empty?
+    = label :discussion, :title, 'Title'
+    = text_field :discussion, 'title', value: @discussion[:title]
+  -
+
+  = label :discussion, :body, 'Body'
+  = text_field :discussion, 'body', value: @discussion[:body]
+
+  = submit_tag 'Update Discussion'

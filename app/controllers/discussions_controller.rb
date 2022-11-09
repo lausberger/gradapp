@@ -32,7 +32,8 @@ class DiscussionsController < ApplicationController
   end
 
   def edit
-    # TODO
+    id = params[:id]
+    @discussion = Discussion.find(id)
   end
 
   def update
