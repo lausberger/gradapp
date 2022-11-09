@@ -1,14 +1,4 @@
-%h1 Create Account
-
-- if flash[:notice]
-  = "Notice: "
-  = flash[:notice]
-- elsif flash[:warning]
-  = "Warning: "
-  = flash[:warning]
-- elsif flash[:alert]
-  = "Alert: "
-  = flash[:alert]
+%h2 Create Account
 
 = form_tag register_path do
 
