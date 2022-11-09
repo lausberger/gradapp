@@ -1,66 +1,75 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe Account do
-    before(:each) do
-        @account_params = {
-            :first => "Lucas", 
-            :last => "Ausberger", 
-            :email => "lausberger@uiowa.edu", 
-            :password_digest => "password", 
-            :type => "Student"
-        }
+if RUBY_VERSION>='2.6.0'
+    if Rails.version < '5'
+      class ActionController::TestResponse < ActionDispatch::TestResponse
+        def recycle!
+          # hack to avoid MonitorMixin double-initialize error:
+          @mon_mutex_owner_object_id = nil
+          @mon_mutex = nil
+          initialize
+        end
+      end
+    else
+      puts "Monkeypatch for ActionController::TestResponse no longer needed"
     end
+end
 
+describe Account do
     describe 'parameter validation' do
+        before(:each) do
+            @account_params = {
+                :first_name => "Lucas", 
+                :last_name => "Ausberger", 
+                :email => "lausberger@uiowa.edu", 
+                :password_digest => "password", 
+                :type => "Student"
+            }
+        end
         it 'should fail if invalid email' do
             @account_params[:email] = "lausberger"
-            expect(Account).to receive(:new).with(@account_params)
-                .and_raise(ValidationError)
-            account = Account.new(@account_params)
+            expect(Account.new(@account_params).valid?).to eq false
         end
         it 'should fail without a password' do
             @account_params[:password_digest] = nil
-            expect(Account).to receive(:new).with(@account_params)
-                .and_raise(ArgumentError)
-            account = Account.new(@account_params)
+            expect(Account.new(@account_params).valid?).to eq false
         end
         it 'should fail without a first name' do
             @account_params[:first_name] = nil
-            expect(Account).to receive(:new).with(@account_params)
-                .and_raise(ArgumentError)
-            account = Account.new(@account_params)
+            expect(Account.new(@account_params).valid?).to eq false
+
         end
         it 'should fail without a last name' do
             @account_params[:last_name] = nil
-            expect(Account).to receive(:new).with(@account_params)
-                .and_raise(ArgumentError)
-            account = Account.new(@account_params)
+            expect(Account.new(@account_params).valid?).to eq false
         end
         it 'should fail without a valid type' do
-            @account_params[:type] = "Loser"
-            expect(Account).to receive(:new).with(@account_params)
-                .and_raise(ArgumentError)
-            account = Account.new(@account_params)
+            @account_params[:type] = nil
+            expect(Account.new(@account_params).valid?).to eq false
         end
     end
 
     describe 'adding an account to database' do
         context 'Student' do
-            before(:each) do
-                @account = Account.new(@account_params)
-            end
-            it 'should invoke the save method' do
-                expect(Account).to receive(:save)
+            before(:all) do
+                account_params = {
+                    :first_name => "Lucas", 
+                    :last_name => "Ausberger", 
+                    :email => "lausberger@uiowa.edu", 
+                    :password_digest => "password", 
+                    :type => "Student"
+                }
+                @account = Account.create(account_params)
             end
             it 'should appear in set of Students' do
-                expect(Student.all.include? @account).to eq true
+                expect(Student.where(email: @account.email)).to exist
             end
             it 'should appear in set of Accounts' do 
-                expect(Account.all.include? @account).to eq true
+                expect(Account.where(email: @account.email)).to exist
             end
             it 'should NOT appear in set of Faculty' do
-                expect(Faculty.all.include? @account).to eq false
+                expect(Faculty.where(email: @account.email)).not_to exist
             end
         end
     end

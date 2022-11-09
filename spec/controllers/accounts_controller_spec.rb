@@ -1,58 +1,102 @@
 require 'spec_helper'
 require 'rails_helper'
 
+if RUBY_VERSION>='2.6.0'
+    if Rails.version < '5'
+      class ActionController::TestResponse < ActionDispatch::TestResponse
+        def recycle!
+          # hack to avoid MonitorMixin double-initialize error:
+          @mon_mutex_owner_object_id = nil
+          @mon_mutex = nil
+          initialize
+        end
+      end
+    else
+      puts "Monkeypatch for ActionController::TestResponse no longer needed"
+    end
+end
+
 describe AccountsController do
     describe 'creating an account' do
-        before(:each) do 
-            @account = {
-                :first => "Lucas", 
-                :last => "Ausberger", 
-                :email => "lausberger@uiowa.edu", 
-                :password => "password", 
-                :password_confirm => "password", 
-                :type => "Student"
-            }
-        end
-
         context 'with valid info' do
             it 'should redirect to home page' do
-                post :register, {:account => @account}
+                skip "Home page not yet implemented"
+                post :create, { :account => @account }
                 expect(response).to render_template root_path 
             end
             it 'should flash a success message' do 
-                expect(flash[:notice]).to eq "Account created successfully"
+                expect(flash[:notice]).to eq "Account registration successful"
             end
         end
 
         context 'with invalid info' do
             context 'non-matching passwords' do
-                before(:each) do
+                before(:each) do 
+                    @account = {
+                        :first_name => "Lucas", 
+                        :last_name => "Ausberger", 
+                        :email => "lausberger@uiowa.edu", 
+                        :password => "password", 
+                        :password_confirm => "password", 
+                        :type => "Student"
+                    }
                     @account[:password_confirm] = "different"
+                    post :create, { :account => @account }
                 end
                 it 'should redirect back to registration page' do
-                    post :register, {:account => @account}
+                    expect(response).to render_template :new
                 end
-                it 'should flash an alert with an explanation' do
-                    expect(flash[:alert]).to eq "Passwords do not match"
+                it 'should flash a warning about non-matching passwords' do
+                    expect(flash[:warning]).to eq "Passwords do not match"
                 end
             end
 
             context 'empty fields' do
-                before(:each) do
+                before(:each) do 
+                    @account = {
+                        :first_name => "Lucas", 
+                        :last_name => "Ausberger", 
+                        :email => "lausberger@uiowa.edu", 
+                        :password => "password", 
+                        :password_confirm => "password", 
+                        :type => "Student"
+                    }
                     @account[:last_name] = ""
+                    post :create, { :account => @account }
                 end
                 it 'should redirect back to registration page' do
-                    post :register, {:account => @account}
-                    expect(response).to render_template register_path
+                    expect(response).to render_template :new
                 end
-                it 'should flash an alert with an explanation' do
-                    expect(flash[:alert]).to eq "Please fill out the following fields: First Name"
+                it 'should flash a warning about empty fields' do
+                    expect(flash[:warning]).to eq "Fields cannot be empty"
+                end
+            end
+
+            context 'invalid email' do
+                before(:each) do 
+                    @account = {
+                        :first_name => "Lucas", 
+                        :last_name => "Ausberger", 
+                        :email => "lausberger@uiowa.edu", 
+                        :password => "password", 
+                        :password_confirm => "password", 
+                        :type => "Student"
+                    }
+                    @account[:email] = "lausberger"
+                    post :create, { :account => @account }
+                end
+                it 'should redirect back to registration page' do
+                    expect(response).to render_template :new
+                end
+                it 'should flash a warning about invalid email' do
+                    expect(flash[:warning]).to eq "Please enter a valid email address"
                 end
             end
         end
     end
 
-    describe 'logging in' do
+    describe 'logging in' do 
+        before { skip "not yet implemented" }
         before(:each) do 
             @account = {
                 :first_name => "Lucas", 
@@ -62,7 +106,7 @@ describe AccountsController do
                 :password_confirm => "password", 
                 :type => "Student"
             }
-            post :register, {:account => @account}
+            post :register, { :account => @account }
         end
 
         context 'with correct information' do
@@ -71,6 +115,7 @@ describe AccountsController do
                 expect(response).to redirect_to root_path
             end
             it 'should flash a success notice' do
+                pending
                 expect(flash[:notice]).to eq "Welcome, #{@account[:first_name]}."
             end
         end
