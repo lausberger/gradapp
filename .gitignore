@@ -11,6 +11,8 @@ u# FROM https://raw.githubusercontent.com/github/gitignore/master/Ruby.gitignore
 /test/version_tmp/
 /tmp/
 
+.idea/
+
 # Used by dotenv library to load environment variables.
 # .env
 
@@ -169,4 +171,9 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
+<<<<<<< HEAD
 *.iml
+=======
+# Mac residuals
+**/.DS_Store
+>>>>>>> b1dca9097a59e00367c25f1fea0c55d06a010328
