@@ -4,13 +4,19 @@ class AccountsController < ApplicationController
 
     def create
         field_data = registration_params
-        account_params = field_data.slice(:first, :last, :email, :password, :type)
-        @account = Account.new(account_params)
-        if @account.save
-            # redirect_to root_path, notice: 'Account registration successful'
+        if field_data[:password] == field_data[:password_confirm]
+            account_params = field_data.slice(:first, :last, :email, :password, :type)
+            @account = Account.new(account_params)
+            if @account.save
+                flash[:notice] = "Account registration successful"
+                redirect_to root_path
+            else
+                flash[:alert] = "Account registration failed, please try again."
+                render :new
+            end
         else
-            flash[:alert] = "Failed to create user account. Please try again."
-            render :new
+            flash[:alert] = "Passwords do not match"
+            redirect :new
         end
     end
 
