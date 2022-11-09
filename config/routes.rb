@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+  resource :statics
+  root :to => redirect('/home')
+  get 'home' => 'statics'
+  get 'faq' => 'statics'
+
+
   # Example resource route with options:
   #   resources :products do
   #     member do
