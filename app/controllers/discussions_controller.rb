@@ -11,13 +11,12 @@ class DiscussionsController < ApplicationController
   end
 
   def new
-    # TODO
-    puts "New: #{params}"
+    discussion = params[:discussion]
+    Discussion.create!(:title => discussion[:title], :body => discussion[:body], :author => discussion[:author], :root_discussion_id => -1)
   end
 
   def create
     # TODO
-    puts "Create: #{params}"
   end
 
   def edit
