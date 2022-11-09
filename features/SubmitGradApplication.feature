@@ -11,6 +11,6 @@ Feature: Allow students to submit graduate applications
     Given I fill in my name as "Brandon" "Egger"
     And I fill in my GPA with "3.9"
     When I submit my graduate application
-    Then I should see my application status is "submitted"
-    And my application's GPA is "3.9"
-    And my application's name is "Brandon" "Egger"
+    Then I should see the application status "submitted"
+    And the application's GPA is "3.9"
+    And the application's name is "Brandon" "Egger"

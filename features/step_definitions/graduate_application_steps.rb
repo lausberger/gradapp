@@ -20,11 +20,11 @@ And /^I fill in my GPA with "(\d*[.]\d*)"$/ do |gpa|
   # TODO FIll in gpa of form
 end
 
-And /^my application's GPA is "(\d*[.]\d*)"$/ do |gpa|
+And /^the application's GPA is "(\d*[.]\d*)"$/ do |gpa|
   # TODO: Check if GPA match found
 end
 
-And /^my application's name is "(.*?)" "(.*?)"$/ do |first, last|
+And /^the application's name is "(.*?)" "(.*?)"$/ do |first, last|
   # TODO: Check if names match found
 end
 
@@ -36,6 +36,6 @@ When /^I submit my graduate application$/ do
   click_on 'submit'
 end
 
-Then /^I should see my application status is "(.*?)"$/ do |status|
+Then /^I should see the application status "(.*?)"$/ do |status|
   # TODO: Check if status match found
 end
