@@ -26,4 +26,4 @@ Scenario: attempt to create an account with non-matching passwords
 Scenario: attempt to create an account with missing fields
     When I fill out the form with empty fields
     And I submit the form
-    Then I should see a notice that says "Please fill out all fields"
+    Then I should see a notice that says "Fields cannot be empty"

@@ -3,24 +3,24 @@ Given /^I am on the account registration page$/ do
 end
 
 def fill_out_form
-    fill_in "first_name_field", :with => "Lucas"
-    fill_in "last_name_field", :with => "Ausberger"
-    fill_in "email_field", :with => "lausberger@uiowa.edu"
-    fill_in "password_field", :with => "password"
-    fill_in "password_confirm_field", :with => "password"
+    fill_in "account_first_name", :with => "Lucas"
+    fill_in "account_last_name", :with => "Ausberger"
+    fill_in "account_email", :with => "lausberger@uiowa.edu"
+    fill_in "account_password", :with => "password"
+    fill_in "account_password_confirm", :with => "password"
 end
 
 When /^I fill out the form with (.*?)$/ do |option|
     fill_out_form
     case option
     when "\"Student\" selected"
-        select "Student", :from => "type_select"
+        select "Student", :from => "account[type]"
     when "\"Faculty\" selected"
-        select "Faculty", :from => "type_select"
+        select "Faculty", :from => "account[type]"
     when "non-matching passwords"
-        fill_in "password_confirm_field", :with => "different password"
+        fill_in "account_password_confirm", :with => "different password"
     when "empty fields"
-        fill_in "last_name_field", :with => ""
+        fill_in "account_last_name", :with => ""
     else
         raise ArgumentError "Unrecognized option: \"#{option}\""
     end

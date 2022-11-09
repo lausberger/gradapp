@@ -21,8 +21,7 @@ class AccountsController < ApplicationController
                     @account = Account.new(account_params)
                     if @account.save
                         flash[:notice] = "Account registration successful"
-                        # redirect_to root_path
-                        render :new 
+                        redirect_to root_path
                         return
                     else
                         if Account.where(email: @account.email)

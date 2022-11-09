@@ -19,8 +19,17 @@ end
 describe AccountsController do
     describe 'creating an account' do
         context 'with valid info' do
+            before(:each) do 
+                @account = {
+                    :first_name => "Lucas", 
+                    :last_name => "Ausberger", 
+                    :email => "lausberger@uiowa.edu", 
+                    :password => "password", 
+                    :password_confirm => "password", 
+                    :type => "Student"
+                }
+            end
             it 'should redirect to home page' do
-                skip "Home page not yet implemented"
                 post :create, { :account => @account }
                 expect(response).to render_template root_path 
             end
