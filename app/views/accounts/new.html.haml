@@ -2,25 +2,24 @@
 
 = form_tag register_path do
 
-  = label :account, "First Name"
-  = text_field :account, :first_name
+  = label :account, :first, "First Name"
+  = text_field :account, :first
 
-  = label :account, "Last Name"
-  = text_field :account, :last_name
+  = label :account, :last, "Last Name"
+  = text_field :account, :last
 
-  = label :account, "Email"
+  = label :account, :email, "Email"
   = text_field :account, :email
 
-  = label :account, "Password"
+  = label :account, :password, "Password"
   = password_field :account, :password
 
-  = label :account, "Confirm Password"
+  = label :account, :password_confirm, "Confirm Password"
   = password_field :account, :password_confirm
 
-  = label :account, "I am a"
-
+  = label :account, :type, "I am a"
   %select{ :name=> "account[type]" }
-    %option{:value => "Student" }= Student
-    %option{:value => "Faculty" }= Faculty
+    %option{ :value => "Student" }= Student
+    %option{ :value => "Faculty" }= Faculty
 
   = submit_tag 'Register'
