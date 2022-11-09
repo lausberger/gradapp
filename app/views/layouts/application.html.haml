@@ -1,13 +1,17 @@
 !!!
 %html
   %head
-    %title GradApp
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    %title College of Engineering Graduate Portal
+    = stylesheet_link_tag 'application', 'media' => 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
-%body
-  %p.notice
-    = notice
-  %p.alert
-    = alert
-  = yield
+
+  %body
+    %h1.title Graduate Programs
+    #main
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+
+      = yield
