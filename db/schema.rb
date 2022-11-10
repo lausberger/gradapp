@@ -23,24 +23,12 @@ ActiveRecord::Schema.define(version: 20221108224911) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "discussions", force: :cascade do |t|
-    t.string  "title"
-    t.string  "body"
-    t.string  "author"
-    t.integer "root_discussion_id", default: -1
-  end
-
   create_table "graduate_applications", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.string   "phone"
-    t.date     "dob"
-    t.text     "gpa"
-    t.integer  "vgre"
-    t.integer  "agre"
-    t.integer  "wgre"
-    t.integer  "toefl_score"
+    t.datetime "dob"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -3,14 +3,6 @@ class GraduateApplication < ActiveRecord::Base
     %w(in-progress submitted denied accepted)
   end
 
-  #has_one :account
-  #validates_associated :account
-
-  #serialize :gpa
-
-  attr_accessor :first_name, :last_name, :email, :phone, :dob, :status
-  #attr_reader :gpa
-
   validates :first_name, :last_name, presence: true, format: {with: /\A\S+\z/, message: "No white spaces in names"}
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
   validates :phone, presence: true, format: {with: /\A\d{9,11}\z/, message: "only digits"}

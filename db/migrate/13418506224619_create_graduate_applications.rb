@@ -2,11 +2,11 @@ class CreateGraduateApplications < ActiveRecord::Migration
   def change
     create_table :graduate_applications do |t|
       # Personal Details
-      t.string :first_name, null: false
-      t.string :last_name, null: false
-      t.string :email, null: false
-      t.string :phone, null: false
-      t.date :dob, null: false
+      t.string :first_name
+      t.string :last_name
+      t.string :email
+      t.string :phone
+      t.datetime :dob
 
       # Mailing Address
       #t.hstore :address
@@ -15,7 +15,7 @@ class CreateGraduateApplications < ActiveRecord::Migration
       #t.text :gpa, null: false
 
       # Other
-      t.string :status, null: false
+      t.string :status
 
       # Add fields that let Rails automatically keep track
       # of when movies are added or modified:

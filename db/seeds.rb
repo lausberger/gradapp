@@ -21,3 +21,18 @@ discussions = [{:title => 'What\'s the best Graduate Program?', :body => 'Hey gu
 discussions.each do |discussion|
   Discussion.create!(discussion)
 end
+
+applications = [
+  {
+    :first_name => "Brandon",
+    :last_name => "Egger",
+    :email => "beggr@uiowa.edu",
+    :phone => "3196408865",
+    :dob => Date.new,
+    :status => "submitted",
+  }
+]
+
+applications.each do |application|
+  GraduateApplication.create!(application)
+end
