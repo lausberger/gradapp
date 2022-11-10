@@ -13,6 +13,13 @@ class CreateGraduateApplications < ActiveRecord::Migration
 
       # Scores
       t.float :gpa
+      t.integer :vgre
+      t.integer :agre
+      t.integer :wgre
+      t.integer :toefl_score
+
+      # Other
+      t.string :status
 
       # Add fields that let Rails automatically keep track
       # of when movies are added or modified:
