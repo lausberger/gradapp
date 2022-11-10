@@ -1,0 +1,2 @@
+class Faculty < Account
+end

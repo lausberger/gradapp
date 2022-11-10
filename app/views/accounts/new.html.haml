@@ -1,0 +1,34 @@
+%h2 Create Account
+
+= form_tag register_path do
+
+  = label :account, :first_name, "First Name"
+  = text_field :account, :first_name
+
+  %div
+  = label :account, :last_name, "Last Name"
+  = text_field :account, :last_name
+
+  %div
+  = label :account, :email, "Email"
+  = text_field :account, :email
+
+  %div
+  = label :account, :password, "Password"
+  = password_field :account, :password
+
+  %div
+  = label :account, :password_confirm, "Confirm Password"
+  = password_field :account, :password_confirm
+
+  %div
+  = label :account, :type, "I am a"
+  %select{ :name=> "account[type]" }
+    %option{ :value => "Student" }= Student
+    %option{ :value => "Faculty" }= Faculty
+
+  %div
+  = submit_tag 'Register'
+
+  %div
+  = link_to 'Return to Home Page', root_path
