@@ -10,13 +10,13 @@ Scenario: create an account as a Student
     When I fill out the form with "Student" selected
     And I submit the form
     Then I should be redirected to the home page
-    And I should see a notice that says "Account registered successfully" 
+    And I should see a notice that says "Account registration successful" 
 
 Scenario: create an account as a Faculty
     When I fill out the form with "Faculty" selected
     And I submit the form
     Then I should be redirected to the home page
-    And I should see a notice that says "Account registered successfully"
+    And I should see a notice that says "Account registration successful"
 
 Scenario: attempt to create an account with non-matching passwords
     When I fill out the form with non-matching passwords
