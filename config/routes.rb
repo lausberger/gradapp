@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   #   resources :products
   resources :graduate_applications
 
+  resource :statics
+  root :to => redirect('/home')
+  get 'home' => 'statics'
+  get 'faq' => 'statics'
+
+
   # Example resource route with options:
   #   resources :products do
   #     member do
