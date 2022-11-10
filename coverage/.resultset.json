@@ -1,0 +1,476 @@
+{
+  "features": {
+    "coverage": {
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/models/discussion.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/controllers/discussions_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 20, 4, 22, 7]": {
+            "[:then, 1, 21, 6, 21, 47]": 0,
+            "[:else, 2, 20, 4, 22, 7]": 0
+          },
+          "[:if, 3, 47, 4, 49, 7]": {
+            "[:then, 4, 48, 6, 48, 73]": 0,
+            "[:else, 5, 47, 4, 49, 7]": 0
+          },
+          "[:if, 6, 57, 4, 59, 7]": {
+            "[:then, 7, 58, 6, 58, 73]": 0,
+            "[:else, 8, 57, 4, 59, 7]": 0
+          }
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/controllers/statics_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/controllers/accounts_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          4,
+          24,
+          1,
+          null,
+          3,
+          1,
+          null,
+          2,
+          0,
+          null,
+          2,
+          2,
+          2,
+          0,
+          0,
+          null,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          4,
+          null,
+          null,
+          1,
+          1,
+          4,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 26, 24, 30, 27]": {
+            "[:then, 1, 27, 28, 27, 89]": 2,
+            "[:else, 2, 29, 28, 29, 92]": 0
+          },
+          "[:if, 3, 22, 20, 31, 23]": {
+            "[:then, 4, 23, 24, 24, 56]": 0,
+            "[:else, 5, 26, 24, 30, 27]": 2
+          },
+          "[:if, 6, 17, 16, 32, 19]": {
+            "[:then, 7, 18, 20, 18, 74]": 0,
+            "[:else, 8, 20, 20, 31, 23]": 2
+          },
+          "[:if, 9, 14, 12, 33, 15]": {
+            "[:then, 10, 15, 16, 15, 58]": 1,
+            "[:else, 11, 17, 16, 32, 19]": 2
+          },
+          "[:if, 12, 11, 8, 34, 11]": {
+            "[:then, 13, 12, 12, 12, 54]": 1,
+            "[:else, 14, 14, 12, 33, 15]": 3
+          }
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/models/student.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/models/account.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/models/faculty.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {
+        }
+      }
+    },
+    "timestamp": 1668056242
+  },
+  "specs": {
+    "coverage": {
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/controllers/accounts_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          8,
+          48,
+          2,
+          null,
+          6,
+          2,
+          null,
+          4,
+          2,
+          null,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          6,
+          null,
+          null,
+          1,
+          1,
+          8,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 26, 24, 30, 27]": {
+            "[:then, 1, 27, 28, 27, 89]": 0,
+            "[:else, 2, 29, 28, 29, 92]": 0
+          },
+          "[:if, 3, 22, 20, 31, 23]": {
+            "[:then, 4, 23, 24, 24, 56]": 2,
+            "[:else, 5, 26, 24, 30, 27]": 0
+          },
+          "[:if, 6, 17, 16, 32, 19]": {
+            "[:then, 7, 18, 20, 18, 74]": 2,
+            "[:else, 8, 20, 20, 31, 23]": 2
+          },
+          "[:if, 9, 14, 12, 33, 15]": {
+            "[:then, 10, 15, 16, 15, 58]": 2,
+            "[:else, 11, 17, 16, 32, 19]": 4
+          },
+          "[:if, 12, 11, 8, 34, 11]": {
+            "[:then, 13, 12, 12, 12, 54]": 2,
+            "[:else, 14, 14, 12, 33, 15]": 6
+          }
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/controllers/discussions_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 20, 4, 22, 7]": {
+            "[:then, 1, 21, 6, 21, 47]": 0,
+            "[:else, 2, 20, 4, 22, 7]": 0
+          },
+          "[:if, 3, 47, 4, 49, 7]": {
+            "[:then, 4, 48, 6, 48, 73]": 0,
+            "[:else, 5, 47, 4, 49, 7]": 0
+          },
+          "[:if, 6, 57, 4, 59, 7]": {
+            "[:then, 7, 58, 6, 58, 73]": 0,
+            "[:else, 8, 57, 4, 59, 7]": 0
+          }
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/controllers/statics_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/models/account.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/models/faculty.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/models/student.rb": {
+        "lines": [
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/github/selt2022_teamprojects-team-4/app/models/discussion.rb": {
+        "lines": [
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      }
+    },
+    "timestamp": 1668056227
+  }
+}
