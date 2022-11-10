@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -23,4 +24,14 @@ ActiveRecord::Schema.define(version: 20221108224911) do
     t.datetime "updated_at",      null: false
   end
 
+=======
+ActiveRecord::Schema.define do
+
+  create_table "discussions" do |t|
+    t.string "title"
+    t.string "body"
+    t.string "author"
+    t.integer "root_discussion_id", default: -1
+  end
+>>>>>>> 1170142366f6b6d1c5d25ae1286badf532bc68a3
 end
