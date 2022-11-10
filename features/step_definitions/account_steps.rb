@@ -31,7 +31,7 @@ And /^I submit the form$/ do
 end
 
 Then /^I should be redirected to the home page$/ do
-    expect(page).to have_current_path(root_path)
+    expect(page).to have_current_path('/home')
 end
 
 And /^I should see a notice that says "(.*?)"$/ do |notice|
