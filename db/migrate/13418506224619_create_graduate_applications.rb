@@ -1,4 +1,4 @@
-class CreateGraduateApplications < ActiveRecord::Migration
+class 0 < ActiveRecord::Migration
   def change
     create_table :graduate_applications do |t|
       # Personal Details
@@ -12,7 +12,7 @@ class CreateGraduateApplications < ActiveRecord::Migration
       t.hstore :address
 
       # Scores
-      t.float :gpa
+      t.hstore :gpa
       t.integer :vgre
       t.integer :agre
       t.integer :wgre
