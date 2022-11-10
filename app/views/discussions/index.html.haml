@@ -1,0 +1,23 @@
+%h1 Student Discussion Posts
+
+%table
+  %thead
+    %th Title
+    %th Body
+    %th Author
+    %th View Replies
+  %tbody
+    - @discussions.each do | discussion |
+      %tr
+        %td= discussion[:title]
+        %td= discussion[:body]
+        %td= discussion[:author]
+        %td= link_to "View Replies", discussion_path(discussion)
+        %td
+        %td= link_to "Edit", edit_discussion_path(discussion)
+        %td
+        %td= link_to "Delete", discussion_path(discussion), method: :delete
+
+%br
+
+=link_to "Post new Discussion", new_discussion_path
