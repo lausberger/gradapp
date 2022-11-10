@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20221108224911) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "discussions", force: :cascade do |t|
+    t.string  "title"
+    t.string  "body"
+    t.string  "author"
+    t.integer "root_discussion_id", default: -1
+  end
+
   create_table "graduate_applications", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"

@@ -17,4 +17,10 @@
   = label :graduate_application, :dob, 'Date of Birth'
   = date_select :graduate_application, :dob, {:start_year => 1900}
 
+  = label :graduate_application, :gpa, 'GPA'
+  = text_field :graduate_application, 'gpa'
+
+  = label :graduate_application, :gpa_out_of, 'GPA Out Of'
+  = text_field :graduate_application, 'gpa_out_of'
+
   = submit_tag 'Save Changes'
