@@ -13,19 +13,19 @@ Given /the following graduate applications have been submitted:/ do |application
 end
 
 Given /^I fill in my name as "(.*?)" "(.*?)"$/ do |first, last|
-  # TODO Fill in name of form
+  pending # TODO Fill in name of form
 end
 
 And /^I fill in my GPA with "(\d*[.]\d*)"$/ do |gpa|
-  # TODO FIll in gpa of form
+  pending # TODO FIll in gpa of form
 end
 
 And /^the application's GPA is "(\d*[.]\d*)"$/ do |gpa|
-  # TODO: Check if GPA match found
+  pending # TODO: Check if GPA match found
 end
 
 And /^the application's name is "(.*?)" "(.*?)"$/ do |first, last|
-  # TODO: Check if names match found
+  pending # TODO: Check if names match found
 end
 
 When /^I sort graduate applications based on "(.*?)"$/ do |score|
@@ -37,9 +37,9 @@ When /^I submit my graduate application$/ do
 end
 
 Then /^I should see the application status "(.*?)"$/ do |status|
-  # TODO: Check if status match found
+  pending # TODO: Check if status match found
 end
 
 Then /^I should see "(.*?)"'s application before "(.*?)"'s$/ do |higher_name, lower_name|
-  # TODO: Check if higher_name occurs before lower_name in applications table
+  pending # TODO: Check if higher_name occurs before lower_name in applications table
 end
