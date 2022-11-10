@@ -171,9 +171,5 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-<<<<<<< HEAD
-*.iml
-=======
 # Mac residuals
 **/.DS_Store
->>>>>>> b1dca9097a59e00367c25f1fea0c55d06a010328
