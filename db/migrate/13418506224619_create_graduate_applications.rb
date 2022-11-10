@@ -8,11 +8,9 @@ class CreateGraduateApplications < ActiveRecord::Migration
       t.string :phone
       t.datetime :dob
 
-      # Mailing Address
-      #t.hstore :address
-
       # Scores
-      #t.text :gpa, null: false
+      t.float :gpa_value
+      t.float :gpa_scale
 
       # Other
       t.string :status

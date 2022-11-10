@@ -30,6 +30,8 @@ applications = [
     :phone => "3196408865",
     :dob => Date.new,
     :status => "submitted",
+    :gpa_value => 3.9,
+    :gpa_scale => 4.0,
   }
 ]
 

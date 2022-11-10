@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 30721148119000) do
     t.string   "email"
     t.string   "phone"
     t.datetime "dob"
+    t.float    "gpa_value"
+    t.float    "gpa_scale"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
