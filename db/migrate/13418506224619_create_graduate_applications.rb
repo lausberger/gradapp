@@ -1,4 +1,4 @@
-class 0 < ActiveRecord::Migration
+class CreateGraduateApplications < ActiveRecord::Migration
   def change
     create_table :graduate_applications do |t|
       # Personal Details
@@ -9,10 +9,10 @@ class 0 < ActiveRecord::Migration
       t.date :dob
 
       # Mailing Address
-      t.hstore :address
+      #t.hstore :address
 
       # Scores
-      t.hstore :gpa
+      t.text :gpa
       t.integer :vgre
       t.integer :agre
       t.integer :wgre
