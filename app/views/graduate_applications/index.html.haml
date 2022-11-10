@@ -1,0 +1,17 @@
+%h1 All Open Applications
+
+%table#applications
+  %thead
+    %tr
+      %th Name
+      %th GPA
+      %th Status
+      %th More Info
+  %tbody
+    - @graduate_applications.each do |application|
+      %tr
+        %td= application.full_name
+        %td= application.gpa_ratio
+        %td= application.status
+        %td= link_to "View Application", graduate_applications_path(application)
+

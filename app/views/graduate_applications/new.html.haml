@@ -1,0 +1,20 @@
+%h1 Submit New Application
+
+= form_tag graduate_applications_path do
+
+  = label :graduate_application, :first_name, 'First Name'
+  = text_field :graduate_application, 'first_name'
+
+  = label :graduate_application, :last_name, 'Last Name'
+  = text_field :graduate_application, 'last_name'
+
+  = label :graduate_application, :email, 'Email'
+  = text_field :graduate_application, 'email'
+
+  = label :graduate_application, :email, 'Phone'
+  = text_field :graduate_application, 'phone'
+
+  = label :graduate_application, :dob, 'Date of Birth'
+  = date_select :graduate_application, :dob, {:start_year => 1900}
+
+  = submit_tag 'Save Changes'
