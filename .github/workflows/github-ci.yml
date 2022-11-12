@@ -1,11 +1,13 @@
 name: CI/CD Pipeline
+
 on:
   push:
     branches: [ "pipeline-test" ]
   pull_request:
     branches: [ "pipeline-test" ]
+
 jobs:
-  test:
+  Test:
     runs-on: ubuntu-latest
 
     env:
@@ -28,8 +30,28 @@ jobs:
           bundle exec rake db:migrate
           bundle exec rake db:seed
       
-      # - name: Run spec tests
-      #   run: bundle exec rspec
+      - name: Run spec tests
+        run: bundle exec rspec
       
       - name: Run feature tests
         run: bundle exec cucumber
+    
+  Production:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: production
+
+    steps:
+      - name: Prod placeholder
+        run: echo "Replace me with a real step!"
+  
+  Deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: production
+
+    steps:
+      - name: Deploy placeholder
+        run: echo "Write steps to deploy to Heroku!"
