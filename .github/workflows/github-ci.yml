@@ -28,8 +28,8 @@ jobs:
           bundle exec rake db:migrate
           bundle exec rake db:seed
       
-      - name: Run spec tests
-        run: bundle exec rspec
+      # - name: Run spec tests
+      #   run: bundle exec rspec
       
       - name: Run feature tests
         run: bundle exec cucumber
