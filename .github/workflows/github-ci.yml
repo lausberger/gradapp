@@ -26,6 +26,8 @@ jobs:
         run: rubocop
 
   Test:
+    needs: Linting
+    
     runs-on: ubuntu-latest
 
     env:
