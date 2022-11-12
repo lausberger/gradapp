@@ -12,9 +12,6 @@ jobs:
       RAILS_ENV: test
 
     steps:
-      - name: Hello world test
-        run: echo "Hello, world"
-      
       - name: Checkout pipeline-test
         uses: actions/checkout@v3
         with:
@@ -25,3 +22,8 @@ jobs:
         with:
           ruby-version: 2.6.6
           bundler-cache: true
+      
+      - name: Build test database
+        run: |
+          bundle exec rake db:migrate
+          bundle exec rake db:seed
