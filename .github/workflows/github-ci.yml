@@ -10,9 +10,9 @@ jobs:
 
     env:
       RAILS_ENV: test
-      
+
     steps:
-      - name: "Hello, world" test
+      - name: Hello world test
         run: echo "Hello, world"
       
       - name: Checkout pipeline-test
