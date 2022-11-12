@@ -12,9 +12,9 @@ jobs:
 
     steps:
       - name: Checkout pipeline-test
-          uses: actions/checkout@v3
-          with:
-            ref: pipeline-test
+        uses: actions/checkout@v3
+        with:
+          ref: pipeline-test
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
