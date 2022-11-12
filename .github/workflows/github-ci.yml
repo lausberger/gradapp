@@ -23,11 +23,9 @@ jobs:
           bundler-cache: true
 
       - name: Perform linting
-        run: rubocop
+        run: bundle exec rubocop
 
   Test:
-    needs: Linting
-    
     runs-on: ubuntu-latest
 
     env:
