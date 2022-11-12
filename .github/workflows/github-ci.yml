@@ -37,6 +37,8 @@ jobs:
         run: bundle exec cucumber
     
   Production:
+    needs: Test
+
     runs-on: ubuntu-latest
 
     env:
@@ -47,6 +49,8 @@ jobs:
         run: echo "Replace me with a real step!"
   
   Deploy:
+    needs: [ Test, Production ]
+    
     runs-on: ubuntu-latest
 
     env:
