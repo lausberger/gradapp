@@ -10,3 +10,8 @@ jobs:
     steps:
       - name: hello world test
         run: echo "Hello, world"
+      
+      - name: checkout pipeline-test
+        uses: actions/checkout@v3
+        with:
+          ref: pipeline-test
