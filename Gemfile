@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '2.6.6'
@@ -40,22 +42,26 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'capybara'
+  gem 'guard-rspec'
   gem 'launchy'
   gem 'rspec', '~>3.5'
   gem 'rspec-rails'
-  gem 'guard-rspec'
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~>1.3.13'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~>2.0.2'
+
+  # For linting
+  gem 'rubocop', '~>1.31.0'
+  gem 'rubocop-rails', '~>2.15.2'
 end
 
 group :test do
-  gem 'rspec-expectations'
-  gem 'cucumber-rails', :require=>false
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'rspec-expectations'
   gem 'simplecov', require: false
 end
 
@@ -63,4 +69,3 @@ group :production do
   gem 'pg', '~>0.20' # for Heroku deployment
   gem 'rails_12factor'
 end
-

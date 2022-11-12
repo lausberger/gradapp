@@ -7,6 +7,24 @@ on:
     branches: [ "pipeline-test" ]
 
 jobs:
+  Linting:
+    runs-on: ubunutu-latest
+
+    steps:
+      - name: Checkout pipeline-test
+          uses: actions/checkout@v3
+          with:
+            ref: pipeline-test
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
+          bundler-cache: true
+
+      - name: Perform linting
+        run: rubocop
+
   Test:
     runs-on: ubuntu-latest
 
@@ -49,8 +67,8 @@ jobs:
         run: echo "Replace me with a real step!"
   
   Deploy:
-    needs: [ Test, Production ]
-    
+    needs: Production
+
     runs-on: ubuntu-latest
 
     env:
