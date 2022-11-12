@@ -1,0 +1,12 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches: [ "pipeline-test" ]
+  pull-request:
+    branches: [ "pipeline-test" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello world test
+        run: echo "Hello, world"
