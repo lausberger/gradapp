@@ -12,7 +12,7 @@ jobs:
 
     outputs:
       date: ${{ steps.get-date.outputs.date }}
-      # app-name: ${{ steps.get-app-name.outputs.app-name }}
+      mappings: ${{ steps.get-app-name.outputs.mappings }}
 
     steps:
       - name: Checkout pipeline-test
@@ -27,7 +27,9 @@ jobs:
       - name: Read Heroku App Mapping
         id: get-app-name
         run: |
-          echo ${{ fromJSON(cat .github/workflows/heroku-mappings.json) }}
+          export mappings=$(cat .github/workflows/heroku-mappings.json)
+          echo $mappings
+          
 
 
   Linting:
