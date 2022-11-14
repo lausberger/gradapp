@@ -1,5 +1,9 @@
 Given(/^I have added a discussion with the title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|
-  Discussion.create!(:title => title, :body => body, :author => author, :root_discussion_id => 0)
+  click_on(:id => 'post_new_discussion')
+  fill_in("Title", with: title)
+  fill_in("Body", with: body)
+  fill_in("Author", with: author)
+  click_button(:id => 'post_discussion_button')
 end
 
 Given(/^There is a reply with body "([^"]*)" authored by "([^"]*)"$/) do |body, author|
@@ -24,6 +28,7 @@ end
 When(/^I am on the discussions home page$/) do
   visit discussions_path
 end
+
 
 When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |post_body, post_author|
   pending("Add reply broken")
@@ -102,7 +107,6 @@ end
 def find_post_by_author(author)
   found_author = false
   all("tr").each do |tr|
-    log("TR #{tr[2].text}")
     post_author = tr.all("td")[2].text
     if post_author.eql? author
       found_author = true

@@ -2,6 +2,8 @@ Feature: Allow user to create a new Discussion post
 
   Scenario: Add a new root discussion post
 
+    Given I am on the discussions home page
+
     When I have added a discussion with the title "Any recommendations on program" and body "I am having issues determining which program I want to go into does anyone have any suggestions?" and author "Jack Stockley"
 
     When I am on the discussions home page
