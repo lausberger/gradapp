@@ -12,7 +12,7 @@ jobs:
 
     outputs:
       date: ${{ steps.get-date.outputs.date }}
-      mappings: ${{ steps.get-app-name.outputs.mappings }}
+      mappings: ${{ steps.get-mappings.outputs.mappings }}
 
     steps:
       - name: Checkout pipeline-test
@@ -24,12 +24,12 @@ jobs:
         id: get-date
         run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
       
-      - name: Read Heroku App Mapping
-        id: get-app-name
-        run: |
-          export mappings=$(cat .github/workflows/heroku-mappings.json)
-          echo $mappings
-          echo ${{ toJSON($mappings) }}
+      - name: Export Heroku mappings
+        id: get-mappings
+        run: echo "mappings=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_OUTPUT
+
+      - name: Read mappings
+        run: echo ${{ fromJSON(steps.get-mappings.outputs.mappings) }}
           
 
 
