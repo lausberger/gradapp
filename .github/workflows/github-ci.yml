@@ -23,7 +23,7 @@ jobs:
           args: date +%F
         
       - name: Set date variable
-        run: echo ${{ steps.date_step.outputs }}
+        run: echo ${{ toJSON(steps.date_step.outputs) }}
 
       
 
