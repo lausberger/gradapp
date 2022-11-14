@@ -17,11 +17,15 @@ jobs:
           ref: pipeline-test
 
       - name: Get current date
+        id: date_step
         uses: ajilraju/actions-date@v0.1
         with:
           args: date +%F
-        run: |
-          echo $(!!)
+        
+      - name: Set date variable
+        run: echo ${{ steps.date_step.outputs }}
+
+      
 
 
   Linting:
