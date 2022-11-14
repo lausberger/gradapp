@@ -16,16 +16,12 @@ jobs:
         with:
           ref: pipeline-test
 
-      # - name: Printing test
-      #   run: |
-      #     echo "date"
-      #     echo ${{ date }}
-      #     echo "Done"
-
-      - name: actions-date
+      - name: Get current date
         uses: ajilraju/actions-date@v0.1
         with:
           args: date +%F
+        run: |
+          echo $(!!)
 
 
   Linting:
@@ -60,7 +56,7 @@ jobs:
         with:
           ref: pipeline-test
       
-      - name: Set up Ruby
+      - name: Set up Ruby 2.6.6
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6.6
@@ -78,7 +74,6 @@ jobs:
         run: bundle exec cucumber
     
   Production:
-    if: ${{ false }}
     needs: Test
 
     runs-on: ubuntu-latest
@@ -87,11 +82,29 @@ jobs:
       RAILS_ENV: production
 
     steps:
-      - name: Prod placeholder
-        run: echo "Replace me with a real step!"
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+      
+      - name: Set up Ruby 2.6.6
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
+          bundler-cache: false
+      
+      - name: Build production database
+        run: |
+          bundle exec rake db:migrate
+          bundle exec rake db:seed
+      
+      - name: Run spec tests
+        run: bundle exec rspec
+      
+      - name: Run feature tests
+        run: bundle exec cucumber
   
   Deploy:
-    if: ${{ false }}
     needs: Production
 
     runs-on: ubuntu-latest
