@@ -8,7 +8,7 @@ end
 
 Given /the following graduate applications have been submitted:/ do |application_table|
   application_table.hashes.each do |application|
-    # TODO: create application objects to populate test DB
+
   end
 end
 
@@ -28,11 +28,11 @@ And /^I fill in my email as "(.*?)" and my phone as "(.*?)"$/ do |email, phone|
 end
 
 And /^the application's GPA is "(\d*[.]\d*)"$/ do |gpa|
-  has_content? gpa
+  expect(find('#applications')).to have_content gpa
 end
 
 And /^the application's name is "(.*?)" "(.*?)"$/ do |first, last|
-  has_content? first + " " + last
+  expect(find('#applications')).to have_content first + " " + last
 end
 
 When /^I sort graduate applications based on "(.*?)"$/ do |score|
@@ -44,11 +44,16 @@ When /^I submit my graduate application$/ do
 end
 
 When(/^I select to view "(.*?)" "(.*?)"'s graduate application$/) do |first, last|
-  pending #click on view application of first row with that name
+  all("tr").each do |tr|
+    if tr.has_content? first + " " + last
+      tr.click_on 'View Application'
+      break
+    end
+  end
 end
 
 Then /^I should see the application status "(.*?)"$/ do |status|
-  has_content? status
+  expect(find('#applications')).to have_content status
 end
 
 Then /^I should see "(.*?)"'s application before "(.*?)"'s$/ do |higher_name, lower_name|
