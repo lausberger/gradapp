@@ -27,7 +27,7 @@ jobs:
         
       - name: Export current date
         id: get-date
-        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUTS
+        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
 
       - name: Read the output
         run: echo ${{ steps.get-date.outputs.date }}
