@@ -70,8 +70,6 @@ When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body
   all('tr').each do |tr|
     body = tr.all('td')[0].text
     author = tr.all('td')[1].text
-    log(body)
-    log(author)
     if body.eql? old_body and author.eql? post_author
       tr.find('a', :text => 'Edit').click
       fill_in("Body", with: new_body)
