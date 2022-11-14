@@ -27,10 +27,10 @@ jobs:
       - name: Export Heroku mappings
         id: get-mappings
         run: |
-          export mappings=$(cat .github/workflows/heroku-mappings.json)
+          echo "mappings=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_OUTPUT"
 
       - name: Read mappings
-        run: echo $mappings
+        run: echo ${{ steps.get-mappings.outputs.mappings }}
           
 
 
