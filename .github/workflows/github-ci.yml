@@ -23,16 +23,6 @@ jobs:
       - name: Export current date
         id: date
         run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
-
-      - name: another one
-        run: |
-          echo 'MAPPINGS<<EOF' >> $GITHUB_ENV
-          cat .github/workflows/heroku-mappings.json >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-
-      - name: another test
-        run: |
-          echo '${{ fromJson(env.MAPPINGS).sprint1_start }}'
       
       - name: Export Heroku mappings
         id: mappings
@@ -41,11 +31,7 @@ jobs:
 
       - name: Read mappings alt
         run: |
-          echo "${{ steps.mappings.outputs.mappings }}"
-
-      - name: Read mappings
-        run: |
-          echo "${{ fromJson(steps.mappings.outputs.mappings) }}"
+          echo "${{ steps.mappings.outputs.mappings.sprint1_start }}"
 
   Linting:
     if: ${{ false }}
