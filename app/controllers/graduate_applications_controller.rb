@@ -3,11 +3,6 @@ class GraduateApplicationsController < ApplicationController
     params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, :gpa_value, :gpa_scale)
   end
 
-  def show
-    id = params[:id]
-    @graduate_application = GraduateApplication.find(id)
-  end
-
   def index
     @graduate_applications = GraduateApplication.all
   end
