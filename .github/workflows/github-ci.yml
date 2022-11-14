@@ -22,7 +22,7 @@ jobs:
       
       - name: Export current date
         id: date
-        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+        run: echo "date=$(date +%Y%m%d)" >> $GITHUB_OUTPUT
       
       - name: Export Heroku mappings
         id: mappings
