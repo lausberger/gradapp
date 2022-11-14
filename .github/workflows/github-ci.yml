@@ -33,13 +33,12 @@ jobs:
         run: |
           echo "${{ steps.mappings.outputs.mappings }}"
 
-      - name: Read mappings first
-        run: |
-          echo "${{ toJson(steps.mappings.outputs.mappings).sprint1_start }}"
-
       - name: Read mappings second
         run: |
           echo "${{ fromJson(steps.mappings.outputs.mappings).sprint1_start }}"
+      
+      - if: ${{ fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint1_start }}
+        run: echo "SUCCESS"
 
   Linting:
     if: ${{ false }}
