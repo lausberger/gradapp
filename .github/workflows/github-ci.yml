@@ -18,8 +18,8 @@ jobs:
 
       - name: Printing test
         run: |
-          echo "ENTIRE CONTEXT"
-          echo ${{ github }}
+          echo "date"
+          echo ${{ date }}
           echo "Done"
 
 
