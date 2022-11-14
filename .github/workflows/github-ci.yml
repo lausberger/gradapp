@@ -27,8 +27,7 @@ jobs:
       - name: Export Heroku mappings
         id: mappings
         run: |
-          mappings=$(cat .github/workflows/heroku-mappings.json)
-          echo "mappings=$mappings//'%'/'%25'" >> $GITHUB_OUTPUT
+          echo "mappings=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_OUTPUT
 
       - name: Read mappings alt
         run: |
