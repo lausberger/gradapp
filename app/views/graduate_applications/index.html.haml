@@ -4,14 +4,14 @@
   %thead
     %tr
       %th Name
-      %th GPA
+      %th GPA (4.0 Scale)
       %th Status
       %th More Info
   %tbody
     - @graduate_applications.each do |application|
       %tr
         %td= application.full_name
-        %td= application.gpa_ratio
+        %td= "#{'%.2f' % application.gpa_default_scale}"
         %td= application.status
         %td= link_to "View Application", graduate_applications_path(application)
 
