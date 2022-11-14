@@ -14,6 +14,10 @@ class GraduateApplication < ActiveRecord::Base
     self.gpa_value / self.gpa_scale;
   end
 
+  def gpa_default_scale
+    self.gpa_ratio * 4
+  end
+
   def full_name
     self.first_name + " " + self.last_name
   end
