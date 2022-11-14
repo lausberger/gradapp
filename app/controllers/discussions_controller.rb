@@ -44,7 +44,7 @@ class DiscussionsController < ApplicationController
     discussion = Discussion.find(id)
     discussion.update(title: new_title)
     discussion.update(body: new_body)
-    if discussion[:root_discussion_id] != -1
+    if discussion[:root_discussion_id].to_i != -1
       return redirect_to discussion_path(discussion[:root_discussion_id])
     end
     redirect_to discussions_path
