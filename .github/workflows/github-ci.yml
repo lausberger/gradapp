@@ -18,14 +18,12 @@ jobs:
 
       - name: Printing test
         run: |
-          echo "Github Ref"
-          echo ${{ github.ref }}
-          echo "Github Ref_Name"
-          echo ${{ github.ref_name }}
-          echo "Github Event Created At"
-          echo ${{ github.event.push.created_at }}
-          echo "Github Event Date"
-          echo ${{ github.event.push.date }}
+          echo "Github Event Description"
+          echo ${{ github.event.description }}
+          echo "Github Event Push"
+          echo ${{ github.event.push }}
+          echo "ENTIRE CONTEXT"
+          echo ${{ toJSON(github) }}
           echo "Done"
 
 
