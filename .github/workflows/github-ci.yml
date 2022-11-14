@@ -8,7 +8,7 @@ on:
 
 jobs:
   Debug:
-    runs-on: ubunutu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout pipeline-test
@@ -31,7 +31,7 @@ jobs:
 
   Linting:
     if: ${{ false }}
-    runs-on: ubunutu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout pipeline-test
