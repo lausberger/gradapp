@@ -16,11 +16,16 @@ jobs:
         with:
           ref: pipeline-test
 
-      - name: Printing test
-        run: |
-          echo "date"
-          echo ${{ date }}
-          echo "Done"
+      # - name: Printing test
+      #   run: |
+      #     echo "date"
+      #     echo ${{ date }}
+      #     echo "Done"
+
+      - name: actions-date
+        uses: ajilraju/actions-date@v0.1
+        with:
+          args: date +%F
 
 
   Linting:
