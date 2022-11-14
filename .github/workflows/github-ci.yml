@@ -13,6 +13,7 @@ jobs:
     outputs:
       date: ${{ steps.date.outputs.date }}
       mappings: ${{ steps.mappings.outputs.mappings }}
+      heroku-app: $ {{ steps.app-name.outputs.name }}
 
     steps:
       - name: Checkout pipeline-test
@@ -28,19 +29,31 @@ jobs:
         id: mappings
         run: |
           echo "mappings=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_OUTPUT
-
-      - name: Read mappings second
-        run: |
-          echo "${{ fromJson(steps.mappings.outputs.mappings).sprint1_start }}"
       
+      # 2022-11-01 <= current_date <= 2022-11-09
       - if: (fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint1_start) && (fromJson(steps.date.outputs.date) <= fromJson(steps.mappings.outputs.mappings).sprint2_start)
         run: echo "WE'RE IN SPRINT 1"
+        env:
+          HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint1_app_name }}
       
+      # 2022-11-10 <= current_date <= 2022-11-27
       - if: (fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint2_start) && (fromJson(steps.date.outputs.date) <= fromJson(steps.mappings.outputs.mappings).sprint3_start)
         run: echo "WE'RE IN SPRINT 2"
+        env:
+          HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint2_app_name }}
 
+      # 2022-11-28 <= current_date
       - if: fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint3_start
         run: echo "SPRINT 3"
+        env:
+          HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint3_app_name }}
+      
+      - name: View Heroku app name
+        run: | 
+          echo "HEROKU APP NAME IS"
+          echo ${{ env.HEROKU_APP }}
+        
+
 
   Linting:
     if: ${{ false }}
