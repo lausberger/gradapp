@@ -14,26 +14,18 @@ jobs:
       date: ${{ steps.get-date.outputs.date }}
 
     steps:
-      - name: Checkout pipeline-test
+    - name: Checkout pipeline-test
         uses: actions/checkout@v3
         with:
           ref: pipeline-test
-
-      - name: Get current date
-        id: date-step
-        uses: ajilraju/actions-date@v0.1
-        with:
-          args: date +%F
-        
+      
       - name: Export current date
         id: get-date
         run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
-
-      - name: Read the output
-        run: echo ${{ steps.get-date.outputs.date }}
-
-
       
+      - name: Read Heroku App Mapping
+        run: |
+          cat ./heroku-mappings.json
 
 
   Linting:
