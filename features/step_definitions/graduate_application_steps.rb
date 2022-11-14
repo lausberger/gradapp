@@ -36,11 +36,15 @@ And /^the application's name is "(.*?)" "(.*?)"$/ do |first, last|
 end
 
 When /^I sort graduate applications based on "(.*?)"$/ do |score|
-  click_on score
+  pending
 end
 
 When /^I submit my graduate application$/ do
   click_on 'Submit'
+end
+
+When(/^I select to view "(.*?)" "(.*?)"'s graduate application$/) do |first, last|
+  pending #click on view application of first row with that name
 end
 
 Then /^I should see the application status "(.*?)"$/ do |status|
