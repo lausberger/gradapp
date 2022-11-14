@@ -25,7 +25,7 @@ jobs:
       
       - name: Read Heroku App Mapping
         run: |
-          cat ./heroku-mappings.json
+          cat .github/workflows/heroku-mappings.json
 
 
   Linting:
