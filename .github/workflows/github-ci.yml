@@ -39,8 +39,8 @@ jobs:
       
       - name: get stuff
         run: |
-          export s1start=$(fromJson(steps.mappings.outputs.mappings).sprint1_start)
-          export cur_date=$(fromJson(steps.date.outputs.date))
+          export s1start=${{ fromJson(steps.mappings.outputs.mappings).sprint1_start }}
+          export cur_date=${{ fromJson(steps.date.outputs.date) }}
 
       - name: echo guy
         run: |
