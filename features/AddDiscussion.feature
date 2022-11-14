@@ -13,6 +13,8 @@ Feature: Allow user to create a new Discussion post
 
   Scenario: Post a reply to a current discussion post
 
+    Given I am on the discussions home page
+
     Given I have added a discussion with the title "Any recommendations on program" and body "I am having issues determining which program I want to go into does anyone have any suggestions?" and author "Jack Stockley"
 
     Given I am on the discussion page with the title "Any recommendations on program" and authored by "Jack Stockley"

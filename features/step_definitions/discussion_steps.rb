@@ -31,12 +31,9 @@ end
 
 
 When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |post_body, post_author|
-  pending("Add reply broken")
-  page_title = page.title.split(" - ")
-  root_post_title = page_title[0]
-  root_post_author = page_title[1]
-  discussion = Discussion.find_by(title: root_post_title, author: root_post_author)
-  discussion_reply = Discussion.create!(:title => "", :body => post_body, :author => post_author, :root_discussion_id => discussion.id)
+  fill_in("body", with:post_body)
+  fill_in("author", with: post_author)
+  click_button(:id => 'post_reply_button')
 end
 
 When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |post_title, post_author|
@@ -64,8 +61,8 @@ end
 Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
   found_post = false
   all("tr").each do |tr|
-    post_body = tr.all("td")[1].text
-    post_author = tr.all("td")[2].text
+    post_body = tr.all("td")[0].text
+    post_author = tr.all("td")[1].text
     if post_body.eql? body and post_author.eql? author
       found_post = true
       break
