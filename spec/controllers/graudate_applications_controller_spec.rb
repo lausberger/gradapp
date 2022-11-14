@@ -28,10 +28,6 @@ describe GraduateApplicationsController do
         post :create, :graduate_application => @sample_application
         expect(flash[:notice]).to match /Application submission failed, please retry./
       end
-      it 'should not redirect' do
-        post :create, :graduate_application => @sample_application
-        expect(response).to_not have_http_status(:found)
-      end
     end
     context 'with an invalid email' do
       it 'should flash the request was invalid' do
