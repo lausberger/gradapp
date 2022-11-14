@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      date: ${{ steps.get-date.outputs.date }}
-      mappings: ${{ steps.get-mappings.outputs.mappings }}
+      date: ${{ steps.date.outputs.date }}
+      mappings: ${{ steps.mappings.outputs.mappings }}
 
     steps:
       - name: Checkout pipeline-test
@@ -21,18 +21,22 @@ jobs:
           ref: pipeline-test
       
       - name: Export current date
-        id: get-date
+        id: date
         run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
       
       - name: Export Heroku mappings
-        id: get-mappings
+        id: mappings
         run: |
           mappings=$(cat .github/workflows/heroku-mappings.json)
-          echo "::set-output name=mappings::${mappings//'%'/'%25'}"
+          echo "mappings=mappings//'%'/'%25'" >> $GITHUB_OUTPUT
+
+      - name: Read mappings alt
+        run: |
+          echo "${{ steps.mappings.outputs.mappings }}"
 
       - name: Read mappings
         run: |
-          echo "${{ fromJson(steps.get-mappings.outputs.mappings) }}"
+          echo "${{ fromJson(steps.mappings.outputs.mappings) }}"
 
 
   Linting:
