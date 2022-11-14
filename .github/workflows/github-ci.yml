@@ -14,7 +14,7 @@ jobs:
       date: ${{ steps.get-date.outputs.date }}
 
     steps:
-    - name: Checkout pipeline-test
+      - name: Checkout pipeline-test
         uses: actions/checkout@v3
         with:
           ref: pipeline-test
