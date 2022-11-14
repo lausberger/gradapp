@@ -31,7 +31,15 @@ jobs:
 
       - name: Read mappings alt
         run: |
-          echo "${{ steps.mappings.outputs.mappings.sprint1_start }}"
+          echo "${{ steps.mappings.outputs.mappings }}"
+
+      - name: Read mappings first
+        run: |
+          echo "${{ toJson(steps.mappings.outputs.mappings).sprint1_start }}"
+
+      - name: Read mappings second
+        run: |
+          echo "${{ fromJson(steps.mappings.outputs.mappings).sprint1_start }}"
 
   Linting:
     if: ${{ false }}
