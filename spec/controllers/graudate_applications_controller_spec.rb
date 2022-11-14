@@ -55,3 +55,4 @@ describe GraduateApplicationsController do
     end
   end
 end
+
