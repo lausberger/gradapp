@@ -32,9 +32,10 @@ jobs:
           mappings="${mappings//$'\n'/'%0A'}"
           mappings="${mappings//$'\r'/'%0D'}"
           echo "mappings=$mappings" >> $GITHUB_OUTPUT
+
       - name: Read mappings
         run: |
-          echo "${{ fromJson(steps.get-mappings.outputs.mappings).sprint1_start }}"
+          echo "${{ fromJson(steps.get-mappings.outputs.mappings) }}"
 
 
   Linting:
