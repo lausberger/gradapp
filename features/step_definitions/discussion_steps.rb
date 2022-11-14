@@ -12,17 +12,13 @@ Given(/^There is a reply with body "([^"]*)" authored by "([^"]*)"$/) do |body, 
 end
 
 Given(/^I am on the discussion page with the title "([^"]*)" and authored by "([^"]*)"$/) do |title, author|
-  expected_page_title = "#{title} - #{author}"
   all("tr").each do |tr|
     post_title = tr.all("td")[0].text
     post_author = tr.all("td")[2].text
     if post_title.eql? title and post_author.eql? author
-      tr.all("td")[3].click_link
-      break
+      tr.all("td")[5].click
     end
   end
-  page_title = page.title
-  expect(page_title).eql? expected_page_title
 end
 
 When(/^I am on the discussions home page$/) do
@@ -37,8 +33,23 @@ When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |post_
 end
 
 When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |post_title, post_author|
-  discussion = Discussion.find_by(title: post_title, author: post_author)
-  Discussion.destroy(discussion)
+  all('tr').each do |tr|
+    title = tr.all('td')[0].text
+    author = tr.all('td')[2].text
+    if title.eql? post_title and author.eql? post_author
+      tr.find('a', :text => 'Delete').click
+    end
+  end
+end
+
+When(/^I have deleted the discussion reply with the body "([^"]*)" authored by "([^"]*)"$/) do |reply_body, reply_author|
+  all('tr').each do |tr|
+    body = tr.all('td')[0].text
+    author = tr.all('td')[1].text
+    if body.eql? reply_body and author.eql? reply_author
+      tr.all("td")[3].click
+    end
+  end
 end
 
 When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |old_title, post_author, new_title, new_body|
