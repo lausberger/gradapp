@@ -29,6 +29,7 @@ jobs:
         run: |
           export mappings=$(cat .github/workflows/heroku-mappings.json)
           echo $mappings
+          echo ${{ toJSON($mappings) }}
           
 
 
