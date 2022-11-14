@@ -29,20 +29,9 @@ jobs:
         run: |
           echo "mappings=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_OUTPUT
 
-      - name: Read mappings alt
-        run: |
-          echo "${{ steps.mappings.outputs.mappings }}"
-
       - name: Read mappings second
         run: |
           echo "${{ fromJson(steps.mappings.outputs.mappings).sprint1_start }}"
-
-      - run: echo $('a' < 'b')
-      
-      - name: get stuff
-        run: |
-          export s1start=${{ fromJson(steps.mappings.outputs.mappings).sprint1_start }}
-          export cur_date=${{ fromJson(steps.date.outputs.date) }}
       
       - if: (fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint1_start) && (fromJson(steps.date.outputs.date) <= fromJson(steps.mappings.outputs.mappings).sprint2_start)"
         run: echo "WE'RE IN SPRINT 1"
