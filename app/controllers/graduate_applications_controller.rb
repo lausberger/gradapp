@@ -12,6 +12,11 @@ class GraduateApplicationsController < ApplicationController
     @graduate_applications = GraduateApplication.all
   end
 
+  def show
+    id = params[:id]
+    @graduate_application = GraduateApplication.find(id)
+  end
+
   def new
     # Navigates to new view
   end
