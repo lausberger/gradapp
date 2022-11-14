@@ -12,7 +12,7 @@ jobs:
 
     outputs:
       date: ${{ steps.get-date.outputs.date }}
-      app-name: ${{ steps.get-app-name.outputs.app-name }}
+      # app-name: ${{ steps.get-app-name.outputs.app-name }}
 
     steps:
       - name: Checkout pipeline-test
