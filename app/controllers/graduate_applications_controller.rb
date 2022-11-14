@@ -22,15 +22,18 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def create
-    param_hash =graduate_application_params.to_hash
+    param_hash = graduate_application_params.to_hash
     param_hash[:status] = "submitted"
 
-    @graduate_application = GraduateApplication.create!(param_hash)
+    @graduate_application = GraduateApplication.create(param_hash)
     flash[:notice] = "Graduate application was successfully submitted." if @graduate_application.valid?
     flash[:notice] = "Application submission failed, please retry." unless @graduate_application.valid?
     @graduate_application.status = "denied" unless @graduate_application.valid?
-
-    redirect_to graduate_applications_path
+    if @graduate_application.valid?
+      redirect_to graduate_applications_path
+    else
+      render 'new'
+    end
   end
 
 end
