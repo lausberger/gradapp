@@ -13,7 +13,7 @@ Feature: Display an navigate open graduate applications
     Given I am on the Graduate Applications home page
 
   Scenario: I select a students application to view
-    When I select to view "Brandon" "Egger"'s graduate application
+    When I select to view "John" "Doe"'s graduate application
     Then I should see the application status "denied"
-    And the application's GPA is "3.9"
-    And the application's name is "Brandon" "Egger"
+    And the application's GPA is "3.12"
+    And the application's name is "John" "Doe"
