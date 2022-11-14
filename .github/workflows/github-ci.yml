@@ -37,7 +37,17 @@ jobs:
         run: |
           echo "${{ fromJson(steps.mappings.outputs.mappings).sprint1_start }}"
       
-      - if: ${{ fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint1_start }}
+      - name: get stuff
+        run: |
+          export s1start=$(fromJson(steps.mappings.outputs.mappings).sprint1_start)
+          export cur_date=$(fromJson(steps.date.outputs.date))
+
+      - name: echo guy
+        run: |
+          echo $cur_date
+          echo $s1start
+      
+      - if: fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint1_start
         run: echo "SUCCESS"
 
   Linting:
