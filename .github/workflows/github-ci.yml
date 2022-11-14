@@ -30,7 +30,7 @@ jobs:
           export mappings=$(cat .github/workflows/heroku-mappings.json)
 
       - name: Read mappings
-        run: echo ${{ $mappings }}
+        run: echo $mappings
           
 
 
