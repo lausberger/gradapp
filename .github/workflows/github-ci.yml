@@ -28,6 +28,8 @@ jobs:
         id: get-mappings
         run: |
           mappings=`cat .github/workflows/heroku-mappings.json`
+          mappings="${mappings//$'\n'/'%0A'}"
+          mappings="${mappings//$'\r'/'%0D'}"
           echo "mappings=$mappings" >> $GITHUB_OUTPUT
 
       - name: Read mappings
