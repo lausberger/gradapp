@@ -10,6 +10,9 @@ jobs:
   Debug:
     runs-on: ubuntu-latest
 
+    outputs:
+      date: ${{ steps.get-date.outputs.date }}
+
     steps:
       - name: Checkout pipeline-test
         uses: actions/checkout@v3
@@ -22,8 +25,13 @@ jobs:
         with:
           args: date +%F
         
-      - name: Print date
-        run: echo $(date +%d-%m-%Y)
+      - name: Export current date
+        id: get-date
+        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUTS
+
+      - name: Read the output
+        run: echo ${{ steps.get-date.outputs.date }}
+
 
       
 
