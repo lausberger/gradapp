@@ -7,7 +7,30 @@ on:
     branches: [ "pipeline-test" ]
 
 jobs:
+  Debug:
+    runs-on: ubunutu-latest
+
+    steps:
+      - name: Checkout pipeline-test
+        uses: actions/checkout@v3
+        with:
+          ref: pipeline-test
+
+      - name: Printing test
+        run: |
+          echo "Github Ref"
+          echo ${{ github.ref }}
+          echo "Github Ref_Name"
+          echo ${{ github.ref_name }}
+          echo "Github Event Created At"
+          echo ${{ github.event.push.created_at }}
+          echo "Github Event Date"
+          echo ${{ github.event.push.date }}
+          echo "Done"
+
+
   Linting:
+    if: ${{ false }}
     runs-on: ubunutu-latest
 
     steps:
@@ -26,6 +49,7 @@ jobs:
         run: bundle exec rubocop
 
   Test:
+    if: ${{ false }}
     runs-on: ubuntu-latest
 
     env:
@@ -55,6 +79,7 @@ jobs:
         run: bundle exec cucumber
     
   Production:
+    if: ${{ false }}
     needs: Test
 
     runs-on: ubuntu-latest
@@ -67,6 +92,7 @@ jobs:
         run: echo "Replace me with a real step!"
   
   Deploy:
+    if: ${{ false }}
     needs: Production
 
     runs-on: ubuntu-latest
