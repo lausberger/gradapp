@@ -18,12 +18,8 @@ jobs:
 
       - name: Printing test
         run: |
-          echo "Github Event Description"
-          echo ${{ github.event.description }}
-          echo "Github Event Push"
-          echo ${{ github.event.push }}
           echo "ENTIRE CONTEXT"
-          echo ${{ toJSON(github) }}
+          echo ${{ github }}
           echo "Done"
 
 
