@@ -17,13 +17,13 @@ jobs:
           ref: pipeline-test
 
       - name: Get current date
-        id: date_step
+        id: date-step
         uses: ajilraju/actions-date@v0.1
         with:
           args: date +%F
         
-      - name: Set date variable
-        run: echo ${{ toJSON(steps.date_step.outputs) }}
+      - name: Print date
+        run: echo $(date +%d-%m-%Y)
 
       
 
