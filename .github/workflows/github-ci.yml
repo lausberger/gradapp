@@ -29,6 +29,7 @@ jobs:
         id: mappings
         run: |
           echo "mappings=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_OUTPUT
+          echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_ENV
       
       # 2022-11-01 <= current_date < 2022-11-10
       - if: (env.DATE >= env.SPRINT1_START) && (env.DATE < env.SPRINT2_START)
