@@ -8,65 +8,9 @@ on:
 
 jobs:
   Debug:
-    runs-on: ubuntu-latest
-
-    outputs:
-      date: ${{ steps.date.outputs.date }}
-      mappings: ${{ steps.mappings.outputs.mappings }}
-      heroku-app: $ {{ steps.app-name.outputs.name }}
-
-    steps:
-      - name: Checkout pipeline-test
-        uses: actions/checkout@v3
-        with:
-          ref: pipeline-test
-      
-      - name: Export current date
-        id: date
-        run: echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
-      
-      - name: Export Heroku mappings
-        id: mappings
-        run: |
-          echo "mappings=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_OUTPUT
-          echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_ENV
-      
-      # 2022-11-01 <= current_date <= 2022-11-09
-      - if: (env.SPRINT1_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT1_END)
-        run: |
-          echo "WE'RE IN SPRINT 1"
-          echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
-        env:
-          SPRINT1_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_start }}
-          SPRINT1_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_end }}
-          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_app_name }}
-      
-      # 2022-11-10 <= current_date <= 2022-11-27
-      - if: (env.SPRINT2_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT2_END)
-        run: |
-          echo "WE'RE IN SPRINT 2"
-          echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
-        env:
-          SPRINT2_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_start }}
-          SPRINT2_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_end }}
-          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_app_name }}
-
-      # 2022-11-28 <= current_date <= 2022-12-09
-      - if: (env.SPRINT3_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT3_END)
-        run: |
-          echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
-        env:
-          SPRINT3_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_start }}
-          SPRINT3_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_end }}
-          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_app_name }}
-      
-      - name: View Heroku app name
-        run: | 
-          echo "HEROKU APP NAME IS"
-          echo ${{ env.HEROKU_APP }}
+    
 
   Linting:
-    if: ${{ false }}
     runs-on: ubuntu-latest
 
     steps:
@@ -85,7 +29,6 @@ jobs:
         run: bundle exec rubocop
 
   Test:
-    if: ${{ false }}
     runs-on: ubuntu-latest
 
     env:
@@ -154,5 +97,48 @@ jobs:
       RAILS_ENV: production
 
     steps:
-      - name: Deploy placeholder
-        run: echo "Write steps to deploy to Heroku!"
+      - name: Checkout pipeline-test
+        uses: actions/checkout@v3
+        with:
+          ref: pipeline-test
+      
+      - name: Export current date
+        id: date
+        run: echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
+      
+      - name: Export Heroku mappings
+        id: mappings
+        run: echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_ENV
+      
+      # 2022-11-01 <= current_date <= 2022-11-09
+      - if: (env.SPRINT1_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT1_END)
+        run: |
+          echo "WE'RE IN SPRINT 1"
+          echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
+        env:
+          SPRINT1_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_start }}
+          SPRINT1_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_end }}
+          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_app_name }}
+      
+      # 2022-11-10 <= current_date <= 2022-11-27
+      - if: (env.SPRINT2_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT2_END)
+        run: |
+          echo "WE'RE IN SPRINT 2"
+          echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
+        env:
+          SPRINT2_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_start }}
+          SPRINT2_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_end }}
+          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_app_name }}
+
+      # 2022-11-28 <= current_date <= 2022-12-09
+      - if: (env.SPRINT3_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT3_END)
+        run: echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
+        env:
+          SPRINT3_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_start }}
+          SPRINT3_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_end }}
+          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_app_name }}
+      
+      - name: View Heroku app name
+        run: | 
+          echo "HEROKU APP NAME"
+          echo ${{ env.HEROKU_APP }}
