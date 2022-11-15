@@ -8,6 +8,7 @@ on:
 
 jobs:
   Linting:
+    if: ${{ false }} # temp for debugging
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +27,7 @@ jobs:
         run: bundle exec rubocop
 
   Test:
+    if: ${{ false }} # temp for debugging
     runs-on: ubuntu-latest
 
     env:
@@ -55,8 +57,7 @@ jobs:
         run: bundle exec cucumber
     
   Production:
-    if: ${{ always() }}
-    needs: Test
+    # needs: Test # temp for debugging
 
     runs-on: ubuntu-latest
 
@@ -80,25 +81,16 @@ jobs:
           bundle exec rake db:migrate
           bundle exec rake db:seed
 
-      # - name: Log in to Heroku
-      # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-      #   with:
-      #     heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-      #     # heroku_app_name: $dontmakeanapp #Must be unique in Heroku
-      #     heroku_email: "${{ secrets.HEROKU_EMAIL }}"
-      #     justlogin: true
-
       - name: Deploy Heroku locally
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_PROCFILE_PATH: .github/workflows/Procfile.debug
         run: |
           heroku local -f $HEROKU_PROCFILE_PATH -p 3000 &
-          sleep 10s
+          sleep 15s
       
       - name: Ping server instance
         run: |
-          curl -Is http://localhost:3000
           export STATUS_CODE=$(curl -Is http://localhost:3000 | head -n 1)
           echo $STATUS_CODE
       
