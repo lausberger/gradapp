@@ -34,7 +34,7 @@ jobs:
       - if: (fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint1_start) && (fromJson(steps.date.outputs.date) <= fromJson(steps.mappings.outputs.mappings).sprint2_start)
         run: |
           echo "WE'RE IN SPRINT 1"
-          echo "HEROKU_APP=$($HEROKU_APP)" >> $GITHUB_ENV
+          echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
         env:
           HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint1_app_name }}
       
@@ -42,7 +42,7 @@ jobs:
       - if: (fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint2_start) && (fromJson(steps.date.outputs.date) <= fromJson(steps.mappings.outputs.mappings).sprint3_start)
         run: |
           echo "WE'RE IN SPRINT 2"
-          echo "HEROKU_APP=$($HEROKU_APP)" >> $GITHUB_ENV
+          echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
         env:
           HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint2_app_name }}
 
@@ -50,7 +50,7 @@ jobs:
       - if: fromJson(steps.date.outputs.date) >= fromJson(steps.mappings.outputs.mappings).sprint3_start
         run: |
           echo "SPRINT 3"
-          echo "HEROKU_APP=$($HEROKU_APP)" >> $GITHUB_ENV
+          echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
         env:
           HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint3_app_name }}
       
