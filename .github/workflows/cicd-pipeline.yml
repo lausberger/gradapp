@@ -101,7 +101,7 @@ jobs:
           echo $STATUS_CODE
       
       - name: Response health check
-        if: $STATUS_CODE != "HTTP/1.1 200 OK"
+        if: ${{ env.STATUS_CODE }} != "HTTP/1.1 200 OK"
         run: exit 1
   
   Deploy:
