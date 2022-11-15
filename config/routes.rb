@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get 'register', to: 'accounts#new'
   post 'register', to: 'accounts#create'
 
+  # Faculty Search
+  get 'faculty/search', to: 'facultys#search'
+
   # consider adding separate 'sessions' controller for managing login sessions
   # https://www.section.io/engineering-education/how-to-setup-user-authentication-from-scratch-with-rails-6/
   # get 'login', to: 'accounts#login'
