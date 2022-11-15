@@ -79,6 +79,18 @@ jobs:
         run: |
           bundle exec rake db:migrate
           bundle exec rake db:seed
+
+      # - name: Log in to Heroku
+      # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      #   with:
+      #     heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+      #     # heroku_app_name: $dontmakeanapp #Must be unique in Heroku
+      #     heroku_email: "${{ secrets.HEROKU_EMAIL }}"
+      #     justlogin: true
+
+      - name: Deploy locally
+        run: |
+          heroku --help
   
   Deploy:
     if: ${{ always() }}
