@@ -98,8 +98,8 @@ jobs:
       
       - name: Ping server instance
         run: |
-          echo "STATUS_CODE=$(curl -Isf http://localhost:3000 | head -n 1)" >> $GITHUB_ENV
-          echo ${{ env.STATUS_CODE }}
+          curl -Isf http://localhost:3000
+          echo "STATUS_CODE=$(curl -Isf http://localhost:3000 | head -n 1)"
       
       - name: Response health check
         if: ${{ env.STATUS_CODE }} != "HTTP/1.1 200 OK"
