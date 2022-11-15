@@ -91,7 +91,9 @@ jobs:
       - name: Deploy Heroku locally
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_PROCFILE: Procfile
         run: |
+          heroku
           heroku local
   
   Deploy:
