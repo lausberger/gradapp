@@ -77,8 +77,8 @@ jobs:
       
       - name: Build production database
         run: |
-          bundle exec rake db:migrate
-          bundle exec rake db:seed
+          rake db:migrate
+          rake db:seed
       
       - name: Run spec tests
         run: bundle exec rspec
