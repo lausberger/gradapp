@@ -91,10 +91,9 @@ jobs:
       - name: Deploy Heroku locally
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_PROCFILE: Procfile
+          HEROKU_PROCFILE_PATH: .github/workflows/Procfile.debug
         run: |
-          heroku
-          heroku local
+          heroku local -f $HEROKU_PROCFILE_PATH
   
   Deploy:
     if: ${{ always() }}
