@@ -98,8 +98,9 @@ jobs:
       
       - name: Ping server instance
         run: |
-          curl -Isf http://localhost:3000
-          echo "STATUS_CODE=$(curl -Isf http://localhost:3000 | head -n 1)"
+          curl -Is http://localhost:3000
+          export STATUS_CODE=$(curl -Is http://localhost:3000 | head -n 1)
+          echo $STATUS_CODE
       
       - name: Response health check
         if: ${{ env.STATUS_CODE }} != "HTTP/1.1 200 OK"
