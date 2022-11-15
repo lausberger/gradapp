@@ -88,9 +88,11 @@ jobs:
       #     heroku_email: "${{ secrets.HEROKU_EMAIL }}"
       #     justlogin: true
 
-      - name: Deploy locally
+      - name: Deploy Heroku locally
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
-          heroku deploy local
+          heroku local
   
   Deploy:
     if: ${{ always() }}
@@ -140,9 +142,3 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: | 
           heroku container:login
-      
-      - name: Deploy Heroku locally
-        env: 
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: |
-          heroku local
