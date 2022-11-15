@@ -139,5 +139,10 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: | 
-          echo $HEROKU_APP
           heroku container:login
+      
+      - name: Deploy Heroku locally
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          heroku local
