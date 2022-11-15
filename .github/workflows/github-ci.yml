@@ -67,7 +67,7 @@ jobs:
       - name: Checkout main branch
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: pipeline-test
       
       - name: Set up Ruby 2.6.6
         uses: ruby/setup-ruby@v1
@@ -77,8 +77,8 @@ jobs:
       
       - name: Build production database
         run: |
-          rake db:migrate
-          rake db:seed
+          bundle exec rake db:migrate
+          bundle exec rake db:seed
       
       - name: Run spec tests
         run: bundle exec rspec
