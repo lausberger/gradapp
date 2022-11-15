@@ -94,11 +94,12 @@ jobs:
           HEROKU_PROCFILE_PATH: .github/workflows/Procfile.debug
         run: |
           heroku local -f $HEROKU_PROCFILE_PATH -p 3000 &
+          sleep 10s
       
       - name: Ping server instance
         run: |
           echo "STATUS_CODE=$(curl -Isf http://localhost:3000 | head -n 1)" >> $GITHUB_ENV
-          echo $STATUS_CODE
+          echo ${{ env.STATUS_CODE }}
       
       - name: Response health check
         if: ${{ env.STATUS_CODE }} != "HTTP/1.1 200 OK"
