@@ -75,6 +75,11 @@ jobs:
           ruby-version: 2.6.6
           bundler-cache: false
       
+      - name: Install gems
+        run: |
+          bundle config set --local path 'vendor/cache'
+          bundle install
+      
       - name: Build production database
         run: |
           bundle exec rake db:migrate
