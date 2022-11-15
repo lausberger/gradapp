@@ -93,7 +93,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_PROCFILE_PATH: .github/workflows/Procfile.debug
         run: |
-          heroku local -f $HEROKU_PROCFILE_PATH -p 3000
+          heroku local -f $HEROKU_PROCFILE_PATH -p 3000 &
       
       - name: Ping server instance
         run: |
