@@ -37,9 +37,9 @@ jobs:
           echo "WE'RE IN SPRINT 1"
           echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
         env:
-          SPRINT1_START: ${{ fromJson(steps.mappings.outputs.mappings).sprint1_start }}
-          SPRINT1_END: ${{ fromJson(steps.mappings.outputs.mappings).sprint1_end }}
-          HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint1_app_name }}
+          SPRINT1_START: ${{ fromJson($HEROKU_MAPPINGS).sprint1_start }}
+          SPRINT1_END: ${{ fromJson($HEROKU_MAPPINGS).sprint1_end }}
+          HEROKU_APP: ${{ fromJson($HEROKU_MAPPINGS).sprint1_app_name }}
       
       # 2022-11-10 <= current_date <= 2022-11-27
       - if: (env.DATE >= env.SPRINT2_START) && (env.DATE <= env.SPRINT2_END)
@@ -48,9 +48,9 @@ jobs:
           echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
         env:
           DATE: ${{ fromJson(steps.date.outputs.date) }}
-          SPRINT2_START: ${{ fromJson(steps.mappings.outputs.mappings).sprint2_start }}
-          SPRINT2_END: ${{ fromJson(steps.mappings.outputs.mappings).sprint2_end }}
-          HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint2_app_name }}
+          SPRINT2_START: ${{ fromJson($HEROKU_MAPPINGS).sprint2_start }}
+          SPRINT2_END: ${{ fromJson($HEROKU_MAPPINGS).sprint2_end }}
+          HEROKU_APP: ${{ fromJson($HEROKU_MAPPINGS).sprint2_app_name }}
 
       # 2022-11-28 <= current_date <= 2022-12-09
       - if: (env.DATE >= env.SPRINT3_START) && (env.DATE <= env.SPRINT3_END)
@@ -58,9 +58,9 @@ jobs:
           echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
         env:
           DATE: ${{ fromJson(steps.date.outputs.date) }}
-          SPRINT3_START: ${{ fromJson(steps.mappings.outputs.mappings).sprint3_start }}
-          SPRINT3_END: ${{ fromJson(steps.mappings.outputs.mappings).sprint3_end }}
-          HEROKU_APP: ${{ fromJson(steps.mappings.outputs.mappings).sprint3_app_name }}
+          SPRINT3_START: ${{ fromJson($HEROKU_MAPPINGS).sprint3_start }}
+          SPRINT3_END: ${{ fromJson($HEROKU_MAPPINGS).sprint3_end }}
+          HEROKU_APP: ${{ fromJson($HEROKU_MAPPINGS).sprint3_app_name }}
       
       - name: View Heroku app name
         run: | 
