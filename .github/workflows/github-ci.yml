@@ -7,9 +7,6 @@ on:
     branches: [ "pipeline-test" ]
 
 jobs:
-  Debug:
-    
-
   Linting:
     runs-on: ubuntu-latest
 
