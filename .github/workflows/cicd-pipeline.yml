@@ -81,10 +81,15 @@ jobs:
           bundle exec rake db:migrate
           bundle exec rake db:seed
 
+      - name: Generate production secrets key
+        run: |
+          echo "SECRET_KEY_BASE=$(bundle exec rake secret)" >> $GITHUB_ENV
+
       - name: Deploy locally with health check
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_PROCFILE: .github/workflows/Procfile.debug
+          SECRET_KEY_BASE: ${{ env.SECRET_KEY_BASE }}
         run: |
           heroku local -f $HEROKU_PROCFILE -p 3000 &
           sleep 15s
