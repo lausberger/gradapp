@@ -98,7 +98,7 @@ jobs:
       - name: Perform health check
         run: |
           RESPONSE=$(curl -Is http://localhost:3000/home | head -1)
-          RESPONSE="${RESPONSE:0:-1}"
+          RESPONSE="${RESPONSE:0:-2}"
           echo "SERVER STATUS: $RESPONSE."
           if [ "$RESPONSE"!="HTTP/1.1 200 OK" ]; then echo "FAILED"; fi
       
