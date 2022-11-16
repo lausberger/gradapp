@@ -84,21 +84,20 @@ jobs:
       - name: Deploy Heroku locally
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_PROCFILE_PATH: .github/workflows/Procfile.debug
+          HEROKU_PROCFILE: .github/workflows/Procfile.debug
         run: |
-          heroku local -f $HEROKU_PROCFILE_PATH -p 3000 &
+          heroku local -f $HEROKU_PROCFILE -p 3000 &
           sleep 15s
       
-      - name: Ping server instance
+      # MUST specify '/home' to get HTTP 200 because '/' auto-redirects
+      - name: Perform server health check
         run: |
-          export STATUS_CODE=$(curl -Is http://localhost:3000 | head -n 1)
-          echo $STATUS_CODE
-      
-      - name: Response health check
-        if: ${{ env.STATUS_CODE }} != "HTTP/1.1 200 OK"
-        run: exit 1
+          RESPONSE=$(curl -Is http://localhost:3000/home | head -1)
+          echo "SERVER STATUS: $RESPONSE"
+          if [ "$RESPONSE"!="HTTP/1.1 200 OK" ]; then exit 1; fi
   
   Deploy:
+    if: ${{ false }} # temp for debugging
     needs: Production
     runs-on: ubuntu-latest
     environment: pipeline-heroku
