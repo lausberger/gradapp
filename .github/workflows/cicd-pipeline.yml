@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "pipeline-test" ]
   pull_request:
-    branches: [ "pipeline-test" ]
+    branches: [ "main" ]
 
 jobs:
   Linting:
@@ -26,10 +26,9 @@ jobs:
       - name: Perform linting
         run: bundle exec rubocop
 
-  Test:
+  Testing:
     if: ${{ false }} # temp for debugging
     runs-on: ubuntu-latest
-
     env:
       RAILS_ENV: test
 
@@ -56,11 +55,9 @@ jobs:
       - name: Run feature tests
         run: bundle exec cucumber
     
-  Production:
-    # needs: Test # temp for debugging
-
+  Staging:
+    needs: Testing
     runs-on: ubuntu-latest
-
     env:
       RAILS_ENV: production
 
@@ -103,9 +100,9 @@ jobs:
       
       # ADD CAPYBARA OR SELENIUM TESTS HERE
   
-  Deploy:
+  Production:
     if: ${{ false }} # temp for debugging
-    needs: Production
+    needs: Staging
     runs-on: ubuntu-latest
     environment: pipeline-heroku
     env:
