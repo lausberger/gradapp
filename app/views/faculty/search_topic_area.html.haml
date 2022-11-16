@@ -1,0 +1,14 @@
+%h1= "The following faculty members focus in #{@topic_area}"
+
+%table#movies_search
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+  %tbody
+    - @faculties.each do |faculty|
+      %tr
+        %td= faculty[:first_name]
+        %td= faculty[:last_name]
+
+= link_to 'View All Faculty Members', faculty_path

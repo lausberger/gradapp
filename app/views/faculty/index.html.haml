@@ -1,0 +1,19 @@
+%h1 All Faculty Members
+
+%table
+  %thead
+    %th First Name
+    %th Last Name
+    %th Topic Area
+  %tbody
+    - @faculties.each do |faculty|
+      %tr
+        %td= faculty[:first_name]
+        %td= faculty[:last_name]
+        %td= faculty[:topic_area]
+
+%p Search for faculty members in a certain topic area
+
+= form_tag movies_search_topic_area_path do
+  %input{:name => "search_topic_are", :id => "search_topic_are"}
+  =submit_tag "Search Topic Area", id: "search_topic_area_button"
