@@ -85,7 +85,7 @@ jobs:
         run: |
           echo "SECRET_KEY_BASE=$(bundle exec rake secret)" >> $GITHUB_ENV
 
-      - name: Deploy locally with health check
+      - name: Deploy Heroku locally
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_PROCFILE: .github/workflows/Procfile.debug
@@ -94,8 +94,8 @@ jobs:
           heroku local -f $HEROKU_PROCFILE -p 3000 &
           sleep 15s
       
-      MUST specify '/home' to get HTTP 200 because '/' auto-redirects
-      - name: Perform server health check
+      # MUST specify '/home' to get HTTP 200 because '/' auto-redirects
+      - name: Perform health check
         run: |
           RESPONSE=$(curl -Is http://localhost:3000/home | head -1)
           echo "SERVER STATUS: $RESPONSE."
