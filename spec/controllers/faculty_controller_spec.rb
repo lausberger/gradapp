@@ -26,7 +26,7 @@ describe FacultysController do
           :first_name => 'Jack',
           :last_name => 'Stockley',
           :password => 'Password1234',
-          :type => 'faculty',
+          :type => 'facultys',
           :topic_area => 'Math'
         }
         @faculty_two = {
@@ -34,7 +34,7 @@ describe FacultysController do
           :first_name => 'Hans',
           :last_name => 'Johnson',
           :password => 'S3curEpA55w0rD',
-          :type => 'faculty',
+          :type => 'facultys',
           :topic_area => 'Rhetoric'
         }
         @faculty_three = {
@@ -42,7 +42,7 @@ describe FacultysController do
           :first_name => 'Joesph',
           :last_name => 'Smith',
           :password => 'iloveselt23',
-          :type => 'faculty',
+          :type => 'facultys',
           :topic_area => 'CSE'
         }
         @faculty_four = {
@@ -50,7 +50,7 @@ describe FacultysController do
           :first_name => 'Nikki',
           :last_name => 'Brown',
           :password => 'rubyIS<3',
-          :type => 'faculty',
+          :type => 'facultys',
           :topic_area => 'CSE'
         }
         Faculty.create!(@faculty_one)
@@ -59,11 +59,11 @@ describe FacultysController do
         Faculty.create!(@faculty_four)
       end
       DOC
-      it 'should select all faculty members in all topic areas' do
+      it 'should select all facultys members in all topic areas' do
         post :search, {:topic_area => ''}
         expect(response).to render_template('index')
       end
-      it 'should select faculty members only in CSE topic area' do
+      it 'should select facultys members only in CSE topic area' do
         post :search, {:topic_area => 'CSE'}
         expect(response).to render_template('show')
       end

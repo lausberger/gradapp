@@ -12,8 +12,8 @@
         %td= faculty[:last_name]
         %td= faculty[:topic_area]
 
-%p Search for faculty members in a certain topic area
+%p Search for facultys members in a certain topic area
 
-= form_tag movies_search_topic_area_path do
+= form_tag facultys_search_path do
   %input{:name => "search_topic_are", :id => "search_topic_are"}
   =submit_tag "Search Topic Area", id: "search_topic_area_button"

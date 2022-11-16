@@ -32,12 +32,12 @@ describe Faculty do
       @faculty_account[:topic_area] = nil
       expect(Faculty.new(@faculty_account).valid?).to eq false
     end
-    it 'should pass on valid faculty account' do
+    it 'should pass on valid facultys account' do
       @faculty_account[:topic_area] = 'CSE'
       expect(Faculty.new(@faculty_account).valid?).to eq true
     end
   end
-  describe 'adding faculty account' do
+  describe 'adding facultys account' do
     context 'Faculty' do
       before(:all) do
         @faculty_account = {

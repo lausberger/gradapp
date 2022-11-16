@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 discussions = [{:title => 'What\'s the best Graduate Program?', :body => 'Hey guys, I\'m having a hard time picking a graduate program.', :author => 'Jack Stockley', :root_discussion_id => -1},
-               {:title => 'Contact Faculty', :body => 'Hello, what\'s the best way to contact a faculty member?' , :author => 'Joe Smith', :root_discussion_id => -1},
+               {:title => 'Contact Faculty', :body => 'Hello, what\'s the best way to contact a facultys member?' , :author => 'Joe Smith', :root_discussion_id => -1},
                {:title => 'Submit Application', :body => 'How do I submit an application here?', :author => 'Hans Johnson', :root_discussion_id => -1},
                {:title => '', :body => 'I heard the CSE program is great', :author => 'Hans Johnson', :root_discussion_id => 1},
                {:title => '', :body => 'Email', :author => 'Jack Stockley', :root_discussion_id => 2},
