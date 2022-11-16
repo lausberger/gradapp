@@ -88,7 +88,7 @@ jobs:
       - name: Deploy Heroku locally
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_PROCFILE: .github/workflows/Procfile.debug
+          HEROKU_PROCFILE: .github/workflows/heroku-resources/Procfile.test
           SECRET_KEY_BASE: ${{ env.SECRET_KEY_BASE }}
         run: |
           heroku local -f $HEROKU_PROCFILE -p 3000 &
@@ -99,7 +99,9 @@ jobs:
         run: |
           RESPONSE=$(curl -Is http://localhost:3000/home | head -1)
           echo "SERVER STATUS: $RESPONSE."
-          if [ "$RESPONSE"!="HTTP/1.1 200 OK" ]; then echo "FAILED"; fi
+          if [ "$RESPONSE"!="HTTP/1.1 200 OK\n" ]; then echo "FAILED"; fi
+      
+      # ADD CAPYBARA OR SELENIUM TESTS HERE
   
   Deploy:
     if: ${{ false }} # temp for debugging
@@ -121,7 +123,7 @@ jobs:
       
       - name: Export Heroku mappings
         id: mappings
-        run: echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-mappings.json)" >> $GITHUB_ENV
+        run: echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-resources/mappings.json)" >> $GITHUB_ENV
       # 2022-11-01 <= current_date <= 2022-11-09
       - if: (env.SPRINT1_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT1_END)
         run: echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
