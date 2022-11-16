@@ -81,20 +81,23 @@ jobs:
           bundle exec rake db:migrate
           bundle exec rake db:seed
 
-      - name: Deploy Heroku locally
+      - name: Deploy locally with health check
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_PROCFILE: .github/workflows/Procfile.debug
         run: |
           heroku local -f $HEROKU_PROCFILE -p 3000 &
           sleep 15s
-      
-      # MUST specify '/home' to get HTTP 200 because '/' auto-redirects
-      - name: Perform server health check
-        run: |
           RESPONSE=$(curl -Is http://localhost:3000/home | head -1)
           echo "SERVER STATUS: $RESPONSE"
           if [ "$RESPONSE"!="HTTP/1.1 200 OK" ]; then exit 1; fi
+      
+      # MUST specify '/home' to get HTTP 200 because '/' auto-redirects
+      # - name: Perform server health check
+      #   run: |
+      #     RESPONSE=$(curl -Is http://localhost:3000/home | head -1)
+      #     echo "SERVER STATUS: $RESPONSE"
+      #     if [ "$RESPONSE"!="HTTP/1.1 200 OK" ]; then exit 1; fi
   
   Deploy:
     if: ${{ false }} # temp for debugging
