@@ -45,21 +45,21 @@ accounts = [
     :last_name => 'Stockley',
     :email => 'jnstockley@uiowa.edu',
     :password_digest => 'Password123',
-    :type => 'Faculty'
+    :account_type => 'Faculty'
   },
   {
     :first_name => 'Hans',
     :last_name => 'Johnson',
     :email => 'hans-johnson@uiowa.edu',
     :password_digest => 'i<3SelT',
-    :type => 'Faculty'
+    :account_type => 'Faculty'
   },
   {
     :first_name => 'Caleb',
     :last_name => 'Marx',
     :email => 'caleb-marx@uiowa.edu',
     :password_digest => 'pA55W0rd!',
-    :type => 'Student'
+    :account_type => 'Student'
   }
 ]
 
@@ -74,7 +74,7 @@ faculties = [
   },
   {
     :account_id => Account.second.id,
-    :topic_area => 'Math'
+    :topic_area => 'math'
  }
 ]
 

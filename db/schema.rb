@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119008) do
+ActiveRecord::Schema.define(version: 30721148119002) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
     t.string   "last_name",       null: false
     t.string   "email",           null: false
     t.string   "password_digest", null: false
-    t.string   "type",            null: false
+    t.string   "account_type",    null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 30721148119008) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "faculties", ["account_id"], name: "index_faculties_on_account_id"
 
   create_table "graduate_applications", force: :cascade do |t|
     t.string   "first_name"
