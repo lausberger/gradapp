@@ -13,7 +13,6 @@ jobs:
   Linting:
     if: ${{ false }} # temp for debugging
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout pipeline-test
         uses: actions/checkout@v3
@@ -34,27 +33,26 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
-
     steps:
       - name: Checkout pipeline-test
         uses: actions/checkout@v3
         with:
           ref: pipeline-test
-      
+
       - name: Set up Ruby 2.6.6
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6.6
           bundler-cache: true
-      
+
       - name: Build test database
         run: |
           bundle exec rake db:migrate
           bundle exec rake db:seed
-      
+
       - name: Run spec tests
         run: bundle exec rspec
-      
+
       - name: Run feature tests
         run: bundle exec cucumber
     
@@ -64,7 +62,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: production
-
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
@@ -99,24 +96,10 @@ jobs:
       - name: Perform health check
         run: |
           RESPONSE=$(curl -Is http://localhost:3000/home | head -1 | head -c -2)
-          echo "SERVER STATUS: $RESPONSE"
+          echo "SERVER STATUS: $RESPONSE."
           if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
       
       # ADD CAPYBARA OR SELENIUM TESTS HERE
-  
-  DEBUG:
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    env:
-      EVENT: ${{ github.event_name }}
-      REF: ${{ github.ref }}
-      REPO: ${{ github.repository }}
-    steps:
-      - name: test stuff
-        run: |
-          echo "event: $EVENT."
-          echo "ref: $REF."
-          echo "repo: $REPO."
   
   Deploy:
     # ONLY deploy on push to main branch of UIOWAjohnsonhj/selt2022_teamprojects-team4
@@ -126,7 +109,6 @@ jobs:
     environment: pipeline-heroku
     env:
       RAILS_ENV: production
-
     steps:
       - name: Checkout pipeline-test
         uses: actions/checkout@v3
@@ -138,6 +120,7 @@ jobs:
       
       - name: Export Heroku mappings
         run: echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-resources/mappings.json)" >> $GITHUB_ENV
+
       # 2022-11-01 <= current_date <= 2022-11-09
       - if: (env.SPRINT1_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT1_END)
         run: echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
@@ -145,6 +128,7 @@ jobs:
           SPRINT1_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_start }}
           SPRINT1_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_end }}
           HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_app_name }}
+
       # 2022-11-10 <= current_date <= 2022-11-27
       - if: (env.SPRINT2_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT2_END)
         run: echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
@@ -152,6 +136,7 @@ jobs:
           SPRINT2_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_start }}
           SPRINT2_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_end }}
           HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_app_name }}
+
       # 2022-11-28 <= current_date <= 2022-12-09
       - if: (env.SPRINT3_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT3_END)
         run: echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
