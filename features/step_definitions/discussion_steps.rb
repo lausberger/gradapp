@@ -45,8 +45,8 @@ end
 
 When(/^I have deleted the discussion reply with the body "([^"]*)" authored by "([^"]*)"$/) do |reply_body, reply_author|
   all('tbody tr').each do |tr|
-    body = tr.all('td')[1].text
-    author = tr.all('td')[2].text
+    body = tr.all('td')[0].text
+    author = tr.all('td')[1].text
     if body.eql? reply_body and author.eql? reply_author
       tr.all("td")[3].click
     end
