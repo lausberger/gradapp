@@ -34,7 +34,7 @@ When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |post_
 end
 
 When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |post_title, post_author|
-  all('tr').each do |tr|
+  all('tbody tr').each do |tr|
     title = tr.all('td')[0].text
     author = tr.all('td')[2].text
     if title.eql? post_title and author.eql? post_author
@@ -45,8 +45,8 @@ end
 
 When(/^I have deleted the discussion reply with the body "([^"]*)" authored by "([^"]*)"$/) do |reply_body, reply_author|
   all('tr').each do |tr|
-    body = tr.all('td')[0].text
-    author = tr.all('td')[1].text
+    body = tr.all('td')[1].text
+    author = tr.all('td')[2].text
     if body.eql? reply_body and author.eql? reply_author
       tr.all("td")[3].click
     end
