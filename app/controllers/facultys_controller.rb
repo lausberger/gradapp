@@ -2,21 +2,26 @@ class FacultysController < ApplicationController
 
   def index
     @faculties_and_topic_area = []
-    faculties = Account.where(:type => "Faculty")
+    faculties = Faculty.all
     faculties.each do |faculty|
-      puts Faculty.find(1)[:account_id]
       @faculties_and_topic_area << {
-        :first_name => faculty[:first_name],
-        :last_name => faculty[:last_name],
-        :topic_area => Faculty.find(faculty[:id])[:account_id]
+        :first_name => faculty.account[:first_name],
+        :last_name => faculty.account[:last_name],
+        :topic_area => faculty[:topic_area]
       }
     end
-    puts @faculties_and_topic_area
   end
 
   def search
     @topic_area = params[:search_topic_area]
+    if @topic_area == '' or @topic_area == nil
+      flash[:warning] = "Invalid topic area specified!"
+      return redirect_to facultys_path
+    end
     @faculties = Faculty.where(:topic_area => @topic_area)
+    if @faculties.length == 0
+      flash[:warning] = "No Faculty members with the topic area specified!"
+      redirect_to facultys_path
+    end
   end
-
 end
