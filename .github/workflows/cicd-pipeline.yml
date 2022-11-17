@@ -153,6 +153,7 @@ jobs:
       # - name: Build production database
 
       - name: Create Heroku app (if needed)
+        continue-on-error: true
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP: ${{ env.HEROKU_APP }}
