@@ -102,6 +102,10 @@ Then(/^I should not see the discussion post by "([^"]*)"$/) do |author|
   expect(find_post_by_author(author)).to be_falsey
 end
 
+Then(/^I should not see the discussion post with title "([^"]*)"$/) do |title|
+  expect(find_post_by_title(title)).to be_falsey
+end
+
 Then(/^I should be redirected to the discussion homepage$/) do
   page_title = page.title
   expected_page_title = "Student Discussions"
@@ -138,4 +142,16 @@ def find_post_by_author(author)
     end
   end
   found_author
+end
+
+def find_post_by_title(title)
+  found_post = false
+  all("tbody tr").each do |tr|
+    post_title = tr.all("td")[0].text
+    if post_title == title
+      found_post = true
+      break
+    end
+  end
+  found_post
 end
