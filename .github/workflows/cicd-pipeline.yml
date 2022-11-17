@@ -2,22 +2,18 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
-      - pipeline-test
   pull_request:
     branches:
       - main
 
 jobs:
   Linting:
-    if: ${{ false }} # temp for debugging
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout pipeline-test
+      - name: Checkout current branch
         uses: actions/checkout@v3
         with:
-          ref: pipeline-test
+          ref: ${{ github.ref }}
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -29,15 +25,14 @@ jobs:
         run: bundle exec rubocop
 
   Testing:
-    if: ${{ false }} # temp for debugging
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
     steps:
-      - name: Checkout pipeline-test
+      - name: Checkout current branch
         uses: actions/checkout@v3
         with:
-          ref: pipeline-test
+          ref: ${{ github.ref }}
 
       - name: Set up Ruby 2.6.6
         uses: ruby/setup-ruby@v1
@@ -62,10 +57,10 @@ jobs:
     env:
       RAILS_ENV: production
     steps:
-      - name: Checkout main branch
+      - name: Checkout current branch
         uses: actions/checkout@v3
         with:
-          ref: pipeline-test
+          ref: ${{ github.ref }}
       
       - name: Set up Ruby 2.6.6
         uses: ruby/setup-ruby@v1
@@ -101,19 +96,18 @@ jobs:
       # ADD CAPYBARA OR SELENIUM TESTS HERE
   
   Deploy:
-    if: ${{ always() }}
     # ONLY deploy on PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
     # if: (github.event_name == 'push') && (github.ref == 'refs/heads/main') && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs: Staging
     runs-on: ubuntu-latest
-    environment: production-test
+    environment: production
     env:
       RAILS_ENV: production
     steps:
-      - name: Checkout pipeline-test
+      - name: Checkout current branch
         uses: actions/checkout@v3
         with:
-          ref: pipeline-test
+          ref: ${{ github.ref }}
       
       - name: Export current date
         run: echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
@@ -144,13 +138,6 @@ jobs:
           SPRINT3_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_start }}
           SPRINT3_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_end }}
           HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
-      
-      # - name: Log in to Heroku Container registry
-      #   env:
-      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      #   run: heroku container:login
-
-      # - name: Build production database
 
       - name: Create Heroku app (if needed)
         continue-on-error: true
@@ -159,7 +146,7 @@ jobs:
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: heroku create -a $HEROKU_APP_NAME
 
-      - name: Git remote setup (if needed)
+      - name: Additional setup (if needed)
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
@@ -170,7 +157,7 @@ jobs:
           git config user.email "gradapp-pipeline@fake-email.com"
           git config user.name "GradApp Pipeline"
 
-      - name: Deploy on Heroku
+      - name: Deploy to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
@@ -179,13 +166,13 @@ jobs:
           echo "Deploying $HEROKU_APP_NAME"
           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:main
 
-      - name: Migrate prod database
+      - name: Migrate database
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: heroku run rake db:migrate
       
-      - name: Production health check 
+      - name: Health check
         env:
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: |
