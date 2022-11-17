@@ -38,7 +38,10 @@ When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]
     title = tr.all('td')[0].text
     author = tr.all('td')[2].text
     if title.eql? post_title and author.eql? post_author
-      tr.find('a', :text => 'Delete').click
+      # tr.find('a', :text => 'Delete').click
+      within(tr) do
+        click_on "Delete"
+      end
     end
   end
 end
