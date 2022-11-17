@@ -165,4 +165,5 @@ jobs:
           HEROKU_APP: ${{ env.HEROKU_APP }}
         run: |
           echo "Deploying $HEROKU_APP"
-          git push heroku main
+          git remote show heroku
+          git push heroku HEAD:main
