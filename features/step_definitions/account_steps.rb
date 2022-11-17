@@ -28,7 +28,7 @@ end
 
 And /^I submit the form$/ do
     click_button "Register"
-    100.times do puts page.current_path
+    100.times do puts page end
 end
 
 Then /^I should be redirected to the home page$/ do
