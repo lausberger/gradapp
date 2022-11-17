@@ -27,7 +27,7 @@ When /^I fill out the form with (.*?)$/ do |option|
 end
 
 And /^I submit the form$/ do
-    click_button "Register"
+    click_on "Register"
 end
 
 Then /^I should be redirected to the home page$/ do
