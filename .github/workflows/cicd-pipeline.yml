@@ -165,6 +165,7 @@ jobs:
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: |
           heroku git:remote -a $HEROKU_APP_NAME
+          git fetch --unshallow
           git config user.email "gradapp-pipeline@gmail.com"
           git config user.name "GradApp Pipeline"
 
