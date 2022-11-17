@@ -111,10 +111,12 @@ jobs:
       EVENT: ${{ github.event_name }}
       REF: ${{ github.ref }}
       REPO: ${{ github.repository }}
-    run: |
-      echo "event: $EVENT"
-      echo "ref: $REF"
-      echo "repo: $REPO"
+    steps:
+      - name: test stuff
+        run: |
+          echo "event: $EVENT"
+          echo "ref: $REF"
+          echo "repo: $REPO"
   
   Deploy:
     # ONLY deploy on push to main branch of UIOWAjohnsonhj/selt2022_teamprojects-team4
@@ -132,11 +134,9 @@ jobs:
           ref: pipeline-test
       
       - name: Export current date
-        id: date
         run: echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
       
       - name: Export Heroku mappings
-        id: mappings
         run: echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-resources/mappings.json)" >> $GITHUB_ENV
       # 2022-11-01 <= current_date <= 2022-11-09
       - if: (env.SPRINT1_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT1_END)
