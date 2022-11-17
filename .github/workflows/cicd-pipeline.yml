@@ -178,3 +178,17 @@ jobs:
         run: |
           echo "Deploying $HEROKU_APP_NAME"
           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:main
+
+      - name: Migrate prod database
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: heroku run rake db:migrate
+      
+      - name: Production health check 
+        env:
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: |
+            RESPONSE=$(curl -Is http://$HEROKU_APP_NAME.herokuapp.com/home | head -1 | head -c -3)
+            echo "HEROKU APP STATUS: $RESPONSE"
+            if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
