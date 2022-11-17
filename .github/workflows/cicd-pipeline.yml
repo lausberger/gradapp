@@ -52,7 +52,6 @@ jobs:
         run: bundle exec cucumber
     
   Staging:
-    if: ${{ always() }}
     needs: Testing
     runs-on: ubuntu-latest
     env:
@@ -98,12 +97,14 @@ jobs:
   
   Deploy:
     # ONLY deploy on PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
-    # if: (github.event_name == 'push') && (github.ref == 'refs/heads/main') && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
+    if: (github.event_name == 'push') && (github.ref == 'refs/heads/main') && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs: Staging
     runs-on: ubuntu-latest
     environment: production
     env:
       RAILS_ENV: production
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_DEBUG_RAILS_RUNNER: 1
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v3
@@ -122,7 +123,7 @@ jobs:
         env:
           SPRINT1_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_start }}
           SPRINT1_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_end }}
-          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_app_name }}
 
       # 2022-11-10 <= current_date <= 2022-11-27
       - if: (env.SPRINT2_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT2_END)
@@ -130,7 +131,7 @@ jobs:
         env:
           SPRINT2_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_start }}
           SPRINT2_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_end }}
-          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_app_name }}
 
       # 2022-11-28 <= current_date <= 2022-12-09
       - if: (env.SPRINT3_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT3_END)
@@ -138,18 +139,16 @@ jobs:
         env:
           SPRINT3_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_start }}
           SPRINT3_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_end }}
-          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_app_name }}
 
       - name: Create Heroku app (if needed)
         continue-on-error: true
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: heroku create -a $HEROKU_APP_NAME
 
       - name: Additional setup (if needed)
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: |
           heroku git:remote -a $HEROKU_APP_NAME
@@ -160,16 +159,13 @@ jobs:
 
       - name: Deploy to Heroku
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
-          HEROKU_DEBUG_RAILS_RUNNER: 1
         run: |
           echo "Deploying $HEROKU_APP_NAME"
           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:main
 
       - name: Migrate database
         env: 
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: heroku run rake db:migrate
       
