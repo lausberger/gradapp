@@ -159,6 +159,13 @@ jobs:
           HEROKU_APP: ${{ env.HEROKU_APP }}
         run: heroku create -a $HEROKU_APP
 
+      - name: Set Heroku remote (if needed)
+        continue-on-error: true
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP: ${{ env.HEROKU_APP }}
+        run: heroku git:remote -a $HEROKU_APP
+
       - name: Deploy on Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
@@ -166,4 +173,4 @@ jobs:
         run: |
           echo "Deploying $HEROKU_APP"
           git remote show heroku
-          git push heroku HEAD:main
+          git push heroku main
