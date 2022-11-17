@@ -167,8 +167,6 @@ jobs:
           heroku git:remote -a $HEROKU_APP_NAME
           git config user.email "gradapp-pipeline@gmail.com"
           git config user.name "GradApp Pipeline"
-          git add .
-          git commit -m "Automatically triggered pipeline deployment"
 
       - name: Deploy on Heroku
         env:
