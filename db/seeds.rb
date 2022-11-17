@@ -38,3 +38,46 @@ applications = [
 applications.each do |application|
   GraduateApplication.create!(application)
 end
+
+accounts = [
+  {
+    :first_name => 'Jack',
+    :last_name => 'Stockley',
+    :email => 'jnstockley@uiowa.edu',
+    :password_digest => 'Password123',
+    :type => 'Faculty'
+  },
+  {
+    :first_name => 'Hans',
+    :last_name => 'Johnson',
+    :email => 'hans-johnson@uiowa.edu',
+    :password_digest => 'i<3SelT',
+    :type => 'Faculty'
+  },
+  {
+    :first_name => 'Caleb',
+    :last_name => 'Marx',
+    :email => 'caleb-marx@uiowa.edu',
+    :password_digest => 'pA55W0rd!',
+    :type => 'Student'
+  }
+]
+
+accounts.each do |account|
+  Account.create!account
+end
+
+faculties = [
+  {
+    :account_id => Account.first.id,
+    :topic_area => 'CSE'
+  },
+  {
+    :account_id => Account.second.id,
+    :topic_area => 'Math'
+ }
+]
+
+faculties.each do |faculty|
+  Faculty.create!(faculty)
+end

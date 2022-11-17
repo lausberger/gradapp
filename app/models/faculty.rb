@@ -1,2 +1,3 @@
-class Faculty < ActiveRecord::Base
+class Faculty < Account
+  belongs_to :account
 end

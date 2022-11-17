@@ -1,4 +1,6 @@
 class Account < ActiveRecord::Base
+
+    has_one :faculty
     # represents password in a secure manner, maps to password_digest
     has_secure_password
 

@@ -6,7 +6,7 @@
     %th Last Name
     %th Topic Area
   %tbody
-    - @faculties.each do |faculty|
+    - @faculties_and_topic_area.each do |faculty|
       %tr
         %td= faculty[:first_name]
         %td= faculty[:last_name]
@@ -15,5 +15,5 @@
 %p Search for facultys members in a certain topic area
 
 = form_tag facultys_search_path do
-  %input{:name => "search_topic_are", :id => "search_topic_are"}
+  %input{:name => "search_topic_area", :id => "search_topic_area"}
   =submit_tag "Search Topic Area", id: "search_topic_area_button"
