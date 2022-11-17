@@ -52,6 +52,7 @@ jobs:
         run: bundle exec cucumber
     
   Staging:
+    if: ${{ always() }}
     needs: Testing
     runs-on: ubuntu-latest
     env:
