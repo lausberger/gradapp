@@ -106,7 +106,7 @@ jobs:
     # if: (github.event_name == 'push') && (github.ref == 'refs/heads/main') && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs: Staging
     runs-on: ubuntu-latest
-    environment: Production
+    environment: production-test
     env:
       RAILS_ENV: production
     steps:
