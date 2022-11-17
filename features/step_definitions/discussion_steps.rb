@@ -1,5 +1,5 @@
 Given(/^I have added a discussion with the title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|
-  click_on(:id => 'post_new_discussion')
+  visit new_discussion_path
   fill_in("Title", with: title)
   fill_in("Body", with: body)
   fill_in("Author", with: author)
