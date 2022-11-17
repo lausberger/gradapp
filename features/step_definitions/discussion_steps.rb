@@ -13,7 +13,7 @@ Given(/^There is a reply with body "([^"]*)" authored by "([^"]*)"$/) do |body, 
 end
 
 Given(/^I am on the discussion page with the title "([^"]*)" and authored by "([^"]*)"$/) do |title, author|
-  all("tr").each do |tr|
+  all("tbody tr").each do |tr|
     post_title = tr.all("td")[0].text
     post_author = tr.all("td")[2].text
     if post_title.eql? title and post_author.eql? author
@@ -44,7 +44,7 @@ When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]
 end
 
 When(/^I have deleted the discussion reply with the body "([^"]*)" authored by "([^"]*)"$/) do |reply_body, reply_author|
-  all('tr').each do |tr|
+  all('tbody tr').each do |tr|
     body = tr.all('td')[1].text
     author = tr.all('td')[2].text
     if body.eql? reply_body and author.eql? reply_author
@@ -54,7 +54,7 @@ When(/^I have deleted the discussion reply with the body "([^"]*)" authored by "
 end
 
 When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |old_title, post_author, new_title, new_body|
-  all('tr').each do |tr|
+  all('tbody tr').each do |tr|
     title = tr.all('td')[0].text
     author = tr.all('td')[2].text
     if title.eql? old_title and author.eql? post_author
@@ -67,7 +67,7 @@ When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" 
 end
 
 When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body "([^"]*)"$/) do |old_body, post_author, new_body|
-  all('tr').each do |tr|
+  all('tbody tr').each do |tr|
     body = tr.all('td')[0].text
     author = tr.all('td')[1].text
     if body.eql? old_body and author.eql? post_author
@@ -84,7 +84,7 @@ end
 
 Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
   found_post = false
-  all("tr").each do |tr|
+  all("tbody tr").each do |tr|
     post_body = tr.all("td")[0].text
     post_author = tr.all("td")[1].text
     if post_body.eql? body and post_author.eql? author
@@ -113,7 +113,7 @@ end
 
 Then(/^I should see the discussion post by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |author, title, body|
   found_post = false
-  all("tr").each do |tr|
+  all("tbody tr").each do |tr|
     post_title = tr.all("td")[0].text
     post_body = tr.all("td")[1].text
     post_author = tr.all("td")[2].text
@@ -127,7 +127,7 @@ end
 
 def find_post_by_author(author)
   found_author = false
-  all("tr").each do |tr|
+  all("tbody tr").each do |tr|
     post_author = tr.all("td")[2].text
     if post_author.eql? author
       found_author = true
