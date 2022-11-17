@@ -59,7 +59,7 @@ jobs:
         run: bundle exec cucumber
     
   Staging:
-    if: ${{ always() }}
+    if: ${{ always() }} # disable for now
     needs: Testing
     runs-on: ubuntu-latest
     env:
@@ -98,7 +98,7 @@ jobs:
       # MUST specify '/home' to get HTTP 200 because '/' auto-redirects
       - name: Perform health check
         run: |
-          RESPONSE=$(curl -Is http://localhost:3000/home | head -1 | head -c 2)
+          RESPONSE=$(curl -Is http://localhost:3000/home | head -1 | head -c -2)
           echo "SERVER STATUS: $RESPONSE"
           if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
       
@@ -114,9 +114,9 @@ jobs:
     steps:
       - name: test stuff
         run: |
-          echo "event: $EVENT"
-          echo "ref: $REF"
-          echo "repo: $REPO"
+          echo "event: $EVENT."
+          echo "ref: $REF."
+          echo "repo: $REPO."
   
   Deploy:
     # ONLY deploy on push to main branch of UIOWAjohnsonhj/selt2022_teamprojects-team4
