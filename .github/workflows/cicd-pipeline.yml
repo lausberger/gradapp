@@ -159,12 +159,14 @@ jobs:
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: heroku create -a $HEROKU_APP_NAME
 
-      - name: Set Heroku remote (if needed)
+      - name: Git remote setup (if needed)
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: |
           heroku git:remote -a $HEROKU_APP_NAME
+          git config user.email "gradapp-pipeline@gmail.com"
+          git config user.name "GradApp Pipeline"
           git add .
           git commit -m "Automatically triggered pipeline deployment"
 
