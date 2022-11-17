@@ -144,13 +144,6 @@ jobs:
           SPRINT3_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_start }}
           SPRINT3_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_end }}
           HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
-      
-      # - name: Log in to Heroku Container registry
-      #   env:
-      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      #   run: heroku container:login
-
-      # - name: Build production database
 
       - name: Create Heroku app (if needed)
         continue-on-error: true
@@ -166,7 +159,7 @@ jobs:
         run: |
           heroku git:remote -a $HEROKU_APP_NAME
           heroku stack:set heroku-20
-          git fetch --unshallow
+          git filter-branch -- --all
           git config user.email "gradapp-pipeline@fake-email.com"
           git config user.name "GradApp Pipeline"
 
