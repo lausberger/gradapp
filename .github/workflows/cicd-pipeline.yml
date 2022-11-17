@@ -123,27 +123,27 @@ jobs:
 
       # 2022-11-01 <= current_date <= 2022-11-09
       - if: (env.SPRINT1_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT1_END)
-        run: echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
+        run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV
         env:
           SPRINT1_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_start }}
           SPRINT1_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_end }}
-          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
 
       # 2022-11-10 <= current_date <= 2022-11-27
       - if: (env.SPRINT2_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT2_END)
-        run: echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
+        run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV
         env:
           SPRINT2_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_start }}
           SPRINT2_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_end }}
-          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
 
       # 2022-11-28 <= current_date <= 2022-12-09
       - if: (env.SPRINT3_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT3_END)
-        run: echo "HEROKU_APP=$HEROKU_APP" >> $GITHUB_ENV
+        run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV
         env:
           SPRINT3_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_start }}
           SPRINT3_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_end }}
-          HEROKU_APP: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).TEST_APP_NAME }}
       
       # - name: Log in to Heroku Container registry
       #   env:
@@ -156,21 +156,19 @@ jobs:
         continue-on-error: true
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP: ${{ env.HEROKU_APP }}
-        run: heroku create -a $HEROKU_APP
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: heroku create -a $HEROKU_APP_NAME
 
       - name: Set Heroku remote (if needed)
-        continue-on-error: true
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP: ${{ env.HEROKU_APP }}
-        run: heroku git:remote -a $HEROKU_APP
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: heroku git:remote -a $HEROKU_APP_NAME
 
       - name: Deploy on Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP: ${{ env.HEROKU_APP }}
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: |
-          echo "Deploying $HEROKU_APP"
-          git remote show heroku
-          git push heroku main
+          echo "Deploying $HEROKU_APP_NAME"
+          git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
