@@ -27,10 +27,11 @@ When /^I fill out the form with (.*?)$/ do |option|
 end
 
 And /^I submit the form$/ do
-    click_on "Register"
+    click_button "Register"
 end
 
 Then /^I should be redirected to the home page$/ do
+    log find(:css, '#warning').text
     expect(page).to have_current_path(home_path)
 end
 
