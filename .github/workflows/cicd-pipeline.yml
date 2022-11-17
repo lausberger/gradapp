@@ -2,9 +2,12 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "pipeline-test" ]
+    branches:
+      - main
+      - pipeline-test
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   Linting:
@@ -56,6 +59,7 @@ jobs:
         run: bundle exec cucumber
     
   Staging:
+    if: ${{ always() }}
     needs: Testing
     runs-on: ubuntu-latest
     env:
@@ -100,8 +104,21 @@ jobs:
       
       # ADD CAPYBARA OR SELENIUM TESTS HERE
   
-  Production:
-    if: ${{ false }} # temp for debugging
+  DEBUG:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    env:
+      EVENT: ${{ github.event_name }}
+      REF: ${{ github.ref }}
+      REPO: ${{ github.repository }}
+    run: |
+      echo "event: $EVENT"
+      echo "ref: $REF"
+      echo "repo: $REPO"
+  
+  Deploy:
+    # ONLY deploy on push to main branch of UIOWAjohnsonhj/selt2022_teamprojects-team4
+    if: (github.event_name == 'push') && (github.ref == 'refs/heads/main') && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs: Staging
     runs-on: ubuntu-latest
     environment: pipeline-heroku
@@ -146,5 +163,4 @@ jobs:
       - name: Log in to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: | 
-          heroku container:login
+        run: heroku container:login
