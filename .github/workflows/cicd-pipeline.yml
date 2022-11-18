@@ -1,0 +1,181 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+  pull_request:
+    types:
+      - opened
+      - reopened
+    branches:
+      - main
+
+jobs:
+  Linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
+          bundler-cache: true
+
+      - name: Perform linting
+        run: bundle exec rubocop
+
+  Testing:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set up Ruby 2.6.6
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
+          bundler-cache: true
+
+      - name: Build test database
+        run: |
+          bundle exec rake db:migrate
+          bundle exec rake db:seed
+
+      - name: Run spec tests
+        run: bundle exec rspec
+
+      - name: Run feature tests
+        run: bundle exec cucumber
+    
+  Staging:
+    needs: Testing
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: production
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      
+      - name: Set up Ruby 2.6.6
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
+          bundler-cache: true
+      
+      - name: Build production database
+        run: |
+          bundle exec rake db:migrate
+          bundle exec rake db:seed
+
+      - name: Generate production secrets key
+        run: |
+          echo "SECRET_KEY_BASE=$(bundle exec rake secret)" >> $GITHUB_ENV
+
+      - name: Deploy Heroku locally
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_PROCFILE: .github/workflows/heroku-resources/Procfile.test
+          SECRET_KEY_BASE: ${{ env.SECRET_KEY_BASE }}
+        run: |
+          heroku local -f $HEROKU_PROCFILE -p 3000 &
+          sleep 15s
+      
+      # MUST specify '/home' to get HTTP 200 because '/' auto-redirects
+      - name: Perform health check
+        run: |
+          RESPONSE=$(curl -Is http://localhost:3000/home | head -1 | head -c -3)
+          echo "SERVER STATUS: $RESPONSE"
+          if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
+      
+      # ADD CAPYBARA OR SELENIUM TESTS HERE
+  
+  Deploy:
+    # ONLY deploy on PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
+    if: (github.event_name == 'push') && (github.ref == 'refs/heads/main') && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
+    needs: Staging
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      RAILS_ENV: production
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_DEBUG_RAILS_RUNNER: 1
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      
+      - name: Export current date
+        run: echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
+      
+      - name: Export Heroku mappings
+        run: echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-resources/mappings.json)" >> $GITHUB_ENV
+
+      # 2022-11-01 <= current_date <= 2022-11-09
+      - if: (env.SPRINT1_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT1_END)
+        run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV
+        env:
+          SPRINT1_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_start }}
+          SPRINT1_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_end }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_app_name }}
+
+      # 2022-11-10 <= current_date <= 2022-11-27
+      - if: (env.SPRINT2_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT2_END)
+        run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV
+        env:
+          SPRINT2_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_start }}
+          SPRINT2_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_end }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_app_name }}
+
+      # 2022-11-28 <= current_date <= 2022-12-09
+      - if: (env.SPRINT3_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT3_END)
+        run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV
+        env:
+          SPRINT3_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_start }}
+          SPRINT3_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_end }}
+          HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).sprint3_app_name }}
+
+      - name: Create Heroku app (if needed)
+        continue-on-error: true
+        env:
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: heroku create -a $HEROKU_APP_NAME
+
+      - name: Additional setup (if needed)
+        env:
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: |
+          heroku git:remote -a $HEROKU_APP_NAME
+          heroku stack:set heroku-20
+          git fetch --unshallow
+          git config user.email "gradapp-pipeline@fake-email.com"
+          git config user.name "GradApp Pipeline"
+
+      - name: Deploy to Heroku
+        env:
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: |
+          echo "Deploying $HEROKU_APP_NAME"
+          git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:main
+
+      - name: Migrate database
+        env: 
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: heroku run rake db:migrate
+      
+      - name: Health check
+        env:
+          HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+        run: |
+            RESPONSE=$(curl -Is http://$HEROKU_APP_NAME.herokuapp.com/home | head -1 | head -c -3)
+            echo "HEROKU APP STATUS: $RESPONSE"
+            if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
