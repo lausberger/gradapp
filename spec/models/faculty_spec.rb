@@ -1,34 +1,38 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'rails_helper'
 
-if RUBY_VERSION>='2.6.0'
+if RUBY_VERSION >= '2.6.0'
   if Rails.version < '5'
-    class ActionController::TestResponse < ActionDispatch::TestResponse
-      def recycle!
-        # hack to avoid MonitorMixin double-initialize error:
-        @mon_mutex_owner_object_id = nil
-        @mon_mutex = nil
-        initialize
+    module ActionController
+      class TestResponse < ActionDispatch::TestResponse
+        def recycle!
+          # HACK: to avoid MonitorMixin double-initialize error:
+          @mon_mutex_owner_object_id = nil
+          @mon_mutex = nil
+          initialize
+        end
       end
     end
   else
-    puts "Monkeypatch for ActionController::TestResponse no longer needed"
+    puts 'Monkeypatch for ActionController::TestResponse no longer needed'
   end
 end
 
 describe Faculty do
   before(:each) do
     account = {
-      :email => 'jnstockley@gmail.com',
-      :first_name => 'Jack',
-      :last_name => 'Stockley',
-      :password => 'Password1234',
-      :account_type => 'faculty',
+      email: 'jnstockley@gmail.com',
+      first_name: 'Jack',
+      last_name: 'Stockley',
+      password: 'Password1234',
+      account_type: 'faculty'
     }
     @account_creation = Account.create!(account)
     @faculty = {
-      :account_id => @account_creation.id,
-      :topic_area => 'CSE'
+      account_id: @account_creation.id,
+      topic_area: 'CSE'
     }
   end
   describe 'topic area validation' do
