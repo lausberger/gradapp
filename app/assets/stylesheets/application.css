@@ -14,6 +14,29 @@
  *= require_self
  */
 
- /* any view fields that correspond to model attributes that use 
+ /* any view fields that correspond to model attributes that use
  ActiveRecord::Validations will display weirdly if this is not here */
  .field_with_errors { display: inline; }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.box {
+  display: block;
+  align-items: center;
+  background-color: white;
+  height: 75%;
+  width: 75%;
+}
+
+.child {
+  background: grey;
+  height: 10%;
+  width: 100%;
+  border: black 1px solid;
+  color: black;
+}
