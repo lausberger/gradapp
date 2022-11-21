@@ -1,0 +1,3 @@
+class StudentChecklistsController < ApplicationController
+
+end

@@ -15,6 +15,7 @@ if RUBY_VERSION>='2.6.0'
     puts "Monkeypatch for ActionController::TestResponse no longer needed"
   end
 end
-describe StudentChecklist do
+
+describe StudentChecklistsController do
 
 end
