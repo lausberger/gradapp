@@ -33,7 +33,7 @@ describe DiscussionsController do
           :root_discussion_id => 1
         }
       end
-      it 'should add selected root discussion to db and load index template' do
+      it 'should add selected root discussion to db and load show template' do
         post :create, {:discussion => @root_discussion}
         expect(response).to redirect_to(discussions_path)
       end

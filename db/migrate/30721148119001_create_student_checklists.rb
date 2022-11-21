@@ -1,7 +1,7 @@
 class CreateStudentChecklists < ActiveRecord::Migration
   def change
     create_table :student_checklists do |t|
-      t.references :student, index: true, foreign_key: true
+      t.references :student, show: true, foreign_key: true
       t.boolean :citizenship, default: false
       t.boolean :research_area, default: false
       t.boolean :degree_objective, default: false
