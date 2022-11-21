@@ -1,61 +1,64 @@
 %h1= "Student Checklist for #{@student[:first_name]} #{@student[:last_name]}"
 
-%table
-  %thead
-    %tr
-      %th Item
-      %th Completed
-  %tbody
-    %tr
-      %td Citizenship
-      %td= check_box_tag "citizenship_checkbox", 1, @student_checklist[:citizenship]
-    %tr
-      %td Research Area
-      %td= check_box_tag "research_area_checkbox", 1, @student_checklist[:research_area]
-    %tr
-      %td Degree Objective
-      %td= check_box_tag "degree_objective_checkbox", 1, @student_checklist[:degree_objective]
-    %tr
-      %td Undergraduate Institution
-      %td= check_box_tag "ug_inst_checkbox", 1, @student_checklist[:ug_inst]
-    %tr
-      %td Undergraduate GPA Area
-      %td= check_box_tag "ug_gpa_checkbox", 1, @student_checklist[:ug_gpa]
-    %tr
-      %td Undergraduate Degree
-      %td= check_box_tag "ug_degree_checkbox", 1, @student_checklist[:ug_degree]
-    %tr
-      %td Undergraduate Major Area
-      %td= check_box_tag "ug_major_checkbox", 1, @student_checklist[:ug_major]
-    %tr
-      %td Undergraduate Transcript
-      %td= check_box_tag "ug_transcript_checkbox", 1, @student_checklist[:ug_transcript]
-    %tr
-      %td Graduate Institution
-      %td= check_box_tag "grad_inst_checkbox", 1, @student_checklist[:grad_inst]
-    %tr
-      %td Graduate GPA
-      %td= check_box_tag "grad_gpa_checkbox", 1, @student_checklist[:grad_gpa]
-    %tr
-      %td Graduate Degree
-      %td= check_box_tag "grad_degree_checkbox", 1, @student_checklist[:grad_degree]
-    %tr
-      %td Graduate Major
-      %td= check_box_tag "grad_major_checkbox", 1, @student_checklist[:grad_major]
-    %tr
-      %td Graduate Transcript
-      %td= check_box_tag "grad_transcript_checkbox", 1, @student_checklist[:grad_transcript]
-    %tr
-      %td Letter of Recommendation(s)
-      %td= check_box_tag "letter_recommendations_checkbox", 1, @student_checklist[:letter_recommendations]
-    %tr
-      %td Language Score(s)
-      %td= check_box_tag "language_scores_checkbox", 1, @student_checklist[:language_scores]
-    %tr
-      %td Resume
-      %td= check_box_tag "resume_checkbox", 1, @student_checklist[:resume]
-    %tr
-      %td Statement of Propose
-      %td= check_box_tag "sop_checkbox", 1, @student_checklist[:sop]
+= form_tag student_checklist_path, method: :put do
+  %table
+    %thead
+      %tr
+        %th Item
+        %th Completed
+    %tbody
+      %tr
+        %td Citizenship
+        %td= check_box_tag "citizenship_checkbox", 1, @student_checklist[:citizenship]
+      %tr
+        %td Research Area
+        %td= check_box_tag "research_area_checkbox", 1, @student_checklist[:research_area]
+      %tr
+        %td Degree Objective
+        %td= check_box_tag "degree_objective_checkbox", 1, @student_checklist[:degree_objective]
+      %tr
+        %td Undergraduate Institution
+        %td= check_box_tag "ug_inst_checkbox", 1, @student_checklist[:ug_inst]
+      %tr
+        %td Undergraduate GPA Area
+        %td= check_box_tag "ug_gpa_checkbox", 1, @student_checklist[:ug_gpa]
+      %tr
+        %td Undergraduate Degree
+        %td= check_box_tag "ug_degree_checkbox", 1, @student_checklist[:ug_degree]
+      %tr
+        %td Undergraduate Major Area
+        %td= check_box_tag "ug_major_checkbox", 1, @student_checklist[:ug_major]
+      %tr
+        %td Undergraduate Transcript
+        %td= check_box_tag "ug_transcript_checkbox", 1, @student_checklist[:ug_transcript]
+      %tr
+        %td Graduate Institution
+        %td= check_box_tag "grad_inst_checkbox", 1, @student_checklist[:grad_inst]
+      %tr
+        %td Graduate GPA
+        %td= check_box_tag "grad_gpa_checkbox", 1, @student_checklist[:grad_gpa]
+      %tr
+        %td Graduate Degree
+        %td= check_box_tag "grad_degree_checkbox", 1, @student_checklist[:grad_degree]
+      %tr
+        %td Graduate Major
+        %td= check_box_tag "grad_major_checkbox", 1, @student_checklist[:grad_major]
+      %tr
+        %td Graduate Transcript
+        %td= check_box_tag "grad_transcript_checkbox", 1, @student_checklist[:grad_transcript]
+      %tr
+        %td Letter of Recommendation(s)
+        %td= check_box_tag "letter_recommendations_checkbox", 1, @student_checklist[:letter_recommendations]
+      %tr
+        %td Language Score(s)
+        %td= check_box_tag "language_scores_checkbox", 1, @student_checklist[:language_scores]
+      %tr
+        %td Resume
+        %td= check_box_tag "resume_checkbox", 1, @student_checklist[:resume]
+      %tr
+        %td Statement of Propose
+        %td= check_box_tag "sop_checkbox", 1, @student_checklist[:sop]
+  = submit_tag "Update Checklist"
+
 
 
