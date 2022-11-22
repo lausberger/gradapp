@@ -47,5 +47,7 @@ We automate tests on github to ensure changes merged to our main branch are not 
 1. Ensure are all tests are passing in cucumber and rSpec. Prevents the pull request from being merged if any are not passing.
 2. Check to ensure the changes meet our linting configuration ensuring consistency and good practice in code syntax.
 3. Automatically deploy stable releases to our heroku dev site and production site at the end of sprints.
+  - For changes merged to the main branch, we automatically deploy to our Heroku dev site - a live deployment where we can test upcomming features!
+  - For tagged hashes in our main branch, our pipeline will deploy to the associated heroku app of that tag (signifying which sprint we are on)
 
 This pipeline helps automate many previously manual tasks, allowing our team to continue integrating new features with out being bogged down by these redundant steps.
