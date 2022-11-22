@@ -26,20 +26,14 @@ jobs:
 
       - name: Perform linting
         run: bundle exec rubocop
-
-  Debug:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print info
-        run: echo ${{ github.ref }}
   
   # This job generates variables for the Deploy job conditionals. The only alternative
   # is to run Deploy-Prod for any matching tag, but this would mean a matching tag
   # associated with a commit on ANY branch would trigger a production deployment!
   Tree-Check:
     # if tagged commit (for Deploy-Prod) or on main branch (for Deploy-Dev)
-    # if: (startsWith(github.ref, 'refs/tags/selt2022_sprint')) || (github.ref == 'ref/heads/main')
-    if: (startsWith(github.ref, 'refs/tags/test_tag')) || (github.ref == 'ref/heads/pipeline-beta-deploy')
+    # if: (startsWith(github.ref, 'refs/tags/selt2022_sprint')) || (github.ref == 'refs/heads/main')
+    if: (startsWith(github.ref, 'refs/tags/test_tag')) || (github.ref == 'refs/heads/pipeline-beta-deploy')
     runs-on: ubuntu-latest
     outputs:
       commit_hash: ${{ env.COMMIT_HASH }}
