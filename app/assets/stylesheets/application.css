@@ -34,9 +34,13 @@
 }
 
 .child {
-  background: grey;
+  background: lightgrey;
   height: 10%;
   width: 100%;
   border: black 1px solid;
   color: black;
+}
+
+textarea {
+  resize: none;
 }
