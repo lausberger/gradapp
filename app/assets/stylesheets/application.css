@@ -41,6 +41,10 @@
   color: black;
 }
 
+.homeLinkSpanClass {
+  font-size:1.8em;
+}
+
 textarea {
   resize: none;
 }
