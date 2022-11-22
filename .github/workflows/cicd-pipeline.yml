@@ -26,6 +26,32 @@ jobs:
 
       - name: Perform linting
         run: bundle exec rubocop
+  
+  # This job generates variables for the Deploy job conditionals. The only alternative
+  # is to run Deploy-Prod for any matching tag, but this would mean a matching tag
+  # associated with a commit on ANY branch would trigger a production deployment!
+  Tree-Check:
+    # if tagged commit (for Deploy-Prod) or on main branch (for Deploy-Dev)
+    if: (startsWith(github.ref, 'refs/tags/selt2022_sprint')) || (github.ref == 'ref/heads/main')
+    runs-on: ubuntu-latest
+    outputs:
+      commit_hash: ${{ env.COMMIT_HASH }}
+      main_head: ${{ env.main_head }}
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - name: Get branch and tag info
+        run: |
+          git fetch --depth 1
+          COMMIT_HASH=${{ github.sha }}
+          MAIN_HEAD=$(git log -n 1 --pretty=format:"%H" origin/main)
+          echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
+          echo "MAIN_HEAD=$MAIN_HEAD" >> $GITHUB_ENV
+          echo "commit hash: $COMMIT_HASH"
+          echo "main head: $MAIN_HEAD"
+          if [ "$MAIN_HEAD" != "$COMMIT_HASH" ]; then echo "Commit hash is not head of main. A deployment will not be made."; fi
 
   Testing:
     runs-on: ubuntu-latest
@@ -97,37 +123,12 @@ jobs:
           if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
       
       # ADD CAPYBARA OR SELENIUM TESTS HERE
-  
-  # This job generates variables for the Deploy conditionals. The only alternative
-  # is to execute Deploy-Prod on any matching tag, but this would mean a matching tag
-  # associated with a commit on ANY branch would trigger a production deployment!
-  Tree-Check:
-    needs: Staging
-    runs-on: ubuntu-latest
-    outputs:
-      commit_hash: ${{ env.COMMIT_HASH }}
-      main_hash: ${{ env.MAIN_HASH }}
-    steps:
-      - name: Checkout current branch
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref }}
-      - name: Get branch and tag info
-        run: |
-          git fetch --depth 1
-          COMMIT_HASH=${{ github.sha }}
-          MAIN_HASH=$(git log -n 1 --pretty=format:"%H" origin/main)
-          echo "COMMIT_HASH=$COMMIT_SHA" >> $GITHUB_ENV
-          echo "MAIN_HASH=$MAIN_SHA" >> $GITHUB_ENV
-          echo "this commit: $COMMIT_HASH"
-          echo "main head: $MAIN_HASH"
-          if [ "$MAIN_HASH" != "$COMMIT_HASH" ]; then echo "Commit hash is not head of main. A deployment will not be made."; fi
 
   # deploys current main branch to 'uiowa-grad-app-beta' for quality assurance
   # note: database is not shared with prod, so we use seeds here
   Deploy-Dev:
     # ONLY deploy on PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
-    if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_hash) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
+    if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_head) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs: 
       - Staging
       - Tree-Check
@@ -172,11 +173,11 @@ jobs:
             echo "HEROKU APP STATUS: $RESPONSE"
             if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
 
-  # if this is a tagged release, deploys a production app whose name
-  # is calculated based on the current sprint iteration
+  # for tagged releases, deploys a production app whose name is calculated based
+  # on the current sprint iteration
   Deploy-Prod:
     # ONLY deploy on TAGGED PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
-    if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_hash) && (startsWith(github.ref, 'refs/tags/selt2022_sprint')) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
+    if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_head) && (startsWith(github.ref, 'refs/tags/selt2022_sprint')) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs:
       - Deploy-Dev
       - Tree-Check
