@@ -1,1 +1,18 @@
-%h1 My Messages
+%center
+  %h1 My Messages
+- @messages.each do |message|
+  %div(class="container")
+    %div(class="box")
+      %div(class="box child")
+        %a Sender:
+        %a= message.from_name
+      %div(class="box child")
+        %a Subject:
+        %a= message.subject
+      %div(class="box child")
+        %a Body:
+        %a= message.body
+      %div(class="box child")
+        = link_to 'Reply', '/messages/new'
+      %br
+= link_to 'Send Message', '/messages/new'
