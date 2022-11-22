@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :messages
   get 'messages', to: 'messages#index'
   get 'messages/new', to: 'messages#new'
+  post 'messages/sendMessage', to: 'messages#sendMessage'
+
 
   # consider adding separate 'sessions' controller for managing login sessions
   # https://www.section.io/engineering-education/how-to-setup-user-authentication-from-scratch-with-rails-6/
