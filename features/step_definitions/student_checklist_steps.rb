@@ -1,7 +1,7 @@
 Given(/^The following account is created:$/) do |accounts|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :type]
-  accounts.hashes.keys.each do |account|
-    Account.create!(:first_name => account[:first_name], :last_name => account[:last_name], :email => account[:email], :password => account[:password], :account_type => account[:account_type])
+  accounts.hashes.each do |account|
+    Account.create!(:first_name => account[:first_name], :last_name => account[:last_name], :email => account[:email], :password => account[:password], :type => account[:account_type])
   end
 end
 
@@ -20,22 +20,26 @@ And(/^The following Student Checklist for student with email "([^"]*)":$/) do |e
   # table is a table.hashes.keys # => [:citizenship, :research_area, :degree_objective]
   account = Account.find_by(email: email)
   student_checklist = StudentChecklist.create!(:student_id => account.id)
-  items_completed.hashes.keys.each do |item_completed|
-    student_checklist[:"#{item_completed[:type]}" => item_completed[:completed].to_b]
+  items_completed.hashes.each do |item_completed|
+    student_checklist[:"#{item_completed[:type]}" => to_b(item_completed[:completed])]
   end
 end
 
 Then(/^I should see an empty student checklist$/) do
   all("tr").each do |item|
-    button = item.find("button")
-    expect(button.checked).to eql? false
+    button = item.find('input[type=checkbox]')
+    expect(button.has_checked_field?).eql? false
   end
 end
 
 Then(/^I should see the following items have been completed:$/) do |items_completed|
   # table is a table.hashes.keys # => [:type]
   all("tr").each do |item|
-    button = item.find("button")
-    expect(button.checked).to eql? items_completed.hashes.keys.include?(button.label)
+    button = item.find('input[type=checkbox]')
+    expect(button.has_checked_field?).eql? items_completed.hashes.include?(button[:name])
   end
+end
+
+def to_b(str)
+  str == 'true'
 end

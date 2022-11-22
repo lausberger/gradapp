@@ -15,7 +15,7 @@ Feature: View the "Student Checklists" page to see what items needed to complete
   Scenario: Student has completed some items in their student checklist
 
     Given The following account is created:
-      | first_name | last_name | email                | password    | type    |
+      | first_name | last_name | email                | password    | account_type    |
       | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Student |
 
     And The following Student Checklist for student with email "jnstockley@uiowa.edu":
