@@ -1,23 +1,25 @@
+# frozen_string_literal: true
+
 Given(/^I have added a discussion with the title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|
   visit new_discussion_path
-  fill_in("Title", with: title)
-  fill_in("Body", with: body)
-  fill_in("Author", with: author)
-  click_button(:id => 'post_discussion_button')
+  fill_in('Title', with: title)
+  fill_in('Body', with: body)
+  fill_in('Author', with: author)
+  click_button(id: 'post_discussion_button')
 end
 
 Given(/^There is a reply with body "([^"]*)" authored by "([^"]*)"$/) do |body, author|
-  fill_in('body', :with => body)
-  fill_in('author', :with => author)
-  click_button(:id => 'post_reply_button')
+  fill_in('body', with: body)
+  fill_in('author', with: author)
+  click_button(id: 'post_reply_button')
 end
 
 Given(/^I am on the discussion page with the title "([^"]*)" and authored by "([^"]*)"$/) do |title, author|
-  all("tbody tr").each do |tr|
-    post_title = tr.all("td")[0].text
-    post_author = tr.all("td")[2].text
-    if post_title.eql? title and post_author.eql? author
-      tr.find('a', :text => 'View Replies').click
+  all('tbody tr').each do |tr|
+    post_title = tr.all('td')[0].text
+    post_author = tr.all('td')[2].text
+    if post_title.eql?(title) && post_author.eql?(author)
+      tr.find('a', text: 'View Replies').click
     end
   end
 end
@@ -26,22 +28,21 @@ When(/^I am on the discussions home page$/) do
   visit discussions_path
 end
 
-
 When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |post_body, post_author|
-  fill_in("body", with:post_body)
-  fill_in("author", with: post_author)
-  click_button(:id => 'post_reply_button')
+  fill_in('body', with: post_body)
+  fill_in('author', with: post_author)
+  click_button(id: 'post_reply_button')
 end
 
 When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |post_title, post_author|
   all('tbody tr').each do |tr|
     title = tr.all('td')[0].text
     author = tr.all('td')[2].text
-    if title.eql? post_title and author.eql? post_author
-      # tr.find('a', :text => 'Delete').click
-      within(tr) do
-        click_on "Delete"
-      end
+    next unless title.eql?(post_title) && author.eql?(post_author)
+
+    # tr.find('a', :text => 'Delete').click
+    within(tr) do
+      click_on 'Delete'
     end
   end
 end
@@ -50,8 +51,8 @@ When(/^I have deleted the discussion reply with the body "([^"]*)" authored by "
   all('tbody tr').each do |tr|
     body = tr.all('td')[0].text
     author = tr.all('td')[1].text
-    if body.eql? reply_body and author.eql? reply_author
-      tr.all("td")[3].click
+    if body.eql?(reply_body) && author.eql?(reply_author)
+      tr.all('td')[3].click
     end
   end
 end
@@ -60,12 +61,12 @@ When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" 
   all('tbody tr').each do |tr|
     title = tr.all('td')[0].text
     author = tr.all('td')[2].text
-    if title.eql? old_title and author.eql? post_author
-      tr.find('a', :text => 'Edit').click
-      fill_in("Title", with: new_title)
-      fill_in("Body", with: new_body)
-      click_button(:id => 'edit_discussion_post')
-    end
+    next unless title.eql?(old_title) && author.eql?(post_author)
+
+    tr.find('a', text: 'Edit').click
+    fill_in('Title', with: new_title)
+    fill_in('Body', with: new_body)
+    click_button(id: 'edit_discussion_post')
   end
 end
 
@@ -73,11 +74,11 @@ When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body
   all('tbody tr').each do |tr|
     body = tr.all('td')[0].text
     author = tr.all('td')[1].text
-    if body.eql? old_body and author.eql? post_author
-      tr.find('a', :text => 'Edit').click
-      fill_in("Body", with: new_body)
-      click_button(:id => 'edit_discussion_post')
-    end
+    next unless body.eql?(old_body) && author.eql?(post_author)
+
+    tr.find('a', text: 'Edit').click
+    fill_in('Body', with: new_body)
+    click_button(id: 'edit_discussion_post')
   end
 end
 
@@ -87,10 +88,10 @@ end
 
 Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
   found_post = false
-  all("tbody tr").each do |tr|
-    post_body = tr.all("td")[0].text
-    post_author = tr.all("td")[1].text
-    if post_body.eql? body and post_author.eql? author
+  all('tbody tr').each do |tr|
+    post_body = tr.all('td')[0].text
+    post_author = tr.all('td')[1].text
+    if post_body.eql?(body) && post_author.eql?(author)
       found_post = true
       break
     end
@@ -108,7 +109,7 @@ end
 
 Then(/^I should be redirected to the discussion homepage$/) do
   page_title = page.title
-  expected_page_title = "Student Discussions"
+  expected_page_title = 'Student Discussions'
   expect(page_title).eql? expected_page_title
 end
 
@@ -120,11 +121,11 @@ end
 
 Then(/^I should see the discussion post by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |author, title, body|
   found_post = false
-  all("tbody tr").each do |tr|
-    post_title = tr.all("td")[0].text
-    post_body = tr.all("td")[1].text
-    post_author = tr.all("td")[2].text
-    if post_title.eql? title and post_body.eql? body and post_author.eql? author
+  all('tbody tr').each do |tr|
+    post_title = tr.all('td')[0].text
+    post_body = tr.all('td')[1].text
+    post_author = tr.all('td')[2].text
+    if post_title.eql?(title) && post_body.eql?(body) && post_author.eql?(author)
       found_post = true
       break
     end
@@ -134,8 +135,8 @@ end
 
 def find_post_by_author(author)
   found_author = false
-  all("tbody tr").each do |tr|
-    post_author = tr.all("td")[2].text
+  all('tbody tr').each do |tr|
+    post_author = tr.all('td')[2].text
     if post_author.eql? author
       found_author = true
       break
@@ -146,8 +147,8 @@ end
 
 def find_post_by_title(title)
   found_post = false
-  all("tbody tr").each do |tr|
-    post_title = tr.all("td")[0].text
+  all('tbody tr').each do |tr|
+    post_title = tr.all('td')[0].text
     if post_title == title
       found_post = true
       break
