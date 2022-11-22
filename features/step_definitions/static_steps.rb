@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When('I have visited the GradApp Home Page') do
   visit '/home'
 end
