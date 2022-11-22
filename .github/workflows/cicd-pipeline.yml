@@ -98,12 +98,41 @@ jobs:
       
       # ADD CAPYBARA OR SELENIUM TESTS HERE
   
+  # This job generates variables for the Deploy conditionals. The only alternative
+  # is to execute Deploy-Prod on any matching tag, but this would mean a matching tag
+  # associated with a commit on ANY branch would trigger a production deployment!
+  Tree-Check:
+    if: startsWith(github.ref, 'refs/tags/test_tag')
+    needs: Staging
+    runs-on: ubuntu-latest
+    outputs:
+      commit_hash: ${{ env.COMMIT_HASH }}
+      main_hash: ${{ env.MAIN_HASH }}
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - name: Get branch and tag info
+        run: |
+          git fetch --depth 1
+          COMMIT_HASH=${{ github.sha }}
+          MAIN_HASH=$(git log -n 1 --pretty=format:"%H" origin/pipeline-beta-deploy)
+          echo "COMMIT_HASH=$COMMIT_SHA" >> $GITHUB_ENV
+          echo "MAIN_HASH=$MAIN_SHA" >> $GITHUB_ENV
+          echo "this commit: $COMMIT_HASH"
+          echo "main head: $MAIN_HASH"
+          if [ "$MAIN_HASH" != "$COMMIT_HASH" ]; then echo "Tag is not associated with the head of main!" && exit 1; fi
+
+  
   # deploys current main branch to 'uiowa-grad-app-beta' for quality assurance
   # note: database is not shared with prod, so we use seeds here
   Deploy-Dev:
     # ONLY deploy on PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
-    if: (github.event_name == 'push') && (github.ref == 'refs/heads/pipeline-beta-deploy') && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
-    needs: Staging
+    if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_hash) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
+    needs: 
+      - Staging
+      - Tree-Check
     runs-on: ubuntu-latest
     environment: production
     env:
@@ -146,37 +175,11 @@ jobs:
             echo "HEROKU APP STATUS: $RESPONSE"
             if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
 
-  # This job generates variables for the Deploy-Prod conditional. The only alternative
-  # is to execute Deploy-Prod on any matching tag, but this would mean a matching tag
-  # associated with a commit on ANY branch would trigger a production deployment!
-  Tree-Check:
-    if: startsWith(github.ref, 'refs/tags/test_tag')
-    needs: Deploy-Dev
-    runs-on: ubuntu-latest
-    outputs:
-      commit_hash: ${{ env.COMMIT_HASH }}
-      main_hash: ${{ env.MAIN_HASH }}
-    steps:
-      - name: Checkout current branch
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref }}
-      - name: Get branch and tag info
-        run: |
-          git fetch --depth 1
-          COMMIT_HASH=${{ github.sha }}
-          MAIN_HASH=$(git log -n 1 --pretty=format:"%H" origin/pipeline-beta-deploy)
-          echo "COMMIT_HASH=$COMMIT_SHA" >> $GITHUB_ENV
-          echo "MAIN_HASH=$MAIN_SHA" >> $GITHUB_ENV
-          echo "this commit: $COMMIT_HASH"
-          echo "main head: $MAIN_HASH"
-          if [ "$MAIN_HASH" != "$COMMIT_HASH" ]; then echo "Tag is not associated with the head of main!" && exit 1; fi
-
   # if this is a tagged release, deploys a production app whose name
   # is calculated based on the current sprint iteration
   Deploy-Prod:
     # ONLY deploy on TAGGED PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
-    if: (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_hash) && (startsWith(github.ref, 'refs/tags/test_tag')) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
+    if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_hash) && (startsWith(github.ref, 'refs/tags/test_tag')) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs:
       - Deploy-Dev
       - Tree-Check
