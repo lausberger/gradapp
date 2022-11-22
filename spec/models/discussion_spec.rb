@@ -28,8 +28,8 @@ describe Discussion do
       post_author = 'Admin'
       discussion = Discussion.create!(title: post_title, body: post_body, author: post_author,
                                       root_discussion_id: -1)
-      expect(Discussion.get_root_posts).to include discussion
-      expect(Discussion.get_root_post(discussion.id)).to eq discussion
+      expect(Discussion.root_posts).to include discussion
+      expect(Discussion.root_post(discussion.id)).to eq discussion
     end
     it 'reply to discussion' do
       root_post_title = 'Root Discussion'
@@ -42,7 +42,7 @@ describe Discussion do
       reply_post_author = 'Admin'
       reply_discussion = Discussion.create!(title: reply_post_title, body: reply_post_body,
                                             author: reply_post_author, root_discussion_id: root_discussion.id)
-      expect(Discussion.get_post_replies(root_discussion.id)).to include reply_discussion
+      expect(Discussion.post_replies(root_discussion.id)).to include reply_discussion
     end
   end
   describe 'Edit existing discussion' do
@@ -52,13 +52,13 @@ describe Discussion do
       post_author = 'Admin'
       discussion = Discussion.create!(title: post_title, body: post_body, author: post_author,
                                       root_discussion_id: -1)
-      expect(Discussion.get_root_posts).to include discussion
-      expect(Discussion.get_root_post(discussion.id)).to eq discussion
+      expect(Discussion.root_posts).to include discussion
+      expect(Discussion.root_post(discussion.id)).to eq discussion
       discussion[:title] = 'New Root Discussion'
       discussion[:body] = 'New Root Discussion Body'
       discussion[:author] = 'Jack Stockley'
       discussion.save
-      expect(Discussion.get_root_post(discussion.id)).to eq discussion
+      expect(Discussion.root_post(discussion.id)).to eq discussion
     end
     it 'reply to discussion' do
       root_post_title = 'Root Discussion'
@@ -71,11 +71,11 @@ describe Discussion do
       reply_post_author = 'Admin'
       reply_discussion = Discussion.create!(title: reply_post_title, body: reply_post_body,
                                             author: reply_post_author, root_discussion_id: root_discussion.id)
-      expect(Discussion.get_post_replies(root_discussion.id)).to include reply_discussion
+      expect(Discussion.post_replies(root_discussion.id)).to include reply_discussion
       reply_discussion[:body] = 'New Root Discussion body'
       reply_discussion[:author] = 'Jack Stockley'
       reply_discussion.save
-      expect(Discussion.get_post_replies(root_discussion.id)).to include reply_discussion
+      expect(Discussion.post_replies(root_discussion.id)).to include reply_discussion
     end
   end
   describe 'delete discussion' do
@@ -85,9 +85,9 @@ describe Discussion do
       post_author = 'Admin'
       discussion = Discussion.create!(title: post_title, body: post_body, author: post_author,
                                       root_discussion_id: -1)
-      expect(Discussion.get_root_posts).to include discussion
+      expect(Discussion.root_posts).to include discussion
       discussion.destroy
-      expect(Discussion.get_root_posts).not_to include discussion
+      expect(Discussion.root_posts).not_to include discussion
     end
     it 'reply to discussion' do
       root_post_title = 'Root Discussion'
@@ -100,10 +100,10 @@ describe Discussion do
       reply_post_author = 'Admin'
       reply_discussion = Discussion.create!(title: reply_post_title, body: reply_post_body,
                                             author: reply_post_author, root_discussion_id: root_discussion.id)
-      expect(Discussion.get_post_replies(root_discussion.id)).to include reply_discussion
+      expect(Discussion.post_replies(root_discussion.id)).to include reply_discussion
       reply_discussion.destroy
-      expect(Discussion.get_post_replies(root_discussion.id)).not_to include reply_discussion
-      expect(Discussion.get_root_posts).to include root_discussion
+      expect(Discussion.post_replies(root_discussion.id)).not_to include reply_discussion
+      expect(Discussion.root_posts).to include root_discussion
     end
   end
 end
