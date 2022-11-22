@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119001) do
+ActiveRecord::Schema.define(version: 30721148119002) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -69,6 +69,6 @@ ActiveRecord::Schema.define(version: 30721148119001) do
     t.datetime "updated_at",                             null: false
   end
 
-  add_index "student_checklists", ["student_id"], name: "index_student_checklists_on_student_id"
+  add_index "student_checklists", ["student_id"], name: "index_student_checklists_on_student_id", unique: true
 
 end
