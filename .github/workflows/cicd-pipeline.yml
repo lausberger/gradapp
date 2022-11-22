@@ -192,8 +192,9 @@ jobs:
           ref: main
       
       - name: Generate environment variables
-        run: echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
-        run: echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-resources/mappings.json)" >> $GITHUB_ENV
+        run: |
+          echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
+          echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-resources/mappings.json)" >> $GITHUB_ENV
 
       # app name: uiowa-grad-app
       # 2022-11-01 <= current_date <= 2022-11-09
