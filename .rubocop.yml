@@ -7,7 +7,7 @@ Rails:
 
 # Commonly used screens these days easily fit more than 80 characters.
 Layout/LineLength:
-  Max: 120  #default is 80
+  Max: 160  #default is 80
   # To make it possible to copy or click on URIs in the code, we allow lines
   # containing a URI to be longer than Max.
   AllowHeredoc: true

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Creates the discussion DB table
 class CreateDiscussions < ActiveRecord::Migration
   def change
     create_table :discussions do |t|
