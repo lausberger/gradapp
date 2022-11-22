@@ -1,9 +1,11 @@
-class StudentChecklistsController < ApplicationController
+# frozen_string_literal: true
 
+# Controller class for Student Checklist
+class StudentChecklistsController < ApplicationController
   def show
     student_id = params[:id]
     @student = Account.find(student_id)
-    @student_checklist = StudentChecklist.find_by(:student_id => student_id)
+    @student_checklist = StudentChecklist.find_by(student_id: student_id)
   end
 
   def update
@@ -15,9 +17,9 @@ class StudentChecklistsController < ApplicationController
     student_checklist = StudentChecklist.find(student_id)
     items.each do |item|
       if params.include? item
-        student_checklist.update("#{item.partition("_checkbox")[0]}": true)
+        student_checklist.update("#{item.partition('_checkbox')[0]}": true)
       else
-        student_checklist.update("#{item.partition("_checkbox")[0]}": false)
+        student_checklist.update("#{item.partition('_checkbox')[0]}": false)
       end
     end
     student_checklist.save!
