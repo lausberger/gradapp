@@ -2,7 +2,7 @@ Feature: Allow a User to view their messages
 
   Background: messages have been added to the database
     Given the following messages have been sent:
-    | to          | from        | subject       | body          |
+    | to_name     | from_name   | subject       | body          |
     | John Doe    | Jane Doe    | Hello         | Hi. Hey.      |
     | Jane Doe    | John Doe    | What's Up     | How are you?  |
     | John Doe    | Jimmy Zee   | Work Time     | You're late.  |
