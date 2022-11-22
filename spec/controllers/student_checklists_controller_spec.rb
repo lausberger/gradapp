@@ -22,10 +22,14 @@ describe StudentChecklistsController do
       @student_checklist = {
         :student_id => 1
       }
+      @student = StudentChecklist.create! @student_checklist
     end
     it 'should redirect to checklist page' do
-      post :edit, {:checked_items => ['citizenship']}
-      expect(response).to redirect_to student_checklist_page
+      put :update, {:citizenship => 1, :id => @student.id}
+      expect(response).to redirect_to student_checklist_path
+    end
+    after(:all) do
+      StudentChecklist.find_by(:student_id => 1).destroy
     end
   end
 end
