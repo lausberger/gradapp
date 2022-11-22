@@ -11,9 +11,7 @@ class AccountsController < ApplicationController
   # end
 
   def create
-    field_data = registration_params
-
-    account_params = field_data.slice(:first_name, :last_name, :email, :password, :type)
+    account_params = registration_params.slice(:first_name, :last_name, :email, :password, :type)
     @account = Account.new(account_params)
 
     if Account.where(email: @account.email)
