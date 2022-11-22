@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
   def new
   end
   def sendMessage
+    id = Account.find_by(email: "jdoe@gmail.com")
     redirect_to "/messages"
   end
 end

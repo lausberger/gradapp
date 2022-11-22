@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 30721148119002) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "to_id",     null: false
-    t.integer "from_id",   null: false
-    t.string  "to_name",   null: false
-    t.string  "from_name", null: false
+    t.integer "to_id",      null: false
+    t.integer "from_id",    null: false
+    t.string  "to_email",   null: false
+    t.string  "from_email", null: false
     t.string  "subject"
     t.string  "body"
   end
