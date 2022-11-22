@@ -1,1 +1,17 @@
-%h1 Hi
+%h2 New Message
+= form_tag 'sendMessage', :method => :post, :id => 'sendMessage' do
+  %br
+  %a To:
+  %br
+  = text_field_tag :to, params[:to], maxlength: 40, size: 31, :id => 'to_box'
+  %br
+  %a Subject:
+  %br
+  = text_field_tag :subject, params[:subject], maxlength: 40, size: 31, :id => 'subject_box'
+  %br
+  %a Body:
+  %br
+  = text_area_tag :body, params[:body], cols: 40, rows: 10, :id => 'body_box'
+  %br
+  = submit_tag "Send Message", :id => 'send_button'
+
