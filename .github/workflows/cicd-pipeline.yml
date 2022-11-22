@@ -26,6 +26,12 @@ jobs:
 
       - name: Perform linting
         run: bundle exec rubocop
+
+  Debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print info
+        run: echo ${{ github.ref }}
   
   # This job generates variables for the Deploy job conditionals. The only alternative
   # is to run Deploy-Prod for any matching tag, but this would mean a matching tag
