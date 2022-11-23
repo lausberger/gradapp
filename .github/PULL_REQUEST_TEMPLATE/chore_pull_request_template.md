@@ -7,5 +7,5 @@ NOTE: Please omit any unneccessary sections from your PR. This template is used 
 # Summary of Changes:
 <!--- Summarize the more technical side of changes made to integrate this feature -->
 
-# Other
+# Other:
 <!--- use this section to add any other media/details you feel necessary -->
