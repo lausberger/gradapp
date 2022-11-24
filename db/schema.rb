@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 30721148119003) do
   end
 
   create_table "educations", force: :cascade do |t|
+    t.integer  "graduate_application_id"
     t.string   "school_name"
     t.string   "major"
     t.string   "degree"

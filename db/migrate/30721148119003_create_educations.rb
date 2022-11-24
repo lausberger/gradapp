@@ -4,6 +4,7 @@
 class CreateEducations < ActiveRecord::Migration
   def change
     create_table :educations do |t|
+      t.references :graduate_application
       t.string :school_name
       t.string :major
       t.string :degree
