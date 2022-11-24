@@ -34,7 +34,7 @@ class GraduateApplicationsController < ApplicationController
   private
 
   def graduate_application_params
-    education_attr = %i[school_name degree major gpa_value gpa_scale currently_attending start_date end_date _destroy]
+    education_attr = %i[id school_name degree major gpa_value gpa_scale currently_attending start_date end_date _destroy]
     params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, educations_attributes: education_attr)
   end
 end

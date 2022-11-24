@@ -1,9 +1,9 @@
-%h1 Submit New Application
+%h3 Submit New Application
 
 = form_for @graduate_application do |f|
 
-  .personal_details
-    %h2 Personal Details
+  %fieldset
+    %legend Personal Details
     .name_details
       = f.label :first_name, 'First Name:'
       = f.text_field 'first_name'
@@ -15,8 +15,8 @@
       = f.label :dob, 'Date of Birth'
       = f.date_select :dob, {:start_year => 1900}
 
-  .contact_details
-    %h2 Contact Details
+  %fieldset
+    %legend Contact Details
     .email_details
       = f.label :email, 'Email:'
       = f.text_field 'email'
