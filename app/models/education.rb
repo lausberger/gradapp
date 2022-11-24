@@ -11,7 +11,7 @@ class Education < ActiveRecord::Base
   validates :gpa_scale, :gpa_value, presence: true
   validates :major, :school_name, presence: true, format: { with: /\A[a-z\s]+\z/i, message: 'Only word characters and white spaces supported' }
   validates :degree, presence: true, inclusion: { in: all_degrees }
-  validates :currently_attending, presence: true, inclusion: { in: %w[true false] }
+  validates :currently_attending, presence: true, inclusion: { in: [true, false] }
   validates :start_date, :end_date, presence: true
   validate :gpa_value_lte_must_be_scale
 
