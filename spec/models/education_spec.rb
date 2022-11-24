@@ -19,7 +19,7 @@ describe Education do
       state_date: Date.parse('4-22-2019'),
       end_date: Date.new,
       currently_attending: false,
-      degree: 'Bachelors',
+      degree: 'bachelor',
       major: 'Computer Science',
       gpa: '3.58',
       gpa_scale: '4.0'
@@ -47,9 +47,16 @@ describe Education do
       end
     end
     context 'with invalid GPA' do
-      it 'should raise an argument error' do
+      it 'should be invalid' do
         @sample_education[:gpa] = 3.14
         @sample_education[:gpa_scale] = 3.11
+        expect(@sample_application.save).to be_falsey
+      end
+    end
+    context 'unsupported degree options' do
+      it 'should be invalid' do
+        @sample_education[:degree] = 'fahrenheit'
+        @sample_application.educations.build(@sample_education)
         expect(@sample_application.save).to be_falsey
       end
     end
