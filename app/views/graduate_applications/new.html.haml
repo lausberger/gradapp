@@ -1,53 +1,34 @@
 %h1 Submit New Application
 
-= form_tag graduate_applications_path do
+= form_for @graduate_application do |f|
 
   .personal_details
     %h2 Personal Details
     .name_details
-      = label :graduate_application, :first_name, 'First Name:'
-      = text_field :graduate_application, 'first_name'
+      = f.label :first_name, 'First Name:'
+      = f.text_field 'first_name'
 
-      = label :graduate_application, :last_name, 'Last Name:'
-      = text_field :graduate_application, 'last_name'
+      = f.label :last_name, 'Last Name:'
+      = f.text_field 'last_name'
 
     .age_details
-    = label :graduate_application, :dob, 'Date of Birth'
-    = date_select :graduate_application, :dob, {:start_year => 1900}
+      = f.label :dob, 'Date of Birth'
+      = f.date_select :dob, {:start_year => 1900}
 
   .contact_details
     %h2 Contact Details
     .email_details
-      = label :graduate_application, :email, 'Email:'
-      = text_field :graduate_application, 'email'
+      = f.label :email, 'Email:'
+      = f.text_field 'email'
 
     .phone_details
-      = label :graduate_application, :phone, 'Phone:'
-      = text_field :graduate_application, 'phone'
+      = f.label :phone, 'Phone:'
+      = f.text_field 'phone'
 
-  .education_details
-    %h2 Education
-    .education_list
-      .hidden_education_template
-        .school_name
-          = label_tag 'education_school_name', 'School:'
-          = text_field_tag 'education[-1]_school_name', ''
-        .currently_enrolled
-          = label_tag 'education_currently_attending', :currently_attending
-          = check_box_tag 'education[-1]_currently_attending', "1", false
-        .start_end_date
-          = label_tag 'education_start_date', 'start:'
-          = date_select :educations_, :start_date, {:start_year => 1900}
+  %fieldset
+    %legend Education:
+    = f.fields_for :educations do |educations_form|
+      = render "education_fields", f: educations_form
+    = link_to_add_fields "add more", f, :educations
 
-          = label_tag 'education_start_date', 'end:'
-          = date_select :educations_, :end_date, {:end_date => 1900}
-        .degree
-          = label :educations_, :degree, 'Degree:'
-          = select :educations_, 'degree', [%w[associate associate], %w[bachelor bachelor], %w[graduate graduate], %w[doctorate doctorate]]
-        .major
-          = label :educations_, :major, 'Major:'
-          = text_field :educations_, 'major'
-
-    = button_tag 'Add New', type: 'button'
-
-  = submit_tag 'Submit'
+  = f.submit 'Submit'
