@@ -6,7 +6,6 @@ class removeFields {
   }
 
   iterateLinks() {
-    // Use event delegation to ensure any fields added after the page loads are captured.
     document.addEventListener('click', e => {
       if (e.target && e.target.className === 'remove_fields') {
         this.handleClick(e.target, e)
@@ -15,10 +14,8 @@ class removeFields {
   }
 
   handleClick(link, e) {
-    // Stop the function from executing if a link or event were not passed into the function.
-    if (!link || !e) return
-    // Prevent the browser from following the URL.
-    e.preventDefault()
+    if (!link || !e) return // Stop the function from executing if a link or event were not passed into the function.
+    e.preventDefault() // Prevent browser from following the URL.
     // Find the parent wrapper for the set of nested fields.
     let fieldParent = link.closest('.nested-fields')
     // If there is a parent wrapper, find the hidden delete field.
