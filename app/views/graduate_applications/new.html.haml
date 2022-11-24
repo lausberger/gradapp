@@ -5,10 +5,10 @@
   .personal_details
     %h2 Personal Details
     .name_details
-      = label :graduate_application, :first_name, 'First Name'
+      = label :graduate_application, :first_name, 'First Name:'
       = text_field :graduate_application, 'first_name'
 
-      = label :graduate_application, :last_name, 'Last Name'
+      = label :graduate_application, :last_name, 'Last Name:'
       = text_field :graduate_application, 'last_name'
 
     .age_details
@@ -17,15 +17,18 @@
 
   .contact_details
     %h2 Contact Details
-    = label :graduate_application, :email, 'Email'
-    = text_field :graduate_application, 'email'
+    .email_details
+      = label :graduate_application, :email, 'Email:'
+      = text_field :graduate_application, 'email'
 
-    = label :graduate_application, :phone, 'Phone'
-    = text_field :graduate_application, 'phone'
+    .phone_details
+      = label :graduate_application, :phone, 'Phone:'
+      = text_field :graduate_application, 'phone'
 
   .score_details
+    %h2 Scores
     .gpa_details
-      = label :graduate_application, :gpa_value, 'GPA'
+      = label :graduate_application, :gpa_value, 'GPA:'
       = number_field :graduate_application, 'gpa_value', {:step => 0.01}
 
       = label :graduate_application, :gpa_scale, 'GPA Scale'
