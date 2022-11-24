@@ -11,7 +11,7 @@ describe GraduateApplication do
       email: 'beggr@uiowa.edu',
       phone: '3196408865',
       dob: Date.new,
-      status: 'submitted',
+      status: 'submitted'
     }
   end
   describe 'creating a graduate application' do
