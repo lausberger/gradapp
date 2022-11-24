@@ -25,13 +25,29 @@
       = label :graduate_application, :phone, 'Phone:'
       = text_field :graduate_application, 'phone'
 
-  .score_details
-    %h2 Scores
-    .gpa_details
-      = label :graduate_application, :gpa_value, 'GPA:'
-      = number_field :graduate_application, 'gpa_value', {:step => 0.01}
+  .education_details
+    %h2 Education
+    .education_list
+      .hidden_education_template
+        .school_name
+          = label_tag 'education_school_name', 'School:'
+          = text_field_tag 'education[-1]_school_name', ''
+        .currently_enrolled
+          = label_tag 'education_currently_attending', :currently_attending
+          = check_box_tag 'education[-1]_currently_attending', "1", false
+        .start_end_date
+          = label_tag 'education_start_date', 'start:'
+          = date_select :educations_, :start_date, {:start_year => 1900}
 
-      = label :graduate_application, :gpa_scale, 'GPA Scale'
-      = number_field :graduate_application, 'gpa_scale', {:step => 0.01}
+          = label_tag 'education_start_date', 'end:'
+          = date_select :educations_, :end_date, {:end_date => 1900}
+        .degree
+          = label :educations_, :degree, 'Degree:'
+          = select :educations_, 'degree', [%w[associate associate], %w[bachelor bachelor], %w[graduate graduate], %w[doctorate doctorate]]
+        .major
+          = label :educations_, :major, 'Major:'
+          = text_field :educations_, 'major'
+
+    = button_tag 'Add New', type: 'button'
 
   = submit_tag 'Submit'

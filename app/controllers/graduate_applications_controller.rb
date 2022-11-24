@@ -3,7 +3,8 @@
 # Graduate application controller class for handling associated views for grad applications
 class GraduateApplicationsController < ApplicationController
   def graduate_application_params
-    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, :gpa_value, :gpa_scale)
+    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob)
+    params.require(:education).permit(:gpa_value, :gpa_scale, :major, :degree, :currently_attending, :start_date, :end_date)
   end
 
   def index

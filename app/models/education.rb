@@ -4,6 +4,7 @@
 # past educations.
 class Education < ActiveRecord::Base
   belongs_to :graduate_application
+  accepts_nested_attributes_for :graduate_application
 
   def self.all_degrees
     %w[associate bachelor graduate doctorate]
