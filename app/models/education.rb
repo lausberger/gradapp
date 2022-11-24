@@ -5,7 +5,15 @@
 class Education < ActiveRecord::Base
   belongs_to :graduate_application
 
+  def self.all_degrees
+    %w[associate bachelor graduate doctorate]
+  end
+
   validates :gpa_scale, :gpa_value, presence: true
+  validates :major, presence: true, format: { with: /\A[a-z\s]+\z/i, message: 'Only word characters and white spaces supported' }
+  validates :degree, presence: true, inclusion: { in: all_degrees }
+  validates :currently_attending, presence: true, inclusion: { in: %w[true false] }
+  validates :start_date, :end_date, timeliness: { type: :date }
   validate :gpa_value_lte_must_be_scale
 
   def gpa_ratio
