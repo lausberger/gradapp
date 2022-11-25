@@ -16,12 +16,12 @@ describe Education do
     @sample_application = GraduateApplication.create!(@sample_student)
     @sample_education = {
       school_name: 'University of Iowa',
-      state_date: Date.parse('4-22-2019'),
+      start_date: Date.parse('22-4-2019'),
       end_date: Date.new,
       currently_attending: false,
       degree: 'bachelor',
       major: 'Computer Science',
-      gpa: '3.58',
+      gpa_value: '3.58',
       gpa_scale: '4.0'
     }
   end
@@ -34,8 +34,8 @@ describe Education do
     end
     context 'with invalid start and end dates' do
       it 'should be invalid' do
-        @sample_education[:start_date] = Date.parse('4-22-2019')
-        @sample_education[:end_date] = Date.parse('4-21-2019')
+        @sample_education[:start_date] = Date.parse('22-4-2019')
+        @sample_education[:end_date] = Date.parse('21-4-2019')
         @sample_application.educations.build(@sample_education)
         expect(@sample_application.save).to be_falsey
       end
