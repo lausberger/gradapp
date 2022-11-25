@@ -8,9 +8,22 @@ Given(/^I am creating a new graduate application$/) do
   visit new_graduate_application_path
 end
 
-Given(/the following graduate applications have been submitted:/) do |application_table|
+Given(/^the following graduate applications have been submitted:/) do |application_table|
   application_table.hashes.each do |application|
     GraduateApplication.create!(application)
+  end
+end
+
+Given(/^the following educations for each application:/) do |education_table|
+  education_table.hashes.each do |education|
+    education[:start_date] = Date.parse(education[:start_date])
+    education[:end_date] = Date.parse(education[:end_date])
+    education[:currently_attending] = education[:currently_attending] == 'true'
+
+    GraduateApplication.all.each do |application|
+      application.educations.create!(education)
+      application.save!
+    end
   end
 end
 
@@ -24,7 +37,7 @@ And(/^I fill in my email as "(.*?)" and my phone as "(.*?)"$/) do |email, phone|
   fill_in 'Phone:', with: phone
 end
 
-And(/^the application's GPA is "(\d*[.]\d*)"$/) do |gpa|
+And(/^the application's average GPA is "(\d*[.]\d*)"$/) do |gpa|
   expect(page).to have_content gpa
 end
 
