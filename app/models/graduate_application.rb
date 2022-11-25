@@ -24,7 +24,7 @@ class GraduateApplication < ActiveRecord::Base
     end
     return 0 if count.zero?
 
-    sum/count
+    sum / count
   end
 
   def full_name

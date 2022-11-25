@@ -17,7 +17,7 @@ describe Education do
     @sample_education = {
       school_name: 'University of Iowa',
       start_date: Date.parse('22-4-2019'),
-      end_date: Date.today,
+      end_date: Date.parse('15-5-2022'),
       currently_attending: false,
       degree: 'bachelor',
       major: 'Computer Science',
