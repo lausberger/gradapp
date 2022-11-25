@@ -20,8 +20,8 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def withdraw
-    current_application = GraduateApplication.find_by_email(params[:application][:email].to_s)
-    puts current_application
+    current_application = GraduateApplication.find_by(email: params[:application][:email].to_s)
+    Rails.logger.debug current_application
     current_application.withdraw
     flash[:notice] = 'Application has been withdrawn'
     redirect_to home_path

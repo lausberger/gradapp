@@ -76,7 +76,7 @@ describe GraduateApplicationsController do
     end
   end
   describe 'withdrawing an application' do
-    before (:each) do
+    before(:each) do
       @sample_application = {
         first_name: 'John',
         last_name: 'Doe',
@@ -91,16 +91,16 @@ describe GraduateApplicationsController do
     end
     it 'should call the model method that does the withdrawal' do
       mock = instance_double(GraduateApplication)
-      expect(GraduateApplication).to receive(:find_by_email).with("johndoe@uiowa.edu").and_return(mock)
-      expect(mock).to receive (:withdraw)
-      patch :withdraw, { application: @sample_application}
+      expect(GraduateApplication).to receive(:find_by_email).with('johndoe@uiowa.edu').and_return(mock)
+      expect(mock).to receive(:withdraw)
+      patch :withdraw, { application: @sample_application }
     end
     it 'should select the home page for rendering' do
-      patch :withdraw, { application: @sample_application}
-      expect(response).to redirect_to("/home")
+      patch :withdraw, { application: @sample_application }
+      expect(response).to redirect_to('/home')
     end
     it 'should flash message that application was withdrawn' do
-      patch :withdraw, { application: @sample_application}
+      patch :withdraw, { application: @sample_application }
       expect(flash[:notice]).to match(/Application has been withdrawn/)
     end
   end
