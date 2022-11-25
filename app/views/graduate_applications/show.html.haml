@@ -24,8 +24,8 @@
 
 %ul#score_details
   %li
-    %strong GPA (on a 4.0 scale):
-  = @graduate_application.gpa_default_scale
+    %strong Average GPA (on a 4.0 scale):
+  = (@graduate_application.average_gpa_ratio * 4)
 
 %h3 Status
 = @graduate_application.status

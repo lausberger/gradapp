@@ -15,7 +15,6 @@ class GraduateApplicationsController < ApplicationController
 
   def new
     @graduate_application = GraduateApplication.new
-    @graduate_application.educations.build
   end
 
   def create
@@ -23,6 +22,8 @@ class GraduateApplicationsController < ApplicationController
     flash[:notice] = 'Graduate application was successfully submitted.' if @graduate_application.valid?
     flash[:notice] = 'Application submission failed, please retry.' unless @graduate_application.valid?
     @graduate_application.status = 'denied' unless @graduate_application.valid?
+
+    puts @graduate_application.errors.full_messages
 
     if @graduate_application.valid?
       redirect_to graduate_applications_path
