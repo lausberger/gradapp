@@ -10,7 +10,7 @@ class GraduateApplication < ActiveRecord::Base
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
   validates :phone, presence: true, format: { with: /\A\d{9,11}\z/, message: 'only digits' }
   validates :dob, presence: true
-  validates :gpa_scale, :gpa_value, presence: true
+  validates :gpa_scale, :gpa_value, presence: true, numericality: true
   validates :status, inclusion: { in: all_status }
   validate :gpa_value_lte_must_be_scale
 
