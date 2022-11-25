@@ -75,6 +75,7 @@ describe Education do
       it 'should also delete all associated reviews' do
         @education = @sample_application.educations.create!(@sample_education)
         @education_id = @education.id
+        @education.destroy
         expect { Education.find(@education_id) }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
