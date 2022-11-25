@@ -15,6 +15,17 @@ class GraduateApplication < ActiveRecord::Base
   validates :dob, presence: true
   validates :status, inclusion: { in: all_status }
 
+  def average_gpa_ratio
+    sum = 0
+    count = 0
+    educations.all.find_each do |education|
+      sum += education.gpa_ratio
+      count += 1
+    end
+    return 0 if count.zero?
+    sum/count
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
