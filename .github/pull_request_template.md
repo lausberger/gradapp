@@ -1,7 +1,7 @@
 <!---
 NOTE: Please omit any unneccessary sections from your PR. This template is used as a basic guideline.
 -->
-# User Story:
+# User Story/Chore:
 <!--- Place pivotal tracker user story here -->
 
 # Summary of Changes:
