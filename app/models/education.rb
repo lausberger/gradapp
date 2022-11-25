@@ -26,7 +26,7 @@ class Education < ActiveRecord::Base
   private
 
   def gpa_value_lte_must_be_scale
-    is_invalid = gpa_scale.is_a?(Numeric) && gpa_value.is_a?(Numeric) && (gpa_value > gpa_scale)
+    is_invalid = !gpa_scale.is_a?(Numeric) || !gpa_value.is_a?(Numeric) || (gpa_value > gpa_scale)
     errors.add(:gpa_value, "GPA can't exceed the scale value.") if is_invalid
   end
 end

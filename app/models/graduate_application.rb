@@ -23,6 +23,7 @@ class GraduateApplication < ActiveRecord::Base
       count += 1
     end
     return 0 if count.zero?
+
     sum/count
   end
 
