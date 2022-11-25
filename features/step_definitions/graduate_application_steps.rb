@@ -15,18 +15,13 @@ Given(/the following graduate applications have been submitted:/) do |applicatio
 end
 
 Given(/^I fill in my name as "(.*?)" "(.*?)"$/) do |first, last|
-  fill_in 'First Name', with: first
-  fill_in 'Last Name', with: last
-end
-
-And(/^I fill in my GPA with "(\d*[.]\d*)"$/) do |gpa|
-  fill_in 'GPA', with: gpa
-  fill_in 'GPA Scale', with: 4.0
+  fill_in 'First Name:', with: first
+  fill_in 'Last Name:', with: last
 end
 
 And(/^I fill in my email as "(.*?)" and my phone as "(.*?)"$/) do |email, phone|
-  fill_in 'Email', with: email
-  fill_in 'Phone', with: phone
+  fill_in 'Email:', with: email
+  fill_in 'Phone:', with: phone
 end
 
 And(/^the application's GPA is "(\d*[.]\d*)"$/) do |gpa|
