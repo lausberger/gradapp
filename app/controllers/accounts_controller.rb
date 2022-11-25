@@ -36,9 +36,10 @@ class AccountsController < ApplicationController
 
   def validate_account_params
     valid = true
-    (flash[:warning] = 'Fields cannot be empty') and (valid = false) if registration_params.any? { |_k, v| v.blank? }
-    (flash[:warning] = 'Passwords do not match') and (valid = false) if registration_params[:password] != registration_params[:password_confirm]
-    (flash[:warning] = 'Please enter a valid email address') and (valid = false) if registration_params[:email] !~
+    account_params = registration_params
+    (flash[:warning] = 'Fields cannot be empty') and (valid = false) if account_params.any? { |_k, v| v.blank? }
+    (flash[:warning] = 'Passwords do not match') and (valid = false) if account_params[:password] != account_params[:password_confirm]
+    (flash[:warning] = 'Please enter a valid email address') and (valid = false) if account_params[:email] !~
                                                                                     /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     render :new unless valid # Account validation failed
   end
