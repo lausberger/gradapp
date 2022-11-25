@@ -20,7 +20,6 @@ describe GraduateApplication do
     context 'with required valid fields entered' do
       it 'should create a new graduate application' do
         expect { GraduateApplication.create(@sample_student) }.not_to raise_exception
-        puts GraduateApplication.create(@sample_student).errors.messages
         expect(GraduateApplication.create(@sample_student).valid?).to be_truthy
       end
     end
