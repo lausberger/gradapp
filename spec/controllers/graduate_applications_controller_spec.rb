@@ -91,7 +91,7 @@ describe GraduateApplicationsController do
     end
     it 'should call the model method that does the withdrawal' do
       mock = instance_double(GraduateApplication)
-      expect(GraduateApplication).to receive(:find_by_email).with('johndoe@uiowa.edu').and_return(mock)
+      expect(GraduateApplication).to receive(:find_by).with(email: 'johndoe@uiowa.edu').and_return(mock)
       expect(mock).to receive(:withdraw)
       patch :withdraw, { application: @sample_application }
     end
