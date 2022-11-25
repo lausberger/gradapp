@@ -23,8 +23,6 @@ class GraduateApplicationsController < ApplicationController
     flash[:notice] = 'Application submission failed, please retry.' unless @graduate_application.valid?
     @graduate_application.status = 'denied' unless @graduate_application.valid?
 
-    puts @graduate_application.errors.full_messages
-
     if @graduate_application.valid?
       redirect_to graduate_applications_path
     else

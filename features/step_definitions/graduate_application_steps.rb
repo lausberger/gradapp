@@ -14,6 +14,10 @@ Given(/^the following graduate applications have been submitted:/) do |applicati
   end
 end
 
+When(/^I create a new education input field$/) do
+  click_on 'add more'
+end
+
 Given(/^the following educations for each application:/) do |education_table|
   education_table.hashes.each do |education|
     education[:start_date] = Date.parse(education[:start_date])
@@ -27,6 +31,16 @@ Given(/^the following educations for each application:/) do |education_table|
   end
 end
 
+Given(/I have already filled out my application personal details/) do
+  fill_in 'First Name:', with: 'Elon'
+  fill_in 'Last Name:', with: 'Musk'
+end
+
+Given(/I have already filled out my application contact details/) do
+  fill_in 'Email:', with: 'herky@uiowa.edu'
+  fill_in 'Phone:', with: '3333333333'
+end
+
 Given(/^I fill in my name as "(.*?)" "(.*?)"$/) do |first, last|
   fill_in 'First Name:', with: first
   fill_in 'Last Name:', with: last
@@ -37,12 +51,21 @@ And(/^I fill in my email as "(.*?)" and my phone as "(.*?)"$/) do |email, phone|
   fill_in 'Phone:', with: phone
 end
 
+And(/^I fill in my school name as "(.*?)"$/) do |name|
+  fill_in 'School:', with: name
+end
+
 And(/^the application's average GPA is "(\d*[.]\d*)"$/) do |gpa|
   expect(page).to have_content gpa
 end
 
 And(/^the application's name is "(.*?)" "(.*?)"$/) do |first, last|
   expect(page).to have_content "#{first} #{last}"
+end
+
+And(/^I should see the education table containing$/) do |table|
+  # table is a table.hashes.keys # => [:school_name, :start_date, :end_date, :currently_attending, :degree, :major, :gpa (4.0 scale)]
+  pending
 end
 
 When(/^I sort graduate applications based on "(.*?)"$/) do |_score|

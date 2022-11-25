@@ -20,3 +20,6 @@ Feature: Display an navigate open graduate applications
     Then I should see the application status "denied"
     And the application's average GPA is "3.5"
     And the application's name is "John" "Doe"
+    And I should see the education table containing
+      | school_name        | start_date | end_date  | currently_attending | degree    | major            | gpa (4.0 scale) |
+      | University of Iowa | 8-23-2019  | 5-28-2023 | yes                 | Bachelors | Computer Science | 3.98            |
