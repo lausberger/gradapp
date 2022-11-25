@@ -63,7 +63,7 @@ And(/^the application's name is "(.*?)" "(.*?)"$/) do |first, last|
   expect(page).to have_content "#{first} #{last}"
 end
 
-And(/^I should see the education table containing$/) do |table|
+And(/^I should see the education table containing$/) do |_table|
   # table is a table.hashes.keys # => [:school_name, :start_date, :end_date, :currently_attending, :degree, :major, :gpa (4.0 scale)]
   pending
 end
