@@ -17,7 +17,7 @@ describe Education do
     @sample_education = {
       school_name: 'University of Iowa',
       start_date: Date.parse('22-4-2019'),
-      end_date: Date.new,
+      end_date: Date.today,
       currently_attending: false,
       degree: 'bachelor',
       major: 'Computer Science',
@@ -48,8 +48,9 @@ describe Education do
     end
     context 'with invalid GPA' do
       it 'should be invalid' do
-        @sample_education[:gpa] = 3.14
+        @sample_education[:gpa_value] = 3.14
         @sample_education[:gpa_scale] = 3.11
+        @sample_application.educations.build(@sample_education)
         expect(@sample_application.save).to be_falsey
       end
     end
