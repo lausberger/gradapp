@@ -80,4 +80,12 @@ describe Education do
       end
     end
   end
+  describe ('converting gpa to 4.0 scale') do
+    context 'when a gpa is provided to an education' do
+      it 'should provide the gpa in 4.0 scale format' do
+        @education = Education.create!(@sample_education)
+        expect(@education.gpa_default_scale).to equal 3.58
+      end
+    end
+  end
 end
