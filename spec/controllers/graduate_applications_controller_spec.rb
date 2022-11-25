@@ -84,20 +84,23 @@ describe GraduateApplicationsController do
         phone: '14118839251',
         dob: Date.new,
         gpa_value: '3.4',
-        gpa_scale: '4.0'
+        gpa_scale: '4.0',
+        status: 'submitted'
       }
       GraduateApplication.create!(@sample_application)
     end
     it 'should call the model method that does the withdrawal' do
-      expect(GraduateApplication).to receive (:withdraw).with(@sample_application)
-      patch :withdraw_application, { application: @sample_application}
+      mock = instance_double(GraduateApplication)
+      expect(GraduateApplication).to receive(:find_by_email).with("johndoe@uiowa.edu").and_return(mock)
+      expect(mock).to receive (:withdraw)
+      patch :withdraw, { application: @sample_application}
     end
     it 'should select the home page for rendering' do
-      patch :withdraw_application, { application: @sample_application}
+      patch :withdraw, { application: @sample_application}
       expect(response).to redirect_to("/home")
     end
     it 'should flash message that application was withdrawn' do
-      patch :withdraw_application, { application: @sample_application}
+      patch :withdraw, { application: @sample_application}
       expect(flash[:notice]).to match(/Application has been withdrawn/)
     end
   end

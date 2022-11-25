@@ -19,6 +19,14 @@ class GraduateApplicationsController < ApplicationController
     # Navigates to new view
   end
 
+  def withdraw
+    current_application = GraduateApplication.find_by_email(params[:application][:email].to_s)
+    puts current_application
+    current_application.withdraw
+    flash[:notice] = 'Application has been withdrawn'
+    redirect_to home_path
+  end
+
   def create
     param_hash = graduate_application_params.to_hash
     param_hash[:status] = 'submitted'
