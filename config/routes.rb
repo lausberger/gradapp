@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   # https://www.section.io/engineering-education/how-to-setup-user-authentication-from-scratch-with-rails-6/
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
-  delete 'logout', to: 'accounts#destroy'
+  delete 'logout', to: 'sessions#destroy'
 end

@@ -31,17 +31,23 @@ describe SessionsController do
         password_confirm: 'password',
         type: 'Student'
       }
-      post '/register', { account: @account }
+      post :register, { account: @account }
     end
 
-    context 'with correct information' do
+    context 'with valid information' do
       it 'should redirect back to home page' do
         post :login
         expect(response).to redirect_to root_path
       end
       it 'should flash a success notice' do
-        pending
         expect(flash[:notice]).to eq "Welcome, #{@account[:first_name]}."
+      end
+      it 'should be possible to view user profile' do
+        post :profile
+        expect(response).to redirect_to profile_path
+      end
+      it 'should have session info' do
+        expect(session[:user_id]).to eq @account[:id]
       end
     end
 
@@ -84,6 +90,30 @@ describe SessionsController do
         it 'should inform the user of an empty password field' do
           expect(flash[:notice]).to eq 'Password field cannot be empty'
         end
+      end
+    end
+  end
+
+  describe 'logging out' do
+    before do
+      post :logout
+    end
+    it 'should redirect back to the home page' do
+      expect(response).to redirect_to root_path
+    end
+    it 'should display a notice of successful logout' do
+      expect(flash[:notice]).to eq "You have been signed out successfully."
+    end
+    it 'should have null session id' do
+      expect(session[:user_id]).to be nil
+    end
+    context 'and attempting session-specific actions' do
+      it 'should not be possible to view the user profile' do
+        post :profile
+        expect(response).to redirect_to login_path
+      end
+      it 'should display a notice regarding the login session' do
+        expect(flash[:notice]).to eq "Login session not found. Please sign in."
       end
     end
   end
