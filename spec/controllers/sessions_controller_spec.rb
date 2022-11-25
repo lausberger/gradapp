@@ -35,8 +35,11 @@ describe SessionsController do
     end
 
     context 'with valid information' do
+      before(:all) do
+        @session_params = { email: @account.email, password: @account.password }
+      end
       it 'should redirect back to home page' do
-        post :login
+        post :login, { session: @session_params }
         expect(response).to redirect_to root_path
       end
       it 'should flash a success notice' do
@@ -52,33 +55,42 @@ describe SessionsController do
     end
 
     context 'with incorrect information' do
+      before(:all) do
+        @session_params = { email: 'wrong-email@email.email', password: @account.password }
+      end
       it 'should redirect back to login page' do
-        post :login
+        post :login, { session: @session_params }
         expect(response).to redirect_to login_path
       end
       it 'should flash an alert informing the user of incorrect credentials' do
-        expect(flash[:alert]).to eq 'Incorrect email or password'
+        expect(flash[:alert]).to eq 'Email or password is incorrect'
       end
     end
 
     context 'with invalid information' do
       context 'missing email' do
+        before(:all) do
+          @session_params = { email: '', password: @account.password }
+        end
         it 'should redirect back to login page' do
-          post :login
+          post :login, { session: @session_params }
           expect(response).to redirect_to login_path
         end
         it 'should inform the user of an empty email field' do
-          expect(flash[:notice]).to eq 'Email field cannot be empty'
+          expect(flash[:warning]).to eq 'Email field cannot be empty'
         end
       end
 
       context 'invalid email' do
+        before(:all) do
+          @session_params = { email: 'email lol', password: @account.password }
+        end
         it 'should redirect back to login page' do
           post :login
           expect(response).to redirect_to login_path
         end
         it 'should inform the user of an invalid email' do
-          expect(flash[:notice]).to eq 'Please provide a valid email address'
+          expect(flash[:warning]).to eq 'Please provide a valid email address'
         end
       end
 
@@ -88,7 +100,7 @@ describe SessionsController do
           expect(response).to redirect_to login_path
         end
         it 'should inform the user of an empty password field' do
-          expect(flash[:notice]).to eq 'Password field cannot be empty'
+          expect(flash[:warning]).to eq 'Password field cannot be empty'
         end
       end
     end
