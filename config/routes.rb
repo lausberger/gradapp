@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   # Graduate Applications
   resources :graduate_applications
-  resource :statics
+  resources :statics
+  resources :messages
+  resources :discussions
 
   # Home/Static Pages
   root to: redirect('/home')
@@ -11,7 +13,6 @@ Rails.application.routes.draw do
   get 'faq' => 'statics'
 
   # Discussions
-  resources :discussions
   post 'discussions/create_reply'
 
   # Accounts
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   post 'register', to: 'accounts#create'
 
   # Messages
-  resources :messages
   get 'messages', to: 'messages#index'
   get 'messages/new', to: 'messages#new'
   post 'messages/sendMessage', to: 'messages#sendMessage'
