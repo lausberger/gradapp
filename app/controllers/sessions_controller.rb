@@ -10,10 +10,10 @@ class SessionsController < ApplicationController
     user = Account.find_by(email: params[:session][:email].downcase)
     if user.present? && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      flash[:notice] = "Welcome, #{user.first_name}!"
+      flash[:notice] = "Welcome, #{user.first_name}."
       redirect_to root_path
     else
-      flash.now[:alert] = "Email or password is incorrect"
+      flash.now[:warning] = "Email or password is incorrect"
       render :new
     end
   end
