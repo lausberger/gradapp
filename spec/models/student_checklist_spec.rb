@@ -97,7 +97,7 @@ describe StudentChecklist do
       expect(@student[:sop]).to be false
     end
     after(:all) do
-      StudentChecklist.find(@student.id).destroy
+      @student.destroy
     end
   end
 end

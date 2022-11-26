@@ -34,6 +34,6 @@ describe StudentChecklistsController do
     end
   end
   after(:all) do
-    StudentChecklist.find_by(student_id: 1).destroy
+    StudentChecklist.find_by(student_id: @student.id).destroy
   end
 end
