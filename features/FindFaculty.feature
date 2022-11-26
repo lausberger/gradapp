@@ -6,7 +6,7 @@ Feature: View the 'Faculty' page to view specified faculty
 
     And I the following accounts have been created:
       | first_name | last_name | email                  | password    | account_type | topic_area |
-      | Jack       | Stockley  | jnstockley@uiowa.edu   | Password123 | Faculty      | CSE        |
+      | Jack       | Stockley  | jack-stockley@uiowa.edu   | Password123 | Faculty      | CSE        |
       | Hans       | Johnson   | hans-johnson@uiowa.edu | i<3SelT     | Faculty      | math       |
       | Caleb      | Marx      | caleb-marx@uiowa.edu   | pA55W0rd!   | Student      |            |
 
@@ -25,7 +25,7 @@ Feature: View the 'Faculty' page to view specified faculty
 
     And I the following accounts have been created:
       | first_name | last_name | email                  | password    | account_type | topic_area |
-      | Jack       | Stockley  | jnstockley@uiowa.edu   | Password123 | Faculty      | CSE        |
+      | Jack       | Stockley  | jack-stockley@uiowa.edu   | Password123 | Faculty      | CSE        |
       | Hans       | Johnson   | hans-johnson@uiowa.edu | i<3SelT     | Faculty      | math       |
       | Caleb      | Marx      | caleb-marx@uiowa.edu   | pA55W0rd!   | Student      |            |
 
