@@ -23,58 +23,19 @@ end
 describe FacultysController do
   describe 'search by topic area' do
     before(:all) do
-      @account_one = {
-        email: 'jnstockley@gmail.com',
-        first_name: 'Jack',
-        last_name: 'Stockley',
-        password: 'Password1234',
-        account_type: 'faculty'
-      }
-      @account_two = {
-        email: 'hans-johnson@uiowa.edu',
-        first_name: 'Hans',
-        last_name: 'Johnson',
-        password: 'S3curEpA55w0rD',
-        account_type: 'faculty'
-      }
-      @account_three = {
+      @account = {
         email: 'joe.smith@gmail.com',
         first_name: 'Joesph',
         last_name: 'Smith',
         password: 'iloveselt23',
         account_type: 'faculty'
       }
-      @account_four = {
-        email: 'nikki-brown@yahoo.com',
-        first_name: 'Nikki',
-        last_name: 'Brown',
-        password: 'rubyIS<3',
-        account_type: 'faculty'
-      }
-      @account_one_creation = Account.create!(@account_one)
-      @account_two_creation = Account.create!(@account_two)
-      @account_three_creation = Account.create!(@account_three)
-      @account_four_creation = Account.create!(@account_four)
-      @faculty_one = {
-        account_id: @account_one_creation.id,
-        topic_area: 'Math'
-      }
-      @faculty_two = {
-        account_id: @account_two_creation.id,
-        topic_area: 'Rhetoric'
-      }
-      @faculty_three = {
-        account_id: @account_three_creation.id,
+      @account_creation = Account.create!(@account)
+      @faculty = {
+        account_id: @account_creation.id,
         topic_area: 'CSE'
       }
-      @faculty_four = {
-        account_id: @account_four_creation.id,
-        topic_area: 'CSE'
-      }
-      @faculty_one_creation = Faculty.create!(@faculty_one)
-      @faculty_two_creation = Faculty.create!(@faculty_two)
-      @faculty_three_creation = Faculty.create!(@faculty_three)
-      @faculty_four_creation = Faculty.create!(@faculty_four)
+      @faculty_creation = Faculty.create!(@faculty)
     end
     context 'search for professors in CSE topics are' do
       it 'should select all facultys members in all topic areas' do
@@ -95,15 +56,8 @@ describe FacultysController do
       end
     end
     after(:all) do
-      Faculty.destroy(@faculty_one_creation.id)
-      Faculty.destroy(@faculty_two_creation.id)
-      Faculty.destroy(@faculty_three_creation.id)
-      Faculty.destroy(@faculty_four_creation.id)
-
-      Account.destroy(@account_one_creation.id)
-      Account.destroy(@account_two_creation.id)
-      Account.destroy(@account_three_creation.id)
-      Account.destroy(@account_four_creation.id)
+      @faculty_creation.destroy
+      @account_creation.destroy
     end
   end
 end
