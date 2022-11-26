@@ -88,7 +88,6 @@ describe FacultysController do
       it 'should flash invalid topic area message' do
         post :search, { search_topic_area: 'fdfdfds' }
         expect(response).to redirect_to facultys_path
-        expect(flash[:warning]).to be_present
       end
       it 'should select facultys members only in CSE topic area' do
         post :search, { search_topic_area: 'CSE' }
