@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
   def new; end
 
   def show
-    (flash.now[:warning] = 'You must be logged in to view your profile') and (render :new) if session[:user_id].nil?
+    (flash[:warning] = 'You must be logged in to view your profile') and (redirect_to login_path) if session[:user_id].nil?
   end
 
   def create
