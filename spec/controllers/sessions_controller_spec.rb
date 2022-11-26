@@ -49,11 +49,11 @@ describe SessionsController do
         expect(flash[:notice]).to eq "Welcome, #{@account.first_name}."
       end
       it 'should be possible to view user profile' do
-        allow(Account).to receive(:find_by).and_return @account
+        # this one is :find rather than :find_by because of application#logged_in?
+        allow(Account).to receive(:find).and_return @account
         post :create, { session: @session_params }
         @controller = AccountsController.new
         get :show
-        # will only work if user is logged in, else => :new
         expect(response).to render_template :show
         @controller = SessionsController.new
       end
