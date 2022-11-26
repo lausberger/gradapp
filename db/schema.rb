@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 30721148119002) do
     t.datetime "updated_at",      null: false
   end
 
+  add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
+
   create_table "discussions", force: :cascade do |t|
     t.string   "title"
     t.string   "body"

@@ -1,10 +1,12 @@
 {
   "features": {
     "coverage": {
-      "/workspace/app/controllers/discussions_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/discussions_controller.rb": {
         "lines": [
-          1,
           null,
+          null,
+          null,
+          1,
           1,
           7,
           7,
@@ -17,8 +19,6 @@
           null,
           1,
           null,
-          null,
-          null,
           1,
           7,
           7,
@@ -26,6 +26,7 @@
           0,
           null,
           7,
+          null,
           7,
           null,
           null,
@@ -52,6 +53,7 @@
           2,
           1,
           null,
+          null,
           1,
           null,
           null,
@@ -62,8 +64,8 @@
           1,
           0,
           null,
-          1,
           null,
+          1,
           null,
           null
         ],
@@ -72,18 +74,20 @@
             "[:then, 1, 21, 6, 21, 47]": 0,
             "[:else, 2, 20, 4, 22, 7]": 7
           },
-          "[:if, 3, 47, 4, 49, 7]": {
-            "[:then, 4, 48, 6, 48, 73]": 1,
-            "[:else, 5, 47, 4, 49, 7]": 1
+          "[:if, 3, 48, 4, 50, 7]": {
+            "[:then, 4, 49, 6, 49, 73]": 1,
+            "[:else, 5, 48, 4, 50, 7]": 1
           },
-          "[:if, 6, 57, 4, 59, 7]": {
-            "[:then, 7, 58, 6, 58, 73]": 0,
-            "[:else, 8, 57, 4, 59, 7]": 1
+          "[:if, 6, 59, 4, 61, 7]": {
+            "[:then, 7, 60, 6, 60, 73]": 0,
+            "[:else, 8, 59, 4, 61, 7]": 1
           }
         }
       },
-      "/workspace/app/controllers/application_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/application_controller.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           null,
@@ -93,18 +97,23 @@
         "branches": {
         }
       },
-      "/workspace/app/helpers/application_helper.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/helpers/application_helper.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           null
         ],
         "branches": {
         }
       },
-      "/workspace/app/models/discussion.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/discussion.rb": {
         "lines": [
-          1,
           null,
+          null,
+          null,
+          1,
           1,
           19,
           null,
@@ -121,8 +130,11 @@
         "branches": {
         }
       },
-      "/workspace/app/controllers/statics_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/statics_controller.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           1,
           null,
@@ -132,85 +144,100 @@
         "branches": {
         }
       },
-      "/workspace/app/controllers/accounts_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/accounts_controller.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           1,
           null,
+          1,
           null,
           null,
           null,
+          null,
+          null,
+          1,
+          2,
+          null,
+          2,
+          2,
+          null,
+          2,
+          2,
+          null,
+          null,
+          2,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          1,
+          null,
+          1,
+          18,
           null,
           null,
           1,
           4,
           24,
-          1,
+          4,
+          4,
           null,
-          3,
-          1,
-          null,
-          2,
-          0,
-          null,
-          2,
-          2,
-          2,
-          2,
-          2,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          2,
-          null,
-          null,
-          1,
-          1,
           4,
           null,
           null
         ],
         "branches": {
-          "[:if, 0, 26, 24, 30, 27]": {
-            "[:then, 1, 27, 28, 27, 89]": 0,
-            "[:else, 2, 29, 28, 29, 92]": 0
+          "[:if, 0, 19, 4, 21, 7]": {
+            "[:then, 1, 20, 6, 20, 67]": 2,
+            "[:else, 2, 19, 4, 21, 7]": 0
           },
-          "[:if, 3, 22, 20, 31, 23]": {
-            "[:then, 4, 23, 24, 24, 56]": 2,
-            "[:else, 5, 26, 24, 30, 27]": 0
+          "[:if, 3, 23, 4, 28, 7]": {
+            "[:then, 4, 24, 6, 25, 38]": 2,
+            "[:else, 5, 27, 6, 27, 70]": 0
           },
-          "[:if, 6, 17, 16, 32, 19]": {
-            "[:then, 7, 18, 20, 18, 74]": 0,
-            "[:else, 8, 20, 20, 31, 23]": 2
+          "[:if, 6, 41, 4, 41, 117]": {
+            "[:then, 7, 41, 4, 41, 68]": 1,
+            "[:else, 8, 41, 4, 41, 117]": 3
           },
-          "[:if, 9, 14, 12, 33, 15]": {
-            "[:then, 10, 15, 16, 15, 58]": 1,
-            "[:else, 11, 17, 16, 32, 19]": 2
+          "[:if, 9, 42, 4, 42, 144]": {
+            "[:then, 10, 42, 4, 42, 68]": 1,
+            "[:else, 11, 42, 4, 42, 144]": 3
           },
-          "[:if, 12, 11, 8, 34, 11]": {
-            "[:then, 13, 12, 12, 12, 54]": 1,
-            "[:else, 14, 14, 12, 33, 15]": 3
+          "[:if, 12, 43, 4, 44, 134]": {
+            "[:then, 13, 43, 4, 43, 80]": 0,
+            "[:else, 14, 43, 4, 44, 134]": 4
+          },
+          "[:unless, 15, 45, 4, 45, 28]": {
+            "[:else, 16, 45, 4, 45, 28]": 2,
+            "[:then, 17, 45, 4, 45, 15]": 2
           }
         }
       },
-      "/workspace/app/models/student.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/student.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ],
         "branches": {
         }
       },
-      "/workspace/app/models/account.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/account.rb": {
         "lines": [
+          null,
+          null,
+          null,
+          1,
+          null,
           1,
           null,
           1,
@@ -219,22 +246,26 @@
           1,
           1,
           1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/faculty.rb": {
+        "lines": [
+          null,
+          null,
           1,
           null
         ],
         "branches": {
         }
       },
-      "/workspace/app/models/faculty.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/graduate_applications_controller.rb": {
         "lines": [
-          1,
-          null
-        ],
-        "branches": {
-        }
-      },
-      "/workspace/app/controllers/graduate_applications_controller.rb": {
-        "lines": [
+          null,
+          null,
+          null,
           1,
           1,
           1,
@@ -267,30 +298,32 @@
           0,
           null,
           null,
-          null,
           null
         ],
         "branches": {
-          "[:if, 0, 24, 4, 24, 103]": {
-            "[:then, 1, 24, 4, 24, 71]": 1,
-            "[:else, 2, 24, 4, 24, 103]": 0
+          "[:if, 0, 27, 4, 27, 103]": {
+            "[:then, 1, 27, 4, 27, 71]": 1,
+            "[:else, 2, 27, 4, 27, 103]": 0
           },
-          "[:unless, 3, 25, 4, 25, 103]": {
-            "[:else, 4, 25, 4, 25, 103]": 1,
-            "[:then, 5, 25, 4, 25, 67]": 0
+          "[:unless, 3, 28, 4, 28, 103]": {
+            "[:else, 4, 28, 4, 28, 103]": 1,
+            "[:then, 5, 28, 4, 28, 67]": 0
           },
-          "[:unless, 6, 26, 4, 26, 79]": {
-            "[:else, 7, 26, 4, 26, 79]": 1,
-            "[:then, 8, 26, 4, 26, 43]": 0
+          "[:unless, 6, 29, 4, 29, 79]": {
+            "[:else, 7, 29, 4, 29, 79]": 1,
+            "[:then, 8, 29, 4, 29, 43]": 0
           },
-          "[:if, 9, 27, 4, 31, 7]": {
-            "[:then, 10, 28, 6, 28, 44]": 1,
-            "[:else, 11, 30, 6, 30, 18]": 0
+          "[:if, 9, 30, 4, 34, 7]": {
+            "[:then, 10, 31, 6, 31, 44]": 1,
+            "[:else, 11, 33, 6, 33, 18]": 0
           }
         }
       },
-      "/workspace/app/models/graduate_application.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/graduate_application.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           1,
           1,
@@ -317,109 +350,117 @@
           null,
           null,
           1,
+          null,
           1,
           6,
           6,
           null,
-          null,
-          null,
           null
         ],
         "branches": {
-          "[:if, 0, 29, 6, 29, 100]": {
-            "[:then, 1, 29, 6, 29, 65]": 0,
-            "[:else, 2, 29, 6, 29, 100]": 6
-          },
-          "[:if, 3, 28, 4, 30, 7]": {
-            "[:then, 4, 29, 6, 29, 100]": 6,
-            "[:else, 5, 28, 4, 30, 7]": 0
+          "[:if, 0, 33, 4, 33, 77]": {
+            "[:then, 1, 33, 4, 33, 63]": 0,
+            "[:else, 2, 33, 4, 33, 77]": 6
           }
         }
       }
     },
-    "timestamp": 1668723689
+    "timestamp": 1669097453
   },
   "specs": {
     "coverage": {
-      "/workspace/app/helpers/application_helper.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/helpers/application_helper.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           null
         ],
         "branches": {
         }
       },
-      "/workspace/app/controllers/accounts_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/accounts_controller.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           1,
           null,
+          1,
           null,
           null,
           null,
+          null,
+          null,
+          1,
+          2,
+          null,
+          2,
+          2,
+          null,
+          2,
+          2,
+          null,
+          null,
+          2,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          1,
+          null,
+          1,
+          34,
           null,
           null,
           1,
           8,
           48,
-          2,
+          8,
+          8,
           null,
-          6,
-          2,
-          null,
-          4,
-          2,
-          null,
-          2,
-          2,
-          2,
-          2,
-          2,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          6,
-          null,
-          null,
-          1,
-          1,
           8,
           null,
           null
         ],
         "branches": {
-          "[:if, 0, 26, 24, 30, 27]": {
-            "[:then, 1, 27, 28, 27, 89]": 0,
-            "[:else, 2, 29, 28, 29, 92]": 0
+          "[:if, 0, 19, 4, 21, 7]": {
+            "[:then, 1, 20, 6, 20, 67]": 2,
+            "[:else, 2, 19, 4, 21, 7]": 0
           },
-          "[:if, 3, 22, 20, 31, 23]": {
-            "[:then, 4, 23, 24, 24, 56]": 2,
-            "[:else, 5, 26, 24, 30, 27]": 0
+          "[:if, 3, 23, 4, 28, 7]": {
+            "[:then, 4, 24, 6, 25, 38]": 2,
+            "[:else, 5, 27, 6, 27, 70]": 0
           },
-          "[:if, 6, 17, 16, 32, 19]": {
-            "[:then, 7, 18, 20, 18, 74]": 2,
-            "[:else, 8, 20, 20, 31, 23]": 2
+          "[:if, 6, 41, 4, 41, 117]": {
+            "[:then, 7, 41, 4, 41, 68]": 2,
+            "[:else, 8, 41, 4, 41, 117]": 6
           },
-          "[:if, 9, 14, 12, 33, 15]": {
-            "[:then, 10, 15, 16, 15, 58]": 2,
-            "[:else, 11, 17, 16, 32, 19]": 4
+          "[:if, 9, 42, 4, 42, 144]": {
+            "[:then, 10, 42, 4, 42, 68]": 2,
+            "[:else, 11, 42, 4, 42, 144]": 6
           },
-          "[:if, 12, 11, 8, 34, 11]": {
-            "[:then, 13, 12, 12, 12, 54]": 2,
-            "[:else, 14, 14, 12, 33, 15]": 6
+          "[:if, 12, 43, 4, 44, 134]": {
+            "[:then, 13, 43, 4, 43, 80]": 2,
+            "[:else, 14, 43, 4, 44, 134]": 6
+          },
+          "[:unless, 15, 45, 4, 45, 28]": {
+            "[:else, 16, 45, 4, 45, 28]": 2,
+            "[:then, 17, 45, 4, 45, 15]": 6
           }
         }
       },
-      "/workspace/app/controllers/application_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/application_controller.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           null,
@@ -429,58 +470,33 @@
         "branches": {
         }
       },
-      "/workspace/app/controllers/discussions_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/discussions_controller.rb": {
         "lines": [
-          1,
+          null,
+          null,
           null,
           1,
-          0,
-          0,
-          0,
-          null,
-          null,
           1,
           0,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          2,
-          2,
-          2,
-          2,
-          null,
-          2,
-          2,
-          null,
-          null,
-          1,
-          2,
-          2,
-          2,
-          2,
-          2,
-          null,
-          null,
-          1,
           0,
           0,
           null,
           null,
           1,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           null,
-          0,
+          null,
+          1,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          null,
+          2,
+          null,
+          2,
           null,
           null,
           1,
@@ -488,10 +504,37 @@
           2,
           2,
           2,
-          1,
+          2,
+          null,
           null,
           1,
+          0,
+          0,
           null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          null,
+          null,
+          1,
           null,
           null
         ],
@@ -500,18 +543,21 @@
             "[:then, 1, 21, 6, 21, 47]": 2,
             "[:else, 2, 20, 4, 22, 7]": 0
           },
-          "[:if, 3, 47, 4, 49, 7]": {
-            "[:then, 4, 48, 6, 48, 73]": 0,
-            "[:else, 5, 47, 4, 49, 7]": 0
+          "[:if, 3, 48, 4, 50, 7]": {
+            "[:then, 4, 49, 6, 49, 73]": 0,
+            "[:else, 5, 48, 4, 50, 7]": 0
           },
-          "[:if, 6, 57, 4, 59, 7]": {
-            "[:then, 7, 58, 6, 58, 73]": 1,
-            "[:else, 8, 57, 4, 59, 7]": 1
+          "[:if, 6, 59, 4, 61, 7]": {
+            "[:then, 7, 60, 6, 60, 73]": 1,
+            "[:else, 8, 59, 4, 61, 7]": 1
           }
         }
       },
-      "/workspace/app/controllers/graduate_applications_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/graduate_applications_controller.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           1,
           7,
@@ -544,30 +590,32 @@
           5,
           null,
           null,
-          null,
           null
         ],
         "branches": {
-          "[:if, 0, 24, 4, 24, 103]": {
-            "[:then, 1, 24, 4, 24, 71]": 2,
-            "[:else, 2, 24, 4, 24, 103]": 5
+          "[:if, 0, 27, 4, 27, 103]": {
+            "[:then, 1, 27, 4, 27, 71]": 2,
+            "[:else, 2, 27, 4, 27, 103]": 5
           },
-          "[:unless, 3, 25, 4, 25, 103]": {
-            "[:else, 4, 25, 4, 25, 103]": 2,
-            "[:then, 5, 25, 4, 25, 67]": 5
+          "[:unless, 3, 28, 4, 28, 103]": {
+            "[:else, 4, 28, 4, 28, 103]": 2,
+            "[:then, 5, 28, 4, 28, 67]": 5
           },
-          "[:unless, 6, 26, 4, 26, 79]": {
-            "[:else, 7, 26, 4, 26, 79]": 2,
-            "[:then, 8, 26, 4, 26, 43]": 5
+          "[:unless, 6, 29, 4, 29, 79]": {
+            "[:else, 7, 29, 4, 29, 79]": 2,
+            "[:then, 8, 29, 4, 29, 43]": 5
           },
-          "[:if, 9, 27, 4, 31, 7]": {
-            "[:then, 10, 28, 6, 28, 44]": 2,
-            "[:else, 11, 30, 6, 30, 18]": 5
+          "[:if, 9, 30, 4, 34, 7]": {
+            "[:then, 10, 31, 6, 31, 44]": 2,
+            "[:else, 11, 33, 6, 33, 18]": 5
           }
         }
       },
-      "/workspace/app/controllers/statics_controller.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/statics_controller.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           1,
           null,
@@ -577,13 +625,17 @@
         "branches": {
         }
       },
-      "/workspace/app/models/account.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/account.rb": {
         "lines": [
-          1,
+          null,
+          null,
           null,
           1,
           null,
           1,
+          null,
+          1,
+          null,
           1,
           1,
           1,
@@ -593,10 +645,12 @@
         "branches": {
         }
       },
-      "/workspace/app/models/discussion.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/discussion.rb": {
         "lines": [
-          1,
           null,
+          null,
+          null,
+          1,
           1,
           5,
           null,
@@ -613,16 +667,21 @@
         "branches": {
         }
       },
-      "/workspace/app/models/faculty.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/faculty.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ],
         "branches": {
         }
       },
-      "/workspace/app/models/graduate_application.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/graduate_application.rb": {
         "lines": [
+          null,
+          null,
+          null,
           1,
           1,
           1,
@@ -649,27 +708,24 @@
           null,
           null,
           1,
+          null,
           1,
           35,
-          30,
-          null,
-          null,
+          35,
           null,
           null
         ],
         "branches": {
-          "[:if, 0, 29, 6, 29, 100]": {
-            "[:then, 1, 29, 6, 29, 65]": 5,
-            "[:else, 2, 29, 6, 29, 100]": 25
-          },
-          "[:if, 3, 28, 4, 30, 7]": {
-            "[:then, 4, 29, 6, 29, 100]": 30,
-            "[:else, 5, 28, 4, 30, 7]": 5
+          "[:if, 0, 33, 4, 33, 77]": {
+            "[:then, 1, 33, 4, 33, 63]": 5,
+            "[:else, 2, 33, 4, 33, 77]": 30
           }
         }
       },
-      "/workspace/app/models/student.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/student.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ],
@@ -677,6 +733,6 @@
         }
       }
     },
-    "timestamp": 1668714454
+    "timestamp": 1669097463
   }
 }

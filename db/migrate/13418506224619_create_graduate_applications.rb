@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Creates the graduate applications table
 class CreateGraduateApplications < ActiveRecord::Migration
   def change
     create_table :graduate_applications do |t|
