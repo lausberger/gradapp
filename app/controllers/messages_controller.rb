@@ -1,12 +1,12 @@
 class MessagesController < ApplicationController
   def index
     # render index page when going to /messages
+    # TODO: Change acc to look for the logged in user not just jdoe@gmail.com
     acc = Account.find_by(email: "jdoe@gmail.com")
     @messages = Message.where(to_id: acc.id)
   end
-  def new
-  end
   def sendMessage
+    # TODO: Change acc to look for the logged in user not just jdoe@gmail.com
     acc = Account.find_by(email: "jdoe@gmail.com")
     to = params[:to]
     to_acc = Account.find_by(email: to)
