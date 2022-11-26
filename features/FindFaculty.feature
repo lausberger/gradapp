@@ -5,15 +5,11 @@ Feature: View the 'Faculty' page to view specified faculty
     Given I am on the Find Faculty page
 
     And I the following accounts have been created:
-      | first_name | last_name | email                  | password    | account_type |
-      | Jack       | Stockley  | jnstockley@uiowa.edu   | Password123 | Faculty      |
-      | Hans       | Johnson   | hans-johnson@uiowa.edu | i<3SelT     | Faculty      |
-      | Caleb      | Marx      | caleb-marx@uiowa.edu   | pA55W0rd!   | Student      |
+      | first_name | last_name | email                  | password    | account_type | topic_area |
+      | Jack       | Stockley  | jnstockley@uiowa.edu   | Password123 | Faculty      | CSE        |
+      | Hans       | Johnson   | hans-johnson@uiowa.edu | i<3SelT     | Faculty      | math       |
+      | Caleb      | Marx      | caleb-marx@uiowa.edu   | pA55W0rd!   | Student      |            |
 
-    And I the following faculty member accounts have been created:
-      | account_id | topic_area |
-      | 1          | CSE        |
-      | 2          | math       |
 
     When I am on the Find Faculty page
 
@@ -28,15 +24,10 @@ Feature: View the 'Faculty' page to view specified faculty
     Given I am on the Find Faculty page
 
     And I the following accounts have been created:
-      | first_name | last_name | email                  | password    | account_type |
-      | Jack       | Stockley  | jnstockley@uiowa.edu   | Password123 | Faculty      |
-      | Hans       | Johnson   | hans-johnson@uiowa.edu | i<3SelT     | Faculty      |
-      | Caleb      | Marx      | caleb-marx@uiowa.edu   | pA55W0rd!   | Student      |
-
-    And I the following faculty member accounts have been created:
-      | account_id | topic_area |
-      | 1          | CSE        |
-      | 2          | math       |
+      | first_name | last_name | email                  | password    | account_type | topic_area |
+      | Jack       | Stockley  | jnstockley@uiowa.edu   | Password123 | Faculty      | CSE        |
+      | Hans       | Johnson   | hans-johnson@uiowa.edu | i<3SelT     | Faculty      | math       |
+      | Caleb      | Marx      | caleb-marx@uiowa.edu   | pA55W0rd!   | Student      |            |
 
     When I am on the Find Faculty page
 

@@ -14,18 +14,14 @@ And(/^I the following accounts have been created:$/) do |account_table|
       password: account[:password],
       account_type: account[:account_type]
     }
-    Account.create!(new_account)
-  end
-end
+    account_creation = Account.create!(new_account)
+    next if account[:topic_area].empty?
 
-And(/^I the following faculty member accounts have been created:$/) do |faculty_table|
-  # table is a table.hashes.keys # => [:account_id, :topic_area]
-  faculty_table.hashes.each do |faculty|
-    new_faculty = {
-      account_id: faculty[:account_id],
-      topic_area: faculty[:topic_area]
+    faculty = {
+      account_id: account_creation.id,
+      topic_area: account[:topic_area]
     }
-    Faculty.create!(new_faculty)
+    Faculty.create!(faculty)
   end
 end
 
