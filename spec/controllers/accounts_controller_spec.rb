@@ -29,7 +29,7 @@ describe AccountsController do
           last_name: 'Not Ausberger',
           email: 'exampleemail@uiowa.edu',
           password: 'password',
-          password_confirm: 'password',
+          password_confirmation: 'password',
           type: 'Faculty'
         }
       end
@@ -51,7 +51,7 @@ describe AccountsController do
             last_name: 'Ausberger',
             email: 'lausberger@uiowa.edu',
             password: 'password',
-            password_confirm: 'diff password',
+            password_confirmation: 'diff password',
             type: 'Student'
           }
         end
@@ -72,7 +72,7 @@ describe AccountsController do
             last_name: 'Ausberger',
             email: 'lausberger@uiowa.edu',
             password: 'password',
-            password_confirm: 'password',
+            password_confirmation: 'password',
             type: 'Student'
           }
           @account[:last_name] = ''
@@ -93,7 +93,7 @@ describe AccountsController do
             last_name: 'Ausberger',
             email: 'lausberger@uiowa.edu',
             password: 'password',
-            password_confirm: 'password',
+            password_confirmation: 'password',
             type: 'Student'
           }
           @account[:email] = 'lausberger'
