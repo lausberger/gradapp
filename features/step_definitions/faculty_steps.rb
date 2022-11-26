@@ -6,7 +6,7 @@ end
 
 And(/^I the following accounts have been created:$/) do |account_table|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type]
-  pending "Works on local, fails on GitHub becuase of email validation"
+  pending 'Works on local, fails on GitHub becuase of email validation'
   account_table.hashes.each do |account|
     new_account = {
       first_name: account[:first_name],
