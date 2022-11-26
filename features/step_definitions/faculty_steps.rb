@@ -42,6 +42,6 @@ Then(/^I should see Faculty Members:$/) do |faculty_table|
     last_name = row.all('td')[1].text
     expect(faculty_table.hashes).to include(include('first_name' => first_name))
     expect(faculty_table.hashes).to include(include('last_name' => last_name))
-    Account.destroy(Account.find_by(first_name: first_name).id)
+    # Account.destroy(Account.find_by(first_name: first_name).id)
   end
 end
