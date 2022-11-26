@@ -1,0 +1,17 @@
+%h2 Profile
+
+= form_tag profile_path do
+  - account = Account.find_by(email: session[:email])
+  
+  %div
+  = 'First name: '
+  = account.first_name
+  %div
+  = 'Last name: '
+  = account.last_name
+  %div
+  = 'Email: '
+  = account.email
+
+  %div
+  = link_to 'Return to Home Page', root_path

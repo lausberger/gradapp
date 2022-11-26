@@ -6,9 +6,9 @@ class AccountsController < ApplicationController
 
   def new; end
 
-  # add a show method and view for USER PROFILE
-  # def show
-  # end
+  def show
+    (flash.now[:warning] = 'You must be logged in to view your profile') and (render :new) if session[:user_id].nil?
+  end
 
   def create
     @account = Account.new(registration_params)
