@@ -53,8 +53,6 @@ describe Faculty do
         expect(Faculty.where(topic_area: faculty_creation[:topic_area])).to exist
       end
     end
-    after(:each) do
-      Account.destroy(@account_creation[:id])
-    end
+
   end
 end
