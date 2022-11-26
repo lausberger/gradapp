@@ -24,7 +24,7 @@ And(/^I the following accounts have been created:$/) do |account_table|
       account_id: account_creation.id,
       topic_area: account[:topic_area]
     }
-    log(Faculty.create!(faculty).account.first_name)
+    Faculty.create!(faculty)
   end
 end
 
