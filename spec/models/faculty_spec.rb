@@ -21,7 +21,7 @@ if RUBY_VERSION >= '2.6.0'
 end
 
 describe Faculty do
-  before(:each) do
+  before(:all) do
     account = {
       email: 'jnstockley@gmail.com',
       first_name: 'Jack',
@@ -53,6 +53,8 @@ describe Faculty do
         expect(Faculty.where(topic_area: faculty_creation[:topic_area])).to exist
       end
     end
-
+    after(:all) do
+      Account.destroy(@account_creation.id)
+    end
   end
 end
