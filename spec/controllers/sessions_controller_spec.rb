@@ -148,7 +148,7 @@ describe SessionsController do
         delete :destroy
         @controller = AccountsController.new
         get :show
-        expect(flash[:warning]).to eq 'You must be logged in to view your profile'
+        expect(flash[:warning]).to eq 'You must be logged in to perform that action'
         @controller = SessionsController.new
       end
     end

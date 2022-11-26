@@ -3,12 +3,11 @@
 # Main controller for account model
 class AccountsController < ApplicationController
   before_action :validate_account_params, only: [:create]
+  before_action :require_login, only: [:show]
 
   def new; end
 
-  def show
-    (flash[:warning] = 'You must be logged in to view your profile') and (redirect_to login_path) if session[:user_id].nil?
-  end
+  def show; end
 
   def create
     @account = Account.new(registration_params)

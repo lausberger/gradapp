@@ -2,7 +2,6 @@
 
 # Controller for login sessions
 class SessionsController < ApplicationController
-  skip_before_action :require_login
   before_action :validate_login_params, only: [:create]
 
   def new; end

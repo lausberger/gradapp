@@ -16,4 +16,4 @@ Scenario: attempt to view profile when logged out
   Given I have logged out
   When I attempt to visit the profile page
   Then I should be redirected to the login page
-  And I should see a notice that says "You must be logged in to view your profile"
+  And I should see a notice that says "You must be logged in to perform that action"
