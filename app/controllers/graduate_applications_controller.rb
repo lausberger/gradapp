@@ -1,6 +1,13 @@
+# frozen_string_literal: true
+
+# Graduate application controller class for handling associated views for grad applications
 class GraduateApplicationsController < ApplicationController
   def graduate_application_params
-    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, :gpa, :gpa_out_of)
+    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, :gpa_value, :gpa_scale)
+  end
+
+  def index
+    @graduate_applications = GraduateApplication.all
   end
 
   def show
@@ -8,21 +15,22 @@ class GraduateApplicationsController < ApplicationController
     @graduate_application = GraduateApplication.find(id)
   end
 
-  def index
-    @graduate_applications = GraduateApplication.all
-  end
-
   def new
     # Navigates to new view
   end
 
   def create
-    @graduate_application = GraduateApplication.create!(graduate_application_params)
-    flash[:notice] = "Graduate application was successfully submitted." if @graduate_application.valid?
-    flash[:notice] = "Application submission failed, please retry." unless @graduate_application.valid?
-    @graduate_application.status = "denied" unless @graduate_application.valid?
+    param_hash = graduate_application_params.to_hash
+    param_hash[:status] = 'submitted'
 
-    redirect_to graduate_applications_path
+    @graduate_application = GraduateApplication.create(param_hash)
+    flash[:notice] = 'Graduate application was successfully submitted.' if @graduate_application.valid?
+    flash[:notice] = 'Application submission failed, please retry.' unless @graduate_application.valid?
+    @graduate_application.status = 'denied' unless @graduate_application.valid?
+    if @graduate_application.valid?
+      redirect_to graduate_applications_path
+    else
+      render 'new'
+    end
   end
-
 end

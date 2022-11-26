@@ -1,0 +1,31 @@
+%h1 #{@graduate_application.full_name}'s Application
+
+%h3 Personal Details
+
+%ul#personal_details
+  %li
+    %strong Full Name:
+  = @graduate_application.full_name
+  %li
+    %strong Date of Birth:
+  = @graduate_application.dob.strftime('%m/%d/%Y')
+
+%h3 Contact Details
+
+%ul#contact_details
+  %li
+    %strong Phone:
+  = @graduate_application.phone
+  %li
+    %strong Email:
+  = @graduate_application.email
+
+%h3 Scores
+
+%ul#score_details
+  %li
+    %strong GPA (on a 4.0 scale):
+  = @graduate_application.gpa_default_scale
+
+%h3 Status
+= @graduate_application.status

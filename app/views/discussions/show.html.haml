@@ -1,6 +1,6 @@
 = content_for(:title, "#{@root_discussion[:title]} - #{@root_discussion[:author]}")
 
-%h1= @root_discussion[:title]
+%h1#discussion_title= @root_discussion[:title]
 
 %table
   %thead
@@ -20,8 +20,8 @@
 
 = form_tag discussions_create_reply_path do
   %input{:name => "root_discussion_id", :id => 'root_discussion_id', :value => @root_discussion[:id], :hidden => 'true'}
-  %label Body
-  %input{:name => "body", :id => "body"}
-  %label Author
-  %input{:name => "author", :id => "author"}
+  %label{:id => 'body'} Body
+  %input{:name => "body", :id => "body", :for => 'body'}
+  %label{:id => 'author'} Author
+  %input{:name => "author", :id => "author", :for => 'author'}
   =submit_tag "Post Reply", id: "post_reply_button"

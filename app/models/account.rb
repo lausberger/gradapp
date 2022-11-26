@@ -1,5 +1,7 @@
-class Account < ActiveRecord::Base
+# frozen_string_literal: true
 
+# Account Model class
+class Account < ActiveRecord::Base
     # represents password in a secure manner, maps to password_digest
     has_secure_password
 
