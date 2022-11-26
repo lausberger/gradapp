@@ -3,7 +3,7 @@
 # Graduate Application model class
 class GraduateApplication < ActiveRecord::Base
   def self.all_status
-    %w[in-progress submitted denied accepted wihtdrawn]
+    %w[in-progress submitted denied accepted withdrawn]
   end
 
   validates :first_name, :last_name, presence: true, format: { with: /\A\S+\z/, message: 'No white spaces in names' }
