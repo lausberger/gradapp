@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
   def create
     field_data = registration_params
 
-    account_params = field_data.slice(:first_name, :last_name, :email, :password, :type)
+    account_params = field_data.slice(:first_name, :last_name, :email, :password, :account_type)
     @account = Account.new(account_params)
 
     if Account.where(email: @account.email)
@@ -33,7 +33,7 @@ class AccountsController < ApplicationController
   private
 
   def registration_params
-    params.require(:account).permit(:first_name, :last_name, :email, :password, :password_confirm, :type)
+    params.require(:account).permit(:first_name, :last_name, :email, :password, :password_confirm, :account_type)
   end
 
   def validate_account_params
