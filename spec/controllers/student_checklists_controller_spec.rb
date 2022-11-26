@@ -21,19 +21,19 @@ if RUBY_VERSION >= '2.6.0'
 end
 
 describe StudentChecklistsController do
+  before(:all) do
+    @student_checklist = {
+      student_id: 1
+    }
+    @student = StudentChecklist.create! @student_checklist
+  end
   describe 'completing new checklist item' do
-    before(:all) do
-      @student_checklist = {
-        student_id: 1
-      }
-      @student = StudentChecklist.create! @student_checklist
-    end
     it 'should redirect to checklist page' do
       put :update, { citizenship: 1, id: @student.id }
       expect(response).to redirect_to student_checklist_path
     end
-    after(:all) do
-      StudentChecklist.find_by(student_id: 1).destroy
-    end
+  end
+  after(:all) do
+    StudentChecklist.find_by(student_id: 1).destroy
   end
 end

@@ -20,18 +20,19 @@ if RUBY_VERSION >= '2.6.0'
   end
 end
 describe StudentChecklist do
+  before(:all) do
+    @student_checklist = {
+      student_id: 1
+    }
+  end
   describe 'validation' do
-    before(:all) do
-      @student_checklist = {
-        student_id: 1
-      }
-    end
     it 'should pass since no checklists are present' do
       expect(StudentChecklist.new(@student_checklist).valid?).to eq true
     end
     it 'should fail since checklist with student id is present' do
-      StudentChecklist.create!(@student_checklist)
+      student_checklist_creation = StudentChecklist.create!(@student_checklist)
       expect(StudentChecklist.new(@student_checklist).valid?).to eq false
+      StudentChecklist.destroy(student_checklist_creation.id)
     end
   end
   describe 'check default values' do
