@@ -54,7 +54,7 @@ describe Faculty do
       end
     end
     after(:each) do
-      Account.destroy(@account_creation.id)
+      Account.destroy(@account_creation[:id])
     end
   end
 end
