@@ -10,7 +10,6 @@ class MessagesController < ApplicationController
     acc = Account.find_by(email: "jdoe@gmail.com")
     to = params[:to]
     to_acc = Account.find_by(email: to)
-    puts to_acc.nil?
     if to_acc.nil?
       flash[:warning] = "Please enter a correct email address"
       redirect_to "/messages/new" and return
@@ -23,6 +22,7 @@ class MessagesController < ApplicationController
       redirect_to "/messages/new" and return
     end
     Message.create!(to_id: to_id, from_id: acc.id, to_email: to, from_email: acc.email, subject: subject, body: body)
+    flash[:notice] = "Message Sent"
     redirect_to "/messages"
   end
 end
