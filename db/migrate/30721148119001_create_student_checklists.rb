@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create student checklist migration
 class CreateStudentChecklists < ActiveRecord::Migration
   def change
     create_table :student_checklists do |t|

@@ -74,18 +74,18 @@ end
 
 accounts = [
   {
-    :first_name => "Jack",
-    :last_name => "Stockley",
-    :email => "jnstockley@uiowa.edu",
-    :password => "Password123",
-    :type => "Student"
+    first_name: 'Jack',
+    last_name: 'Stockley',
+    email: 'jnstockley@uiowa.edu',
+    password: 'Password123',
+    type: 'Student'
   },
   {
-    :first_name => "Caleb",
-    :last_name => "Marx",
-    :email => "caleb-marx@uiowa.edu",
-    :password => "pA55W0rd!",
-    :type => "Student"
+    first_name: 'Caleb',
+    last_name: 'Marx',
+    email: 'caleb-marx@uiowa.edu',
+    password: 'pA55W0rd!',
+    type: 'Student'
   }
 ]
 
@@ -95,17 +95,17 @@ end
 
 stud_checklists = [
   {
-    :student_id => 1,
-    :citizenship => true,
-    :ug_major => true,
-    :letter_recommendations => true,
-    :sop => true
+    student_id: 1,
+    citizenship: true,
+    ug_major: true,
+    letter_recommendations: true,
+    sop: true
   },
   {
-    :student_id => 2,
-    :degree_objective => true,
-    :ug_transcript => true,
-    :gre_scores => true
+    student_id: 2,
+    degree_objective: true,
+    ug_transcript: true,
+    gre_scores: true
   }
 ]
 
