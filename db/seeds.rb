@@ -74,41 +74,41 @@ end
 
 accounts = [
   {
-    :first_name => 'Jack',
-    :last_name => 'Stockley',
-    :email => 'jnstockley@uiowa.edu',
-    :password_digest => 'Password123',
-    :account_type => 'Faculty'
+    first_name: 'Jack',
+    last_name: 'Stockley',
+    email: 'jnstockley@uiowa.edu',
+    password_digest: 'Password123',
+    account_type: 'Faculty'
   },
   {
-    :first_name => 'Hans',
-    :last_name => 'Johnson',
-    :email => 'hans-johnson@uiowa.edu',
-    :password_digest => 'i<3SelT',
-    :account_type => 'Faculty'
+    first_name: 'Hans',
+    last_name: 'Johnson',
+    email: 'hans-johnson@uiowa.edu',
+    password_digest: 'i<3SelT',
+    account_type: 'Faculty'
   },
   {
-    :first_name => 'Caleb',
-    :last_name => 'Marx',
-    :email => 'caleb-marx@uiowa.edu',
-    :password_digest => 'pA55W0rd!',
-    :account_type => 'Student'
+    first_name: 'Caleb',
+    last_name: 'Marx',
+    email: 'caleb-marx@uiowa.edu',
+    password_digest: 'pA55W0rd!',
+    account_type: 'Student'
   }
 ]
 
 accounts.each do |account|
-  Account.create!account
+  Account.create! account
 end
 
 faculties = [
   {
-    :account_id => Account.first.id,
-    :topic_area => 'CSE'
+    account_id: Account.first.id,
+    topic_area: 'CSE'
   },
   {
-    :account_id => Account.second.id,
-    :topic_area => 'math'
- }
+    account_id: Account.second.id,
+    topic_area: 'math'
+  }
 ]
 
 faculties.each do |faculty|

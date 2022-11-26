@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Active Record Faculties Migration
 class CreateFaculties < ActiveRecord::Migration
   def change
     create_table :faculties do |t|
