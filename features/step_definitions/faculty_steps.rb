@@ -8,7 +8,7 @@ And(/^I the following accounts have been created:$/) do |account_table|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type]
   account_table.hashes.each do |account|
     unless Account.find_by(email: account[:email]).nil?
-      Faculty.destroy(Faculty.find_by(account_id: Account.find_by(email: account[:email].id)))
+      Faculty.destroy(Faculty.find_by(account_id: Account.find_by(email: account[:email]).id).id)
       Account.destroy(Account.find_by(email: account[:email]).id)
     end
     new_account = {
