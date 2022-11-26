@@ -13,14 +13,14 @@ class SessionsController < ApplicationController
       flash[:notice] = "Welcome, #{user.first_name}."
       redirect_to root_path
     else
-      flash.now[:warning] = "Email or password is incorrect"
+      flash.now[:warning] = 'Email or password is incorrect'
       render :new
     end
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "You have been signed out successfully."
+    flash[:notice] = 'You have been signed out successfully.'
     redirect_to root_path
   end
 
@@ -32,6 +32,7 @@ class SessionsController < ApplicationController
     login = login_params
     (flash[:warning] = 'Email field cannot be empty') and (render :new and return) if login[:email].blank?
     (flash[:warning] = 'Password field cannot be empty') and (render :new and return) if login[:password].blank?
-    (flash[:warning] = 'Please provide a valid email address') and (render :new and return) if login[:email] !~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+    (flash[:warning] = 'Please provide a valid email address') and (render :new and return) if login[:email] !~
+                                                                                               /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   end
 end

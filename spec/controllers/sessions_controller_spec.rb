@@ -130,7 +130,7 @@ describe SessionsController do
     end
     it 'should display a notice of successful logout' do
       delete :destroy
-      expect(flash[:notice]).to eq "You have been signed out successfully."
+      expect(flash[:notice]).to eq 'You have been signed out successfully.'
     end
     it 'should have null session id' do
       delete :destroy
@@ -141,7 +141,7 @@ describe SessionsController do
         delete :destroy
         @controller = AccountsController.new
         get :show
-        expect(response).to render_template :new
+        expect(response).to redirect_to login_path
         @controller = SessionsController.new
       end
       it 'should display a notice regarding the login session' do
