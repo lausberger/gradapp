@@ -20,7 +20,7 @@ describe MessagesController do
         allow(Account).to receive(:find_by).with(email: 'jdoe@gmail.com').and_return fake_results
         allow(fake_results).to receive(:id).and_return '1'
         allow(fake_results).to receive(:email).and_return 'jdoe@gmail.com'
-        post :sendMessage, to: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.'
+        post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.'
         expect(response).to redirect_to('/messages')
       end
       it 'should say the message was sent' do
@@ -28,7 +28,7 @@ describe MessagesController do
         allow(Account).to receive(:find_by).with(email: 'jdoe@gmail.com').and_return fake_results
         allow(fake_results).to receive(:id).and_return '1'
         allow(fake_results).to receive(:email).and_return 'jdoe@gmail.com'
-        post :sendMessage, to: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.'
+        post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.'
         expect(flash[:notice]).to match(/Message Sent/)
       end
       it 'should return http response created' do
@@ -36,21 +36,21 @@ describe MessagesController do
         allow(Account).to receive(:find_by).with(email: 'jdoe@gmail.com').and_return fake_results
         allow(fake_results).to receive(:id).and_return '1'
         allow(fake_results).to receive(:email).and_return 'jdoe@gmail.com'
-        post :sendMessage, to: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.'
+        post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.'
         expect(response).to have_http_status(:found)
       end
     end
     context 'with an invalid email' do
       it 'should redirect to new messages page' do
-        post :sendMessage, to: '', subject: 'Hello', body: 'Hi. Hey.'
+        post :send_message, to: '', subject: 'Hello', body: 'Hi. Hey.'
         expect(response).to redirect_to('/messages/new')
       end
       it 'should say an incorrect email was used' do
-        post :sendMessage, to: '', subject: 'Hello', body: 'Hi. Hey.'
+        post :send_message, to: '', subject: 'Hello', body: 'Hi. Hey.'
         expect(flash[:warning]).to match(/Please enter a correct email address/)
       end
       it 'should return http response created' do
-        post :sendMessage, to: '', subject: 'Hello', body: 'Hi. Hey.'
+        post :send_message, to: '', subject: 'Hello', body: 'Hi. Hey.'
         expect(response).to have_http_status(:found)
       end
     end
@@ -60,7 +60,7 @@ describe MessagesController do
         allow(Account).to receive(:find_by).with(email: 'jdoe@gmail.com').and_return fake_results
         allow(fake_results).to receive(:id).and_return '1'
         allow(fake_results).to receive(:email).and_return 'jdoe@gmail.com'
-        post :sendMessage, to: 'jdoe@gmail.com', subject: 'Hello', body: ''
+        post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: ''
         expect(response).to redirect_to('/messages/new')
       end
       it 'should say the body is empty' do
@@ -68,7 +68,7 @@ describe MessagesController do
         allow(Account).to receive(:find_by).with(email: 'jdoe@gmail.com').and_return fake_results
         allow(fake_results).to receive(:id).and_return '1'
         allow(fake_results).to receive(:email).and_return 'jdoe@gmail.com'
-        post :sendMessage, to: 'jdoe@gmail.com', subject: 'Hello', body: ''
+        post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: ''
         expect(flash[:warning]).to match(/Please enter a body for your message/)
       end
       it 'should return http response created' do
@@ -76,7 +76,7 @@ describe MessagesController do
         allow(Account).to receive(:find_by).with(email: 'jdoe@gmail.com').and_return fake_results
         allow(fake_results).to receive(:id).and_return '1'
         allow(fake_results).to receive(:email).and_return 'jdoe@gmail.com'
-        post :sendMessage, to: 'jdoe@gmail.com', subject: 'Hello', body: ''
+        post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: ''
         expect(response).to have_http_status(:found)
       end
     end
