@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Graduate Applications
   resources :graduate_applications
   resource :statics
+  patch 'withdraw_application' => 'graduate_applications#withdraw'
 
   # Home/Static Pages
   root to: redirect('/home')
