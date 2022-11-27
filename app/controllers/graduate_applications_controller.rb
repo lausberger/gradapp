@@ -17,6 +17,14 @@ class GraduateApplicationsController < ApplicationController
     @graduate_application = GraduateApplication.new
   end
 
+  def withdraw
+    current_application = GraduateApplication.find_by(email: params[:application][:email].to_s)
+    Rails.logger.debug current_application
+    current_application.withdraw
+    flash[:notice] = 'Application has been withdrawn'
+    redirect_to home_path
+  end
+
   def create
     @graduate_application = GraduateApplication.create(@graduate_application_params)
     flash[:notice] = 'Graduate application was successfully submitted.' if @graduate_application.valid?

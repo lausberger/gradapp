@@ -3,7 +3,7 @@
 # Graduate Application model class
 class GraduateApplication < ActiveRecord::Base
   def self.all_status
-    %w[in-progress submitted denied accepted]
+    %w[in-progress submitted denied accepted withdrawn]
   end
 
   has_many :educations, dependent: :destroy, inverse_of: :graduate_application
@@ -29,5 +29,9 @@ class GraduateApplication < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def withdraw
+    self.status = 'withdrawn'
   end
 end
