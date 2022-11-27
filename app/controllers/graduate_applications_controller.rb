@@ -31,7 +31,6 @@ class GraduateApplicationsController < ApplicationController
     flash[:notice] = 'Application submission failed, please retry.' unless @graduate_application.valid?
     @graduate_application.status = 'denied' unless @graduate_application.valid?
 
-    puts @graduate_application.errors.full_messages
     if @graduate_application.valid?
       redirect_to graduate_applications_path
     else
@@ -54,8 +53,8 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def upload_documents
-    flash[:notice] = 'Unable to upload documents at this time - Google Cloud Error' unless defined? @@student_document_bucket
-    render new unless defined? @@student_document_bucket
+    flash[:notice] = 'Unable to upload documents at this time - Google Cloud Error' unless defined? @@student_document_bucket && !Rails.env.test?
+    render new unless defined? @@student_document_bucket && !Rails.env.test?
     return unless @graduate_application_params.key?('documents_attributes')
 
     @graduate_application_params['documents_attributes'].each do |key, value|
@@ -63,7 +62,7 @@ class GraduateApplicationsController < ApplicationController
       original_file_name = value['file'].original_filename
 
       bucket_path = "applications/documents/#{value['file'].hash}/#{original_file_name}"
-      @@student_document_bucket.create_file temp_file_path, "applications/documents/#{value['file'].hash}/#{original_file_name}"
+      @@student_document_bucket.create_file temp_file_path, "applications/documents/#{value['file'].hash}/#{original_file_name}" unless Rails.env.test?
 
       @graduate_application_params['documents_attributes'][key].delete('file')
       @graduate_application_params['documents_attributes'][key]['name'] = original_file_name

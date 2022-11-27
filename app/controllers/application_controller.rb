@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   private
 
   def load_gcloud
+    return if Rails.env.test?
+
     if !defined?(@@student_document_bucket)
       storage = Google::Cloud::Storage.new(
         project_id: ENV['GOOGLE_STORAGE_PROJECT'],
