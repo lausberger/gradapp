@@ -29,8 +29,8 @@ describe AccountsController do
           last_name: 'Not Ausberger',
           email: 'exampleemail@uiowa.edu',
           password: 'password',
-          password_confirm: 'password',
-          type: 'Faculty'
+          password_confirmation: 'password',
+          account_type: 'Faculty'
         }
       end
       it 'should redirect to home page' do
@@ -51,8 +51,8 @@ describe AccountsController do
             last_name: 'Ausberger',
             email: 'lausberger@uiowa.edu',
             password: 'password',
-            password_confirm: 'diff password',
-            type: 'Student'
+            password_confirmation: 'diff password',
+            account_type: 'Student'
           }
         end
         it 'should redirect back to registration page' do
@@ -72,8 +72,8 @@ describe AccountsController do
             last_name: 'Ausberger',
             email: 'lausberger@uiowa.edu',
             password: 'password',
-            password_confirm: 'password',
-            type: 'Student'
+            password_confirmation: 'password',
+            account_type: 'Student'
           }
           @account[:last_name] = ''
           post :create, { account: @account }
@@ -93,8 +93,8 @@ describe AccountsController do
             last_name: 'Ausberger',
             email: 'lausberger@uiowa.edu',
             password: 'password',
-            password_confirm: 'password',
-            type: 'Student'
+            password_confirmation: 'password',
+            account_type: 'Student'
           }
           @account[:email] = 'lausberger'
           post :create, { account: @account }
@@ -117,8 +117,8 @@ describe AccountsController do
         last_name: 'Ausberger',
         email: 'lausberger@uiowa.edu',
         password: 'password',
-        password_confirm: 'password',
-        type: 'Student'
+        password_confirmation: 'password',
+        account_type: 'Student'
       }
       post '/register', { account: @account }
     end

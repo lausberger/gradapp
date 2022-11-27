@@ -62,9 +62,7 @@ applications = [
     email: 'beggr@uiowa.edu',
     phone: '3196408865',
     dob: Date.new,
-    status: 'submitted',
-    gpa_value: 3.9,
-    gpa_scale: 4.0
+    status: 'submitted'
   }
 ]
 
@@ -77,15 +75,22 @@ accounts = [
     first_name: 'Jack',
     last_name: 'Stockley',
     email: 'jnstockley@uiowa.edu',
-    password: 'Password123',
-    type: 'Student'
+    password_digest: 'Password123',
+    account_type: 'Faculty'
+  },
+  {
+    first_name: 'Hans',
+    last_name: 'Johnson',
+    email: 'hans-johnson@uiowa.edu',
+    password_digest: 'i<3SelT',
+    account_type: 'Faculty'
   },
   {
     first_name: 'Caleb',
     last_name: 'Marx',
     email: 'caleb-marx@uiowa.edu',
-    password: 'pA55W0rd!',
-    type: 'Student'
+    password_digest: 'pA55W0rd!',
+    account_type: 'Student'
   }
 ]
 
@@ -111,4 +116,18 @@ stud_checklists = [
 
 stud_checklists.each do |checklist|
   StudentChecklist.create! checklist
+
+faculties = [
+  {
+    account_id: Account.first.id,
+    topic_area: 'CSE'
+  },
+  {
+    account_id: Account.second.id,
+    topic_area: 'math'
+  }
+]
+
+faculties.each do |faculty|
+  Faculty.create!(faculty)
 end

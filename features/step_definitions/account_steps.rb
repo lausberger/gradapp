@@ -9,18 +9,18 @@ def fill_out_form(email)
   fill_in 'account_last_name', with: 'Ausberger'
   fill_in 'account_email', with: email
   fill_in 'account_password', with: 'password'
-  fill_in 'account_password_confirm', with: 'password'
+  fill_in 'account_password_confirmation', with: 'password'
 end
 
 When(/^I fill out the form with email "(.*?)" and (.*?)$/) do |email, option|
   fill_out_form email
   case option
   when '"Student" selected'
-    select 'Student', from: 'account[type]'
+    select 'Student', from: 'account[account_type]'
   when '"Faculty" selected'
-    select 'Faculty', from: 'account[type]'
+    select 'Faculty', from: 'account[account_type]'
   when 'non-matching passwords'
-    fill_in 'account_password_confirm', with: 'different password'
+    fill_in 'account_password_confirmation', with: 'different password'
   when 'empty fields'
     fill_in 'account_last_name', with: ''
   else
