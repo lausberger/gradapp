@@ -7,7 +7,9 @@ class GraduateApplication < ActiveRecord::Base
   end
 
   has_many :educations, dependent: :destroy, inverse_of: :graduate_application
+  has_many :documents, dependent: :destroy, inverse_of: :graduate_application
   accepts_nested_attributes_for :educations, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :documents, allow_destroy: true, reject_if: :all_blank
 
   validates :first_name, :last_name, presence: true, format: { with: /\A\S+\z/, message: 'No white spaces in names' }
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }

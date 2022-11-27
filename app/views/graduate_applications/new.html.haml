@@ -31,4 +31,10 @@
       = render "education_fields", f: educations_form
     = link_to_add_fields "add more", f, :educations
 
+  %fieldset
+    %legend Documents:
+    = f.fields_for :documents do |documents_form|
+      = render "document_fields", f: documents_form
+    = link_to_add_fields "add more", f, :documents
+
   = f.submit 'Submit'

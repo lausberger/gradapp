@@ -55,7 +55,6 @@ describe GraduateApplicationsController do
     end
     context 'with a GPA that exceeds the scale' do
       it 'should flash the request is invalid' do
-        puts @sample_application
         @sample_application[:educations_attributes][:'0'][:gpa_value] = 5.0
         post :create, graduate_application: @sample_application
         expect(flash[:notice]).to match(/Application submission failed, please retry./)
@@ -93,6 +92,7 @@ describe GraduateApplicationsController do
       end
     end
   end
+
   describe 'withdrawing an application' do
     before(:each) do
       @sample_application = {
@@ -118,6 +118,32 @@ describe GraduateApplicationsController do
     it 'should flash message that application was withdrawn' do
       patch :withdraw, { application: @sample_application }
       expect(flash[:notice]).to match(/Application has been withdrawn/)
+    end
+  end
+
+  describe 'submitting an application with student documents' do
+    let(:file_test) { double(ActionDispatch::Http::UploadedFile, path: 'sample/path', original_filename: 'filename.pdf') }
+
+    before(:each) do
+      @sample_application = {
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'johndoe@uiowa.edu',
+        phone: '14118839251',
+        dob: Date.new,
+        documents_attributes: {
+          '0': {
+            description: 'This is my description',
+            file: fixture_file_upload('files/example_document.md', 'text/xml')
+          }
+        }
+      }
+    end
+    context 'with a student document added to the application' do
+      it 'should successfully submit the application' do
+        post :create, graduate_application: @sample_application
+        expect(flash[:notice]).to match(/Graduate application was successfully submitted./)
+      end
     end
   end
 end

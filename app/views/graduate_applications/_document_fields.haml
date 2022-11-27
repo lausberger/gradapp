@@ -1,0 +1,18 @@
+
+.nested-fields
+  %fieldset
+    %legend Entry
+    = f.hidden_field :_destroy
+
+    .file_attach
+      = f.label :file, 'Attach Document:'
+      .document_attach_button
+        = f.file_field :file
+
+    .file_description
+      = f.label :description, 'Description:'
+      .description_field
+        = f.text_area :description
+
+    .deletion
+      = link_to 'Remove', '#', class: 'remove_fields'

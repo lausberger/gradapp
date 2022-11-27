@@ -2,7 +2,7 @@
 
 # Graduate application controller class for handling associated views for grad applications
 class GraduateApplicationsController < ApplicationController
-  before_action :parse_educations_form_data, only: [:create]
+  before_action :parse_educations_form_data, :upload_documents, only: [:create]
   # before_action :require_login
 
   def index
@@ -53,8 +53,39 @@ class GraduateApplicationsController < ApplicationController
     end
   end
 
+  def upload_documents
+    return unless @graduate_application_params.key?('documents_attributes')
+
+    test_mode = Rails.env.test?
+
+    if !@gcloud_active && !test_mode
+      flash[:notice] = 'Unable to upload documents at this time - Google Cloud Error'
+      @graduate_application_params.delete('documents_attributes')
+      @graduate_application = GraduateApplication.create(@graduate_application_params)
+      render 'new'
+    end
+
+    @graduate_application_params['documents_attributes'].each do |key, value|
+      temp_file_path = value['file'].path
+      original_file_name = value['file'].original_filename
+
+      bucket_path = "applications/documents/#{value['file'].hash}/#{original_file_name}"
+      save_file(temp_file_path, bucket_path)
+
+      @graduate_application_params['documents_attributes'][key].delete('file')
+      @graduate_application_params['documents_attributes'][key]['name'] = original_file_name
+      @graduate_application_params['documents_attributes'][key]['file_ref'] = bucket_path
+    end
+  end
+
   def graduate_application_params
     education_attr = %i[id school_name degree major gpa_value gpa_scale currently_attending start_date end_date _destroy]
-    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, educations_attributes: education_attr)
+    document_attr = %i[name description file _destroy]
+    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, educations_attributes: education_attr,
+                                                                                                documents_attributes: document_attr)
+  end
+
+  def save_file(temp_file_path, bucket_file_path)
+    @student_document_bucket.create_file temp_file_path, bucket_file_path unless Rails.env.test?
   end
 end
