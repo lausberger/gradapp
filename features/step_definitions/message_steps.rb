@@ -11,6 +11,7 @@ Given('the following accounts have been added:') do |accounts_table|
 end
 
 When('I have visited the messages page') do
+  #pending
   visit '/messages'
 end
 
