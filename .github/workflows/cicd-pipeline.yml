@@ -92,7 +92,7 @@ jobs:
       # MUST specify '/home' to get HTTP 200 because '/' auto-redirects
       - name: Perform health check
         run: |
-          RESPONSE=$(curl -Is http://localhost:3000/home | head -1 | head -c -15)
+          RESPONSE=$(curl -Is http://localhost:3000/home)
           echo "SERVER STATUS: $RESPONSE"
           if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
       
