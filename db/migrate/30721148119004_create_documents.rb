@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Migration for creating the documents model table
 class CreateDocuments < ActiveRecord::Migration
   def change
     create_table :documents do |t|

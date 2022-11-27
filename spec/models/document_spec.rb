@@ -21,7 +21,7 @@ describe Document do
     end
     context 'with a name that it is too long' do
       it 'should be an invalid model' do
-        @sample_document[:name] = "a" * 51
+        @sample_document[:name] = 'a' * 51
         @doc = Document.create!(@sample_document)
         expect(@doc.valid?).to be_falsey
       end

@@ -123,6 +123,5 @@ describe GraduateApplicationsController do
   end
 
   describe 'submitting an application with student documents' do
-    
   end
 end
