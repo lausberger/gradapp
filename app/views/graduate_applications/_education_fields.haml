@@ -1,0 +1,32 @@
+
+.nested-fields
+  %fieldset
+    %legend Entry
+    = f.hidden_field :_destroy
+
+    .school_name
+      = f.label :school_name, 'School:'
+      = f.text_field 'school_name'
+    .currently_enrolled
+      = f.label :currently_attending, 'Currently Attending?'
+      = f.check_box :currently_attending
+    .start_end_date
+      = f.label :start_date, 'start:'
+      = f.date_select :start_date, {:start_year => 1900}
+
+      = f.label :end_date, 'end:'
+      = f.date_select :end_date, {:end_date => 1900}
+    .degree
+      = f.label :degree, 'Degree:'
+      = f.select :degree, [%w[associate associate], %w[bachelor bachelor], %w[graduate graduate], %w[doctorate doctorate]]
+    .major
+      = f.label :major, 'Major:'
+      = f.text_field 'major'
+    .gpa
+      = f.label :gpa_value, 'GPA:'
+      = f.number_field :gpa_value, { step: 0.01 }
+      = f.label :gpa_scale, '/'
+      = f.number_field :gpa_scale, { step: 0.01 }
+
+    .deletion
+      = link_to 'Remove', '#', class: 'remove_fields'

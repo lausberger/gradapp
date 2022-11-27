@@ -31,6 +31,7 @@ describe AccountsController do
           password: 'password',
           password_confirm: 'password',
           account_type: 'Faculty'
+
         }
       end
       it 'should redirect to home page' do
@@ -51,6 +52,7 @@ describe AccountsController do
             last_name: 'Ausberger',
             email: 'lausberger@uiowa.edu',
             password: 'password',
+
             password_confirm: 'diff password',
             account_type: 'Student'
           }
