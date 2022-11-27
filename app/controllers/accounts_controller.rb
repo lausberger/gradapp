@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
   private
 
   def registration_params
-    params.require(:account).permit(:first_name, :last_name, :email, :password, :password_confirmation, :type)
+    params.require(:account).permit(:first_name, :last_name, :email, :password, :password_confirmation, :account_type)
   end
 
   def validate_account_params
