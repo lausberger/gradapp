@@ -10,9 +10,7 @@ class AccountsController < ApplicationController
   def show; end
 
   def create
-
     @account = Account.new(registration_params)
-
     if Account.where(email: @account.email)
       flash[:warning] = 'An account with that email already exists'
     end
@@ -28,7 +26,7 @@ class AccountsController < ApplicationController
   private
 
   def registration_params
-    params.require(:account).permit(:first_name, :last_name, :email, :password, :password_confirm, :account_type)
+    params.require(:account).permit(:first_name, :last_name, :email, :password, :password_confirmation, :account_type)
   end
 
   def validate_account_params
@@ -37,7 +35,7 @@ class AccountsController < ApplicationController
     (flash[:warning] = 'Fields cannot be empty') and (valid = false) if account_params.any? { |_k, v| v.blank? }
     (flash[:warning] = 'Passwords do not match') and (valid = false) if account_params[:password] != account_params[:password_confirmation]
     (flash[:warning] = 'Please enter a valid email address') and (valid = false) if account_params[:email] !~
-                                                                                    /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+      /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     render :new unless valid # Account validation failed
   end
 end
