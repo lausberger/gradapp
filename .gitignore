@@ -1,4 +1,7 @@
 u# FROM https://raw.githubusercontent.com/github/gitignore/master/Ruby.gitignore
+
+/config/local_env.yml
+
 *.gem
 *.rbc
 /.config

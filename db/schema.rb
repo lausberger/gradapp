@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119001) do
+ActiveRecord::Schema.define(version: 30721148119003) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -34,14 +34,26 @@ ActiveRecord::Schema.define(version: 30721148119001) do
     t.datetime "updated_at",                        null: false
   end
 
+  create_table "educations", force: :cascade do |t|
+    t.integer  "graduate_application_id"
+    t.string   "school_name"
+    t.string   "major"
+    t.string   "degree"
+    t.boolean  "currently_attending"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.float    "gpa_value"
+    t.float    "gpa_scale"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "graduate_applications", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.string   "phone"
     t.datetime "dob"
-    t.float    "gpa_value"
-    t.float    "gpa_scale"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
