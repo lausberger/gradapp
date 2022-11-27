@@ -1,9 +1,9 @@
 #TODO: Once login is implemented there may need to be changes to some tests
 Feature: Allow a User to Send a Message
-#  Background: There is an account in the database
-#    Given the following accounts have been added:
-#      | first_name     | last_name   | email         | password_digest | type     |
-#      | John           | Doe         | jdoe@gmail.com| 1234            | Student  |
+  Background: There is an account in the database
+    Given the following accounts have been added:
+      | first_name     | last_name   | email         | password_digest | type     |
+      | John           | Doe         | jdoe@gmail.com| 1234            | Student  |
 
   Scenario: Send a message to the wrong email
     When I have visited the send messages page
