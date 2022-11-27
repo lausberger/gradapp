@@ -2,7 +2,7 @@
 
 # Graduate application controller class for handling associated views for grad applications
 class GraduateApplicationsController < ApplicationController
-  before_action :parse_educations_form_data, only: [:create]
+  before_action :parse_educations_form_data, :upload_documents, only: [:create]
 
   def index
     @graduate_applications = GraduateApplication.all
@@ -31,6 +31,7 @@ class GraduateApplicationsController < ApplicationController
     flash[:notice] = 'Application submission failed, please retry.' unless @graduate_application.valid?
     @graduate_application.status = 'denied' unless @graduate_application.valid?
 
+    puts @graduate_application.errors.full_messages
     if @graduate_application.valid?
       redirect_to graduate_applications_path
     else
@@ -52,8 +53,23 @@ class GraduateApplicationsController < ApplicationController
     end
   end
 
+  def upload_documents
+    @graduate_application_params['documents_attributes'].each do |key, value|
+      temp_file_path = value['file'].path
+      original_file_name = value['file'].original_filename
+
+      bucket_path = "applications/documents/#{value['file'].hash}/#{original_file_name}"
+      @@student_document_bucket.create_file temp_file_path, "applications/documents/#{value['file'].hash}/#{original_file_name}"
+
+      @graduate_application_params['documents_attributes'][key].delete('file')
+      @graduate_application_params['documents_attributes'][key]['name'] = original_file_name
+      @graduate_application_params['documents_attributes'][key]['file_ref'] = bucket_path
+    end
+  end
+
   def graduate_application_params
     education_attr = %i[id school_name degree major gpa_value gpa_scale currently_attending start_date end_date _destroy]
-    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, educations_attributes: education_attr)
+    document_attr = %i[name description file _destroy]
+    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, educations_attributes: education_attr, documents_attributes: document_attr)
   end
 end
