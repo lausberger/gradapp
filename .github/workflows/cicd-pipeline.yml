@@ -98,10 +98,89 @@ jobs:
       
       # ADD CAPYBARA OR SELENIUM TESTS HERE
   
-  Deploy:
+  # This job generates variables for the Deploy job conditionals. The only alternative
+  # is to run Deploy-Prod for any matching tag, but this would mean a matching tag
+  # associated with a commit on ANY branch would trigger a production deployment!
+  Tree-Check:
+    # if tagged commit (for Deploy-Prod) or on main branch (for Deploy-Dev)
+    if: (startsWith(github.ref, 'refs/tags/selt2022_sprint')) || (github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    outputs:
+      commit_hash: ${{ env.COMMIT_HASH }}
+      main_head: ${{ env.MAIN_HEAD }}
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - name: Get branch and tag info
+        run: |
+          git fetch --depth 1
+          COMMIT_HASH=${{ github.sha }}
+          MAIN_HEAD=$(git log -n 1 --pretty=format:"%H" origin/main)
+          echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
+          echo "MAIN_HEAD=$MAIN_HEAD" >> $GITHUB_ENV
+          echo "commit hash: $COMMIT_HASH"
+          echo "main head: $MAIN_HEAD"
+          if [ "$MAIN_HEAD" != "$COMMIT_HASH" ]; then echo "Commit hash is not head of main. A deployment cannot be made." && exit 1; fi
+
+  # deploys current main branch to 'uiowa-grad-app-beta' for quality assurance
+  # note: database is not shared with prod, so we use seeds here
+  Deploy-Dev:
     # ONLY deploy on PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
-    if: (github.event_name == 'push') && (github.ref == 'refs/heads/main') && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
-    needs: Staging
+    if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_head) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
+    needs: 
+      - Staging
+      - Tree-Check
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      RAILS_ENV: production
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_DEBUG_RAILS_RUNNER: 1
+      HEROKU_APP_NAME: uiowa-grad-app-beta
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Create Heroku app (if needed)
+        continue-on-error: true
+        run: heroku create -a $HEROKU_APP_NAME
+
+      - name: Additional setup (if needed)
+        run: |
+          heroku git:remote -a $HEROKU_APP_NAME
+          heroku stack:set heroku-20
+          git fetch --unshallow
+          git config user.email "gradapp-pipeline@fake-email.com"
+          git config user.name "GradApp Pipeline"
+
+      - name: Deploy to Heroku
+        run: |
+          echo "Deploying $HEROKU_APP_NAME"
+          git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:main
+
+      - name: Migrate and seed database
+        run: | 
+          heroku run rake db:migrate
+          heroku run rake db:seed
+      
+      - name: Health check
+        run: |
+            RESPONSE=$(curl -Is http://$HEROKU_APP_NAME.herokuapp.com/home | head -1 | head -c -3)
+            echo "HEROKU APP STATUS: $RESPONSE"
+            if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
+
+  # for tagged releases, deploys a production app whose name is calculated based
+  # on the current sprint iteration
+  Deploy-Prod:
+    # ONLY deploy on TAGGED PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
+    if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_head) && (startsWith(github.ref, 'refs/tags/selt2022_sprint')) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
+    needs:
+      - Deploy-Dev
+      - Tree-Check
     runs-on: ubuntu-latest
     environment: production
     env:
@@ -109,17 +188,17 @@ jobs:
       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       HEROKU_DEBUG_RAILS_RUNNER: 1
     steps:
-      - name: Checkout current branch
+      - name: Checkout main branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref }}
+          ref: main
       
-      - name: Export current date
-        run: echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
-      
-      - name: Export Heroku mappings
-        run: echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-resources/mappings.json)" >> $GITHUB_ENV
+      - name: Generate environment variables
+        run: |
+          echo "CURRENT_DATE=$(TZ=America/Mexico_City date +%Y%m%d)" >> $GITHUB_ENV
+          echo "HEROKU_MAPPINGS=$(cat .github/workflows/heroku-resources/mappings.json)" >> $GITHUB_ENV
 
+      # app name: uiowa-grad-app
       # 2022-11-01 <= current_date <= 2022-11-09
       - if: (env.SPRINT1_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT1_END)
         run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV
@@ -127,7 +206,8 @@ jobs:
           SPRINT1_START: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_start }}
           SPRINT1_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_end }}
           HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).sprint1_app_name }}
-
+        
+      # app name: uiowa-grad-app-v2
       # 2022-11-10 <= current_date <= 2022-11-27
       - if: (env.SPRINT2_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT2_END)
         run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV
@@ -136,6 +216,7 @@ jobs:
           SPRINT2_END: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_end }}
           HEROKU_APP_NAME: ${{ fromJson(env.HEROKU_MAPPINGS).sprint2_app_name }}
 
+      # app name: uiowa-grad-app-v3
       # 2022-11-28 <= current_date <= 2022-12-09
       - if: (env.SPRINT3_START <= env.CURRENT_DATE) && (env.CURRENT_DATE <= env.SPRINT3_END)
         run: echo "HEROKU_APP_NAME=$HEROKU_APP_NAME" >> $GITHUB_ENV

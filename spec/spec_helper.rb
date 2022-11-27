@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Coverage report:
 require 'simplecov'
 SimpleCov.command_name 'specs'

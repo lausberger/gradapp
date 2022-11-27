@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # Graduate Applications
   resources :graduate_applications
   resource :statics
+  patch 'withdraw_application' => 'graduate_applications#withdraw'
 
   # Home/Static Pages
-  root :to => redirect('/home')
+  root to: redirect('/home')
   get 'home' => 'statics'
   get 'faq' => 'statics'
 
@@ -21,5 +24,4 @@ Rails.application.routes.draw do
   # get 'login', to: 'accounts#login'
   # post 'login', to: 'accounts#authenticate'
   # delete 'logout', to: 'accounts#logout'
-
 end
