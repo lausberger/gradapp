@@ -28,6 +28,7 @@ describe FacultiesController do
         first_name: 'Joesph',
         last_name: 'Smith',
         password: 'iloveselt23',
+        password_confirmation: 'iloveselt23',
         account_type: 'faculty'
       }
       @account_creation = Account.create!(@account)

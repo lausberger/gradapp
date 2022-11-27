@@ -27,6 +27,7 @@ describe Faculty do
       first_name: 'Jack',
       last_name: 'Stockley',
       password: 'Password1234',
+      password_confirmation: 'Password1234',
       account_type: 'faculty'
     }
     @account_creation = Account.create!(@account)

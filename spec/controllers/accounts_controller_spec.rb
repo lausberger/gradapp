@@ -117,7 +117,7 @@ describe AccountsController do
         last_name: 'Ausberger',
         email: 'lausberger@uiowa.edu',
         password: 'password',
-        password_confirm: 'password',
+        password_confirmation: 'password',
         account_type: 'Student'
       }
       post '/register', { account: @account }

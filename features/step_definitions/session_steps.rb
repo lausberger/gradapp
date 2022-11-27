@@ -7,7 +7,7 @@ Given(/^I have created an account$/) do
     email: 'testyguy@yahoo.com',
     password: 'testyspw99',
     password_confirmation: 'testyspw99',
-    type: 'Student'
+    account_type: 'Student'
   )
 end
 

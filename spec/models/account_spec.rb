@@ -27,7 +27,8 @@ describe Account do
         first_name: 'Lucas',
         last_name: 'Ausberger',
         email: 'lausberger@uiowa.edu',
-        password_digest: 'password',
+        password: 'password',
+        password_confirmation: 'password',
         account_type: 'Student'
       }
     end
@@ -60,7 +61,8 @@ describe Account do
           first_name: 'Lucas',
           last_name: 'Ausberger',
           email: 'lausberger@uiowa.edu',
-          password_digest: 'password',
+          password: 'password',
+          password_confirmation: 'password',
           account_type: 'Student'
         }
         @account = Account.create(account_params)
