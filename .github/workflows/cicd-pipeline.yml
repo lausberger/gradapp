@@ -46,7 +46,6 @@ jobs:
       - name: Build test database
         run: |
           bundle exec rake db:migrate
-          bundle exec rake db:seed
 
       - name: Run spec tests
         run: bundle exec rspec
@@ -92,7 +91,7 @@ jobs:
       # MUST specify '/home' to get HTTP 200 because '/' auto-redirects
       - name: Perform health check
         run: |
-          RESPONSE=$(curl -Is http://localhost:3000/home | head -1 | head -c -3)
+          RESPONSE=$(curl -Is http://localhost:3000/home | head -1 | head -c 15)
           echo "SERVER STATUS: $RESPONSE"
           if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
       
@@ -169,7 +168,7 @@ jobs:
       
       - name: Health check
         run: |
-            RESPONSE=$(curl -Is http://$HEROKU_APP_NAME.herokuapp.com/home | head -1 | head -c -3)
+            RESPONSE=$(curl -Is http://$HEROKU_APP_NAME.herokuapp.com/home | head -1 | head -c 15)
             echo "HEROKU APP STATUS: $RESPONSE"
             if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
 
@@ -257,6 +256,6 @@ jobs:
         env:
           HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
         run: |
-            RESPONSE=$(curl -Is http://$HEROKU_APP_NAME.herokuapp.com/home | head -1 | head -c -3)
+            RESPONSE=$(curl -Is http://$HEROKU_APP_NAME.herokuapp.com/home | head -1 | head -c 15)
             echo "HEROKU APP STATUS: $RESPONSE"
             if [ "$RESPONSE" != "HTTP/1.1 200 OK" ]; then exit 1; fi
