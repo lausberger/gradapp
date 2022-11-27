@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Message < ActiveRecord::Base
   belongs_to :to, class_name: 'Account'
   belongs_to :from, class_name: 'Account'

@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 describe Message do
   before(:each) do
     acc = create(:account)
-    @message= {
+    @message = {
       to_id: acc.id,
       from_id: acc.id,
       to_email: acc.email,
       from_email: acc.email,
-      subject: "Hi",
-      body: "Hey. Hello."
+      subject: 'Hi',
+      body: 'Hey. Hello.'
     }
   end
   describe 'creating a message' do
