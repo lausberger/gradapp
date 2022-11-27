@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
   def load_gcloud
     if !defined?(@@student_document_bucket)
       storage = Google::Cloud::Storage.new(
-        project_id: "selt-grad-app",
-        credentials: "selt-grad-app-287ce054d81a.json"
+        project_id: ENV['GOOGLE_STORAGE_PROJECT'],
+        credentials: ENV['GOOGLE_STORAGE_CREDENTIALS']
       )
-      @@student_document_bucket = storage.bucket 'selt-grad-app-student-documents'
+      @@student_document_bucket = storage.bucket ENV['GOOGLE_STORAGE_BUCKET']
     end
   end
 
