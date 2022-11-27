@@ -10,11 +10,13 @@
     
     .file_description
       = f.label :description, 'Description:'
-      = f.text_area :description
+      .description_field
+        = f.text_area :description
 
     .file_attach
       = f.label :file, 'Attach Document:'
-      = f.file_field :file
+      .document_attach_button
+        = f.file_field :file
 
     .deletion
       = link_to 'Remove', '#', class: 'remove_fields'
