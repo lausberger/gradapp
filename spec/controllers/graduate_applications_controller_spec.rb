@@ -121,4 +121,8 @@ describe GraduateApplicationsController do
       expect(flash[:notice]).to match(/Application has been withdrawn/)
     end
   end
+
+  describe 'submitting an application with student documents' do
+    
+  end
 end
