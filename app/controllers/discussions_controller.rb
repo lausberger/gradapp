@@ -2,6 +2,8 @@
 
 # Main discussions functionality controller
 class DiscussionsController < ApplicationController
+  # before_action :require_login
+
   def show
     discussion_id = params[:id]
     @root_discussion = Discussion.root_post(discussion_id)

@@ -3,6 +3,7 @@
 # Graduate application controller class for handling associated views for grad applications
 class GraduateApplicationsController < ApplicationController
   before_action :parse_educations_form_data, only: [:create]
+  # before_action :require_login
 
   def index
     @graduate_applications = GraduateApplication.all
@@ -15,6 +16,14 @@ class GraduateApplicationsController < ApplicationController
 
   def new
     @graduate_application = GraduateApplication.new
+  end
+
+  def withdraw
+    current_application = GraduateApplication.find_by(email: params[:application][:email].to_s)
+    Rails.logger.debug current_application
+    current_application.withdraw
+    flash[:notice] = 'Application has been withdrawn'
+    redirect_to home_path
   end
 
   def create

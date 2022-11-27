@@ -18,7 +18,6 @@ describe GraduateApplication do
     context 'with required valid fields entered' do
       it 'should create a new graduate application' do
         expect { GraduateApplication.create(@sample_student) }.not_to raise_exception
-        puts GraduateApplication.create(@sample_student).errors.messages
         expect(GraduateApplication.create(@sample_student).valid?).to be_truthy
       end
     end
@@ -47,6 +46,13 @@ describe GraduateApplication do
     before(:each) { @student = GraduateApplication.create(@sample_student) }
     it 'should return the students full name' do
       expect(@student.full_name).to match(/Brandon Egger/)
+    end
+  end
+  describe 'withdrawing an application' do
+    it 'should change the status of application to withdrawn' do
+      @current_student = GraduateApplication.create(@sample_student)
+      @current_student.withdraw
+      expect(@current_student.status).to eq('withdrawn')
     end
   end
 end
