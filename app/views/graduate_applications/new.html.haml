@@ -1,34 +1,40 @@
-%h1 Submit New Application
+%h3 Submit New Application
 
-= form_tag graduate_applications_path do
+= form_for @graduate_application do |f|
 
-  .personal_details
-    %h2 Personal Details
+  %fieldset
+    %legend Personal Details
     .name_details
-      = label :graduate_application, :first_name, 'First Name'
-      = text_field :graduate_application, 'first_name'
+      = f.label :first_name, 'First Name:'
+      = f.text_field 'first_name'
 
-      = label :graduate_application, :last_name, 'Last Name'
-      = text_field :graduate_application, 'last_name'
+      = f.label :last_name, 'Last Name:'
+      = f.text_field 'last_name'
 
     .age_details
-    = label :graduate_application, :dob, 'Date of Birth'
-    = date_select :graduate_application, :dob, {:start_year => 1900}
+      = f.label :dob, 'Date of Birth'
+      = f.date_select :dob, {:start_year => 1900}
 
-  .contact_details
-    %h2 Contact Details
-    = label :graduate_application, :email, 'Email'
-    = text_field :graduate_application, 'email'
+  %fieldset
+    %legend Contact Details
+    .email_details
+      = f.label :email, 'Email:'
+      = f.text_field 'email'
 
-    = label :graduate_application, :phone, 'Phone'
-    = text_field :graduate_application, 'phone'
+    .phone_details
+      = f.label :phone, 'Phone:'
+      = f.text_field 'phone'
 
-  .score_details
-    .gpa_details
-      = label :graduate_application, :gpa_value, 'GPA'
-      = number_field :graduate_application, 'gpa_value', {:step => 0.01}
+  %fieldset
+    %legend Education:
+    = f.fields_for :educations do |educations_form|
+      = render "education_fields", f: educations_form
+    = link_to_add_fields "add more", f, :educations
 
-      = label :graduate_application, :gpa_scale, 'GPA Scale'
-      = number_field :graduate_application, 'gpa_scale', {:step => 0.01}
+  %fieldset
+    %legend Documents:
+    = f.fields_for :documents do |documents_form|
+      = render "document_fields", f: documents_form
+    = link_to_add_fields "add more", f, :documents
 
-  = submit_tag 'Submit'
+  = f.submit 'Submit'

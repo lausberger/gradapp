@@ -1,5 +1,5 @@
 Feature: create an account
-    As a student/faculty
+    As a user
     So that I can register myself
     I want to create a student/faculty account
 

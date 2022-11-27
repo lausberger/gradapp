@@ -62,9 +62,7 @@ applications = [
     email: 'beggr@uiowa.edu',
     phone: '3196408865',
     dob: Date.new,
-    status: 'submitted',
-    gpa_value: 3.9,
-    gpa_scale: 4.0
+    status: 'submitted'
   }
 ]
 
@@ -72,8 +70,8 @@ applications.each do |application|
   GraduateApplication.create!(application)
 end
 
-acc = Account.create!(first_name: 'John', last_name: 'Doe', email: 'jdoe@gmail.com', password_digest: '123', type: 'Student')
-acc2 = Account.create!(first_name: 'Jane', last_name: 'Doe', email: 'jadoe@gmail.com', password_digest: '1234', type: 'Faculty')
+acc = Account.create!(first_name: 'John', last_name: 'Doe', email: 'jdoe@gmail.com', password: '123', password_confirmation: '123', type: 'Student')
+acc2 = Account.create!(first_name: 'Jane', last_name: 'Doe', email: 'jadoe@gmail.com', password: '1234', password_confirmation: '1234', type: 'Faculty')
 Message.create!(to_id: acc.id, from_id: acc.id, to_email: 'jdoe@gmail.com', from_email: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.')
 Message.create!(to_id: acc.id, from_id: acc2.id, to_email: 'jdoe@gmail.com', from_email: 'jadoe@gmail.com', subject: 'New Program',
                 body: 'Hello, I was reaching out to you to see if you are interested in our new Graduate program that we have created.

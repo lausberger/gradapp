@@ -11,9 +11,7 @@ describe GraduateApplication do
       email: 'beggr@uiowa.edu',
       phone: '3196408865',
       dob: Date.new,
-      status: 'submitted',
-      gpa_value: 3.9,
-      gpa_scale: 4.0
+      status: 'submitted'
     }
   end
   describe 'creating a graduate application' do
@@ -48,12 +46,6 @@ describe GraduateApplication do
     before(:each) { @student = GraduateApplication.create(@sample_student) }
     it 'should return the students full name' do
       expect(@student.full_name).to match(/Brandon Egger/)
-    end
-  end
-  describe 'formatting a students GPA' do
-    before(:each) { @student = GraduateApplication.create(@sample_student) }
-    it 'should return the students GPA ratio' do
-      expect(@student.gpa_ratio).to eq 0.975
     end
   end
   describe 'withdrawing an application' do
