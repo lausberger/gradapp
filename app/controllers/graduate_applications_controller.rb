@@ -53,7 +53,9 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def upload_documents
-    if !@gcloud_active && !Rails.env.test?
+    test_mode = Rails.env.test?
+
+    if !@gcloud_active && !test_mode
       flash[:notice] = 'Unable to upload documents at this time - Google Cloud Error'
       render 'new'
     end
@@ -65,7 +67,10 @@ class GraduateApplicationsController < ApplicationController
       original_file_name = value['file'].original_filename
 
       bucket_path = "applications/documents/#{value['file'].hash}/#{original_file_name}"
-      @student_document_bucket.create_file temp_file_path, "applications/documents/#{value['file'].hash}/#{original_file_name}" if @gcloud_active && !Rails.env.test?
+      unless test_mode
+        @student_document_bucket.create_file temp_file_path,
+                                             "applications/documents/#{value['file'].hash}/#{original_file_name}"
+      end
 
       @graduate_application_params['documents_attributes'][key].delete('file')
       @graduate_application_params['documents_attributes'][key]['name'] = original_file_name
