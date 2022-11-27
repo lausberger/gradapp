@@ -2,7 +2,7 @@ Feature: Allow a User to view their messages
 
   Background: messages have been added to the database
     Given the following accounts have been added:
-      | first_name     | last_name   | email           | password_digest | type             |
+      | first_name     | last_name   | email           | password_digest | account_type     |
       | John           | Doe         | jdoe@gmail.com  | 1234            | Student          |
       | Jane           | Doe         | jadoe@gmail.com | 1234            | Faculty          |
     Given the following messages have been sent:
