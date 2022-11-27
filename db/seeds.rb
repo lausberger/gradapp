@@ -76,3 +76,46 @@ Message.create!(to_id: acc.id, from_id: acc.id, to_email: 'jdoe@gmail.com', from
 Message.create!(to_id: acc.id, from_id: acc2.id, to_email: 'jdoe@gmail.com', from_email: 'jadoe@gmail.com', subject: 'New Program',
                 body: 'Hello, I was reaching out to you to see if you are interested in our new Graduate program that we have created.
                 Its for new students looking to do Machine Learning. Please reply if you are interested and want to learn more.')
+
+accounts = [
+  {
+    first_name: 'Jack',
+    last_name: 'Stockley',
+    email: 'jnstockley@uiowa.edu',
+    password_digest: 'Password123',
+    account_type: 'Faculty'
+  },
+  {
+    first_name: 'Hans',
+    last_name: 'Johnson',
+    email: 'hans-johnson@uiowa.edu',
+    password_digest: 'i<3SelT',
+    account_type: 'Faculty'
+  },
+  {
+    first_name: 'Caleb',
+    last_name: 'Marx',
+    email: 'caleb-marx@uiowa.edu',
+    password_digest: 'pA55W0rd!',
+    account_type: 'Student'
+  }
+]
+
+accounts.each do |account|
+  Account.create! account
+end
+
+faculties = [
+  {
+    account_id: Account.first.id,
+    topic_area: 'CSE'
+  },
+  {
+    account_id: Account.second.id,
+    topic_area: 'math'
+  }
+]
+
+faculties.each do |faculty|
+  Faculty.create!(faculty)
+end

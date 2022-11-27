@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   get 'messages/new', to: 'messages#new'
   post 'messages/send_message', to: 'messages#send_message'
 
+  # Faculty Search
+  resources :faculties
+  post 'faculties/search', to: 'faculties#search'
+
+  # consider adding separate 'sessions' controller for managing login sessions
+
   # https://www.section.io/engineering-education/how-to-setup-user-authentication-from-scratch-with-rails-6/
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

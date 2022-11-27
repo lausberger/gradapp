@@ -22,8 +22,8 @@
   = password_field :account, :password_confirmation
 
   %div
-  = label :account, :type, "I am a"
-  %select{ :name=> "account[type]" }
+  = label :account, :account_type, "I am a"
+  %select{ :name=> "account[account_type]" }
     %option{ :value => "Student" }= Student
     %option{ :value => "Faculty" }= Faculty
 

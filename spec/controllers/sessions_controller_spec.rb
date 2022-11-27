@@ -29,7 +29,7 @@ describe SessionsController do
         email: 'amanda-huginkiss@uiowa.edu',
         password: 'password',
         password_confirmation: 'password',
-        type: 'Student',
+        account_type: 'Student',
         id: 69
       )
     end
