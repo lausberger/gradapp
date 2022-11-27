@@ -31,3 +31,7 @@ When('I have clicked the button {string}') do |string|
   click_button(string)
 end
 
+When('pending') do
+  pending
+end
+

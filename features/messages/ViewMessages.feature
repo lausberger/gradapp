@@ -9,6 +9,7 @@ Feature: Allow a User to view their messages
 #      | to_id     | from_id  | to_email         | from_email      | subject       | body       |
 #      | 1         | 2        | jdoe@gmail.com   | jadoe@gmail.com | Hello.        | Hi. Hey.   |
 #      | 2         | 1        | jadoe@gmail.com  | jdoe@gmail.com  | Talk.         | Important. |
+#    Given the following accounts have been added:
 #      | first_name     | last_name   | email           | password_digest | type     |
 #      | John           | Doe         | johndoe@gmail.com  | 1234            | Student  |
 #      | Jane           | Doe         | janedoe@gmail.com | 1234            | Faculty  |
@@ -19,11 +20,13 @@ Feature: Allow a User to view their messages
 
 
   Scenario: View the Messages Page when not Logged in
+    When pending
     When I have visited the messages page
     Then I should see "My Messages"
     And I should not see "Hello"
 
   Scenario: View the Messages Page Manually when not Logged in
+    When pending
     When I go to the url "/messages"
     Then I should see "My Messages"
     And I should not see "Hello"
