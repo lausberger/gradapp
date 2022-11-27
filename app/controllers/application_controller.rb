@@ -1,8 +1,13 @@
 # frozen_string_literal: true
-require "google/cloud/storage"
 
+require 'google/cloud/storage'
+
+# Main application controller
 class ApplicationController < ActionController::Base
-  @@student_document_bucket
+  # rubocop:disable Lint/Void
+  @student_document_bucket
+  # rubocop:enable Lint/Void
+  @gcloud_active = false
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -12,15 +17,13 @@ class ApplicationController < ActionController::Base
   private
 
   def load_gcloud
-    return if Rails.env.test?
+    return if Rails.env.test? || !defined?(ENV['GOOGLE_STORAGE_CREDENTIALS'])
 
-    if !defined?(@@student_document_bucket)
-      storage = Google::Cloud::Storage.new(
-        project_id: ENV['GOOGLE_STORAGE_PROJECT'],
-        credentials: ENV['GOOGLE_STORAGE_CREDENTIALS']
-      )
-      @@student_document_bucket = storage.bucket ENV['GOOGLE_STORAGE_BUCKET']
-    end
+    storage = Google::Cloud::Storage.new(
+      project_id: ENV['GOOGLE_STORAGE_PROJECT'],
+      credentials: ENV['GOOGLE_STORAGE_CREDENTIALS']
+    )
+    @student_document_bucket = storage.bucket ENV['GOOGLE_STORAGE_BUCKET']
+    @gcloud_active = true
   end
-
 end

@@ -53,8 +53,11 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def upload_documents
-    flash[:notice] = 'Unable to upload documents at this time - Google Cloud Error' unless defined? @@student_document_bucket && !Rails.env.test?
-    render new unless defined? @@student_document_bucket && !Rails.env.test?
+    if !@gcloud_active && !Rails.env.test?
+      flash[:notice] = 'Unable to upload documents at this time - Google Cloud Error'
+      render 'new'
+    end
+
     return unless @graduate_application_params.key?('documents_attributes')
 
     @graduate_application_params['documents_attributes'].each do |key, value|
@@ -62,7 +65,7 @@ class GraduateApplicationsController < ApplicationController
       original_file_name = value['file'].original_filename
 
       bucket_path = "applications/documents/#{value['file'].hash}/#{original_file_name}"
-      @@student_document_bucket.create_file temp_file_path, "applications/documents/#{value['file'].hash}/#{original_file_name}" unless Rails.env.test?
+      @student_document_bucket.create_file temp_file_path, "applications/documents/#{value['file'].hash}/#{original_file_name}" if @gcloud_active && !Rails.env.test?
 
       @graduate_application_params['documents_attributes'][key].delete('file')
       @graduate_application_params['documents_attributes'][key]['name'] = original_file_name
@@ -73,6 +76,7 @@ class GraduateApplicationsController < ApplicationController
   def graduate_application_params
     education_attr = %i[id school_name degree major gpa_value gpa_scale currently_attending start_date end_date _destroy]
     document_attr = %i[name description file _destroy]
-    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, educations_attributes: education_attr, documents_attributes: document_attr)
+    params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, educations_attributes: education_attr,
+                                                                                                documents_attributes: document_attr)
   end
 end
