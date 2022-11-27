@@ -18,10 +18,10 @@ Rails.application.routes.draw do
   # Accounts
   get 'register', to: 'accounts#new'
   post 'register', to: 'accounts#create'
+  get 'profile', to: 'accounts#show'
 
-  # consider adding separate 'sessions' controller for managing login sessions
   # https://www.section.io/engineering-education/how-to-setup-user-authentication-from-scratch-with-rails-6/
-  # get 'login', to: 'accounts#login'
-  # post 'login', to: 'accounts#authenticate'
-  # delete 'logout', to: 'accounts#logout'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end

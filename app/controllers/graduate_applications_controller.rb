@@ -2,6 +2,8 @@
 
 # Graduate application controller class for handling associated views for grad applications
 class GraduateApplicationsController < ApplicationController
+  # before_action :require_login
+
   def graduate_application_params
     params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, :gpa_value, :gpa_scale)
   end

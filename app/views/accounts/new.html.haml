@@ -18,8 +18,8 @@
   = password_field :account, :password
 
   %div
-  = label :account, :password_confirm, "Confirm Password"
-  = password_field :account, :password_confirm
+  = label :account, :password_confirmation, "Confirm Password"
+  = password_field :account, :password_confirmation
 
   %div
   = label :account, :type, "I am a"
@@ -29,6 +29,10 @@
 
   %div
   = submit_tag 'Register'
+
+  %div
+  = 'Already have an account? '
+  = link_to 'Log in', login_path
 
   %div
   = link_to 'Return to Home Page', root_path
