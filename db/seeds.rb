@@ -116,6 +116,7 @@ stud_checklists = [
 
 stud_checklists.each do |checklist|
   StudentChecklist.create! checklist
+end
 
 faculties = [
   {
