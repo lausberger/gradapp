@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 Given(/^I am on the Find Faculty page$/) do
-  visit facultys_path
+  visit faculties_path
 end
 
 And(/^I the following accounts have been created:$/) do |account_table|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type]
-  pending 'Works on local, fails on GitHub becuase of email validation'
+  pending 'Works on local, fails on GitHub because of email validation'
   account_table.hashes.each do |account|
     new_account = {
       first_name: account[:first_name],

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Controller class for Find Faculty
-class FacultysController < ApplicationController
+class FacultiesController < ApplicationController
   def index
     @faculties_and_topic_area = []
     faculties = Faculty.all
@@ -18,9 +18,9 @@ class FacultysController < ApplicationController
     @topic_area = params[:search_topic_area]
     if (@topic_area == '') || @topic_area.nil?
       flash[:warning] = 'Invalid topic area specified!'
-      return redirect_to facultys_path
+      return redirect_to faculties_path
     end
     @faculties = Faculty.where(topic_area: @topic_area)
-    redirect_to facultys_path if @faculties.length.zero?
+    redirect_to faculties_path if @faculties.length.zero?
   end
 end

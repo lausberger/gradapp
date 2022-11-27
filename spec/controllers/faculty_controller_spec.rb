@@ -20,7 +20,7 @@ if RUBY_VERSION >= '2.6.0'
   end
 end
 
-describe FacultysController do
+describe FacultiesController do
   describe 'search by topic area' do
     before(:all) do
       @account = {
@@ -38,19 +38,19 @@ describe FacultysController do
       @faculty_creation = Faculty.create!(@faculty)
     end
     context 'search for professors in CSE topics are' do
-      it 'should select all facultys members in all topic areas' do
+      it 'should select all faculties members in all topic areas' do
         get :index
         expect(response).to render_template('index')
       end
       it 'should return to index when invalid topic area searched' do
         post :search, { search_topic_area: '' }
-        expect(response).to redirect_to facultys_path
+        expect(response).to redirect_to faculties_path
       end
       it 'should flash invalid topic area message' do
         post :search, { search_topic_area: 'fdfdfds' }
-        expect(response).to redirect_to facultys_path
+        expect(response).to redirect_to faculties_path
       end
-      it 'should select facultys members only in CSE topic area' do
+      it 'should select faculties members only in CSE topic area' do
         post :search, { search_topic_area: 'CSE' }
         expect(response).to render_template('search')
       end
