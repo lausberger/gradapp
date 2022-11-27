@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   private
 
   def load_gcloud
-    return if Rails.env.test? || !defined?(ENV['GOOGLE_STORAGE_CREDENTIALS'])
+    return if Rails.env.test? || !(ENV.key?('GOOGLE_STORAGE_CREDENTIALS'))
 
     storage = Google::Cloud::Storage.new(
       project_id: ENV['GOOGLE_STORAGE_PROJECT'],
