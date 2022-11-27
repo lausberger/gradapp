@@ -53,24 +53,23 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def upload_documents
+    return unless @graduate_application_params.key?('documents_attributes')
+
     test_mode = Rails.env.test?
 
     if !@gcloud_active && !test_mode
       flash[:notice] = 'Unable to upload documents at this time - Google Cloud Error'
+      @graduate_application_params.delete('documents_attributes')
+      @graduate_application = GraduateApplication.create(@graduate_application_params)
       render 'new'
     end
-
-    return unless @graduate_application_params.key?('documents_attributes')
 
     @graduate_application_params['documents_attributes'].each do |key, value|
       temp_file_path = value['file'].path
       original_file_name = value['file'].original_filename
 
       bucket_path = "applications/documents/#{value['file'].hash}/#{original_file_name}"
-      unless test_mode
-        @student_document_bucket.create_file temp_file_path,
-                                             "applications/documents/#{value['file'].hash}/#{original_file_name}"
-      end
+      save_file(temp_file_path, bucket_path)
 
       @graduate_application_params['documents_attributes'][key].delete('file')
       @graduate_application_params['documents_attributes'][key]['name'] = original_file_name
@@ -83,5 +82,9 @@ class GraduateApplicationsController < ApplicationController
     document_attr = %i[name description file _destroy]
     params.require(:graduate_application).permit(:first_name, :last_name, :email, :phone, :dob, educations_attributes: education_attr,
                                                                                                 documents_attributes: document_attr)
+  end
+
+  def save_file(temp_file_path, bucket_file_path)
+    @student_document_bucket.create_file temp_file_path, bucket_file_path unless Rails.env.test?
   end
 end
