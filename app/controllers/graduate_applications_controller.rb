@@ -54,6 +54,10 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def upload_documents
+    flash[:notice] = 'Unable to upload documents at this time - Google Cloud Error' unless defined? @@student_document_bucket
+    render new unless defined? @@student_document_bucket
+    return unless @graduate_application_params.key?('documents_attributes')
+
     @graduate_application_params['documents_attributes'].each do |key, value|
       temp_file_path = value['file'].path
       original_file_name = value['file'].original_filename
