@@ -22,4 +22,4 @@ Feature: Display an navigate open graduate applications
     And the application's name is "John" "Doe"
     And I should see the education table containing
       | school_name        | start_date | end_date  | currently_attending | degree    | major            | gpa (4.0 scale) |
-      | University of Iowa | 8-23-2019  | 5-28-2023 | yes                 | Bachelors | Computer Science | 3.98            |
+      | University of Iowa | 8/23/2019  | 5/28/2023 | true                | bachelor | Computer Science  | 3.5             |
