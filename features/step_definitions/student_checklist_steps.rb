@@ -28,7 +28,7 @@ And(/^The following Student Checklist for student with email "([^"]*)":$/) do |e
 end
 
 Then(/^I should see an empty student checklist$/) do
-  all('tr').each do |item|
+  all('tbody tr').each do |item|
     button = item.find('input[type=checkbox]')
     expect(button.has_checked_field?).eql? false
   end
@@ -36,7 +36,7 @@ end
 
 Then(/^I should see the following items have been completed:$/) do |items_completed|
   # table is a table.hashes.keys # => [:type]
-  all('tr').each do |item|
+  all('tbody tr').each do |item|
     button = item.find('input[type=checkbox]')
     expect(button.has_checked_field?).eql? items_completed.hashes.include?(button[:name])
   end
