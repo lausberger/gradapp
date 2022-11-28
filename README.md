@@ -61,3 +61,9 @@ To speed up development and maintain a consistent level of quality for our produ
 4. Confirm that any new feature or release is located at the top of our main branch, preventing unapproved changes from ending up in beta or production
 5. Deploy unstable builds into beta following each addition of a new feature
 6. For tagged, end-of-sprint releases only, deploy a stable build into production
+
+## Miscellaneous
+
+### Code Coverage
+As of patch 20fc197, our code coverage is 93.09%.
+You can view the latest line and branch coverage [here](https://github.com/UIOWAjohnsonhj/selt2022_teamprojects-team-4/blob/main/coverage/.last_run.json). 
