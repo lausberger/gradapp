@@ -21,7 +21,7 @@ if RUBY_VERSION >= '2.6.0'
 end
 
 describe StudentChecklistsController do
-  before(:all) do
+  before(:each) do
     @student_checklist = {
       student_id: 1
     }
@@ -32,8 +32,5 @@ describe StudentChecklistsController do
       put :update, { citizenship: 1, id: @student.id }
       expect(response).to redirect_to student_checklist_path
     end
-  end
-  after(:all) do
-    StudentChecklist.find_by(student_id: @student.id).destroy
   end
 end

@@ -20,7 +20,8 @@ if RUBY_VERSION >= '2.6.0'
   end
 end
 describe StudentChecklist do
-  before(:all) do
+  before(:each) do
+    StudentChecklist.delete_all
     @student_checklist = {
       student_id: 1
     }
@@ -30,13 +31,13 @@ describe StudentChecklist do
       expect(StudentChecklist.new(@student_checklist).valid?).to eq true
     end
     it 'should fail since checklist with student id is present' do
-      student_checklist_creation = StudentChecklist.create!(@student_checklist)
+      student_checklist_creation = StudentChecklist.create(@student_checklist)
       expect(StudentChecklist.new(@student_checklist).valid?).to eq false
       StudentChecklist.destroy(student_checklist_creation.id)
     end
   end
   describe 'check default values' do
-    before(:all) do
+    before(:each) do
       @student_checklist = {
         student_id: 1
       }
@@ -95,9 +96,6 @@ describe StudentChecklist do
     end
     it 'check sop value' do
       expect(@student[:sop]).to be false
-    end
-    after(:all) do
-      @student.destroy
     end
   end
 end
