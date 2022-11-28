@@ -30,7 +30,7 @@ bundle exec rake db:seed
 bundle exec rails server
 ```
 
-You should now be able to navigate the SaaS app on your browser at `http://localhost:3000/`
+You should now be able to navigate the SaaS app on your browser at http://localhost:3000/
 
 ### Deploying to Heroku
 Currently, our deployments are managed by a continuous integration, continuous deployment pipeline powered by GitHub Actions. See the [Actions Pipeline](#Actions Pipeline) section for more information. We do include steps for manual deployment, if you so prefer.
