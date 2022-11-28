@@ -98,6 +98,13 @@ accounts = [
     email: 'caleb-marx@uiowa.edu',
     password_digest: 'pA55W0rd!',
     account_type: 'Student'
+  },
+  {
+    first_name: 'Alex',
+    last_name: 'Hammes',
+    email: 'alex-hammes@uiowa.edu',
+    password_digest: 'password0987',
+    account_type: 'Faculty'
   }
 ]
 
@@ -127,15 +134,22 @@ end
 
 faculties = [
   {
-    account_id: Account.first.id,
-    topic_area: 'CSE'
+    account_id: Account.find_by(first_name: 'Jack').id,
+    topic_area: 'CSE',
+    approved: true
   },
   {
-    account_id: Account.second.id,
-    topic_area: 'math'
+    account_id: Account.find_by(first_name: 'Hans').id,
+    topic_area: 'math',
+    approved: true
+  },
+  {
+    account_id: Account.find_by(first_name: 'Alex').id,
+    topic_area: 'Networks',
+    approved: false
   }
 ]
 
 faculties.each do |faculty|
-  Faculty.create!(faculty)
+  Faculty.create! faculty
 end
