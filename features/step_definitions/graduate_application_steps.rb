@@ -56,16 +56,22 @@ And(/^I fill in my school name as "(.*?)"$/) do |name|
 end
 
 And(/^the application's average GPA is "(\d*[.]\d*)"$/) do |gpa|
-  expect(page).to have_content gpa
+  expect(page.find('#score_details')).to have_content gpa
 end
 
 And(/^the application's name is "(.*?)" "(.*?)"$/) do |first, last|
-  expect(page).to have_content "#{first} #{last}"
+  expect(page.find('#application-header')).to have_content "#{first} #{last}'s Application"
 end
 
-And(/^I should see the education table containing$/) do |_table|
-  # table is a table.hashes.keys # => [:school_name, :start_date, :end_date, :currently_attending, :degree, :major, :gpa (4.0 scale)]
-  pending
+And(/^I should see the education table containing$/) do |table|
+  i = 0
+  page.find('table#applications').all('tbody tr').each do |tr|
+    ref_education = table.hashes[i]
+    ref_education.each do |_name, value|
+      expect(tr).to have_content value
+    end
+    i += 1
+  end
 end
 
 When(/^I sort graduate applications based on "(.*?)"$/) do |_score|
@@ -86,7 +92,7 @@ When(/^I select to view "(.*?)" "(.*?)"'s graduate application$/) do |first, las
 end
 
 Then(/^I should see the application status "(.*?)"$/) do |status|
-  expect(page).to have_content status
+  expect(page.find('.status_message')).to have_content status
 end
 
 Then(/^I should see "(.*?)"'s application before "(.*?)"'s$/) do |_higher_name, _lower_name|
