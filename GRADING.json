@@ -2,6 +2,7 @@
   "GROUP": "G004",
 
   "ALL_SPRINTS": {
-    "SPRINT1_URL": "https://uiowa-grad-app.herokuapp.com/"
+    "SPRINT1_URL": "https://uiowa-grad-app.herokuapp.com/",
+    "SPRINT2_URL": "https://uiowa-grad-app-v2.herokuapp.com/"
   }
 }
