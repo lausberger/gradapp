@@ -33,7 +33,7 @@ bundle exec rails server
 You should now be able to navigate the SaaS app on your browser at http://localhost:3000/
 
 ### Deploying to Heroku
-Currently, our deployments are managed by a continuous integration, continuous deployment pipeline powered by GitHub Actions. See the [Actions Pipeline](#Actions Pipeline) section for more information. We do include steps for manual deployment, if you so prefer.
+Currently, our deployments are managed by a continuous integration, continuous deployment pipeline powered by GitHub Actions. See the [Actions Pipeline](#actions-pipeline) section for more information. We do include steps for manual deployment, if you so prefer.
 
 1. Run `heroku create -a [NAME]` on your local repository
     - If you already have a live heroku app, you can just add that remote heroku repository with `heroku git:remote -a [APP_NAME]`
