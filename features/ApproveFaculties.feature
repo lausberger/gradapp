@@ -23,7 +23,7 @@ Feature: Approve New Faculty Member Accounts
       | first_name | last_name | email                | password    | account_type | topic_area  |
       | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Faculty      | Networks    |
       | Kaitlynn   | Fuller    | kaitfuller@uiowa.edu | password    | Faculty      | Criminology |
-      | Caled      | Marx      | cmarx1@uiowa.edu     | Hawkeyes    | Student      |             |
+      | Caleb      | Marx      | cmarx1@uiowa.edu     | Hawkeyes    | Student      |             |
 
 
     When I approve the following faculty account:
