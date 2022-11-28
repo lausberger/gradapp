@@ -105,6 +105,13 @@ accounts = [
     email: 'alex-hammes@uiowa.edu',
     password_digest: 'password0987',
     account_type: 'Faculty'
+  },
+  {
+    first_name: 'Jonah',
+    last_name: 'Terwilleger',
+    email: 'jonah-terwilleger@uiowa.edu',
+    password_digest: 'iL0V3iowA',
+    account_type: 'Department Chair'
   }
 ]
 
