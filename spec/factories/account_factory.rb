@@ -6,7 +6,7 @@ FactoryBot.define do
     last_name { 'Doe' }
     email { 'jdoe@gmail.com' }
     password { '1234' }
-    password_confirmation { '1234'}
+    password_confirmation { '1234' }
     account_type { 'Student' }
   end
 end
