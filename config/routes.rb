@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resource :statics
   patch 'withdraw_application' => 'graduate_applications#withdraw'
 
+  # Documents
+  post 'document/download', to: 'documents#download'
+
   # Home/Static Pages
   root to: redirect('/home')
   get 'home' => 'statics'
