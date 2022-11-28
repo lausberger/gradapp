@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Graduate Applications
   resources :graduate_applications
   resource :statics
+  resources :messages
+  resources :discussions
   patch 'withdraw_application' => 'graduate_applications#withdraw'
 
   # Documents
@@ -15,7 +17,6 @@ Rails.application.routes.draw do
   get 'faq' => 'statics'
 
   # Discussions
-  resources :discussions
   post 'discussions/create_reply'
 
   # Accounts
@@ -23,9 +24,19 @@ Rails.application.routes.draw do
   post 'register', to: 'accounts#create'
   get 'profile', to: 'accounts#show'
 
+  # Messages
+  get 'messages', to: 'messages#index'
+  get 'messages/new', to: 'messages#new'
+  post 'messages/send_message', to: 'messages#send_message'
+
   # Faculty Search
   resources :faculties
   post 'faculties/search', to: 'faculties#search'
+
+  # Student Checklist
+  resources :student_checklists
+  # get 'checklist/:id', to: 'student_checklists#show'
+  # post 'checklist', to: 'student_checklists#edit'
 
   # consider adding separate 'sessions' controller for managing login sessions
 

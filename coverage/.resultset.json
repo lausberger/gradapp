@@ -128,7 +128,7 @@
           1,
           null,
           1,
-          46,
+          61,
           null,
           0,
           null,
@@ -149,7 +149,7 @@
             "[:then, 5, 27, 4, 27, 99]": 2
           },
           "[:if, 6, 33, 4, 33, 72]": {
-            "[:then, 7, 33, 4, 33, 10]": 46,
+            "[:then, 7, 33, 4, 33, 10]": 61,
             "[:else, 8, 33, 4, 33, 72]": 0
           }
         }
@@ -236,6 +236,46 @@
           "[:if, 6, 61, 4, 63, 7]": {
             "[:then, 7, 62, 6, 62, 73]": 1,
             "[:else, 8, 61, 4, 63, 7]": 1
+          }
+        }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/faculties_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          3,
+          3,
+          1,
+          1,
+          null,
+          2,
+          2,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 19, 4, 22, 7]": {
+            "[:then, 1, 20, 6, 21, 39]": 1,
+            "[:else, 2, 19, 4, 22, 7]": 2
+          },
+          "[:if, 3, 24, 4, 24, 57]": {
+            "[:then, 4, 24, 4, 24, 30]": 1,
+            "[:else, 5, 24, 4, 24, 57]": 1
           }
         }
       },
@@ -368,6 +408,52 @@
           }
         }
       },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/messages_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          9,
+          9,
+          9,
+          9,
+          3,
+          3,
+          null,
+          6,
+          6,
+          6,
+          6,
+          3,
+          3,
+          null,
+          3,
+          3,
+          3,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 17, 4, 20, 7]": {
+            "[:then, 1, 18, 6, 19, 44]": 3,
+            "[:else, 2, 17, 4, 20, 7]": 6
+          },
+          "[:if, 3, 24, 4, 27, 7]": {
+            "[:then, 4, 25, 6, 26, 44]": 3,
+            "[:else, 5, 24, 4, 27, 7]": 3
+          }
+        }
+      },
       "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/sessions_controller.rb": {
         "lines": [
           null,
@@ -446,6 +532,45 @@
         "branches": {
         }
       },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/student_checklists_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          17,
+          0,
+          null,
+          17,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 19, 6, 23, 9]": {
+            "[:then, 1, 20, 8, 20, 75]": 0,
+            "[:else, 2, 22, 8, 22, 76]": 17
+          }
+        }
+      },
       "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/account.rb": {
         "lines": [
           null,
@@ -453,6 +578,9 @@
           null,
           1,
           null,
+          1,
+          null,
+          1,
           1,
           null,
           1,
@@ -555,6 +683,19 @@
           }
         }
       },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/faculty.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
       "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/graduate_application.rb": {
         "lines": [
           null,
@@ -604,9 +745,26 @@
           }
         }
       },
-      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/faculty.rb": {
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/message.rb": {
         "lines": [
           null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/student_checklist.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
           null,
           1,
           null
@@ -625,7 +783,7 @@
         }
       }
     },
-    "timestamp": 1669576025
+    "timestamp": 1669605591
   },
   "features": {
     "coverage": {
@@ -748,7 +906,7 @@
           1,
           null,
           1,
-          78,
+          93,
           null,
           0,
           null,
@@ -769,7 +927,7 @@
             "[:then, 5, 27, 4, 27, 99]": 1
           },
           "[:if, 6, 33, 4, 33, 72]": {
-            "[:then, 7, 33, 4, 33, 10]": 78,
+            "[:then, 7, 33, 4, 33, 10]": 93,
             "[:else, 8, 33, 4, 33, 72]": 0
           }
         }
@@ -909,6 +1067,9 @@
           1,
           null,
           1,
+          1,
+          null,
+          1,
           null,
           1,
           1,
@@ -922,6 +1083,9 @@
       "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/faculty.rb": {
         "lines": [
           null,
+          null,
+          1,
+          1,
           null,
           1,
           null
@@ -945,6 +1109,99 @@
           null
         ],
         "branches": {
+        }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/faculties_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          2,
+          2,
+          2,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 19, 4, 22, 7]": {
+            "[:then, 1, 20, 6, 21, 39]": 0,
+            "[:else, 2, 19, 4, 22, 7]": 0
+          },
+          "[:if, 3, 24, 4, 24, 57]": {
+            "[:then, 4, 24, 4, 24, 30]": 0,
+            "[:else, 5, 24, 4, 24, 57]": 0
+          }
+        }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/student_checklist.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/student_checklists_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          2,
+          2,
+          2,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 19, 6, 23, 9]": {
+            "[:then, 1, 20, 8, 20, 75]": 0,
+            "[:else, 2, 22, 8, 22, 76]": 0
+          }
         }
       },
       "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/graduate_applications_controller.rb": {
@@ -1251,8 +1508,67 @@
             "[:else, 11, 35, 4, 36, 145]": 5
           }
         }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/messages_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          2,
+          2,
+          null,
+          null,
+          1,
+          null,
+          3,
+          3,
+          3,
+          3,
+          1,
+          1,
+          null,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 17, 4, 20, 7]": {
+            "[:then, 1, 18, 6, 19, 44]": 1,
+            "[:else, 2, 17, 4, 20, 7]": 2
+          },
+          "[:if, 3, 24, 4, 27, 7]": {
+            "[:then, 4, 25, 6, 26, 44]": 1,
+            "[:else, 5, 24, 4, 27, 7]": 1
+          }
+        }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/models/message.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1669576037
+    "timestamp": 1669606176
   }
 }

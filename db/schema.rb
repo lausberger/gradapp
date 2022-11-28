@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119006) do
+ActiveRecord::Schema.define(version: 30721148119009) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -76,5 +76,42 @@ ActiveRecord::Schema.define(version: 30721148119006) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "to_id",      null: false
+    t.integer  "from_id",    null: false
+    t.string   "to_email",   null: false
+    t.string   "from_email", null: false
+    t.string   "subject"
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "student_checklists", force: :cascade do |t|
+    t.integer  "student_id"
+    t.boolean  "citizenship",            default: false
+    t.boolean  "research_area",          default: false
+    t.boolean  "degree_objective",       default: false
+    t.boolean  "ug_inst",                default: false
+    t.boolean  "ug_gpa",                 default: false
+    t.boolean  "ug_degree",              default: false
+    t.boolean  "ug_major",               default: false
+    t.boolean  "ug_transcript",          default: false
+    t.boolean  "grad_inst",              default: false
+    t.boolean  "grad_gpa",               default: false
+    t.boolean  "grad_degree",            default: false
+    t.boolean  "grad_major",             default: false
+    t.boolean  "grad_transcript",        default: false
+    t.boolean  "letter_recommendations", default: false
+    t.boolean  "gre_scores",             default: false
+    t.boolean  "language_scores",        default: false
+    t.boolean  "resume",                 default: false
+    t.boolean  "sop",                    default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "student_checklists", ["student_id"], name: "index_student_checklists_on_student_id", unique: true
 
 end

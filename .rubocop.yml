@@ -68,3 +68,6 @@ Style/IfUnlessModifier:
 # -- allow use of block comments
 Style/BlockComments:
   Enabled: false
+
+Rails/InverseOf:
+  Enabled: false

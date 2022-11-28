@@ -70,6 +70,13 @@ applications.each do |application|
   GraduateApplication.create!(application)
 end
 
+acc = Account.create!(first_name: 'John', last_name: 'Doe', email: 'jdoe@gmail.com', password: '123', password_confirmation: '123', account_type: 'Student')
+acc2 = Account.create!(first_name: 'Jane', last_name: 'Doe', email: 'jadoe@gmail.com', password: '1234', password_confirmation: '1234', account_type: 'Faculty')
+Message.create!(to_id: acc.id, from_id: acc.id, to_email: 'jdoe@gmail.com', from_email: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.')
+Message.create!(to_id: acc.id, from_id: acc2.id, to_email: 'jdoe@gmail.com', from_email: 'jadoe@gmail.com', subject: 'New Program',
+                body: 'Hello, I was reaching out to you to see if you are interested in our new Graduate program that we have created.
+                Its for new students looking to do Machine Learning. Please reply if you are interested and want to learn more.')
+
 accounts = [
   {
     first_name: 'Jack',
@@ -96,6 +103,26 @@ accounts = [
 
 accounts.each do |account|
   Account.create! account
+end
+
+stud_checklists = [
+  {
+    student_id: 1,
+    citizenship: true,
+    ug_major: true,
+    letter_recommendations: true,
+    sop: true
+  },
+  {
+    student_id: 2,
+    degree_objective: true,
+    ug_transcript: true,
+    gre_scores: true
+  }
+]
+
+stud_checklists.each do |checklist|
+  StudentChecklist.create! checklist
 end
 
 faculties = [
