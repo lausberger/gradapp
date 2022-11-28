@@ -96,21 +96,24 @@ accounts = [
     first_name: 'Caleb',
     last_name: 'Marx',
     email: 'caleb-marx@uiowa.edu',
-    password_digest: 'pA55W0rd!',
+    password: 'pA55W0rd!',
+    password_confirmation: 'pA55W0rd!',
     account_type: 'Student'
   },
   {
     first_name: 'Alex',
     last_name: 'Hammes',
     email: 'alex-hammes@uiowa.edu',
-    password_digest: 'password0987',
+    password: 'password0987',
+    password_confirmation: 'password0987',
     account_type: 'Faculty'
   },
   {
     first_name: 'Jonah',
     last_name: 'Terwilleger',
     email: 'jonah-terwilleger@uiowa.edu',
-    password_digest: 'iL0V3iowA',
+    password: 'iL0V3iowA',
+    password_confirmation: 'iL0V3iowA',
     account_type: 'Department Chair'
   }
 ]
