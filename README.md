@@ -65,5 +65,5 @@ To speed up development and maintain a consistent level of quality for our produ
 ## Miscellaneous
 
 ### Code Coverage
-As of patch 20fc197, our code coverage is 93.09%.
+As of the latest release (patch 20fc197), our line coverage is 93.09%.
 You can view the latest line and branch coverage [here](https://github.com/UIOWAjohnsonhj/selt2022_teamprojects-team-4/blob/main/coverage/.last_run.json). 
