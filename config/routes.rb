@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :discussions
   patch 'withdraw_application' => 'graduate_applications#withdraw'
 
+  # Documents
+  post 'document/download', to: 'documents#download'
+
   # Home/Static Pages
   root to: redirect('/home')
   get 'home' => 'statics'
@@ -29,6 +32,11 @@ Rails.application.routes.draw do
   # Faculty Search
   resources :faculties
   post 'faculties/search', to: 'faculties#search'
+
+  # Student Checklist
+  resources :student_checklists
+  # get 'checklist/:id', to: 'student_checklists#show'
+  # post 'checklist', to: 'student_checklists#edit'
 
   # consider adding separate 'sessions' controller for managing login sessions
 
