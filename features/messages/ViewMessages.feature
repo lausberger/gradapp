@@ -5,10 +5,12 @@ Feature: Allow a User to view their messages
       | first_name     | last_name   | email           | password | password_confirmation | account_type     |
       | John           | Doe         | jdoe@gmail.com  | 1234     | 1234                  | Student          |
       | Jane           | Doe         | jadoe@gmail.com | 1234     | 1234                  | Faculty          |
-    Given the following messages have been sent:
+    Given the following messages have been sent to John Doe:
       | to_id     | from_id  | to_email         | from_email      | subject       | body       |
       | 1         | 2        | jdoe@gmail.com   | jadoe@gmail.com | Hello.        | Hi. Hey.   |
-      | 2         | 1        | jadoe@gmail.com  | jdoe@gmail.com  | Talk.         | Important. |
+    Given the following messages have been sent:
+      | to_id     | from_id  | to_email         | from_email      | subject       | body       |
+      | 2         | 1        | jdoe@gmail.com   | jdoe@gmail.com  | Talk.         | Important. |
 
 
   Scenario: View the Messages Page when not Logged in
@@ -27,6 +29,8 @@ Feature: Allow a User to view their messages
     Then I should see "jadoe@gmail.com"
     And I should see "Hello"
     And I should see "Hi. Hey."
+    And I should not see "Talk."
+    And I should not see "Important."
 
   Scenario: View the Messages Page Manually when Logged in
     When I have logged in as John Doe
@@ -34,6 +38,8 @@ Feature: Allow a User to view their messages
     Then I should see "jadoe@gmail.com"
     And I should see "Hello"
     And I should see "Hi. Hey."
+    And I should not see "Talk."
+    And I should not see "Important."
 
   Scenario: Navigate to another page from the Messages Page
     When I have logged in as John Doe
