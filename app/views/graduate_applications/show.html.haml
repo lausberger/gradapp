@@ -1,4 +1,4 @@
-%h1 #{@graduate_application.full_name}'s Application
+%h1#application-header #{@graduate_application.full_name}'s Application
 
 %h3 Personal Details
 
@@ -27,5 +27,39 @@
     %strong Average GPA (on a 4.0 scale):
   = (@graduate_application.average_gpa_ratio * 4)
 
+- if (@graduate_application.educations.length > 0)
+  %h3 Education History:
+  %table#applications
+    %thead
+      %tr
+        %th School
+        %th Degree
+        %th Major
+        %th GPA (4.0 Scale)
+        %th Start Date
+        %th End Date
+        %th Currently Attending?
+    %tbody
+      - @graduate_application.educations.all.each do |education|
+        %tr
+          %td= education.school_name
+          %td= education.degree
+          %td= education.major
+          %td= education.gpa_default_scale
+          %td= education.start_date.strftime('%m/%d/%Y')
+          %td= education.end_date.strftime('%m/%d/%Y')
+          %td= education.currently_attending
+
+- if (@graduate_application.documents.length > 0)
+  %h3 Attached Documents:
+  - @graduate_application.documents.all.each do |document|
+    .document_section
+      .document_name
+        %h5 Name: #{document.name}
+        %label Description:
+        %span= document.description
+        =link_to "Download", document_download_path(id: document.id), method: 'post'
+
 %h3 Status
-= @graduate_application.status
+.status_message
+  = @graduate_application.status

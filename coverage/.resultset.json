@@ -781,9 +781,31 @@
         ],
         "branches": {
         }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/documents_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1669605591
+    "timestamp": 1669611260
   },
   "features": {
     "coverage": {
@@ -1402,11 +1424,11 @@
           1,
           null,
           1,
-          2,
+          3,
           null,
           null,
           1,
-          0,
+          1,
           null,
           null,
           1,
@@ -1567,8 +1589,30 @@
         ],
         "branches": {
         }
+      },
+      "/Users/pp-brandon/Documents/uiowa/selt2022_teamprojects-team-4/app/controllers/documents_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1669606176
+    "timestamp": 1669611271
   }
 }
