@@ -105,6 +105,26 @@ accounts.each do |account|
   Account.create! account
 end
 
+stud_checklists = [
+  {
+    student_id: 1,
+    citizenship: true,
+    ug_major: true,
+    letter_recommendations: true,
+    sop: true
+  },
+  {
+    student_id: 2,
+    degree_objective: true,
+    ug_transcript: true,
+    gre_scores: true
+  }
+]
+
+stud_checklists.each do |checklist|
+  StudentChecklist.create! checklist
+end
+
 faculties = [
   {
     account_id: Account.first.id,
