@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Graduate Applications
   resources :graduate_applications
   resource :statics
+  resources :messages
+  resources :discussions
   patch 'withdraw_application' => 'graduate_applications#withdraw'
 
   # Home/Static Pages
@@ -12,13 +14,17 @@ Rails.application.routes.draw do
   get 'faq' => 'statics'
 
   # Discussions
-  resources :discussions
   post 'discussions/create_reply'
 
   # Accounts
   get 'register', to: 'accounts#new'
   post 'register', to: 'accounts#create'
   get 'profile', to: 'accounts#show'
+
+  # Messages
+  get 'messages', to: 'messages#index'
+  get 'messages/new', to: 'messages#new'
+  post 'messages/send_message', to: 'messages#send_message'
 
   # Faculty Search
   resources :faculties
