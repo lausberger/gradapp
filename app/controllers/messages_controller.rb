@@ -2,16 +2,15 @@
 
 # Controller for the private messages page and sending a message
 class MessagesController < ApplicationController
+  before_action :require_login
   def index
     # render index page when going to /messages
-    # TODO: Change acc to look for the logged in user not just jdoe@gmail.com
-    acc = Account.find_by(email: 'jdoe@gmail.com')
+    acc = Account.find_by(id: @current_user)
     @messages = Message.where(to_id: acc.id)
   end
 
   def send_message
-    # TODO: Change acc to look for the logged in user not just jdoe@gmail.com
-    acc = Account.find_by(email: 'jdoe@gmail.com')
+    acc = Account.find_by(id: @current_user)
     to = params[:to]
     to_acc = Account.find_by(email: to)
     if to_acc.nil?
