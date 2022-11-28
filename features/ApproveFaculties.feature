@@ -30,6 +30,8 @@ Feature: Approve New Faculty Member Accounts
       | first_name | last_name | email                | password    | account_type | topic_area  |
       | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Faculty      | Networks    |
 
+    And I am on the approve faculty accounts page
+
     Then I should no long see the following account:
       | first_name | last_name | email                | password    | account_type | topic_area  |
       | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Faculty      | Networks    |

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'rails_helper'
 
@@ -19,5 +21,4 @@ if RUBY_VERSION >= '2.6.0'
 end
 
 describe ApproveFacultiesController do
-
 end

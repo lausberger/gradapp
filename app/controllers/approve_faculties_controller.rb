@@ -2,11 +2,7 @@
 
 # Controller to Approve to Faculty Account
 class ApproveFacultiesController < ApplicationController
-  def show
+  def show; end
 
-  end
-
-  def update
-
-  end
+  def update; end
 end
