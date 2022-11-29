@@ -17,17 +17,22 @@ end
 
 When(/^I approve the following faculty account:$/) do |accounts|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type, :topic_area]
-  accounts.hashes.each do |account|
-    faculty = Faculty.find_by(account_id: Account.find_by(first_name: account[:first_name]).id)
-    faculty.update(approved: true)
+  #pending 'Change to use web ui'
+  page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
+    first_name = row.all('td')[0].text
+    last_name = row.all('td')[1].text
+    topic_area = row.all('td')[2].text
+    if accounts.hashes.any? { |hash| hash['first_name'] == first_name } && accounts.hashes.any? { |hash| hash['last_name'] == last_name } && accounts.hashes.any? { |hash| hash['topic_area'] == topic_area }
+      row.click_button("Approve")
+    end
   end
 end
 
 Then(/^I should see the following faculty accounts:$/) do |accounts|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type, :topic_area]
-  num_faculty = all('tr').length
+  num_faculty = page.all(:xpath, '//*[@id="main"]/table/tbody/tr').length
   expect(num_faculty).eql? accounts.hashes.length
-  all('tr').each do |row|
+  page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
     topic_area = row.all('td')[2].text
@@ -39,7 +44,7 @@ end
 
 Then(/^I should no long see the following account:$/) do |accounts|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type, :topic_area]
-  all('tr').each do |row|
+  page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
     topic_area = row.all('td')[2].text
@@ -47,4 +52,15 @@ Then(/^I should no long see the following account:$/) do |accounts|
     expect(accounts.hashes).not_to include(include('last_name' => last_name))
     expect(accounts.hashes).not_to include(include('topic_area' => topic_area))
   end
+end
+
+And(/^I am signed with the email "([^"]*)" and the password "([^"]*)"$/) do |email, password|
+  visit login_path
+  fill_in('session_email', with: email)
+  fill_in('session_password', with: password)
+  click_button('Log in')
+end
+
+Then(/^I should see an error message saying "([^"]*)"$/) do |error_msg|
+  expect(page.all(:css, "div[id='alert']").first.text).to be == error_msg
 end
