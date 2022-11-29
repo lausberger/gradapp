@@ -38,8 +38,7 @@ Rails.application.routes.draw do
   # get 'checklist/:id', to: 'student_checklists#show'
   # post 'checklist', to: 'student_checklists#edit'
 
-  # consider adding separate 'sessions' controller for managing login sessions
-
+  # Login session
   # https://www.section.io/engineering-education/how-to-setup-user-authentication-from-scratch-with-rails-6/
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
