@@ -23,7 +23,6 @@ end
 describe ApproveFacultiesController do
   describe 'view faculty accounts needing approval' do
     before(:each) do
-
       @faculty_account = {
         first_name: 'John',
         last_name: 'Smith',

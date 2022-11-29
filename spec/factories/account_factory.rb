@@ -12,8 +12,7 @@ FactoryBot.define do
       account_type { 'Faculty' }
     end
     trait :department_chair do
-      account_type {'Department Chair'}
+      account_type { 'Department Chair' }
     end
   end
-
 end

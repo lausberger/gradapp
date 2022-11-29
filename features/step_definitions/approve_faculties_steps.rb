@@ -17,14 +17,18 @@ end
 
 When(/^I approve the following faculty account:$/) do |accounts|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type, :topic_area]
-  #pending 'Change to use web ui'
+  # pending 'Change to use web ui'
   page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
     topic_area = row.all('td')[2].text
-    if accounts.hashes.any? { |hash| hash['first_name'] == first_name } && accounts.hashes.any? { |hash| hash['last_name'] == last_name } && accounts.hashes.any? { |hash| hash['topic_area'] == topic_area }
-      row.click_button("Approve")
-    end
+    next unless accounts.hashes.any? { |hash| hash['first_name'] == first_name } && accounts.hashes.any? do |hash|
+                  hash['last_name'] == last_name
+                end && accounts.hashes.any? do |hash|
+                         hash['topic_area'] == topic_area
+                       end
+
+    row.click_button('Approve')
   end
 end
 
