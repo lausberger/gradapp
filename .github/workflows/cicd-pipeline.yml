@@ -159,7 +159,7 @@ jobs:
 
       - name: Migrate and seed database
         run: | 
-          heroku run rake db:migrate
+          heroku run rake db:migrate:reset
           heroku run rake db:seed
       
       - name: Health check
