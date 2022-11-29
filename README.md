@@ -1,6 +1,8 @@
 # Welcome to the Grad App Project
 The ultimate graduate student application portal, social platform, and collective database for all your needs regarding graduate programs offered at the University of Iowa.
 
+Check out our website [here](https://uiowa-grad-app-v2.herokuapp.com/)!
+
 ## Version Information
 Below are details regarding the tech stack of the project and versions utilized by the team.
 
@@ -28,11 +30,10 @@ bundle exec rake db:seed
 bundle exec rails server
 ```
 
-You should now be able to navigate the SaaS app on your browser at localhost:3000/
+You should now be able to navigate the SaaS app on your browser at http://localhost:3000/
 
 ### Deploying to Heroku
-
-Current our heroku deployment is automated through the CI/CD action pipeline on github. Changes that are merged to the main branch will automatically be deployed to the correct site based on the date the changes were merged to main. We associated these dates based on the sprints so in general our automatic deployment system takes care of most of the hassel. We do include steps for manual deployment if you so prefer,
+Currently, our deployments are managed by a continuous integration, continuous deployment pipeline powered by GitHub Actions. See the [Actions Pipeline](#actions-pipeline) section for more information. We do include steps for manual deployment, if you so prefer.
 
 1. Run `heroku create -a [NAME]` on your local repository
     - If you already have a live heroku app, you can just add that remote heroku repository with `heroku git:remote -a [APP_NAME]`
@@ -45,18 +46,23 @@ Your site should now be live on Heroku!
 ## Project Organization Tools
 
 ### Pull Requests
-An open pull request can only be merged to develop once the following have occured:
+An open pull request can only be merged to the main branch once the following have occured:
 1. Two other members of the team reviewed and approved the pull request
 2. There are no merge conflicts with main
-3. The branch is not failing any tests (new or old)
+3. All relevant stages of the [Actions Pipeline](#actions-pipeline) are passing
 
-### Action Pipeline
-We automate tests on github to ensure changes merged to our main branch are not breaking any existing or new features. Our pipeline does the following:
+### Actions Pipeline
+To speed up development and maintain a consistent level of quality for our product, we implement a continuous integration, continuous deployment (CI/CD) pipeline, powered by GitHub Actions. Our workflow automatically performs a suite of tests to ensure changes merged to our main branch do not break existing features. We also perform multiple staged deployments to enable quality assurance leading up to a stable release. Any feature that is merged to the main branch will be automatically deployed to our [beta website](https://uiowa-grad-app-beta.herokuapp.com/). Tagged releases are deployed to a production channel that is programatically determined based on the current iteration. You can view the release from our most recent iteration [here](https://uiowa-grad-app-v2.herokuapp.com/).
 
-1. Ensure are all tests are passing in cucumber and rSpec. Prevents the pull request from being merged if any are not passing.
-2. Check to ensure the changes meet our linting configuration ensuring consistency and good practice in code syntax.
-3. Automatically deploy stable releases to our heroku dev site and production site at the end of sprints.
-  - For changes merged to the main branch, we automatically deploy to our Heroku dev site - a live deployment where we can test upcomming features!
-  - For tagged hashes in our main branch, our pipeline will deploy to the associated heroku app of that tag (signifying which sprint we are on)
+#### Our workflow does the following:
+1. Assert that all tests are passing in Cucumber and rSpec, preventing the pull request from being merged if any are not
+2. Perform linting to ensure additions meet our standard for coding consistency and best-practice (we use [rubocop](https://rubocop.org))
+3. Deploy a localized instance of the application to isolate any potential issues relating to the application itself, rather than its infrastructure
+4. Confirm that any new feature or release is located at the top of our main branch, preventing unapproved changes from ending up in beta or production
+5. Deploy unstable builds into beta following each addition of a new feature
+6. For tagged, end-of-sprint releases only, deploy a stable build into production
 
-This pipeline helps automate many previously manual tasks, allowing our team to continue integrating new features with out being bogged down by these redundant steps.
+## Miscellaneous
+
+### Code Coverage
+As of the latest release ([selt2022_sprint2](https://github.com/UIOWAjohnsonhj/selt2022_teamprojects-team-4/tree/selt2022_sprint2)), our line coverage is **93.09%**. You can view the latest line and branch coverage [here](https://github.com/UIOWAjohnsonhj/selt2022_teamprojects-team-4/blob/main/coverage/.last_run.json). 
