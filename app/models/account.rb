@@ -16,7 +16,7 @@ class Account < ActiveRecord::Base
   validates :account_type, presence: true
 
   private
-  
+
   def create_session_token
     self.session_token = SecureRandom.urlsafe_base64
   end
