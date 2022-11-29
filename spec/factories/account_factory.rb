@@ -8,5 +8,12 @@ FactoryBot.define do
     password { '1234' }
     password_confirmation { '1234' }
     account_type { 'Student' }
+    trait :faculty do
+      account_type { 'Faculty' }
+    end
+    trait :department_chair do
+      account_type {'Department Chair'}
+    end
   end
+
 end
