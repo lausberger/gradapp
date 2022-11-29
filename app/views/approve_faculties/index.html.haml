@@ -13,6 +13,5 @@
             %td= faculty.account[:last_name]
             %td= faculty[:topic_area]
             %td= submit_tag "Approve", id: "approve_account_button"
-- else
-  - flash.now[:alert] = 'You must be logged in as a department chair user'
+
 
