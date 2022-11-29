@@ -37,7 +37,16 @@ describe Account do
       expect(Account.new(@account_params).valid?).to eq false
     end
     it 'should fail without a password' do
-      @account_params[:password_digest] = nil
+      @account_params[:password] = nil
+      expect(Account.new(@account_params).valid?).to eq false
+    end
+    it 'should fail without a password confirmation' do
+      @account_params[:password_confirmation] = nil
+      expect(Account.new(@account_params).valid?).to eq false
+    end
+    it 'should fail with short password' do
+      @account_params[:password] = 'pass'
+      @account_params[:password] = 'pass'
       expect(Account.new(@account_params).valid?).to eq false
     end
     it 'should fail without a first name' do
