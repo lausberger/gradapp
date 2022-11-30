@@ -54,6 +54,26 @@ describe StaticsController do
         expect(response).to render_template('faculty_home')
       end
     end
+    context 'while logged in as the department chair' do
+      before(:all) do
+        @account = Account.create(
+          first_name: 'Test',
+          last_name: 'Chair',
+          email: 'test-chair@uiowa.edu',
+          password: 'password',
+          password_confirmation: 'password',
+          account_type: 'Chair',
+          id: 3
+        )
+        @session_params = { email: @account.email, password: @account.password }
+        allow(Account).to receive(:find_by).and_return @account
+        post :create, { session: @session_params }
+      end
+      it 'should render the department chair home page' do
+        get 'home'
+        expect(response).to render_template('chair_home')
+      end
+    end
   end
   describe 'FAQ Page' do
     it 'should render the statics template for faq page' do
