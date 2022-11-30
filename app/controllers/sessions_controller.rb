@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     user = Account.find_by(email: params[:session][:email].downcase)
     if user.present? && user.authenticate(params[:session][:password])
-      session[:session_token] = user.session_token
+      session[:user_id] = user.id
       flash[:notice] = "Welcome, #{user.first_name}."
       redirect_to root_path
     else
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:session_token] = nil
+    session[:user_id] = nil
     flash[:notice] = 'You have been signed out successfully.'
     redirect_to root_path
   end

@@ -31,6 +31,11 @@ describe Account do
         password_confirmation: 'password',
         account_type: 'Student'
       }
+      @myacc = create(:account)
+    end
+    it 'should be valid by default' do
+      expect(@myacc.valid?).to eq true
+      expect(Account.new(@account_params).valid?).to eq true
     end
     it 'should fail if invalid email' do
       @account_params[:email] = 'lausberger'
@@ -46,7 +51,7 @@ describe Account do
     end
     it 'should fail with short password' do
       @account_params[:password] = 'pass'
-      @account_params[:password] = 'pass'
+      @account_params[:password_confirmation] = 'pass'
       expect(Account.new(@account_params).valid?).to eq false
     end
     it 'should fail without a first name' do

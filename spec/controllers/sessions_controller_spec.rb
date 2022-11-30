@@ -56,7 +56,7 @@ describe SessionsController do
       it 'should have session info' do
         allow(Account).to receive(:find_by).and_return @account
         post :create, { session: @session_params }
-        expect(session[:session_token]).to eq @account.session_token
+        expect(session[:user_id]).to eq @account.id
       end
     end
 
@@ -129,8 +129,8 @@ describe SessionsController do
     it 'should display a notice of successful logout' do
       expect(flash[:notice]).to eq 'You have been signed out successfully.'
     end
-    it 'should have null session token' do
-      expect(session[:session_token]).to be nil
+    it 'should have null session user id' do
+      expect(session[:user_id]).to be nil
     end
     context 'and attempting session-specific actions' do
       it 'should not be possible to view the user profile' do
