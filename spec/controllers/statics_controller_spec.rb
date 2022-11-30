@@ -14,6 +14,26 @@ describe StaticsController do
         expect(response).to render_template('public_home')
       end
     end
+    context 'while logged in as a student' do
+      before(:all) do
+        @account = Account.create(
+          first_name: 'Test',
+          last_name: 'Student',
+          email: 'test-student@uiowa.edu',
+          password: 'password',
+          password_confirmation: 'password',
+          account_type: 'Student',
+          id: 1
+        )
+        @session_params = { email: @account.email, password: @account.password }
+        allow(Account).to receive(:find_by).and_return @account
+        post :create, { session: @session_params }
+      end
+      it 'should render the student home page' do
+        get 'home'
+        expect(response).to render_template('student_home')
+      end
+    end
   end
   describe 'FAQ Page' do
     it 'should render the statics template for faq page' do
