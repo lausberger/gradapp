@@ -61,13 +61,14 @@ describe SessionsController do
     end
 
     context 'with incorrect information' do
-      it 'should render the login page' do
+      before(:each) do
         @session_params = { email: 'wrong-email@email.email', password: @account.password }
+      end
+      it 'should render the login page' do
         post :create, { session: @session_params }
         expect(response).to render_template :new
       end
       it 'should flash an alert informing the user of incorrect credentials' do
-        @session_params = { email: 'wrong-email@email.email', password: @account.password }
         post :create, { session: @session_params }
         expect(flash[:warning]).to eq 'Email or password is incorrect'
       end
@@ -75,13 +76,14 @@ describe SessionsController do
 
     context 'with invalid information' do
       context 'missing email' do
-        it 'should render the login page' do
+        before(:each) do
           @session_params = { email: '', password: @account.password }
+        end
+        it 'should render the login page' do
           post :create, { session: @session_params }
           expect(response).to render_template :new
         end
         it 'should inform the user of an empty email field' do
-          @session_params = { email: '', password: @account.password }
           post :create, { session: @session_params }
           expect(flash[:warning]).to eq 'Email field cannot be empty'
         end
@@ -89,27 +91,27 @@ describe SessionsController do
 
       context 'invalid email' do
         before(:each) do
+          @session_params = { email: 'email lol', password: @account.password }
         end
         it 'should redirect back to login page' do
-          @session_params = { email: 'email lol', password: @account.password }
           post :create, { session: @session_params }
           expect(response).to render_template :new
         end
         it 'should inform the user of an invalid email' do
-          @session_params = { email: 'email lol', password: @account.password }
           post :create, { session: @session_params }
           expect(flash[:warning]).to eq 'Please provide a valid email address'
         end
       end
 
       context 'missing password' do
-        it 'should redirect back to login page' do
+        before(:each) do
           @session_params = { email: @account.email, password: '' }
+        end
+        it 'should redirect back to login page' do
           post :create, { session: @session_params }
           expect(response).to render_template :new
         end
         it 'should inform the user of an empty password field' do
-          @session_params = { email: @account.email, password: '' }
           post :create, { session: @session_params }
           expect(flash[:warning]).to eq 'Password field cannot be empty'
         end
