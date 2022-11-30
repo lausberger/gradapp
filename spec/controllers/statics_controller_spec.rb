@@ -22,7 +22,7 @@ describe StaticsController do
           account_type: 'Student',
           id: 1
         )
-        controller.instance_variable_set(:@current_user, @account)
+        StaticsController.any_instance.stub(:current_user).and_return(@account)
       end
       it 'should render the student home page' do
         get 'home'
@@ -40,7 +40,7 @@ describe StaticsController do
           account_type: 'Faculty',
           id: 2
         )
-        controller.instance_variable_set(:@current_user, @account)
+        StaticsController.any_instance.stub(:current_user).and_return(@account)
       end
       it 'should render the faculty home page' do
         get 'home'
@@ -58,7 +58,7 @@ describe StaticsController do
           account_type: 'Chair',
           id: 4
         )
-        controller.instance_variable_set(:@current_user, @account)
+        StaticsController.any_instance.stub(:current_user).and_return(@account)
       end
       it 'should render the department chair home page' do
         get 'home'
