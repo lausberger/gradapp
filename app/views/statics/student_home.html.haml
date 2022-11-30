@@ -1,12 +1,14 @@
 %h1 Graduate Programs
-//TODO: CHANGE THE PATHS IN LINKS TO THE CORRECT PATHS ONCE THEY EXIST
-= link_to 'My Applications', graduate_applications_path
-= link_to 'Discussions', discussions_path
+%h2 Student Home Page
 = link_to 'FAQ', faq_path
+= link_to 'Student Discussions', discussions_path
+= link_to 'My Profile', profile_path
+= link_to 'Log out', logout_path, method: :delete
+// TODO: Update these when features are complete
+= link_to 'My Application', root_path
+= link_to 'Student Checklist', root_path
 = link_to 'My Messages', messages_path
-= link_to 'Profile', profile_path
-= link_to 'Log In', login_path
-= link_to 'Register', register_path
+
 %body
   %center
     %header
@@ -17,20 +19,12 @@
 %body
   %center
     %header
-      = link_to 'Search Universities', '/home'
-    %a Wondering what the stats are for a specific university?
-    %div
-    %a Click here to search for any university in the country!
-%body
-  %center
-    %header
       = link_to 'Discover Faculty', '/facultys'
     %a Wondering what faculty our University has to support you in your Graduate program?
     %div
     %a Wondering what topic areas we cover?
     %div
     %a Click here and search for you favorite topic area to see if we have any faculty members you can contact!
-
 %body
   %h3 Contact Us
   %a Office of the Dean

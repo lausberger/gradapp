@@ -101,7 +101,7 @@ jobs:
   # is to run Deploy-Prod for any matching tag, but this would mean a matching tag
   # associated with a commit on ANY branch would trigger a production deployment!
   Tree-Check:
-    # if tagged commit (for Deploy-Prod) or on main branch (for Deploy-Dev)
+    # if tagged commit (for Deploy-Prod) or on main branch (for Deploy-Beta)
     if: (startsWith(github.ref, 'refs/tags/selt2022_sprint')) || (github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     outputs:
@@ -125,7 +125,7 @@ jobs:
 
   # deploys current main branch to 'uiowa-grad-app-beta' for quality assurance
   # note: database is not shared with prod, so we use seeds here
-  Deploy-Dev:
+  Deploy-Beta:
     # ONLY deploy on PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
     if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_head) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs: 
@@ -157,7 +157,7 @@ jobs:
           echo "Deploying $HEROKU_APP_NAME"
           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:main
 
-      - name: Migrate and seed database
+      - name: Reset and seed database
         run: | 
           heroku run rake db:migrate:reset
           heroku run rake db:seed
@@ -174,7 +174,7 @@ jobs:
     # ONLY deploy on TAGGED PUSH to MAIN branch of UIOWAjohnsonhj/selt2022_teamprojects-team-4
     if: (github.event_name == 'push') && (needs.Tree-Check.outputs.commit_hash == needs.Tree-Check.outputs.main_head) && (startsWith(github.ref, 'refs/tags/selt2022_sprint')) && (github.repository == 'UIOWAjohnsonhj/selt2022_teamprojects-team-4')
     needs:
-      - Deploy-Dev
+      - Deploy-Beta
       - Tree-Check
     runs-on: ubuntu-latest
     environment: production

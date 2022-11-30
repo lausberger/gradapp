@@ -81,6 +81,7 @@ describe AccountsController do
           expect(response).to render_template :new
         end
         it 'should flash a warning about password length' do
+          post :create, { account: @account }
           expect(flash[:warning]).to eq 'Password must be at least 8 characters'
         end
       end

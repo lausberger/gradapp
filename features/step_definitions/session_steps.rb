@@ -2,12 +2,44 @@
 
 Given(/^I have created an account$/) do
   @my_account = Account.create!(
-    first_name: 'Testy',
-    last_name: 'McTester',
+    first_name: 'Test',
+    last_name: 'Student',
     email: 'testyguy@yahoo.com',
     password: 'testyspw99',
     password_confirmation: 'testyspw99',
     account_type: 'Student'
+  )
+end
+Given(/^I have created a student account$/) do
+  @my_account = Account.create!(
+    first_name: 'Test',
+    last_name: 'Student',
+    email: 'test-student@uiowa.edu',
+    password: 'password',
+    password_confirmation: 'password',
+    account_type: 'Student'
+  )
+end
+
+Given(/^I have created a faculty account$/) do
+  @my_account = Account.create!(
+    first_name: 'Test',
+    last_name: 'Faculty',
+    email: 'test-faculty@uiowa.edu',
+    password: 'password',
+    password_confirmation: 'password',
+    account_type: 'Faculty'
+  )
+end
+
+Given(/^I have created a department chair account$/) do
+  @my_account = Account.create!(
+    first_name: 'Test',
+    last_name: 'Chair',
+    email: 'test-chair@uiowa.edu',
+    password: 'password',
+    password_confirmation: 'password',
+    account_type: 'Chair'
   )
 end
 

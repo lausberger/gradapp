@@ -1,12 +1,20 @@
 # frozen_string_literal: true
 
-# rubocop: disable Rails/ApplicationController
-
 # Main controller for handling static page generation
-class StaticsController < ActionController::Base
+class StaticsController < ApplicationController
+  helper_method :current_user, :home
+
   def home
-    # default: render 'home' template
+    if !!!current_user
+      render 'public_home'
+    elsif current_user.account_type == 'Student'
+      render 'student_home'
+    elsif current_user.account_type == 'Faculty'
+      render 'faculty_home'
+    elsif current_user.account_type == 'Chair'
+      render 'chair_home'
+    else
+      render 'public_home'
+    end
   end
 end
-
-# rubocop: enable Rails/ApplicationController
