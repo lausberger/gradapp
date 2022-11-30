@@ -7,8 +7,8 @@ Given(/^I have created an account$/) do
     email: 'testyguy@yahoo.com',
     password: 'testyspw99',
     password_confirmation: 'testyspw99',
-    account_type: 'Student',
-    )
+    account_type: 'Student'
+  )
 end
 Given(/^I have created a student account$/) do
   @my_account = Account.create!(
@@ -17,8 +17,8 @@ Given(/^I have created a student account$/) do
     email: 'test-student@uiowa.edu',
     password: 'password',
     password_confirmation: 'password',
-    account_type: 'Student',
-    )
+    account_type: 'Student'
+  )
 end
 
 Given(/^I have created a faculty account$/) do
