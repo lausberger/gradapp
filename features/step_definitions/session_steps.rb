@@ -22,6 +22,17 @@ Given(/^I have created a faculty account$/) do
   )
 end
 
+Given(/^I have created a department chair account$/) do
+  @my_account = Account.create!(
+    first_name: 'Test',
+    last_name: 'Chair',
+    email: 'test-chair@uiowa.edu',
+    password: 'password',
+    password_confirmation: 'password',
+    account_type: 'Chair'
+  )
+end
+
 Given(/^I am signed in to my account$/) do
   visit login_path
   fill_in 'Email', with: @my_account.email

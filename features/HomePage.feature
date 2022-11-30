@@ -17,6 +17,12 @@ Scenario: View the home page while signed in as a faculty
   When I have visited the GradApp Home Page
   Then I should see "Faculty Homepage"
 
+Scenario: View the home page while signed in as department chair
+  Given I have created a department chair account
+  And I am signed in to my account
+  When I have visited the GradApp Home Page
+  Then I should see "Department Chair Homepage"
+
 Scenario: View the Home Page
   When I have visited the GradApp Home Page
   Then I should see "Graduate Programs"
