@@ -4,10 +4,15 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe StaticsController do
-  describe 'Home Page' do
-    it 'should render the statics template for home page' do
-      get 'home'
-      expect(response).to render_template('home')
+  describe 'When accessing the home page' do
+    context 'while not logged in ' do
+      before(:all) do
+        delete :destroy
+      end
+      it 'should render the public home page' do
+        get 'home'
+        expect(response).to render_template('public_home')
+      end
     end
   end
   describe 'FAQ Page' do
