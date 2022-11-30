@@ -1,5 +1,16 @@
 # frozen_string_literal: true
 
+Given(/^I have created a student account$/) do
+  @my_account = Account.create!(
+    first_name: 'Test',
+    last_name: 'Student',
+    email: 'test-student@uiowa.edu',
+    password: 'password',
+    password_confirmation: 'password',
+    account_type: 'Student',
+    )
+end
+
 Given(/^I am signed in to my account$/) do
   visit login_path
   fill_in 'Email', with: @my_account.email

@@ -5,6 +5,12 @@ Scenario: View the home page while not signed in
   When I have visited the GradApp Home Page
   Then I should see "Public Homepage"
 
+Scenario: View the home page while signed in as a student
+  Given I have created a student account
+  And I am signed in to my account
+  When I have visited the GradApp Home Page
+  Then I should see "Student Home Page"
+
 Scenario: View the Home Page
   When I have visited the GradApp Home Page
   Then I should see "Graduate Programs"
