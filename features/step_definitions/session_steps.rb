@@ -1,16 +1,5 @@
 # frozen_string_literal: true
 
-Given(/^I have created an account$/) do
-  @my_account = Account.create!(
-    first_name: 'Testy',
-    last_name: 'McTester',
-    email: 'testyguy@yahoo.com',
-    password: 'testyspw99',
-    password_confirmation: 'testyspw99',
-    account_type: 'Student'
-  )
-end
-
 Given(/^I am signed in to my account$/) do
   visit login_path
   fill_in 'Email', with: @my_account.email

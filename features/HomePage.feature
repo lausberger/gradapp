@@ -1,4 +1,9 @@
-Feature: Allow a User to view the GradApp Home Page
+Feature: Allow the user to view the correct home page
+
+Scenario: View the home page while not signed in
+  Given I have logged out
+  When I have visited the GradApp Home Page
+  Then I should see "Public Homepage"
 
 Scenario: View the Home Page
   When I have visited the GradApp Home Page
