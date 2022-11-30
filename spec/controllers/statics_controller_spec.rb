@@ -6,16 +6,13 @@ require 'rails_helper'
 describe StaticsController do
   describe 'When accessing the home page' do
     context 'while not logged in ' do
-      before(:all) do
-        delete :destroy
-      end
       it 'should render the public home page' do
         get 'home'
         expect(response).to render_template('public_home')
       end
     end
     context 'while logged in as a student' do
-      before(:all) do
+      before(:each) do
         @account = Account.create(
           first_name: 'Test',
           last_name: 'Student',
@@ -25,9 +22,7 @@ describe StaticsController do
           account_type: 'Student',
           id: 1
         )
-        @session_params = { email: @account.email, password: @account.password }
-        allow(Account).to receive(:find_by).and_return @account
-        post :create, { session: @session_params }
+        @current_user = @account
       end
       it 'should render the student home page' do
         get 'home'
@@ -35,7 +30,7 @@ describe StaticsController do
       end
     end
     context 'while logged in as a faculty' do
-      before(:all) do
+      before(:each) do
         @account = Account.create(
           first_name: 'Test',
           last_name: 'Faculty',
@@ -45,9 +40,7 @@ describe StaticsController do
           account_type: 'Faculty',
           id: 2
         )
-        @session_params = { email: @account.email, password: @account.password }
-        allow(Account).to receive(:find_by).and_return @account
-        post :create, { session: @session_params }
+        @current_user = @account
       end
       it 'should render the faculty home page' do
         get 'home'
@@ -65,9 +58,7 @@ describe StaticsController do
           account_type: 'Chair',
           id: 3
         )
-        @session_params = { email: @account.email, password: @account.password }
-        allow(Account).to receive(:find_by).and_return @account
-        post :create, { session: @session_params }
+        @current_user = @account
       end
       it 'should render the department chair home page' do
         get 'home'
