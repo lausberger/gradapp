@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+Given(/^I have created an account$/) do
+  @my_account = Account.create!(
+    first_name: 'Test',
+    last_name: 'Student',
+    email: 'testyguy@yahoo.com',
+    password: 'testyspw99',
+    password_confirmation: 'testyspw99',
+    account_type: 'Student',
+    )
+end
 Given(/^I have created a student account$/) do
   @my_account = Account.create!(
     first_name: 'Test',
