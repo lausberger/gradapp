@@ -11,6 +11,12 @@ Scenario: View the home page while signed in as a student
   When I have visited the GradApp Home Page
   Then I should see "Student Home Page"
 
+Scenario: View the home page while signed in as a faculty
+  Given I have created a faculty account
+  And I am signed in to my account
+  When I have visited the GradApp Home Page
+  Then I should see "Faculty Homepage"
+
 Scenario: View the Home Page
   When I have visited the GradApp Home Page
   Then I should see "Graduate Programs"
