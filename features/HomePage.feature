@@ -1,8 +1,7 @@
 Feature: Allow the user to view the correct home page
 
 Scenario: View the home page while not signed in
-  Given I have logged out
-  When I have visited the GradApp Home Page
+  Given I have visited the GradApp Home Page
   Then I should see "Public Homepage"
 
 Scenario: View the home page while signed in as a student

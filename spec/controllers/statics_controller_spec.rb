@@ -12,7 +12,7 @@ describe StaticsController do
       end
     end
     context 'while logged in as a student' do
-      before(:each) do
+      before(:all) do
         @account = Account.create(
           first_name: 'Test',
           last_name: 'Student',
@@ -22,7 +22,9 @@ describe StaticsController do
           account_type: 'Student',
           id: 1
         )
-        @current_user = @account
+        @session_params = { email: @account.email, password: @account.password }
+        allow(Account).to receive(:find_by).and_return @account
+        post "sessions", { session: @session_params }
       end
       it 'should render the student home page' do
         get 'home'
@@ -30,7 +32,7 @@ describe StaticsController do
       end
     end
     context 'while logged in as a faculty' do
-      before(:each) do
+      before(:all) do
         @account = Account.create(
           first_name: 'Test',
           last_name: 'Faculty',
@@ -40,7 +42,9 @@ describe StaticsController do
           account_type: 'Faculty',
           id: 2
         )
-        @current_user = @account
+        @session_params = { email: @account.email, password: @account.password }
+        allow(Account).to receive(:find_by).and_return @account
+        post :create, { session: @session_params }
       end
       it 'should render the faculty home page' do
         get 'home'
@@ -58,7 +62,9 @@ describe StaticsController do
           account_type: 'Chair',
           id: 3
         )
-        @current_user = @account
+        @session_params = { email: @account.email, password: @account.password }
+        allow(Account).to receive(:find_by).and_return @account
+        post :create, { session: @session_params }
       end
       it 'should render the department chair home page' do
         get 'home'
