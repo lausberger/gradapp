@@ -9,7 +9,7 @@ Feature: Approve or Deny Student Applications
       | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
       | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
       | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 04/10/2004 | withdrawn |
-      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | approved  |
+      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | accepted  |
 
     Then I should be redirected to the login page
 
@@ -20,7 +20,7 @@ Feature: Approve or Deny Student Applications
       | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
       | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
       | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 04/10/2004 | withdrawn |
-      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | approved  |
+      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | accepted  |
 
     And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
 
@@ -35,7 +35,7 @@ Feature: Approve or Deny Student Applications
       | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
       | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
       | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 04/10/2004 | withdrawn |
-      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | approved  |
+      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | accepted  |
 
     And I am signed with the email "jdterwilleger@uiowa.edu" and the password "iL0V3iowA"
 
@@ -62,7 +62,7 @@ Feature: Approve or Deny Student Applications
       | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
       | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
       | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 04/10/2004 | withdrawn |
-      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | approved  |
+      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | accepted  |
 
     And I am signed with the email "jdterwilleger@uiowa.edu" and the password "iL0V3iowA"
 
