@@ -6,10 +6,10 @@ Feature: Approve or Deny Student Applications
 
     And There are the following applications created:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
-      | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 04/10/2004 | withdrawn |
-      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | accepted  |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 1999-01-01 | submitted |
+      | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 2004-04-10 | withdrawn |
+      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 1998-06-12 | accepted  |
 
     Then I should be redirected to the login page
 
@@ -17,10 +17,10 @@ Feature: Approve or Deny Student Applications
 
     Given There are the following applications created:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
-      | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 04/10/2004 | withdrawn |
-      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | accepted  |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 1999-01-01 | submitted |
+      | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 2004-04-10 | withdrawn |
+      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 1998-06-12 | accepted  |
 
     And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
 
@@ -32,10 +32,10 @@ Feature: Approve or Deny Student Applications
 
     Given There are the following applications created:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
-      | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 04/10/2004 | withdrawn |
-      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | accepted  |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 1999-01-01 | submitted |
+      | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 2004-04-10 | withdrawn |
+      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 1998-06-12 | accepted  |
 
     And I am signed with the email "jdterwilleger@uiowa.edu" and the password "iL0V3iowA"
 
@@ -43,26 +43,26 @@ Feature: Approve or Deny Student Applications
 
     And I see the following applications:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 1999-01-01 | submitted |
 
     When I "Approve" the following application:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
 
     Then I should no longer see the following application:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
 
 
   Scenario: Deny Application from a Student
 
     Given There are the following applications created:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
-      | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 04/10/2004 | withdrawn |
-      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 06/12/1988 | accepted  |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 1999-01-01 | submitted |
+      | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 2004-04-10 | withdrawn |
+      | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 1998-06-12 | accepted  |
 
     And I am signed with the email "jdterwilleger@uiowa.edu" and the password "iL0V3iowA"
 
@@ -70,13 +70,13 @@ Feature: Approve or Deny Student Applications
 
     And I see the following applications:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 01/01/1999 | submitted |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | 8722214561 | 1999-01-01 | submitted |
 
     When I "Deny" the following application:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
 
     Then I should no longer see the following application:
       | first_name | last_name   | email                   | phone      | dob        | status    |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 10/13/2000 | submitted |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
