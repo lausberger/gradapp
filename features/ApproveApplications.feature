@@ -22,11 +22,15 @@ Feature: Approve or Deny Student Applications
       | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 2004-04-10 | withdrawn |
       | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 1998-06-12 | accepted  |
 
+    And There are the following accounts created:
+      | first_name | last_name   | email                   | password    | account_type     | topic_area  |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123 | Faculty          | Networks    |
+
     And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
 
     And I am on the approve applications page
 
-    Then I should see an error message saying "You must be a department chair to approve new accounts"
+    Then I should see an error message saying "You must be a department chair to make decisions on graduate applications"
 
   Scenario: Approve Application from a Student
 
