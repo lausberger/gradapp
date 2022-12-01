@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Given(/^I am on the approve applications page$/) do
-  visit approve_applications_path
+  visit application_decisions_path
 end
 
 And(/^There are the following applications created:$/) do |applications|

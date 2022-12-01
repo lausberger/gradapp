@@ -10,7 +10,7 @@
     %tbody
       - @applications.each do |application|
         %tr
-          =form_tag approve_application_path(application[:id]), method: :put do
+          =form_tag application_decision_path(application[:id]), method: :put do
             %td= application[:first_name]
             %td= application[:last_name]
             %td= application[:email]

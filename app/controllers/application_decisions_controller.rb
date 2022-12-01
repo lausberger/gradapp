@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Controller to Approve to Faculty Account
-class ApproveApplicationsController < ApplicationController
+class ApplicationDecisionsController < ApplicationController
   before_action :require_login
 
   def index
@@ -24,6 +24,6 @@ class ApproveApplicationsController < ApplicationController
     else
       application.update(status: 'submitted')
     end
-    redirect_to approve_applications_path
+    redirect_to application_decisions_path
   end
 end

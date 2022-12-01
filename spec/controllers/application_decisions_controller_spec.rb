@@ -20,7 +20,7 @@ if RUBY_VERSION >= '2.6.0'
   end
 end
 
-describe ApproveApplicationsController do
+describe ApplicationDecisionsController do
   describe 'view application approval page' do
     before(:each) do
       application = {
@@ -59,14 +59,14 @@ describe ApproveApplicationsController do
         allow(controller).to receive(:logged_in?).and_return(true)
         allow(Account).to receive(:find_by).and_return acc
         put :update, { id: @grad_application.id, commit: 'approve' }
-        expect(response).to redirect_to approve_applications_path
+        expect(response).to redirect_to application_decisions_path
       end
       it 'should deny grad application and render show template' do
         acc = create(:account, :department_chair)
         allow(controller).to receive(:logged_in?).and_return(true)
         allow(Account).to receive(:find_by).and_return acc
         put :update, { id: @grad_application.id, commit: 'deny' }
-        expect(response).to redirect_to approve_applications_path
+        expect(response).to redirect_to application_decisions_path
       end
     end
   end

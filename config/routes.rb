@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   resources :approve_faculties
 
   # Approve Applications
-  resources :approve_applications
+  resources :application_decisions
 
   # Student Checklist
   resources :student_checklists
