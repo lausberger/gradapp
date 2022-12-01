@@ -58,15 +58,15 @@ describe ApproveApplicationsController do
         acc = create(:account, :department_chair)
         allow(controller).to receive(:logged_in?).and_return(true)
         allow(Account).to receive(:find_by).and_return acc
-        put :update, { approve: @grad_application.id }
-        expect(response).to redirect_to approve_faculties_path
+        put :update, { id: @grad_application.id, commit: 'approve' }
+        expect(response).to redirect_to approve_applications_path
       end
       it 'should deny grad application and render show template' do
         acc = create(:account, :department_chair)
         allow(controller).to receive(:logged_in?).and_return(true)
         allow(Account).to receive(:find_by).and_return acc
-        put :update, { deny: @grad_application.id }
-        expect(response).to redirect_to approve_faculties_path
+        put :update, { id: @grad_application.id, commit: 'deny' }
+        expect(response).to redirect_to approve_applications_path
       end
     end
   end
