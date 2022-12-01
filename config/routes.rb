@@ -36,6 +36,9 @@ Rails.application.routes.draw do
   # Approve Faculty Members
   resources :approve_faculties
 
+  # Approve Applications
+  resources :approve_applications
+
   # Student Checklist
   resources :student_checklists
   # get 'checklist/:id', to: 'student_checklists#show'
