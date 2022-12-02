@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   resources :faculties
   post 'faculties/search', to: 'faculties#search'
 
+  # Approve Faculty Members
+  resources :approve_faculties
+
   # Student Checklist
   resources :student_checklists
   # get 'checklist/:id', to: 'student_checklists#show'
