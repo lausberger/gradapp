@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get 'messages', to: 'messages#index'
   get 'messages/new', to: 'messages#new'
   post 'messages/send_message', to: 'messages#send_message'
+  get 'messages/reply', to: 'messages#show'
+  post 'messages/reply_message', to: 'messages#reply_message'
 
   # Faculty Search
   resources :faculties
