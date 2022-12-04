@@ -32,6 +32,10 @@ gem 'turbolinks'
 
 gem 'google-cloud-storage'
 
+#Needed for Twitter authentication
+gem 'omniauth-twitter'
+gem 'omniauth-rails_csrf_protection'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
