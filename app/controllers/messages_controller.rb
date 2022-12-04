@@ -10,10 +10,12 @@ class MessagesController < ApplicationController
     @messages = []
     allMessages.each do |message|
       if message.messages_id.nil?
-        messagehash = {:message => message}
+        messagehash = {:message => message, :reply => []}
         @messages.append(messagehash)
       else
-        messagehash = {:message => message, :reply => Message.where(message_id: message.messages_id)}
+        replyid = message.messages_id
+        parent = Message.find(replyid)
+        messagehash = {:message => message, :reply => [parent]}
         @messages.append(messagehash)
       end
     end
@@ -21,7 +23,7 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find_by(id: params[:format])
-    if @current_user != @message.to_id
+    if @current_user.id != @message.to_id
       flash[:warning] = 'You cannot view this message'
       redirect_to '/messages'
     end
