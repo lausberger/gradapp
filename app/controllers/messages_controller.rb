@@ -56,7 +56,12 @@ class MessagesController < ApplicationController
     to_id = reply.from_id
     to_email = reply.from_email
     body = params[:body]
+    if @current_user.id != reply.to_id
+      flash[:warning] = 'You cannot reply to a message you were not sent'
+      redirect_to '/messages' and return
+    end
     Message.create!(to_id: to_id, from_id: acc.id, to_email: to_email, from_email: acc.email, body: body, messages_id: reply_id)
+    flash[:notice] = 'Reply Sent'
     redirect_to '/messages'
   end
 end
