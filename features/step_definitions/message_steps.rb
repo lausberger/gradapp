@@ -21,12 +21,15 @@ Given('the following accounts have been added:') do |accounts_table|
 end
 
 When('I have visited the messages page') do
-  # pending
   visit '/messages'
 end
 
 When('I have visited the send messages page') do
   visit '/messages/new'
+end
+
+When('I have visited the replies page') do
+  visit '/messages/reply.1'
 end
 
 When('I fill in the {string} with {string}') do |string, string2|
@@ -42,6 +45,10 @@ When('I have logged in as John Doe') do
   fill_in 'Email', with: 'jdoe@gmail.com'
   fill_in 'Password', with: '1234'
   click_button 'Log in'
+end
+
+When('I view the reply page for message {string}') do |string|
+  visit ('/messages/reply.' + string)
 end
 
 When('pending') do
