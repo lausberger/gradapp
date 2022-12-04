@@ -4,7 +4,7 @@ Given(/^I am on the approve faculty accounts page$/) do
   visit approve_faculties_path
 end
 
-And(/^There are the following accounts created:$/) do |accounts|
+Given(/^There are the following accounts created:$/) do |accounts|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :topic_area]
   accounts.hashes.each do |account|
     account_creation = Account.create!(first_name: account[:first_name], last_name: account[:last_name], email: account[:email],
