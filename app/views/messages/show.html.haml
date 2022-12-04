@@ -1,0 +1,20 @@
+%h2 Reply:
+%a Sender:
+%a= @message.from_email
+%br
+%a Subject:
+%a= @message.subject
+%br
+%a Body:
+%a= @message.body
+%br
+= form_tag 'reply_message', :method => :post, :id => 'reply_message' do
+  %br
+  %a Reply Body:
+  %br
+  = text_area_tag :body, params[:body], cols: 40, rows: 10, :id => 'body_box'
+  %br
+  = submit_tag "Reply to Message", :id => 'reply_button'
+  = hidden_field_tag :reply, @message.id
+
+= link_to "Return to My Messages", "/messages"
