@@ -8,7 +8,8 @@ And(/^There are the following accounts created:$/) do |accounts|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :topic_area]
   accounts.hashes.each do |account|
     account_creation = Account.create!(first_name: account[:first_name], last_name: account[:last_name], email: account[:email],
-                                       password: account[:password], password_confirmation: account[:password_confirmation], account_type: account[:account_type])
+                                       password: account[:password], password_confirmation: account[:password_confirmation],
+                                       account_type: account[:account_type])
     next if account[:topic_area].empty?
 
     Faculty.create!(account_id: account_creation.id, topic_area: account[:topic_area])
