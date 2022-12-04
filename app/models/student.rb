@@ -1,4 +1,3 @@
-# frozen_string_literal: true
-
-class Student < Account
+class Student < ActiveRecord::Base
+  belongs_to :account
 end
