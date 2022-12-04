@@ -88,8 +88,7 @@ describe Account do
         expect(Account.where(email: @account.email)).to exist
       end
       it 'should NOT appear in set of Faculty' do
-        pending 'Needs to be updated to work with new account and faculty table'
-        expect(Faculty.where(email: @account.email)).not_to exist
+        expect{ Faculty.find_by(email: @account.email) }.to raise_error ActiveRecord::StatementInvalid
       end
     end
   end
