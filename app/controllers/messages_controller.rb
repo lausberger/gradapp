@@ -6,27 +6,27 @@ class MessagesController < ApplicationController
   def index
     # render index page when going to /messages
     acc = Account.find_by(id: @current_user)
-    allMessages = Message.where(to_id: acc.id)
+    all_messages = Message.where(to_id: acc.id)
     @messages = []
-    allMessages.each do |message|
+    all_messages.each do |message|
       if message.messages_id.nil?
-        messagehash = {:message => message, :reply => []}
-        @messages.append(messagehash)
+        messagehash = { message: message, reply: [] }
       else
         replyid = message.messages_id
         parent = Message.find(replyid)
-        messagehash = {:message => message, :reply => [parent]}
-        @messages.append(messagehash)
+        messagehash = { message: message, reply: [parent] }
       end
+      @messages.append(messagehash)
     end
   end
 
   def show
     @message = Message.find_by(id: params[:format])
-    if @current_user.id != @message.to_id
-      flash[:warning] = 'You cannot view this message'
-      redirect_to '/messages'
-    end
+    redirect_to '/messages' and return if @message.nil?
+    return if @current_user.id == @message.to_id
+
+    flash[:warning] = 'You cannot view this message'
+    redirect_to '/messages'
   end
 
   def send_message
