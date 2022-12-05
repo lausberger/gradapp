@@ -4,6 +4,14 @@
 class DiscussionsController < ApplicationController
   # before_action :require_login
 
+  before_action :require_login, only: %i[new create create_reply edit update destroy]
+
+  before_action :optional_login, only: %i[show index]
+
+  def optional_login
+    @current_user = current_user
+  end
+
   def show
     discussion_id = params[:id]
     @root_discussion = Discussion.root_post(discussion_id)
