@@ -36,7 +36,7 @@ describe DiscussionsController do
         title: 'Test',
         body: 'Test',
         account_id: Account.find_by(first_name: 'Jack').id,
-        root_discussion: -1
+        root_discussion_id: -1
       }
       Discussion.create! discussion
     end
@@ -64,7 +64,7 @@ describe DiscussionsController do
         title: 'Test',
         body: 'Test',
         account_id: Account.find_by(first_name: 'Jack').id,
-        root_discussion: -1
+        root_discussion_id: -1
       }
     end
     it 'should redirect to login page' do
@@ -77,6 +77,43 @@ describe DiscussionsController do
       allow(Account).to receive(:find_by).and_return acc
       post :create, { discussion: @discussion }
       expect(response).to redirect_to discussions_path
+    end
+  end
+  describe 'creating discussion replies' do
+    before(:each) do
+      account = {
+        first_name: 'Jack',
+        last_name: 'Stockley',
+        email: 'jack-stockley@uiowa.edu',
+        password: 'Password123',
+        password_confirmation: 'Password123',
+        account_type: 'Student'
+      }
+      Account.create! account
+      discussion = {
+        title: 'Test',
+        body: 'Test',
+        account_id: Account.find_by(first_name: 'Jack').id,
+        root_discussion_id: -1
+      }
+      Discussion.create! discussion
+      @discussion_reply = {
+        title: 'Hello',
+        body: 'Hello World',
+        account_id: Account.find_by(first_name: 'Jack').id,
+        root_discussion_id: Discussion.find_by(title: 'Test').id
+      }
+    end
+    it 'should redirect to login page' do
+      post :create_reply, { discussion: @discussion_reply }
+      expect(response).to redirect_to login_path
+    end
+    it 'should show all the discussion replies' do
+      acc = create(:account)
+      allow(controller).to receive(:logged_in?).and_return(true)
+      allow(Account).to receive(:find_by).and_return acc
+      post :create_reply, { discussion: @discussion_reply }
+      expect(response).to redirect_to discussion_path(id: @reply_discussion[:root_discussion_id])
     end
   end
 
