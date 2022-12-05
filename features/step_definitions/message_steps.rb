@@ -21,6 +21,7 @@ Given('the following accounts have been added:') do |accounts_table|
 end
 
 When('I have visited the messages page') do
+  # pending
   visit '/messages'
 end
 
@@ -39,7 +40,7 @@ end
 When('I have logged in as John Doe') do
   visit login_path
   fill_in 'Email', with: 'jdoe@gmail.com'
-  fill_in 'Password', with: '12345678'
+  fill_in 'Password', with: '1234'
   click_button 'Log in'
 end
 
