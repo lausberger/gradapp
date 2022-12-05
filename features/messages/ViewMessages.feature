@@ -3,8 +3,8 @@ Feature: Allow a User to view their messages
   Background: messages have been added to the database
     Given the following accounts have been added:
       | first_name     | last_name   | email           | password | password_confirmation | account_type     |
-      | John           | Doe         | jdoe@gmail.com  | 12345678 | 12345678              | Student          |
-      | Jane           | Doe         | jadoe@gmail.com | 12345678 | 12345678              | Faculty          |
+      | John           | Doe         | jdoe@gmail.com  | 1234     | 1234                  | Student          |
+      | Jane           | Doe         | jadoe@gmail.com | 1234     | 1234                  | Faculty          |
     Given the following messages have been sent to John Doe:
       | to_id     | from_id  | to_email         | from_email      | subject       | body       |
       | 1         | 2        | jdoe@gmail.com   | jadoe@gmail.com | Hello.        | Hi. Hey.   |
