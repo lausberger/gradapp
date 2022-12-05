@@ -14,10 +14,12 @@
         %td= "#{discussion.account[:first_name]} #{discussion.account[:last_name]}"
         %td= link_to "View Replies", discussion_path(discussion)
         %td
-        %td= link_to "Edit", edit_discussion_path(discussion)
-        %td
-        %td= link_to "Delete", discussion_path(discussion), method: :delete
+        - if !@current_user.nil? and @current_user[:first_name] == discussion.account[:first_name] and @current_user[:last_name] == discussion.account[:last_name]
+          %td= link_to "Edit", edit_discussion_path(discussion)
+          %td
+          %td= link_to "Delete", discussion_path(discussion), method: :delete
 
 %br
+
 
 =link_to "Post new Discussion", new_discussion_path, {:id => "post_new_discussion"}
