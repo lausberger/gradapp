@@ -63,6 +63,22 @@ applications = [
     phone: '3196408865',
     dob: Date.new,
     status: 'submitted'
+  },
+  {
+    first_name: 'Jack',
+    last_name: 'Stockley',
+    email: 'jack-stockley@uiowa.edu',
+    phone: '8722214561',
+    dob: Date.new,
+    status: 'submitted'
+  },
+  {
+    first_name: 'Caleb',
+    last_name: 'Marx',
+    email: 'caleb-marx@uiowa.edu',
+    phone: '1234567890',
+    dob: Date.new,
+    status: 'withdrawn'
   }
 ]
 
