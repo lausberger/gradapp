@@ -11,7 +11,7 @@
       %tr
         %td= discussion[:title]
         %td= discussion[:body]
-        %td= discussion[:author]
+        %td= "#{discussion.account[:first_name]} #{discussion.account[:last_name]}"
         %td= link_to "View Replies", discussion_path(discussion)
         %td
         %td= link_to "Edit", edit_discussion_path(discussion)

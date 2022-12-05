@@ -1,4 +1,4 @@
-= content_for(:title, "#{@root_discussion[:title]} - #{@root_discussion[:author]}")
+= content_for(:title, "#{@root_discussion[:title]} - #{@root_discussion.account[:first_name]} #{@root_discussion.account[:last_name]}")
 
 %h1#discussion_title= @root_discussion[:title]
 
@@ -10,7 +10,7 @@
     - @discussions_with_replies.each do | discussion_with_reply|
       %tr
         %td= discussion_with_reply[:body]
-        %td= discussion_with_reply[:author]
+        %td= "#{discussion_with_reply.account[:first_name]} #{discussion_with_reply.account[:last_name]}"
         %td
         %td= link_to "Edit", edit_discussion_path(discussion_with_reply)
         %td
