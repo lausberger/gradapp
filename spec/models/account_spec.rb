@@ -70,7 +70,7 @@ describe Account do
 
   describe 'adding an account to database' do
     context 'Student' do
-      before(:all) do
+      before(:each) do
         account_params = {
           first_name: 'Lucas',
           last_name: 'Ausberger',
