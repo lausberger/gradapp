@@ -4,11 +4,12 @@ Given(/^I am on the approve faculty accounts page$/) do
   visit approve_faculties_path
 end
 
-And(/^There are the following accounts created:$/) do |accounts|
-  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type, :topic_area]
+Given(/^There are the following accounts created:$/) do |accounts|
+  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :topic_area]
   accounts.hashes.each do |account|
     account_creation = Account.create!(first_name: account[:first_name], last_name: account[:last_name], email: account[:email],
-                                       password: account[:password], account_type: account[:account_type])
+                                       password: account[:password], password_confirmation: account[:password_confirmation],
+                                       account_type: account[:account_type])
     next if account[:topic_area].empty?
 
     Faculty.create!(account_id: account_creation.id, topic_area: account[:topic_area])
@@ -16,7 +17,7 @@ And(/^There are the following accounts created:$/) do |accounts|
 end
 
 When(/^I approve the following faculty account:$/) do |accounts|
-  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type, :topic_area]
+  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :topic_area]
   # pending 'Change to use web ui'
   page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text

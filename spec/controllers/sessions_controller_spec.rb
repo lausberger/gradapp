@@ -22,22 +22,19 @@ end
 
 describe SessionsController do
   describe 'logging in' do
-    before(:all) do
+    before(:each) do
       @account = Account.create(
-        first_name: 'Guy',
-        last_name: 'McDuderson',
-        email: 'amanda-huginkiss@uiowa.edu',
+        first_name: 'Amanda',
+        last_name: 'Huginkiss',
+        email: 'amanda-huginkiss@gmail.com',
         password: 'password',
         password_confirmation: 'password',
-        account_type: 'Student',
-        id: 69
+        account_type: 'Student'
       )
+      allow(controller).to receive(:logged_in?).and_return(true)
+      @session_params = { email: @account.email, password: @account.password }
     end
-
     context 'with valid information' do
-      before(:all) do
-        @session_params = { email: @account.email, password: @account.password }
-      end
       it 'should redirect back to home page' do
         allow(Account).to receive(:find_by).and_return @account
         post :create, { session: @session_params }
@@ -49,8 +46,7 @@ describe SessionsController do
         expect(flash[:notice]).to eq "Welcome, #{@account.first_name}."
       end
       it 'should be possible to view user profile' do
-        # this one is :find rather than :find_by because of application#logged_in?
-        allow(Account).to receive(:find).and_return @account
+        allow(Account).to receive(:find_by).and_return @account
         post :create, { session: @session_params }
         @controller = AccountsController.new
         get :show
@@ -65,7 +61,7 @@ describe SessionsController do
     end
 
     context 'with incorrect information' do
-      before(:all) do
+      before(:each) do
         @session_params = { email: 'wrong-email@email.email', password: @account.password }
       end
       it 'should render the login page' do
@@ -80,7 +76,7 @@ describe SessionsController do
 
     context 'with invalid information' do
       context 'missing email' do
-        before(:all) do
+        before(:each) do
           @session_params = { email: '', password: @account.password }
         end
         it 'should render the login page' do
@@ -94,7 +90,7 @@ describe SessionsController do
       end
 
       context 'invalid email' do
-        before(:all) do
+        before(:each) do
           @session_params = { email: 'email lol', password: @account.password }
         end
         it 'should redirect back to login page' do
@@ -108,7 +104,7 @@ describe SessionsController do
       end
 
       context 'missing password' do
-        before(:all) do
+        before(:each) do
           @session_params = { email: @account.email, password: '' }
         end
         it 'should redirect back to login page' do
@@ -124,28 +120,28 @@ describe SessionsController do
   end
 
   describe 'logging out' do
-    it 'should redirect back to the home page' do
+    before(:each) do
+      @current_user = create(:account)
+      post :create, { session: { email: @current_user.email, password: @current_user.password } }
       delete :destroy
+    end
+    it 'should redirect back to the home page' do
       expect(response).to redirect_to root_path
     end
     it 'should display a notice of successful logout' do
-      delete :destroy
       expect(flash[:notice]).to eq 'You have been signed out successfully.'
     end
-    it 'should have null session id' do
-      delete :destroy
+    it 'should have null session user id' do
       expect(session[:user_id]).to be nil
     end
     context 'and attempting session-specific actions' do
       it 'should not be possible to view the user profile' do
-        delete :destroy
         @controller = AccountsController.new
         get :show
         expect(response).to redirect_to login_path
         @controller = SessionsController.new
       end
       it 'should display a notice regarding the login session' do
-        delete :destroy
         @controller = AccountsController.new
         get :show
         expect(flash[:warning]).to eq 'You must be logged in to perform that action'
