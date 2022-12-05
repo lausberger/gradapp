@@ -113,7 +113,7 @@ describe DiscussionsController do
       allow(controller).to receive(:logged_in?).and_return(true)
       allow(Account).to receive(:find_by).and_return acc
       post :create_reply, { discussion: @discussion_reply }
-      expect(response).to redirect_to discussion_path(id: @reply_discussion[:root_discussion_id])
+      expect(response).to redirect_to discussion_path(@discussion_reply[:root_discussion_id])
     end
   end
 
