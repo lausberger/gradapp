@@ -21,5 +21,5 @@
 
 %br
 
-
-=link_to "Post new Discussion", new_discussion_path, {:id => "post_new_discussion"}
+- if !@current_user.nil?
+  =link_to "Post new Discussion", new_discussion_path, {:id => "post_new_discussion"}
