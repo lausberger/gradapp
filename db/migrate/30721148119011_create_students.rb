@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Migration to add Students Table referencing account
 class CreateStudents < ActiveRecord::Migration
   def change
     create_table :students do |t|
