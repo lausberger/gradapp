@@ -12,9 +12,10 @@
         %td= discussion_with_reply[:body]
         %td= "#{discussion_with_reply.account[:first_name]} #{discussion_with_reply.account[:last_name]}"
         %td
-        %td= link_to "Edit", edit_discussion_path(discussion_with_reply)
-        %td
-        %td= link_to "Delete", discussion_path(discussion_with_reply), method: :delete
+        - if !@current_user.nil? and @current_user[:first_name] == discussion_with_reply.account[:first_name] and @current_user[:last_name] == discussion_with_reply.account[:last_name]
+          %td= link_to "Edit", edit_discussion_path(discussion_with_reply)
+          %td
+          %td= link_to "Delete", discussion_path(discussion_with_reply), method: :delete
 
 %br
 
