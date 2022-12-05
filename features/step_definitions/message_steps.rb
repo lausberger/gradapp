@@ -48,7 +48,7 @@ When('I have logged in as John Doe') do
 end
 
 When('I view the reply page for message {string}') do |string|
-  visit ('/messages/reply.' + string)
+  visit("/messages/reply.#{string}")
 end
 
 When('pending') do
