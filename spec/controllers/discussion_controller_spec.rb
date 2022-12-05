@@ -45,7 +45,7 @@ describe DiscussionsController do
       expect(response).to render_template('index')
     end
     it 'should show the template with discussion replies' do
-      get :show, {id: Discussion.find_by(title: 'Test').id}
+      get :show, { id: Discussion.find_by(title: 'Test').id }
       expect(response).to render_template('show')
     end
   end
