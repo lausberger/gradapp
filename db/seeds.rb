@@ -51,14 +51,16 @@ accounts = [
     first_name: 'Jack',
     last_name: 'Stockley',
     email: 'jnstockley@uiowa.edu',
-    password_digest: 'Password123',
+    password: 'Password123',
+    password_confirmation: 'Password123',
     account_type: 'Faculty'
   },
   {
     first_name: 'Hans',
     last_name: 'Johnson',
     email: 'hans-johnson@uiowa.edu',
-    password_digest: 'i<3SelT',
+    password: 'i<3SelT',
+    password_confirmation: 'i<3SelT',
     account_type: 'Faculty'
   },
   {
