@@ -18,10 +18,10 @@
 
 %br
 
-= form_tag discussions_create_reply_path do
-  %input{:name => "root_discussion_id", :id => 'root_discussion_id', :value => @root_discussion[:id], :hidden => 'true'}
-  %label{:id => 'body'} Body
-  %input{:name => "body", :id => "body", :for => 'body'}
-  %label{:id => 'author'} Author
-  %input{:name => "author", :id => "author", :for => 'author'}
-  =submit_tag "Post Reply", id: "post_reply_button"
+- if !@current_user.nil?
+  = form_tag discussions_create_reply_path do
+    %input{:name => "root_discussion_id", :id => 'root_discussion_id', :value => @root_discussion[:id], :hidden => 'true'}
+    %label{:id => 'body'} Body
+    %input{:name => "body", :id => "body", :for => 'body'}
+    %input{:name => "author_id", :id => "author_id", :value => @current_user[:id], :hidden => 'true'}
+    =submit_tag "Post Reply", id: "post_reply_button"
