@@ -2,6 +2,9 @@
 
 # Discussion model class
 class Discussion < ActiveRecord::Base
+
+  belongs_to :account
+
   def self.root_posts
     Discussion.where(root_discussion_id: -1)
   end
