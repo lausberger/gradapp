@@ -38,8 +38,8 @@ class DiscussionsController < ApplicationController
   def create_reply
     root_discussion_id = params[:root_discussion_id]
     body = params[:body]
-    author = params[:author]
-    Discussion.create!(title: '', body: body, author: author, root_discussion_id: root_discussion_id)
+    account_id = params[:author_id]
+    Discussion.create!(title: '', body: body, account_id: account_id, root_discussion_id: root_discussion_id)
     redirect_to discussion_path(root_discussion_id)
   end
 
