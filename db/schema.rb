@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119013) do
+ActiveRecord::Schema.define(version: 30721148119014) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(version: 30721148119013) do
     t.string   "root_discussion_id", default: "-1"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.integer  "author_id"
+    t.integer  "account_id"
   end
 
-  add_index "discussions", ["author_id"], name: "index_discussions_on_author_id"
+  add_index "discussions", ["account_id"], name: "index_discussions_on_account_id"
 
   create_table "documents", force: :cascade do |t|
     t.integer  "graduate_application_id"
