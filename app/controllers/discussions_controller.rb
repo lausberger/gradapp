@@ -30,7 +30,7 @@ class DiscussionsController < ApplicationController
     if discussion.key? :root_discussion_id
       root_id = discussion[:root_discussion_id]
     end
-    Discussion.create!(title: discussion[:title], body: discussion[:body], author: discussion[:author],
+    Discussion.create!(title: discussion[:title], body: discussion[:body], account_id: @current_user[:id],
                        root_discussion_id: root_id)
     redirect_to discussions_path
   end
