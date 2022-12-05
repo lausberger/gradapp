@@ -1,0 +1,20 @@
+- if @current_user.account_type == 'Department Chair'
+  %h1 Graduate Applications needing a Final Decision
+  %table
+    %thead
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Phone
+      %th DOB
+    %tbody
+      - @applications.each do |application|
+        %tr
+          =form_tag application_decision_path(application[:id]), method: :put do
+            %td= application[:first_name]
+            %td= application[:last_name]
+            %td= application[:email]
+            %td= application[:phone]
+            %td= application[:dob]
+            %td= submit_tag "Approve", id: "approve_application_button"
+            %td= submit_tag "Deny", id: "deny_application_button"
