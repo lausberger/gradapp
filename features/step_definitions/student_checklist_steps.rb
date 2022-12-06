@@ -14,7 +14,7 @@ And(/^There is an empty Student Checklist is created for student with email "([^
 end
 
 And(/^I am on the student checklist page for student with email "([^"]*)"$/) do |email|
-  student = Student.find_by(email: email)
+  student = Account.find_by(email: email)
   visit student_checklist_path student.id
 end
 
