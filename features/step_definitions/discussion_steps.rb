@@ -9,8 +9,21 @@ When(/^I post a reply with body "([^"]*)"$/) do |body|
   click_button(id: 'post_reply_button')
 end
 
-When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3, arg4|
-  pending
+When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"]*)" and author "([^"]*)"$/) do |button_name, title, body, author|
+  all('#main tr').each do |row|
+    items = row.all('td')
+    if !title.nil?
+      log(items[0].text)
+      if items[0].text == title && items[1].text == body && items[2].text == author
+        expect(row).to have_css('a', text: button_name)
+        row.find('a', text: button_name).click
+      end
+    elsif items[0].text == body && items[1].text == author
+      expect(row).to have_css('a', text: button_name)
+      row.find('a', text: button_name).click
+    end
+  end
+  expect(find('#discussion_edit_title').text).to eq 'Edit Discussion Post'
 end
 
 When(/^I post a new discussion with title "([^"]*)" and body "([^"]*)"$/) do |title, body|
@@ -64,8 +77,12 @@ And(/^I am on the reply page for post title "([^"]*)" and body "([^"]*)" and aut
   expect(find('#discussion_title').text).to eq title
 end
 
-And(/^I change the(?: title to "([^"]*)" and)? body to "([^"]*)"$/) do |arg1, arg2|
-  pending
+And(/^I change the(?: title to "([^"]*)" and)? body to "([^"]*)"$/) do |title, body|
+  unless title.nil?
+    fill_in('Title', with: title)
+  end
+  fill_in('Body', with: body)
+  click_button(id: 'edit_discussion_post')
 end
 
 Then(/^I should see a reply with "([^"]*)" by "([^"]*)" to post "([^"]*)" with body "([^"]*)" by "([^"]*)"$/) do |arg1, arg2, arg3, arg4, arg5|
@@ -80,8 +97,10 @@ Then(/^I should see a reply with body "([^"]*)" by "([^"]*)"$/) do |arg1, arg2|
   pending
 end
 
-Then(/^I should not see any "([^"]*)" buttons$/) do |arg|
-  pending
+Then(/^I should not see any "([^"]*)" buttons$/) do |button_name|
+  all('#main tr').each do |row|
+    expect(row).not_to have_css('a', text: button_name)
+  end
 end
 
 Then(/^I should see a discussion post with(?: title "([^"]*)" and)? body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|

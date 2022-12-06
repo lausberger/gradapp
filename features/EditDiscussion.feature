@@ -6,25 +6,25 @@ Feature: Edit Discussion
 
     And There are the following accounts created:
       | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+      | Jack       | Stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
 
-    And There is discussion post with the title "Test" and body "Test" and author "Jack Stockley"
+    And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
 
     Then I should not see any "edit" buttons
 
   Scenario: Edit existing discussion being signed in
 
     Given There are the following accounts created:
-      | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+      | first_name | last_name | email                | password    | password_confirm | account_type | topic_area |
+      | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
 
-    And I am signed with the email "<string>" and the password "<string>"
+    And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
+
+    And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
 
     And I am on the discussions page
 
-    And There is discussion post with the title "Test" and body "Test" and author "Jack Stockley"
-
-    When I click on "edit" button for post with title "Test" body "Test" and author "Jack Stockley"
+    When I click on "Edit" button for post with title "Test" body "Test" and author "Jack Stockley"
 
     And I change the title to "Test 2" and body to "Test 3"
 
@@ -35,30 +35,32 @@ Feature: Edit Discussion
     Given I am on the discussions page
 
     And There are the following accounts created:
-      | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+      | first_name | last_name | email                | password    | password_confirm | account_type | topic_area |
+      | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
 
-    And There is discussion post with the title "Test" and body "Test" and author "Jack Stockley"
+    And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
 
     And I am on the reply page for post title "Test" and body "Test" and author "Jack Stockley"
 
-    Then I should not see any "edit" buttons
+    Then I should not see any "Edit" buttons
 
   Scenario: Edit reply to existing discussion being signed in
 
     Given There are the following accounts created:
-      | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+      | first_name | last_name | email                | password    | password_confirm | account_type | topic_area |
+      | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
 
-    And I am signed with the email "<string>" and the password "<string>"
+    And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
+
+    And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
+
+    And There is reply to discussion post with title "Test" and body "Test" with body "Hello" by "Jack Stockley"
 
     And I am on the discussions page
 
-    And There is discussion post with the title "Test" and body "Test" and author "Jack Stockley"
-
     And I am on the reply page for post title "Test" and body "Test" and author "Jack Stockley"
 
-    When I click on "edit" button for post with body "Test" and author "Jack Stockley"
+    When I click on "Edit" button for post with body "Hello" and author "Jack Stockley"
 
     And I change the body to "Test 3"
 
