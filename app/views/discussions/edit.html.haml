@@ -1,11 +1,10 @@
-%h1 Edit Discussion Post
+%h1.title Edit Discussion Post
 
 = form_tag discussion_path(@discussion), :method => :put do
 
   - if !@discussion[:title].empty?
     = label :discussion, :title, 'Title'
     = text_field :discussion, 'title', value: @discussion[:title]
-  -
 
   = label :discussion, :body, 'Body'
   = text_field :discussion, 'body', value: @discussion[:body]
