@@ -4,8 +4,9 @@ Given(/^I am on the discussions page$/) do
   visit discussions_path
 end
 
-When(/^I post a reply with body "([^"]*)"$/) do |arg|
-  pending
+When(/^I post a reply with body "([^"]*)"$/) do |body|
+  fill_in('Body', with: body)
+  click_button(id: 'post_reply_button')
 end
 
 When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3, arg4|
@@ -48,7 +49,7 @@ And(/^There is reply to discussion post with title "([^"]*)" and body "([^"]*)" 
 end
 
 And(/^I see a button called "([^"]*)"$/) do |button_name|
-  expect(page).to have_css('a', text: button_name)
+  expect(page).to have_css("##{button_name.gsub(/ /, '_').downcase}_button")
 end
 
 And(/^I am on the reply page for post title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|
@@ -60,6 +61,7 @@ And(/^I am on the reply page for post title "([^"]*)" and body "([^"]*)" and aut
       break
     end
   end
+  expect(find('#discussion_title').text).to eq title
 end
 
 And(/^I change the(?: title to "([^"]*)" and)? body to "([^"]*)"$/) do |arg1, arg2|

@@ -9,10 +9,10 @@ Feature: Post Discussion
   Scenario: Create new discussion being signed in
 
     Given There are the following accounts created:
-      | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+      | first_name | last_name | email                | password    | password_confirm | account_type | topic_area |
+      | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
 
-    And I am signed with the email "<string>" and the password "<string>"
+    And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
 
     And I am on the discussions page
 
@@ -20,7 +20,7 @@ Feature: Post Discussion
 
     When I post a new discussion with title "hello" and body "hello"
 
-    Then I should see a discussion post with title "<string>" and body "<string>" and author "<string>"
+    Then I should see a discussion post with title "hello" and body "hello" and author "Jack Stockley"
 
   Scenario: Reply to discussion without being signed in
 
@@ -28,9 +28,9 @@ Feature: Post Discussion
 
     And There are the following accounts created:
       | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+      | Jack       | Stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
 
-    And There is discussion post with the title "Test" and body "Test" and author "Jack Stockley"
+    And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
 
     And I am on the reply page for post title "Test" and body "Test" and author "Jack Stockley"
 
@@ -39,19 +39,19 @@ Feature: Post Discussion
   Scenario: Reply to discussion being signed in
 
     Given There are the following accounts created:
-      | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+      | first_name | last_name | email                | password    | password_confirm | account_type | topic_area |
+      | Jack       | Stockley  | jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
 
-    And I am signed with the email "<string>" and the password "<string>"
+    And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
 
     And I am on the discussions page
 
-    And There is discussion post with the title "Test" and body "Test" and author "Jack Stockley"
+    And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
 
     And I am on the reply page for post title "Test" and body "Test" and author "Jack Stockley"
 
-    And I see a button called "Post new Discussion"
+    And I see a button called "Post Reply"
 
     When I post a reply with body "Hello World"
 
-    Then I should see a reply with body "Hello World" by "Jack Stockley"
+    Then I should see a discussion post with body "Hello World" and author "Jack Stockley"
