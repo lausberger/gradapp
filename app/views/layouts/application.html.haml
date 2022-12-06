@@ -7,14 +7,7 @@
     = csrf_meta_tags
 
   %body
-    %table
-      %tr
-        %td
-          %h1.title Graduate Programs
-        %td
-          %span(class="homeLinkSpanClass")
-            =link_to "Homepage", "/home"
-    %div
+    %h1 Graduate Programs
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
@@ -24,3 +17,12 @@
         #alert.message= flash[:alert]
 
       = yield
+    
+      #spacer 
+      = link_to 'Return to Home Page', root_path
+      %h3 Contact Us
+      %p Office of the Dean
+      %p 201 Gilmore Hall
+      %p Phone: 319-335-2143
+      %p Email: gradcoll@uiowa.edu
+      %p Iowa City, IA 52242-1320
