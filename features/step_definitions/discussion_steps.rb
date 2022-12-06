@@ -1,158 +1,65 @@
 # frozen_string_literal: true
 
-Given(/^I have added a discussion with the title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|
-  visit new_discussion_path
-  fill_in('Title', with: title)
-  fill_in('Body', with: body)
-  fill_in('Author', with: author)
-  click_button(id: 'post_discussion_button')
+Given(/^I am on the discussions page$/) do
+  pending
 end
 
-Given(/^There is a reply with body "([^"]*)" authored by "([^"]*)"$/) do |body, author|
-  fill_in('body', with: body)
-  fill_in('author', with: author)
-  click_button(id: 'post_reply_button')
+When(/^I post a new discussion with title "([^"]*)" and body "([^"]*)"$/) do |arg1, arg2|
+  pending
 end
 
-Given(/^I am on the discussion page with the title "([^"]*)" and authored by "([^"]*)"$/) do |title, author|
-  all('tbody tr').each do |tr|
-    post_title = tr.all('td')[0].text
-    post_author = tr.all('td')[2].text
-    if post_title.eql?(title) && post_author.eql?(author)
-      tr.find('a', text: 'View Replies').click
-    end
-  end
+When(/^I post a reply with body "([^"]*)"$/) do |arg|
+  pending
 end
 
-When(/^I am on the discussions home page$/) do
-  visit discussions_path
+When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3, arg4|
+  pending
 end
 
-When(/^I post a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |post_body, post_author|
-  fill_in('body', with: post_body)
-  fill_in('author', with: post_author)
-  click_button(id: 'post_reply_button')
+And(/^I have added a discussion with title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3|
+  pending
 end
 
-When(/^I have deleted the discussion with the title "([^"]*)" authored by "([^"]*)"$/) do |post_title, post_author|
-  all('tbody tr').each do |tr|
-    title = tr.all('td')[0].text
-    author = tr.all('td')[2].text
-    next unless title.eql?(post_title) && author.eql?(post_author)
-
-    # tr.find('a', :text => 'Delete').click
-    within(tr) do
-      click_on 'Delete'
-    end
-  end
+And(/^There is discussion post with the title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3|
+  pending
 end
 
-When(/^I have deleted the discussion reply with the body "([^"]*)" authored by "([^"]*)"$/) do |reply_body, reply_author|
-  all('tbody tr').each do |tr|
-    body = tr.all('td')[0].text
-    author = tr.all('td')[1].text
-    if body.eql?(reply_body) && author.eql?(reply_author)
-      tr.all('td')[3].click
-    end
-  end
+And(/^There is reply to discussion post with title "([^"]*)" and body "([^"]*)" with body "([^"]*)" by "([^"]*)"$/) do |arg1, arg2, arg3, arg4|
+  pending
 end
 
-When(/^I edit the discussion titled "([^"]*)" by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |old_title, post_author, new_title, new_body|
-  all('tbody tr').each do |tr|
-    title = tr.all('td')[0].text
-    author = tr.all('td')[2].text
-    next unless title.eql?(old_title) && author.eql?(post_author)
-
-    tr.find('a', text: 'Edit').click
-    fill_in('Title', with: new_title)
-    fill_in('Body', with: new_body)
-    click_button(id: 'edit_discussion_post')
-  end
+And(/^I see a button called "([^"]*)"$/) do |arg1|
+  pending
 end
 
-When(/^I edit discussion reply with body "([^"]*)" authored by "([^"]*)" to body "([^"]*)"$/) do |old_body, post_author, new_body|
-  all('tbody tr').each do |tr|
-    body = tr.all('td')[0].text
-    author = tr.all('td')[1].text
-    next unless body.eql?(old_body) && author.eql?(post_author)
-
-    tr.find('a', text: 'Edit').click
-    fill_in('Body', with: new_body)
-    click_button(id: 'edit_discussion_post')
-  end
+And(/^I am on the reply page for post title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3|
+  pending
 end
 
-Then(/^I should see the discussion post by "([^"]*)"$/) do |author|
-  expect(find_post_by_author(author)).to be_truthy
+And(/^I change the(?: title to "([^"]*)" and)? body to "([^"]*)"$/) do |arg1, arg2|
+  pending
 end
 
-Then(/^I should see a reply with body "([^"]*)" and authored by "([^"]*)"$/) do |body, author|
-  found_post = false
-  all('tbody tr').each do |tr|
-    post_body = tr.all('td')[0].text
-    post_author = tr.all('td')[1].text
-    if post_body.eql?(body) && post_author.eql?(author)
-      found_post = true
-      break
-    end
-  end
-  expect(found_post).to be_truthy
+Then(/^I should see a reply with "([^"]*)" by "([^"]*)" to post "([^"]*)" with body "([^"]*)" by "([^"]*)"$/) do |arg1, arg2, arg3, arg4, arg5|
+  pending
 end
 
-Then(/^I should not see the discussion post by "([^"]*)"$/) do |author|
-  expect(find_post_by_author(author)).to be_falsey
+Then(/^I should not see a button called "([^"]*)"$/) do |arg1|
+  pending
 end
 
-Then(/^I should not see the discussion post with title "([^"]*)"$/) do |title|
-  expect(find_post_by_title(title)).to be_falsey
+Then(/^I should see a reply with body "([^"]*)" by "([^"]*)"$/) do |arg1, arg2|
+  pending
 end
 
-Then(/^I should be redirected to the discussion homepage$/) do
-  page_title = page.title
-  expected_page_title = 'Student Discussions'
-  expect(page_title).eql? expected_page_title
+Then(/^I should not see any "([^"]*)" buttons$/) do |arg|
+  pending
 end
 
-Then(/^I should be redirected to the discussion page for the discussion with title "([^"]*)" authored by "([^"]*)"$/) do |title, author|
-  page_title = page.title
-  expected_page_title = "#{title} - #{author}"
-  expect(page_title).eql? expected_page_title
+Then(/^I should see a discussion post with(?: title "([^"]*)" and)? body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3|
+  pending
 end
 
-Then(/^I should see the discussion post by "([^"]*)" with title "([^"]*)" and body "([^"]*)"$/) do |author, title, body|
-  found_post = false
-  all('tbody tr').each do |tr|
-    post_title = tr.all('td')[0].text
-    post_body = tr.all('td')[1].text
-    post_author = tr.all('td')[2].text
-    if post_title.eql?(title) && post_body.eql?(body) && post_author.eql?(author)
-      found_post = true
-      break
-    end
-  end
-  expect(found_post).to be_truthy
-end
-
-def find_post_by_author(author)
-  found_author = false
-  all('tbody tr').each do |tr|
-    post_author = tr.all('td')[2].text
-    if post_author.eql? author
-      found_author = true
-      break
-    end
-  end
-  found_author
-end
-
-def find_post_by_title(title)
-  found_post = false
-  all('tbody tr').each do |tr|
-    post_title = tr.all('td')[0].text
-    if post_title == title
-      found_post = true
-      break
-    end
-  end
-  found_post
+Then(/^I should not see a discussion post with(?: title "([^"]*)" and)? body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3|
+  pending
 end
