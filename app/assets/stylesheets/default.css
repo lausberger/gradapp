@@ -6,9 +6,42 @@ html, body {
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
 }
+input[type=submit] {
+  background-color: gold;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 200ms;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+input[type=submit]:not(:disabled):hover,
+input[type=submit]:not(:disabled):focus {
+  outline: 0;
+  background: rgb(201, 171, 0);
+  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+}
+input[type=submit]:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
+}
 div#main {
   margin: 0;
   padding: 0 20px 20px;
+}
+div#spacer {
+  padding: 0 0 10px;
+}
+div#formrow {
+  padding: 0;
 }
 p {
   line-height: .5;
@@ -44,14 +77,17 @@ table {
   width: 100%;
   border-bottom: 2px solid black;
 }
-table {
+table th {
   border: 2px solid white;
   font-weight: bold;
   background-color: grey;
 }
-table {
+table th, table td{
   padding: 4px;
   text-align: left;
+}
+tr:nth-child(even) {
+  background-color: rgb(209, 209, 209);
 }
 #notice #warning {
   background: rosybrown;
@@ -59,7 +95,6 @@ table {
   padding: 4px;
 }
 form label {
-  display: block;
   line-height: 25px;
   font-weight: bold;
   color: gold;
