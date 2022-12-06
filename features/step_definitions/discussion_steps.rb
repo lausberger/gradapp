@@ -23,7 +23,9 @@ When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"
       row.find('a', text: button_name).click
     end
   end
-  expect(find('#discussion_edit_title').text).to eq 'Edit Discussion Post'
+  if button_name == 'Edit'
+    expect(find('#discussion_edit_title').text).to eq 'Edit Discussion Post'
+  end
 end
 
 When(/^I post a new discussion with title "([^"]*)" and body "([^"]*)"$/) do |title, body|
@@ -44,11 +46,8 @@ And(/^I have added a discussion with title "([^"]*)" and body "([^"]*)" and auth
   Discussion.create discussion
 end
 
-And(/^There is discussion post with the title "([^"]*)" and body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3|
-  pending
-end
-
-And(/^There is reply to discussion post with title "([^"]*)" and body "([^"]*)" with body "([^"]*)" by "([^"]*)"$/) do |root_title, root_body, reply_body, reply_author|
+And(/^There is reply to discussion post with title "([^"]*)" and body "([^"]*)" with body "([^"]*)" by "([^"]*)"$/) do
+                                                                      |root_title, _root_body, reply_body, reply_author|
   names = reply_author.split(/ /)
   account = Account.find_by(first_name: names[0])
   root_discussion = Discussion.find_by(title: root_title)
@@ -85,16 +84,8 @@ And(/^I change the(?: title to "([^"]*)" and)? body to "([^"]*)"$/) do |title, b
   click_button(id: 'edit_discussion_post')
 end
 
-Then(/^I should see a reply with "([^"]*)" by "([^"]*)" to post "([^"]*)" with body "([^"]*)" by "([^"]*)"$/) do |arg1, arg2, arg3, arg4, arg5|
-  pending
-end
-
 Then(/^I should not see a button called "([^"]*)"$/) do |button_name|
   expect(page).not_to have_css('a', text: button_name)
-end
-
-Then(/^I should see a reply with body "([^"]*)" by "([^"]*)"$/) do |arg1, arg2|
-  pending
 end
 
 Then(/^I should not see any "([^"]*)" buttons$/) do |button_name|
@@ -117,6 +108,16 @@ Then(/^I should see a discussion post with(?: title "([^"]*)" and)? body "([^"]*
   end
 end
 
-Then(/^I should not see a discussion post with(?: title "([^"]*)" and)? body "([^"]*)" and author "([^"]*)"$/) do |arg1, arg2, arg3|
-  pending
+Then(/^I should not see a discussion post with(?: title "([^"]*)" and)? body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|
+  all('#main tr').each do |row|
+    items = row.all('td')
+    if title.nil?
+      expect(items[0].text).not_to eq body
+      expect(items[1].text).not_to eq author
+    else
+      expect(items[0].text).not_to eq title
+      expect(items[1].text).not_to eq body
+      expect(items[2].text).not_to eq author
+    end
+  end
 end
