@@ -21,11 +21,11 @@ Given('the following accounts have been added:') do |accounts_table|
 end
 
 When('I have visited the messages page') do
-  visit '/messages'
+  visit messages_path
 end
 
 When('I have visited the send messages page') do
-  visit '/messages/new'
+  visit messages_new_path
 end
 
 When('I have visited the replies page') do

@@ -21,7 +21,7 @@ describe MessagesController do
       end
       it 'should redirect to my messages' do
         expect { post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.' }.to change { Message.count }.by(1)
-        expect(response).to redirect_to('/messages')
+        expect(response).to redirect_to(messages_path)
       end
       it 'should say the message was sent' do
         expect { post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.' }.to change { Message.count }.by(1)
@@ -38,7 +38,7 @@ describe MessagesController do
       end
       it 'should redirect to new messages page' do
         expect { post :send_message, to: '', subject: 'Hello', body: 'Hi. Hey.' }.to change { Message.count }.by(0)
-        expect(response).to redirect_to('/messages/new')
+        expect(response).to redirect_to(messages_new_path)
       end
       it 'should say an incorrect email was used' do
         expect { post :send_message, to: '', subject: 'Hello', body: 'Hi. Hey.' }.to change { Message.count }.by(0)
@@ -57,7 +57,7 @@ describe MessagesController do
       end
       it 'should redirect to new messages page' do
         expect { post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: '' }.to change { Message.count }.by(0)
-        expect(response).to redirect_to('/messages/new')
+        expect(response).to redirect_to(messages_new_path)
       end
       it 'should say the body is empty' do
         expect { post :send_message, to: 'jdoe@gmail.com', subject: 'Hello', body: '' }.to change { Message.count }.by(0)
@@ -102,7 +102,7 @@ describe MessagesController do
           # the person who received the message are different.
           allow(dummy_message).to receive(:to_id).and_return('zz')
           get :show
-          expect(response).to redirect_to('/messages')
+          expect(response).to redirect_to(messages_path)
           expect(flash[:warning]).to match(/You cannot view this message/)
         end
       end
@@ -114,7 +114,7 @@ describe MessagesController do
           allow(Account).to receive(:find_by).and_return @acc
           controller.instance_variable_set(:@current_user, @acc)
           get :show
-          expect(response).to redirect_to('/messages')
+          expect(response).to redirect_to(messages_path)
         end
       end
     end
@@ -134,7 +134,7 @@ describe MessagesController do
       end
       it 'should redirect to my messages' do
         expect { post :reply_message, body: 'Hello' }.to change { Message.count }.by(1)
-        expect(response).to redirect_to('/messages')
+        expect(response).to redirect_to(messages_path)
       end
       it 'should say the reply was sent' do
         expect { post :reply_message, body: 'Hello' }.to change { Message.count }.by(1)
@@ -163,7 +163,7 @@ describe MessagesController do
       end
       it 'should redirect to my messages and not add a reply' do
         expect { post :reply_message, body: 'Hello' }.to change { Message.count }.by(0)
-        expect(response).to redirect_to('/messages')
+        expect(response).to redirect_to(messages_path)
       end
       it 'should flash a warning and not add a reply' do
         expect { post :reply_message, body: 'Hello' }.to change { Message.count }.by(0)

@@ -22,11 +22,11 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find_by(id: params[:format])
-    redirect_to '/messages' and return if @message.nil?
+    redirect_to messages_path and return if @message.nil?
     return if @current_user.id == @message.to_id
 
     flash[:warning] = 'You cannot view this message'
-    redirect_to '/messages'
+    redirect_to messages_path
   end
 
   def send_message
@@ -35,18 +35,18 @@ class MessagesController < ApplicationController
     to_acc = Account.find_by(email: to)
     if to_acc.nil?
       flash[:warning] = 'Please enter a correct email address'
-      redirect_to '/messages/new' and return
+      redirect_to messages_new_path and return
     end
     to_id = to_acc.id
     subject = params[:subject]
     body = params[:body]
     if body.length.zero?
       flash[:warning] = 'Please enter a body for your message'
-      redirect_to '/messages/new' and return
+      redirect_to messages_new_path and return
     end
     Message.create!(to_id: to_id, from_id: acc.id, to_email: to, from_email: acc.email, subject: subject, body: body)
     flash[:notice] = 'Message Sent'
-    redirect_to '/messages'
+    redirect_to messages_path
   end
 
   def reply_message
@@ -58,10 +58,10 @@ class MessagesController < ApplicationController
     body = params[:body]
     if @current_user.id != reply.to_id
       flash[:warning] = 'You cannot reply to a message you were not sent'
-      redirect_to '/messages' and return
+      redirect_to messages_path and return
     end
     Message.create!(to_id: to_id, from_id: acc.id, to_email: to_email, from_email: acc.email, body: body, messages_id: reply_id)
     flash[:notice] = 'Reply Sent'
-    redirect_to '/messages'
+    redirect_to messages_path
   end
 end
