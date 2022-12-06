@@ -86,6 +86,14 @@ accounts = [
     password: 'iL0V3iowA',
     password_confirmation: 'iL0V3iowA',
     account_type: 'Department Chair'
+  },
+  {
+    first_name: 'Kaitlynn',
+    last_name: 'Fuller',
+    email: 'Kaitlynn-Fuller@uiowa.edu',
+    password: 'pA5sW0rd!',
+    password_confirmation: 'pA5sW0rd!',
+    account_type: 'Student'
   }
 ]
 
@@ -142,14 +150,14 @@ end
 
 stud_checklists = [
   {
-    student_id: 1,
+    account_id: Account.find_by(first_name: 'Caleb').id,
     citizenship: true,
     ug_major: true,
     letter_recommendations: true,
     sop: true
   },
   {
-    student_id: 2,
+    account_id: Account.find_by(first_name: 'Kaitlynn').id,
     degree_objective: true,
     ug_transcript: true,
     gre_scores: true

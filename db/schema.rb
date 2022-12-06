@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119014) do
+ActiveRecord::Schema.define(version: 30721148119015) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 30721148119014) do
   end
 
   create_table "student_checklists", force: :cascade do |t|
-    t.integer  "student_id"
     t.boolean  "citizenship",            default: false
     t.boolean  "research_area",          default: false
     t.boolean  "degree_objective",       default: false
@@ -113,9 +112,10 @@ ActiveRecord::Schema.define(version: 30721148119014) do
     t.boolean  "sop",                    default: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "account_id"
   end
 
-  add_index "student_checklists", ["student_id"], name: "index_student_checklists_on_student_id", unique: true
+  add_index "student_checklists", ["account_id"], name: "index_student_checklists_on_account_id"
 
   create_table "students", force: :cascade do |t|
     t.integer  "account_id"
