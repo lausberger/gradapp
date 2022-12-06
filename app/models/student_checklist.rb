@@ -2,7 +2,7 @@
 
 # Model class for Student Checklist
 class StudentChecklist < ActiveRecord::Base
-  belongs_to :student
+  belongs_to :account
 
-  validates :student_id, presence: true, uniqueness: true
+  validates :account_id, presence: true, uniqueness: true
 end
