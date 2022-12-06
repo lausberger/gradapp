@@ -2,16 +2,13 @@
 
 # Controller class for Student Checklist
 class StudentChecklistsController < ApplicationController
-
   before_action :require_login
 
   def index
     @student = Account.find_by(id: @current_user)
-    puts @student.id
+    Rails.logger.debug @student.id
     @student_checklist = StudentChecklist.find_by(account_id: @student.id)
-    if @student_checklist.nil?
-      redirect_to home_path
-    end
+    return redirect_to home_path unless !@student_checklist.nil?
   end
 
   def update
