@@ -4,15 +4,15 @@ Given(/^I am on the Find Faculty page$/) do
   visit faculties_path
 end
 
-And(/^I the following accounts have been created:$/) do |account_table|
-  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :account_type]
-  pending 'Works on local, fails on GitHub because of email validation'
+Given(/^The following accounts have been created:$/) do |account_table|
+  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type]
   account_table.hashes.each do |account|
     new_account = {
       first_name: account[:first_name],
       last_name: account[:last_name],
       email: account[:email],
       password: account[:password],
+      password_confirmation: account[:password_confirmation],
       account_type: account[:account_type]
     }
     account_creation = Account.create!(new_account)
@@ -32,13 +32,20 @@ And(/^I search for "([^"]*)" topic area$/) do |topic_area|
 end
 
 Then(/^I should see Faculty Members:$/) do |faculty_table|
-  # table is a table.hashes.keys # => [:first_name, :last_name]
-  num_faculty = all('tr').length
+  # table is a table.hashes.keys # => [:first_name, :last_name, :topic_area]
+  num_faculty = all('tbody tr').length
   expect(num_faculty).eql? faculty_table.hashes.length
-  all('tr').each do |row|
+  # needed for implementation detail where filtering by topic area produces different table rows
+  expect_topic_area = faculty_table.hashes[0].keys.length == 3
+  all('tbody tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
-    expect(faculty_table.hashes).to include(include('first_name' => first_name))
-    expect(faculty_table.hashes).to include(include('last_name' => last_name))
+    if expect_topic_area
+      topic_area = row.all('td')[2].text
+      expected_hashes = { 'first_name' => first_name, 'last_name' => last_name, 'topic_area' => topic_area }
+    else
+      expected_hashes = { 'first_name' => first_name, 'last_name' => last_name }
+    end
+    expect(faculty_table.hashes).to include(expected_hashes)
   end
 end

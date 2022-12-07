@@ -43,7 +43,7 @@ end
 When('I have logged in as John Doe') do
   visit login_path
   fill_in 'Email', with: 'jdoe@gmail.com'
-  fill_in 'Password', with: '1234'
+  fill_in 'Password', with: '12345678'
   click_button 'Log in'
 end
 
