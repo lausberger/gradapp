@@ -1,27 +1,36 @@
-= content_for(:title, "#{@root_discussion[:title]} - #{@root_discussion[:author]}")
+= content_for(:title, "#{@root_discussion[:title]} - #{@root_discussion.account[:first_name]} #{@root_discussion.account[:last_name]}")
 
 %h1#discussion_title= @root_discussion[:title]
 
 %table
   %thead
+    %th
     %th Body
     %th Author
   %tbody
     - @discussions_with_replies.each do | discussion_with_reply|
       %tr
+        - if discussion_with_reply.account[:account_type] == 'Faculty'
+          %td= raw('&#9733;')
+        - else
+          %td= ''
         %td= discussion_with_reply[:body]
-        %td= discussion_with_reply[:author]
+        %td= "#{discussion_with_reply.account[:first_name]} #{discussion_with_reply.account[:last_name]}"
         %td
-        %td= link_to "Edit", edit_discussion_path(discussion_with_reply)
-        %td
-        %td= link_to "Delete", discussion_path(discussion_with_reply), method: :delete
+        - if !@current_user.nil? and @current_user[:first_name] == discussion_with_reply.account[:first_name] and @current_user[:last_name] == discussion_with_reply.account[:last_name]
+          %td= link_to "Edit", edit_discussion_path(discussion_with_reply)
+          %td
+          %td= link_to "Delete", discussion_path(discussion_with_reply), method: :delete
+
+%p &#9733; => Faculty Post
 
 %br
 
-= form_tag discussions_create_reply_path do
-  %input{:name => "root_discussion_id", :id => 'root_discussion_id', :value => @root_discussion[:id], :hidden => 'true'}
-  %label{:id => 'body'} Body
-  %input{:name => "body", :id => "body", :for => 'body'}
-  %label{:id => 'author'} Author
-  %input{:name => "author", :id => "author", :for => 'author'}
-  =submit_tag "Post Reply", id: "post_reply_button"
+- if !@current_user.nil?
+  = form_tag discussions_create_reply_path do
+    = hidden_field :discussion, :root_discussion_id, :value => @root_discussion[:id]
+
+    = label :discussion, :body, 'Body'
+    = text_field :discussion, 'body'
+
+    = submit_tag 'Post Reply', id: 'post_reply_button'

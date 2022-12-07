@@ -1,18 +1,12 @@
-Feature: Delete Discussion
+Feature: Post Discussion
 
-  Scenario: Delete existing discussion without being signed in
+  Scenario: Create new discussion without being signed in
 
     Given I am on the discussions page
 
-    And There are the following accounts created:
-      | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | Stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+    Then I should not see a button called "Post new Discussion"
 
-    And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
-
-    Then I should not see any "Delete" buttons
-
-  Scenario: Delete existing discussion being signed in
+  Scenario: Create new discussion being signed in
 
     Given There are the following accounts created:
       | first_name | last_name | email                | password    | password_confirm | account_type | topic_area |
@@ -22,13 +16,13 @@ Feature: Delete Discussion
 
     And I am on the discussions page
 
-    And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
+    And I see a button called "Post new Discussion"
 
-    When I click on "Delete" button for post with title "Test" body "Test" and author "Jack Stockley"
+    When I post a new discussion with title "hello" and body "hello"
 
-    Then I should not see a discussion post with title "Test 2" and body "Test 3" and author "Jack Stockley"
+    Then I should see a discussion post with title "hello" and body "hello" and author "Jack Stockley"
 
-  Scenario: Delete reply to existing discussion without being signed in
+  Scenario: Reply to discussion without being signed in
 
     Given I am on the discussions page
 
@@ -40,9 +34,9 @@ Feature: Delete Discussion
 
     And I am on the reply page for post title "Test" and body "Test" and author "Jack Stockley"
 
-    Then I should not see any "Delete" buttons
+    Then I should not see a button called "Post Reply"
 
-  Scenario: Delete reply to existing discussion being signed in
+  Scenario: Reply to discussion being signed in
 
     Given There are the following accounts created:
       | first_name | last_name | email                | password    | password_confirm | account_type | topic_area |
@@ -54,10 +48,10 @@ Feature: Delete Discussion
 
     And I have added a discussion with title "Test" and body "Test" and author "Jack Stockley"
 
-    And There is reply to discussion post with title "Test" and body "Test" with body "Hello" by "Jack Stockley"
-
     And I am on the reply page for post title "Test" and body "Test" and author "Jack Stockley"
 
-    When I click on "Delete" button for post with body "Hello" and author "Jack Stockley"
+    And I see a button called "Post Reply"
 
-    Then I should not see a discussion post with body "Hello" and author "Jack Stockley"
+    When I post a reply with body "Hello World"
+
+    Then I should see a discussion post with body "Hello World" and author "Jack Stockley"

@@ -56,7 +56,7 @@ describe Account do
 
   describe 'adding an account to database' do
     context 'Student' do
-      before(:all) do
+      before(:each) do
         account_params = {
           first_name: 'Lucas',
           last_name: 'Ausberger',
@@ -68,14 +68,13 @@ describe Account do
         @account = Account.create(account_params)
       end
       it 'should appear in set of Students' do
-        expect(Student.where(email: @account.email)).to exist
+        expect(Account.where(account_type: 'Student')).to include @account
       end
       it 'should appear in set of Accounts' do
         expect(Account.where(email: @account.email)).to exist
       end
       it 'should NOT appear in set of Faculty' do
-        pending 'Needs to be updated to work with new account and faculty table'
-        expect(Faculty.where(email: @account.email)).not_to exist
+        expect(Account.where(account_type: 'Faculty')).not_to include @account
       end
     end
   end
