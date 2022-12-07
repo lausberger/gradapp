@@ -6,9 +6,8 @@ class StudentChecklistsController < ApplicationController
 
   def index
     @student = Account.find_by(id: @current_user)
-    Rails.logger.debug @student.id
     @student_checklist = StudentChecklist.find_by(account_id: @student.id)
-    return redirect_to home_path unless !@student_checklist.nil?
+    return redirect_to home_path if @student_checklist.nil?
   end
 
   def update
@@ -17,7 +16,7 @@ class StudentChecklistsController < ApplicationController
                grad_degree_checkbox grad_major_checkbox grad_transcript_checkbox letter_recommendations_checkbox
                language_scores_checkbox resume_checkbox sop_checkbox]
     student = Account.find_by(id: @current_user)
-    student_checklist = StudentChecklist.find(student.id)
+    student_checklist = StudentChecklist.find_by(account_id: student.id)
     items.each do |item|
       if params.include? item
         student_checklist.update("#{item.partition('_checkbox')[0]}": true)
@@ -27,6 +26,6 @@ class StudentChecklistsController < ApplicationController
     end
     student_checklist.save!
 
-    redirect_to student_checklist_path
+    redirect_to student_checklists_path
   end
 end
