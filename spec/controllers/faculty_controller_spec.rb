@@ -44,18 +44,21 @@ describe FacultiesController do
       }
       @faculty_creation = Faculty.create!(@faculty)
     end
-    context 'search for professors in CSE topics are' do
+    context 'search for professors in research area' do
       it 'should select all faculties members in all topic areas' do
         get :index
         expect(response).to render_template('index')
       end
-      it 'should return to index when invalid topic area searched' do
+      it 'should return to index and flash invalid research area when invalid research area searched' do
         post :search, { search_topic_area: '' }
         expect(response).to redirect_to faculties_path
+        expect(flash[:warning]).to eq 'Invalid research area specified!'
       end
       it 'should flash invalid topic area message' do
         post :search, { search_topic_area: 'fdfdfds' }
         expect(response).to redirect_to faculties_path
+        expect(flash[:message]).to eq 'No faculty found for given research area'
+
       end
       it 'should select faculties members only in CSE topic area' do
         post :search, { search_topic_area: 'CSE' }
