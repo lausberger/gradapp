@@ -165,21 +165,22 @@ end
 faculties = [
   {
     account_id: Account.find_by(first_name: 'Jack').id,
-    topic_area: 'CSE',
+    topic_area: 'Applied Physics',
     approved: true
   },
   {
     account_id: Account.find_by(first_name: 'Hans').id,
-    topic_area: 'math',
+    topic_area: 'Bioinformatics',
     approved: true
   },
   {
     account_id: Account.find_by(first_name: 'Alex').id,
-    topic_area: 'Networks',
+    topic_area: 'Internet of Things',
     approved: false
   }
 ]
 
 faculties.each do |faculty|
   Faculty.create! faculty
+
 end
