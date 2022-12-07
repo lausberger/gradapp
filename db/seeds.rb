@@ -175,12 +175,55 @@ faculties = [
   },
   {
     account_id: Account.find_by(first_name: 'Alex').id,
-    topic_area: 'Internet of Things',
+    topic_area: 'Integrated Circuits',
     approved: false
   }
 ]
 
 faculties.each do |faculty|
   Faculty.create! faculty
+end
 
+research_areas = [
+  {
+    title: 'Applied Physics',
+    overview: "Students majoring in ECE with an Applied Physics emphasis develop the devices, systems, and technologies
+               used to implement modern electronics devices and systems. Further, they support research into new
+               technologies that, for instance, could extend Moore's Law or allow for development of quantum scale
+               devices beyond Moore's law."
+  },
+  {
+    title: 'Bioinformatics',
+    overview: "Bioinformatics is an emerging discipline that uses mathematics and computer engineering to help answer
+               questions in bioscience, agriculture and medicine. Bioinformatics harnesses the power of recent
+               developments in statistics, software engineering, high-performance computing, and artificial intelligence
+               to sort through and prioritize vast datasets to find clues to the causes and cures of human disease."
+  },
+  {
+    title: 'Computer Networks',
+    overview: "Network engineers design, develop and configure, and maintain the high-speed wired and wireless digital
+               networks that carry vast amounts of data, enabling the Internet, cell phones, television, and every other
+               kind of electronic information exchange. This EFA combines a background in computer hardware and software
+               (gained through the computer track of the curriculum) with additional knowledge of computer networks,
+               communication theory, and computer security."
+  },
+  {
+    title: 'Integrated Circuits',
+    overview: 'Integrated circuit engineers develop and design circuits that play a central role in countless modern
+               electronic devices, appliances, and vehicles. These circuits add smarts and complex functionality to
+               wide variety of devices including computers, phones, medical instruments and implants, automobiles,
+                power generation and distribution systems, airplanes, consumer electronic devices, and home appliances.'
+  },
+  {
+    title: 'Signal and Image Processing',
+    overview: 'Depending on the courses selected, completion of signal and image processing area coursework can provide
+               additional understanding of topics in signal sampling and compression, detection and estimation, signal
+               feature extraction, time-frequency analysis, speech, audio, image and video processing, machine learning
+               and data mining, biomedical signals, sensor networks, and the signal processing aspects of communication
+               systems and networks.'
+  }
+]
+
+research_areas.each do |research_area|
+  ResearchArea.create! research_area
 end
