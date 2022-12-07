@@ -54,7 +54,7 @@ describe StudentChecklistsController do
       @student_checklist = StudentChecklist.create checklist
       allow(controller).to receive(:logged_in?).and_return(true)
       allow(Account).to receive(:find_by).and_return acc
-      put :update, {id: acc.id, citizenship_checkbox: true }
+      put :update, { id: acc.id, citizenship_checkbox: true }
       expect(response).to redirect_to student_checklists_path
     end
   end
