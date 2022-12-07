@@ -20,28 +20,22 @@ if RUBY_VERSION >= '2.6.0'
   end
 end
 describe StudentChecklist do
-  before(:each) do
-    StudentChecklist.delete_all
-    @student_checklist = {
-      student_id: 1
-    }
-  end
-  describe 'validation' do
-    it 'should pass since no checklists are present' do
-      expect(StudentChecklist.new(@student_checklist).valid?).to eq true
-    end
-    it 'should fail since checklist with student id is present' do
-      student_checklist_creation = StudentChecklist.create(@student_checklist)
-      expect(StudentChecklist.new(@student_checklist).valid?).to eq false
-      StudentChecklist.destroy(student_checklist_creation.id)
-    end
-  end
   describe 'check default values' do
     before(:each) do
-      @student_checklist = {
-        student_id: 1
+      account = {
+        first_name: 'Caleb',
+        last_name: 'Marx',
+        email: 'caleb-marx@uiowa.edu',
+        password: 'pA55W0rd!',
+        password_confirmation: 'pA55W0rd!',
+        account_type: 'Student'
       }
-      @student = StudentChecklist.create!(@student_checklist)
+      Account.create account
+      StudentChecklist.delete_all
+      @student_checklist = {
+        account_id: Account.find_by(first_name: 'Caleb').id
+      }
+      @student = StudentChecklist.create @student_checklist
     end
     it 'check citizenship value' do
       expect(@student[:citizenship]).to be false

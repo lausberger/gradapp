@@ -31,27 +31,13 @@ describe Account do
         password_confirmation: 'password',
         account_type: 'Student'
       }
-      @myacc = create(:account)
-    end
-    it 'should be valid by default' do
-      expect(@myacc.valid?).to eq true
-      expect(Account.new(@account_params).valid?).to eq true
     end
     it 'should fail if invalid email' do
       @account_params[:email] = 'lausberger'
       expect(Account.new(@account_params).valid?).to eq false
     end
     it 'should fail without a password' do
-      @account_params[:password] = nil
-      expect(Account.new(@account_params).valid?).to eq false
-    end
-    it 'should fail without a password confirmation' do
-      @account_params[:password_confirmation] = nil
-      expect(Account.new(@account_params).valid?).to eq false
-    end
-    it 'should fail with short password' do
-      @account_params[:password] = 'pass'
-      @account_params[:password_confirmation] = 'pass'
+      @account_params[:password_digest] = nil
       expect(Account.new(@account_params).valid?).to eq false
     end
     it 'should fail without a first name' do
@@ -82,13 +68,13 @@ describe Account do
         @account = Account.create(account_params)
       end
       it 'should appear in set of Students' do
-        expect(Student.where(email: @account.email)).to exist
+        expect(Account.where(account_type: 'Student')).to include @account
       end
       it 'should appear in set of Accounts' do
         expect(Account.where(email: @account.email)).to exist
       end
       it 'should NOT appear in set of Faculty' do
-        expect { Faculty.find_by(email: @account.email) }.to raise_error ActiveRecord::StatementInvalid
+        expect(Account.where(account_type: 'Faculty')).not_to include @account
       end
     end
   end

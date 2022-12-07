@@ -36,7 +36,6 @@ class AccountsController < ApplicationController
     (flash[:warning] = 'Passwords do not match') and (valid = false) if account_params[:password] != account_params[:password_confirmation]
     (flash[:warning] = 'Please enter a valid email address') and (valid = false) if account_params[:email] !~
                                                                                     /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-    (flash[:warning] = 'Password must be at least 8 characters') and (valid = false) if account_params[:password].length < 8
     render :new unless valid # Account validation failed
   end
 end

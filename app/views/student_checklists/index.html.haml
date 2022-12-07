@@ -1,6 +1,6 @@
 %h1.title= "Student Checklist for #{@student[:first_name]} #{@student[:last_name]}"
 
-= form_tag student_checklist_path, method: :put do
+= form_tag student_checklist_path(@current_user[:id]), method: :put do
   %table
     %thead
       %th Item
