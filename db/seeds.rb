@@ -1,13 +1,5 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 applications = [
   {
     first_name: 'Brandon',
@@ -39,8 +31,10 @@ applications.each do |application|
   GraduateApplication.create!(application)
 end
 
-acc = Account.create!(first_name: 'John', last_name: 'Doe', email: 'jdoe@gmail.com', password: '123', password_confirmation: '123', account_type: 'Student')
-acc2 = Account.create!(first_name: 'Jane', last_name: 'Doe', email: 'jadoe@gmail.com', password: '1234', password_confirmation: '1234', account_type: 'Faculty')
+acc = Account.create!(first_name: 'John', last_name: 'Doe', email: 'jdoe@gmail.com', password: '12345678', password_confirmation: '12345678',
+                      account_type: 'Student')
+acc2 = Account.create!(first_name: 'Jane', last_name: 'Doe', email: 'jadoe@gmail.com', password: '12345678', password_confirmation: '12345678',
+                       account_type: 'Faculty')
 Message.create!(to_id: acc.id, from_id: acc.id, to_email: 'jdoe@gmail.com', from_email: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.')
 Message.create!(to_id: acc.id, from_id: acc2.id, to_email: 'jdoe@gmail.com', from_email: 'jadoe@gmail.com', subject: 'New Program',
                 body: 'Hello, I was reaching out to you to see if you are interested in our new Graduate program that we have created.
@@ -59,8 +53,8 @@ accounts = [
     first_name: 'Hans',
     last_name: 'Johnson',
     email: 'hans-johnson@uiowa.edu',
-    password: 'i<3SelT',
-    password_confirmation: 'i<3SelT',
+    password: 'iloveselt',
+    password_confirmation: 'iloveselt',
     account_type: 'Faculty'
   },
   {

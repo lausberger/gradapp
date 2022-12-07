@@ -65,23 +65,44 @@ describe AccountsController do
         end
       end
 
-      context 'empty fields' do
+      context 'password is too short' do
         before(:each) do
           @account = {
             first_name: 'Lucas',
             last_name: 'Ausberger',
             email: 'lausberger@uiowa.edu',
+            password: 'pass',
+            password_confirmation: 'pass',
+            account_type: 'Student'
+          }
+        end
+        it 'should redirect back to registration page' do
+          post :create, { account: @account }
+          expect(response).to render_template :new
+        end
+        it 'should flash a warning about password length' do
+          post :create, { account: @account }
+          expect(flash[:warning]).to eq 'Password must be at least 8 characters'
+        end
+      end
+
+      context 'empty fields' do
+        before(:each) do
+          @account = {
+            first_name: 'Lucas',
+            last_name: '',
+            email: 'lausberger@uiowa.edu',
             password: 'password',
             password_confirmation: 'password',
             account_type: 'Student'
           }
-          @account[:last_name] = ''
-          post :create, { account: @account }
         end
         it 'should redirect back to registration page' do
+          post :create, { account: @account }
           expect(response).to render_template :new
         end
         it 'should flash a warning about empty fields' do
+          post :create, { account: @account }
           expect(flash[:warning]).to eq 'Fields cannot be empty'
         end
       end
@@ -104,74 +125,6 @@ describe AccountsController do
         end
         it 'should flash a warning about invalid email' do
           expect(flash[:warning]).to eq 'Please enter a valid email address'
-        end
-      end
-    end
-  end
-
-  describe 'logging in' do
-    before { skip 'not yet implemented' }
-    before(:each) do
-      @account = {
-        first_name: 'Lucas',
-        last_name: 'Ausberger',
-        email: 'lausberger@uiowa.edu',
-        password: 'password',
-        password_confirmation: 'password',
-        account_type: 'Student'
-      }
-      post '/register', { account: @account }
-    end
-
-    context 'with correct information' do
-      it 'should redirect back to home page' do
-        post :login, { credentials: { email: @account[:email], password: @account[:password] } }
-        expect(response).to redirect_to root_path
-      end
-      it 'should flash a success notice' do
-        pending
-        expect(flash[:notice]).to eq "Welcome, #{@account[:first_name]}."
-      end
-    end
-
-    context 'with incorrect information' do
-      it 'should redirect back to login page' do
-        post :login, { credentials: { email: 'bademail@mail.com', password: @account[:password] } }
-        expect(response).to redirect_to login_path
-      end
-      it 'should flash an alert informing the user of incorrect credentials' do
-        expect(flash[:alert]).to eq 'Incorrect email or password'
-      end
-    end
-
-    context 'with invalid information' do
-      context 'missing email' do
-        it 'should redirect back to login page' do
-          post :login, { credentials: { email: '', password: @account[:password] } }
-          expect(response).to redirect_to login_path
-        end
-        it 'should inform the user of an empty email field' do
-          expect(flash[:notice]).to eq 'Email field cannot be empty'
-        end
-      end
-
-      context 'invalid email' do
-        it 'should redirect back to login page' do
-          post :login, { credentials: { email: 'lausberger', password: @account[:password] } }
-          expect(response).to redirect_to login_path
-        end
-        it 'should inform the user of an invalid email' do
-          expect(flash[:notice]).to eq 'Please provide a valid email address'
-        end
-      end
-
-      context 'missing password' do
-        it 'should redirect back to login page' do
-          post :login, { credentials: { email: @account[:email], password: '' } }
-          expect(response).to redirect_to login_path
-        end
-        it 'should inform the user of an empty password field' do
-          expect(flash[:notice]).to eq 'Password field cannot be empty'
         end
       end
     end
