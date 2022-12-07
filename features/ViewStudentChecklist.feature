@@ -8,7 +8,9 @@ Feature: View the "Student Checklists" page to see what items needed to complete
 
     And There is an empty Student Checklist is created for student with email "jnstockley@uiowa.edu"
 
-    And I am on the student checklist page for student with email "jnstockley@uiowa.edu"
+    And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
+
+    When I am on the student checklist page
 
     Then I should see an empty student checklist
 
@@ -24,7 +26,9 @@ Feature: View the "Student Checklists" page to see what items needed to complete
       | research_area    | true      |
       | degree_objective | true      |
 
-    And I am on the student checklist page for student with email "jnstockley@uiowa.edu"
+    And I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
+
+    When I am on the student checklist page
 
     Then I should see the following items have been completed:
       | citizenship      | research_area    | degree_objective |

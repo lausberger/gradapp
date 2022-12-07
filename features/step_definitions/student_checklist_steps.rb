@@ -10,18 +10,17 @@ end
 
 And(/^There is an empty Student Checklist is created for student with email "([^"]*)"$/) do |email|
   account = Account.find_by(email: email)
-  StudentChecklist.create!(student_id: account.id)
+  StudentChecklist.create!(account_id: account.id)
 end
 
-And(/^I am on the student checklist page for student with email "([^"]*)"$/) do |email|
-  student = Account.find_by(email: email)
-  visit student_checklist_path student.id
+And(/^I am on the student checklist page$/) do
+  visit student_checklists_path
 end
 
 And(/^The following Student Checklist for student with email "([^"]*)":$/) do |email, items_completed|
   # table is a table.hashes.keys # => [:citizenship, :research_area, :degree_objective]
   account = Account.find_by(email: email)
-  student_checklist = StudentChecklist.create!(student_id: account.id)
+  student_checklist = StudentChecklist.create!(account_id: account.id)
   items_completed.hashes.each do |item_completed|
     student_checklist["#{item_completed[:type]}": to_b(item_completed[:completed])]
   end
