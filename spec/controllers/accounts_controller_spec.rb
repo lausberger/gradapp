@@ -65,27 +65,6 @@ describe AccountsController do
         end
       end
 
-      context 'password is too short' do
-        before(:each) do
-          @account = {
-            first_name: 'Lucas',
-            last_name: 'Ausberger',
-            email: 'lausberger@uiowa.edu',
-            password: 'pass',
-            password_confirmation: 'pass',
-            account_type: 'Student'
-          }
-        end
-        it 'should redirect back to registration page' do
-          post :create, { account: @account }
-          expect(response).to render_template :new
-        end
-        it 'should flash a warning about password length' do
-          post :create, { account: @account }
-          expect(flash[:warning]).to eq 'Password must be at least 8 characters'
-        end
-      end
-
       context 'empty fields' do
         before(:each) do
           @account = {

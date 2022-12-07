@@ -4,7 +4,7 @@ Given(/^I am on the Find Faculty page$/) do
   visit faculties_path
 end
 
-Given(/^the following accounts have been created:$/) do |account_table|
+Given(/^The following accounts have been created:$/) do |account_table|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type]
   account_table.hashes.each do |account|
     new_account = {
