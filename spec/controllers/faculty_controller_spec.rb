@@ -24,7 +24,7 @@ describe FacultiesController do
   describe 'search by topic area' do
     before(:all) do
       @account = {
-        email: 'joe.smith@gmail.com',
+        email: 'joe.smith2@gmail.com',
         first_name: 'Joesph',
         last_name: 'Smith',
         password: 'iloveselt23',
@@ -32,9 +32,15 @@ describe FacultiesController do
         account_type: 'faculty'
       }
       @account_creation = Account.create!(@account)
+      @research_area = {
+        title: 'Networks',
+        summary: 'A test networks research area',
+        detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
+      }
+      @research_area_creation = ResearchArea.create! @research_area
       @faculty = {
         account_id: @account_creation.id,
-        topic_area: 'CSE'
+        research_area_id: @research_area_creation.id
       }
       @faculty_creation = Faculty.create!(@faculty)
     end
