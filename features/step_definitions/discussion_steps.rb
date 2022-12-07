@@ -13,12 +13,11 @@ When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"
   all('#main tr').each do |row|
     items = row.all('td')
     if !title.nil?
-      log(items[0].text)
-      if items[0].text == title && items[1].text == body && items[2].text == author
+      if items[1].text == title && items[2].text == body && items[3].text == author
         expect(row).to have_css('a', text: button_name)
         row.find('a', text: button_name).click
       end
-    elsif items[0].text == body && items[1].text == author
+    elsif items[1].text == body && items[2].text == author
       expect(row).to have_css('a', text: button_name)
       row.find('a', text: button_name).click
     end
@@ -68,7 +67,7 @@ And(/^I am on the reply page for post title "([^"]*)" and body "([^"]*)" and aut
   visit discussions_path
   all('#main tr').each do |row|
     items = row.all('td')
-    if (items[0].text == title) && (items[1].text == body) && (items[2].text == author)
+    if (items[1].text == title) && (items[2].text == body) && (items[3].text == author)
       row.find('a', text: 'View Replies').click
       break
     end
@@ -98,12 +97,12 @@ Then(/^I should see a discussion post with(?: title "([^"]*)" and)? body "([^"]*
   all('#main tr').each do |row|
     items = row.all('td')
     if title.nil?
-      expect(items[0].text).to eq body
-      expect(items[1].text).to eq author
-    else
-      expect(items[0].text).to eq title
       expect(items[1].text).to eq body
       expect(items[2].text).to eq author
+    else
+      expect(items[1].text).to eq title
+      expect(items[2].text).to eq body
+      expect(items[3].text).to eq author
     end
   end
 end
