@@ -16,11 +16,9 @@ Given(/^The following accounts have been created:$/) do |account_table|
       account_type: account[:account_type]
     }
     account_creation = Account.create!(new_account)
-    next if account[:topic_area].empty?
-
     faculty = {
       account_id: account_creation.id,
-      topic_area: account[:topic_area]
+      research_area_id: ResearchArea.find_by(title: account[:research_area])
     }
     Faculty.create!(faculty)
   end
