@@ -4,6 +4,14 @@
 class DiscussionsController < ApplicationController
   # before_action :require_login
 
+  before_action :require_login, only: %i[new create create_reply edit update destroy]
+
+  before_action :optional_login, only: %i[show index]
+
+  def optional_login
+    @current_user = current_user
+  end
+
   def show
     discussion_id = params[:id]
     @root_discussion = Discussion.root_post(discussion_id)
@@ -17,21 +25,24 @@ class DiscussionsController < ApplicationController
   def new; end
 
   def create
+    acc = Account.find_by(id: @current_user)
     discussion = params[:discussion]
     root_id = -1
     if discussion.key? :root_discussion_id
       root_id = discussion[:root_discussion_id]
     end
-    Discussion.create!(title: discussion[:title], body: discussion[:body], author: discussion[:author],
+    Discussion.create!(title: discussion[:title], body: discussion[:body], account_id: acc[:id],
                        root_discussion_id: root_id)
     redirect_to discussions_path
   end
 
   def create_reply
-    root_discussion_id = params[:root_discussion_id]
-    body = params[:body]
-    author = params[:author]
-    Discussion.create!(title: '', body: body, author: author, root_discussion_id: root_discussion_id)
+    acc = Account.find_by(id: @current_user)
+    discussion = params[:discussion]
+    root_discussion_id = discussion[:root_discussion_id]
+    body = discussion[:body]
+    account_id = acc[:id]
+    Discussion.create!(title: '', body: body, account_id: account_id, root_discussion_id: root_discussion_id)
     redirect_to discussion_path(root_discussion_id)
   end
 

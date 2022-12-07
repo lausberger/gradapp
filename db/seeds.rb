@@ -1,51 +1,12 @@
 # frozen_string_literal: true
 
-discussions = [
-  { title: 'What\'s the best Graduate Program?',
-    body: 'Hey guys, I\'m having a hard time picking a graduate program.',
-    author: 'Jack Stockley',
-    root_discussion_id: -1 },
-  { title: 'Contact Faculty',
-    body: 'Hello, what\'s the best way to contact a faculty member?',
-    author: 'Joe Smith',
-    root_discussion_id: -1 },
-  { title: 'Submit Application',
-    body: 'How do I submit an application here?',
-    author: 'Hans Johnson',
-    root_discussion_id: -1 },
-  { title: '',
-    body: 'I heard the CSE program is great',
-    author: 'Hans Johnson',
-    root_discussion_id: 1 },
-  { title: '',
-    body: 'Email',
-    author: 'Jack Stockley',
-    root_discussion_id: 2 },
-  { title: '',
-    body: 'Yea, CSE is great at Iowa!',
-    author: 'Alberto Segre',
-    root_discussion_id: 1 },
-  { title: '',
-    body: 'In the future, you can do it right here!',
-    author: 'Jack Stockley',
-    root_discussion_id: 2 },
-  { title: '',
-    body: 'Right now you can\'t, it\'s a work in progress!',
-    author: 'Jack Stockley',
-    root_discussion_id: 3 },
-  { title: '',
-    body: 'Thanks, Jack',
-    author: 'Hans Johnson',
-    root_discussion_id: 3 },
-  { title: '',
-    body: 'You can\'t go wrong with any of their programs',
-    author: 'Julie Maxwell',
-    root_discussion_id: 1 }
-]
-
-discussions.each do |discussion|
-  Discussion.create!(discussion)
-end
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 applications = [
   {
@@ -78,10 +39,8 @@ applications.each do |application|
   GraduateApplication.create!(application)
 end
 
-acc = Account.create!(first_name: 'John', last_name: 'Doe', email: 'jdoe@gmail.com', password: '12345678', password_confirmation: '12345678',
-                      account_type: 'Student')
-acc2 = Account.create!(first_name: 'Jane', last_name: 'Doe', email: 'jadoe@gmail.com', password: '12345678', password_confirmation: '12345678',
-                       account_type: 'Faculty')
+acc = Account.create!(first_name: 'John', last_name: 'Doe', email: 'jdoe@gmail.com', password: '123', password_confirmation: '123', account_type: 'Student')
+acc2 = Account.create!(first_name: 'Jane', last_name: 'Doe', email: 'jadoe@gmail.com', password: '1234', password_confirmation: '1234', account_type: 'Faculty')
 Message.create!(to_id: acc.id, from_id: acc.id, to_email: 'jdoe@gmail.com', from_email: 'jdoe@gmail.com', subject: 'Hello', body: 'Hi. Hey.')
 Message.create!(to_id: acc.id, from_id: acc2.id, to_email: 'jdoe@gmail.com', from_email: 'jadoe@gmail.com', subject: 'New Program',
                 body: 'Hello, I was reaching out to you to see if you are interested in our new Graduate program that we have created.
@@ -94,14 +53,14 @@ accounts = [
     email: 'jnstockley@uiowa.edu',
     password: 'Password123',
     password_confirmation: 'Password123',
-    account_type: 'Faculty'
+    account_type: 'Student'
   },
   {
     first_name: 'Hans',
     last_name: 'Johnson',
     email: 'hans-johnson@uiowa.edu',
-    password: 'iloveselt',
-    password_confirmation: 'iloveselt',
+    password: 'i<3SelT',
+    password_confirmation: 'i<3SelT',
     account_type: 'Faculty'
   },
   {
@@ -127,6 +86,14 @@ accounts = [
     password: 'iL0V3iowA',
     password_confirmation: 'iL0V3iowA',
     account_type: 'Department Chair'
+  },
+  {
+    first_name: 'Kaitlynn',
+    last_name: 'Fuller',
+    email: 'Kaitlynn-Fuller@uiowa.edu',
+    password: 'pA5sW0rd!',
+    password_confirmation: 'pA5sW0rd!',
+    account_type: 'Student'
   }
 ]
 
@@ -134,16 +101,63 @@ accounts.each do |account|
   Account.create! account
 end
 
+discussions = [
+  { title: 'What\'s the best Graduate Program?',
+    body: 'Hey guys, I\'m having a hard time picking a graduate program.',
+    account_id: Account.find_by(first_name: 'Jack').id,
+    root_discussion_id: -1 },
+  { title: 'Contact Faculty',
+    body: 'Hello, what\'s the best way to contact a faculty member?',
+    account_id: Account.find_by(first_name: 'Alex').id,
+    root_discussion_id: -1 },
+  { title: 'Submit Application',
+    body: 'How do I submit an application here?',
+    account_id: Account.find_by(first_name: 'Hans').id,
+    root_discussion_id: -1 },
+  { title: '',
+    body: 'I heard the CSE program is great',
+    account_id: Account.find_by(first_name: 'Hans').id,
+    root_discussion_id: 1 },
+  { title: '',
+    body: 'Email',
+    account_id: Account.find_by(first_name: 'Jack').id,
+    root_discussion_id: 2 },
+  { title: '',
+    body: 'Yea, CSE is great at Iowa!',
+    account_id: Account.find_by(first_name: 'Jonah').id,
+    root_discussion_id: 1 },
+  { title: '',
+    body: 'In the future, you can do it right here!',
+    account_id: Account.find_by(first_name: 'Jack').id,
+    root_discussion_id: 2 },
+  { title: '',
+    body: 'Right now you can\'t, it\'s a work in progress!',
+    account_id: Account.find_by(first_name: 'Jack').id,
+    root_discussion_id: 3 },
+  { title: '',
+    body: 'Thanks, Jack',
+    account_id: Account.find_by(first_name: 'Hans').id,
+    root_discussion_id: 3 },
+  { title: '',
+    body: 'You can\'t go wrong with any of their programs',
+    account_id: Account.find_by(first_name: 'Alex').id,
+    root_discussion_id: 1 }
+]
+
+discussions.each do |discussion|
+  Discussion.create!(discussion)
+end
+
 stud_checklists = [
   {
-    student_id: 1,
+    account_id: Account.find_by(first_name: 'Caleb').id,
     citizenship: true,
     ug_major: true,
     letter_recommendations: true,
     sop: true
   },
   {
-    student_id: 2,
+    account_id: Account.find_by(first_name: 'Kaitlynn').id,
     degree_objective: true,
     ug_transcript: true,
     gre_scores: true

@@ -4,14 +4,28 @@
     %div(class="box")
       %div(class="box child")
         %a Sender:
-        %a= message.from_email
+        %a= message[:message].from_email
       %div(class="box child")
         %a Subject:
-        %a= message.subject
+        %a= message[:message].subject
       %div(class="box child")
         %a Body:
-        %a= message.body
+        %a= message[:message].body
       %div(class="box child")
-        = link_to 'Reply', '/messages/new'
-      %br
-= link_to 'Send Message', '/messages/new'
+        = link_to 'Reply', messages_reply_path(message[:message].id)
+  - message[:reply].each do |reply|
+    %center
+      %a Above Replies To:
+    %div(class="container")
+      %div(class="box")
+        %div(class="box child")
+          %a Sender:
+          %a= reply.from_email
+        %div(class="box child")
+          %a Subject:
+          %a= reply.subject
+        %div(class="box child")
+          %a Body:
+          %a= reply.body
+  %br
+= link_to 'Send Message', messages_new_path

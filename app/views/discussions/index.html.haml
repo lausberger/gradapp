@@ -1,7 +1,8 @@
-%h1.title Student Discussion Posts
+%h1.title#discussions_title Student Discussion Posts
 
 %table
   %thead
+    %th
     %th Title
     %th Body
     %th Author
@@ -9,15 +10,23 @@
   %tbody
     - @discussions.each do | discussion |
       %tr
+        - if discussion.account[:account_type] == 'Faculty'
+          %td= raw('&#9733;')
+        - else
+          %td= ''
         %td= discussion[:title]
         %td= discussion[:body]
-        %td= discussion[:author]
+        %td= "#{discussion.account[:first_name]} #{discussion.account[:last_name]}"
         %td= link_to "View Replies", discussion_path(discussion)
         %td
-        %td= link_to "Edit", edit_discussion_path(discussion)
-        %td
-        %td= link_to "Delete", discussion_path(discussion), method: :delete
+        - if !@current_user.nil? and @current_user[:first_name] == discussion.account[:first_name] and @current_user[:last_name] == discussion.account[:last_name]
+          %td= link_to "Edit", edit_discussion_path(discussion)
+          %td
+          %td= link_to "Delete", discussion_path(discussion), method: :delete
+
+%p &#9733; => Faculty Post
 
 %br
 
-=link_to "Post new Discussion", new_discussion_path, {:id => "post_new_discussion"}
+- if !@current_user.nil?
+  =link_to "Post new Discussion", new_discussion_path, {:id => "post_new_discussion_button"}
