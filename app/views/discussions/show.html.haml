@@ -4,11 +4,16 @@
 
 %table
   %thead
+    %th
     %th Body
     %th Author
   %tbody
     - @discussions_with_replies.each do | discussion_with_reply|
       %tr
+        - if discussion_with_reply.account[:account_type] == 'Faculty'
+          %td= raw('&#9733;')
+        - else
+          %td= ''
         %td= discussion_with_reply[:body]
         %td= "#{discussion_with_reply.account[:first_name]} #{discussion_with_reply.account[:last_name]}"
         %td
@@ -16,6 +21,8 @@
           %td= link_to "Edit", edit_discussion_path(discussion_with_reply)
           %td
           %td= link_to "Delete", discussion_path(discussion_with_reply), method: :delete
+
+%p &#9733; => Faculty Post
 
 %br
 

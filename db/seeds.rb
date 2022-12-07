@@ -53,7 +53,7 @@ accounts = [
     email: 'jnstockley@uiowa.edu',
     password: 'Password123',
     password_confirmation: 'Password123',
-    account_type: 'Faculty'
+    account_type: 'Student'
   },
   {
     first_name: 'Hans',
