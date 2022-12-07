@@ -10,7 +10,7 @@
   %tbody
     - @discussions.each do | discussion |
       %tr
-        - if discussion.account[:account_type] == 'Faculty'
+        - if discussion.account[:account_type] == 'Faculty' or discussion.account[:account_type] == 'Department Chair'
           %td= raw('&#9733;')
         - else
           %td= ''
