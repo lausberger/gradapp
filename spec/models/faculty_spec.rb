@@ -31,27 +31,32 @@ describe Faculty do
       account_type: 'faculty'
     }
     @account_creation = Account.create!(@account)
+    @research_area = {
+      title: 'Networks',
+      summary: 'A test networks research area',
+      detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
+    }
+    @research_area_creation = ResearchArea.create! @research_area
     @faculty = {
       account_id: @account_creation.id,
-      topic_area: 'CSE'
+      research_area_id: @research_area_creation.id
     }
   end
   describe 'topic area validation' do
-    it 'should fail on nil topic_area' do
-      @faculty[:topic_area] = nil
+    it 'should fail on nil research_area_id' do
+      @faculty[:research_area_id] = nil
       expect(Faculty.new(@faculty).valid?).to eq false
     end
     it 'should pass on valid faculty account' do
-      @faculty[:topic_area] = 'CSE'
+      @faculty[:research_area_id] = @research_area_creation.id
       expect(Faculty.new(@faculty).valid?).to eq true
     end
   end
   describe 'adding faculty account' do
     context 'Faculty' do
-      it 'should appear in CSE topic area' do
-        @faculty[:topic_area] = 'CSE'
+      it 'should appear with the research area id' do
         faculty_creation = Faculty.create!(@faculty)
-        expect(Faculty.where(topic_area: faculty_creation[:topic_area])).to exist
+        expect(Faculty.where(research_area_id: faculty_creation[:research_area_id])).to exist
         faculty_creation.destroy
       end
     end
