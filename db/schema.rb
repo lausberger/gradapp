@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119010) do
+ActiveRecord::Schema.define(version: 30721148119011) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -79,14 +79,15 @@ ActiveRecord::Schema.define(version: 30721148119010) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "to_id",      null: false
-    t.integer  "from_id",    null: false
-    t.string   "to_email",   null: false
-    t.string   "from_email", null: false
+    t.integer  "to_id",       null: false
+    t.integer  "from_id",     null: false
+    t.string   "to_email",    null: false
+    t.string   "from_email",  null: false
     t.string   "subject"
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "messages_id"
   end
 
   create_table "student_checklists", force: :cascade do |t|
