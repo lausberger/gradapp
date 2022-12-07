@@ -1,7 +1,7 @@
 {
   "specs": {
     "coverage": {
-      "/workspace/app/helpers/application_helper.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/helpers/application_helper.rb": {
         "lines": [
           null,
           null,
@@ -23,7 +23,7 @@
         "branches": {
         }
       },
-      "/workspace/app/controllers/accounts_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/accounts_controller.rb": {
         "lines": [
           null,
           null,
@@ -99,7 +99,7 @@
           }
         }
       },
-      "/workspace/app/controllers/application_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/application_controller.rb": {
         "lines": [
           null,
           null,
@@ -131,9 +131,17 @@
           null,
           null,
           1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
           null,
           1,
-          97,
+          null,
+          1,
+          92,
           null,
           0,
           null,
@@ -153,13 +161,21 @@
             "[:else, 4, 27, 4, 27, 117]": 36,
             "[:then, 5, 27, 4, 27, 99]": 11
           },
-          "[:if, 6, 33, 4, 33, 72]": {
-            "[:then, 7, 33, 4, 33, 10]": 97,
-            "[:else, 8, 33, 4, 33, 72]": 0
+          "[:unless, 6, 31, 4, 31, 117]": {
+            "[:else, 7, 31, 4, 31, 117]": 0,
+            "[:then, 8, 31, 4, 31, 99]": 0
+          },
+          "[:unless, 9, 32, 4, 35, 7]": {
+            "[:else, 10, 32, 4, 35, 7]": 0,
+            "[:then, 11, 33, 6, 34, 89]": 0
+          },
+          "[:if, 12, 41, 4, 41, 72]": {
+            "[:then, 13, 41, 4, 41, 10]": 92,
+            "[:else, 14, 41, 4, 41, 72]": 0
           }
         }
       },
-      "/workspace/app/controllers/application_decisions_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/application_decisions_controller.rb": {
         "lines": [
           null,
           null,
@@ -203,7 +219,7 @@
           }
         }
       },
-      "/workspace/app/controllers/approve_faculties_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/approve_faculties_controller.rb": {
         "lines": [
           null,
           null,
@@ -232,7 +248,7 @@
           }
         }
       },
-      "/workspace/app/controllers/discussions_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/discussions_controller.rb": {
         "lines": [
           null,
           null,
@@ -328,17 +344,17 @@
           }
         }
       },
-      "/workspace/app/controllers/faculties_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/faculties_controller.rb": {
         "lines": [
           null,
           null,
           null,
           1,
           1,
-          1,
-          1,
-          1,
-          1,
+          0,
+          0,
+          0,
+          0,
           null,
           null,
           null,
@@ -347,28 +363,28 @@
           null,
           null,
           1,
-          3,
-          3,
-          1,
-          1,
+          0,
+          0,
+          0,
+          0,
           null,
-          2,
-          2,
+          0,
+          0,
           null,
           null
         ],
         "branches": {
           "[:if, 0, 19, 4, 22, 7]": {
-            "[:then, 1, 20, 6, 21, 39]": 1,
-            "[:else, 2, 19, 4, 22, 7]": 2
+            "[:then, 1, 20, 6, 21, 39]": 0,
+            "[:else, 2, 19, 4, 22, 7]": 0
           },
           "[:if, 3, 24, 4, 24, 57]": {
-            "[:then, 4, 24, 4, 24, 30]": 1,
-            "[:else, 5, 24, 4, 24, 57]": 1
+            "[:then, 4, 24, 4, 24, 30]": 0,
+            "[:else, 5, 24, 4, 24, 57]": 0
           }
         }
       },
-      "/workspace/app/controllers/graduate_applications_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/graduate_applications_controller.rb": {
         "lines": [
           null,
           null,
@@ -497,7 +513,7 @@
           }
         }
       },
-      "/workspace/app/controllers/messages_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/messages_controller.rb": {
         "lines": [
           null,
           null,
@@ -594,7 +610,7 @@
           }
         }
       },
-      "/workspace/app/controllers/sessions_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/sessions_controller.rb": {
         "lines": [
           null,
           null,
@@ -654,7 +670,7 @@
           }
         }
       },
-      "/workspace/app/controllers/statics_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/statics_controller.rb": {
         "lines": [
           null,
           null,
@@ -663,10 +679,10 @@
           1,
           null,
           1,
-          4,
-          1,
           3,
           1,
+          2,
+          0,
           2,
           1,
           1,
@@ -687,16 +703,16 @@
             "[:else, 5, 14, 4, 17, 26]": 1
           },
           "[:if, 6, 10, 4, 17, 26]": {
-            "[:then, 7, 11, 6, 11, 27]": 1,
+            "[:then, 7, 11, 6, 11, 27]": 0,
             "[:else, 8, 12, 4, 17, 26]": 2
           },
           "[:if, 9, 8, 4, 18, 7]": {
             "[:then, 10, 9, 6, 9, 26]": 1,
-            "[:else, 11, 10, 4, 17, 26]": 3
+            "[:else, 11, 10, 4, 17, 26]": 2
           }
         }
       },
-      "/workspace/app/controllers/student_checklists_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/student_checklists_controller.rb": {
         "lines": [
           null,
           null,
@@ -741,7 +757,7 @@
           }
         }
       },
-      "/workspace/app/models/account.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/account.rb": {
         "lines": [
           null,
           null,
@@ -765,7 +781,7 @@
         "branches": {
         }
       },
-      "/workspace/app/models/discussion.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/discussion.rb": {
         "lines": [
           null,
           null,
@@ -789,7 +805,7 @@
         "branches": {
         }
       },
-      "/workspace/app/models/document.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/document.rb": {
         "lines": [
           null,
           null,
@@ -805,7 +821,7 @@
         "branches": {
         }
       },
-      "/workspace/app/models/education.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/education.rb": {
         "lines": [
           null,
           null,
@@ -856,20 +872,20 @@
           }
         }
       },
-      "/workspace/app/models/faculty.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/faculty.rb": {
         "lines": [
           null,
           null,
           1,
           1,
-          null,
+          1,
           1,
           null
         ],
         "branches": {
         }
       },
-      "/workspace/app/models/graduate_application.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/graduate_application.rb": {
         "lines": [
           null,
           null,
@@ -918,7 +934,7 @@
           }
         }
       },
-      "/workspace/app/models/message.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/message.rb": {
         "lines": [
           null,
           null,
@@ -931,7 +947,7 @@
         "branches": {
         }
       },
-      "/workspace/app/models/student_checklist.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/student_checklist.rb": {
         "lines": [
           null,
           null,
@@ -943,21 +959,20 @@
         "branches": {
         }
       },
-      "/workspace/app/controllers/documents_controller.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/research_area.rb": {
         "lines": [
           null,
           null,
+          1,
+          null
+        ],
+        "branches": {
+        }
+      },
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/student.rb": {
+        "lines": [
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
           null,
-          0,
-          null,
-          0,
-          0,
           0,
           0,
           0
@@ -965,10 +980,21 @@
         "branches": {
         }
       },
-      "/workspace/app/models/student.rb": {
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/documents_controller.rb": {
         "lines": [
           null,
           null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
           0,
           0,
           0
@@ -977,7 +1003,7 @@
         }
       }
     },
-    "timestamp": 1670440074
+    "timestamp": 1670452928
   },
   "features": {
     "coverage": {
