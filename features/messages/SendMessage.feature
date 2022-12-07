@@ -2,7 +2,7 @@ Feature: Allow a User to Send a Message
   Background: There is an account in the database
     Given the following accounts have been added:
       | first_name     | last_name   | email          | password | password_confirmation | account_type |
-      | John           | Doe         | jdoe@gmail.com | 1234     | 1234                  | Student      |
+      | John           | Doe         | jdoe@gmail.com | 12345678 | 12345678              | Student      |
 
   Scenario: I am not logged in
     When I have visited the send messages page
@@ -45,5 +45,3 @@ Feature: Allow a User to Send a Message
     And I have clicked 'Return to My Messages'
     Then I should see 'My Messages'
     And I should not see 'New Message'
-
-

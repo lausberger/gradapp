@@ -2,8 +2,8 @@ Feature: Edit Discussion
 
   Background:
     Given There are the following accounts created:
-      | first_name | last_name | email               | password    | password_confirm | account_type | topic_area |
-      | Jack       | Stockley  |jnstockley@uiowa.edu | Password123 | Password123      | Student      |            |
+      | first_name | last_name | email               | password    | password_confirmation | account_type | topic_area |
+      | Jack       | Stockley  |jnstockley@uiowa.edu | Password123 | Password123           | Student      |            |
 
   Scenario: Edit existing discussion without being signed in
     Given I am on the discussions page

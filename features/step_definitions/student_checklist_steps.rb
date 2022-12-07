@@ -4,7 +4,8 @@ Given(/^The following account is created:$/) do |accounts|
   # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :type]
   accounts.hashes.each do |account|
     Account.create!(first_name: account[:first_name], last_name: account[:last_name], email: account[:email],
-                    password: account[:password], account_type: account[:account_type])
+                    password: account[:password], password_confirmation: account[:password_confirmation],
+                    account_type: account[:account_type])
   end
 end
 
