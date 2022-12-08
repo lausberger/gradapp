@@ -35,7 +35,6 @@ input[type=submit]:disabled {
 }
 div#main {
   margin: 0;
-  padding: 0 20px 20px;
 }
 div#spacer {
   padding: 0 0 10px;
@@ -53,6 +52,12 @@ a {
   font-weight: bold;
   padding: 0 5px 5px;
 }
+div#navbar {
+  background: gray;
+  display: block;
+  width: 100%;
+  padding: 4px 0 10px;
+}
 h1 {
   color: gold;
   background: black;
@@ -61,11 +66,13 @@ h1 {
   display: block;
   width: 100%;
   border-bottom: 1px solid DarkSlateGrey;
+  margin: 0px
 }
 h1.title {
   margin: 0 0 1em;
   padding: 10px;
-  background-color: white;
+  background-color: lightgray;
+  width: 100%;
   color: black;
   border-bottom: 4px solid gold;
   font-size: 2em;
@@ -89,10 +96,15 @@ table th, table td{
 tr:nth-child(even) {
   background-color: rgb(209, 209, 209);
 }
-#notice #warning {
+.message#warning {
   background: rosybrown;
-  margin: 1em 0;
-  padding: 4px;
+}
+.message#alert {
+  background: red;
+}
+.message {
+  background: lightyellow;
+  padding: 4px 0 4px;
 }
 form label {
   line-height: 25px;
