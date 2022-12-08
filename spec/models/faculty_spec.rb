@@ -21,9 +21,9 @@ if RUBY_VERSION >= '2.6.0'
 end
 
 describe Faculty do
-  before(:all) do
+  before(:each) do
     @account = {
-      email: 'jnstockley@gmail.com',
+      email: 'jnstockley2@gmail.com',
       first_name: 'Jack',
       last_name: 'Stockley',
       password: 'Password1234',
@@ -32,7 +32,7 @@ describe Faculty do
     }
     @account_creation = Account.create!(@account)
     @research_area = {
-      title: 'Networks',
+      title: 'Networks Three',
       summary: 'A test networks research area',
       detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
     }
@@ -60,8 +60,9 @@ describe Faculty do
         faculty_creation.destroy
       end
     end
-    after(:all) do
+    after(:each) do
       @account_creation.destroy
+      @research_area_creation.destroy
     end
   end
 end

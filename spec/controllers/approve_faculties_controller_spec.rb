@@ -32,7 +32,7 @@ describe ApproveFacultiesController do
         account_type: 'Faculty'
       }
       @research_area = {
-        title: 'Networks',
+        title: 'Networks Four',
         summary: 'A test networks research area',
         detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
       }
@@ -65,6 +65,10 @@ describe ApproveFacultiesController do
         put :update, { id: @faculty_account_two_creation.id }
         expect(response).to redirect_to approve_faculties_path
       end
+    end
+    after(:each) do
+      @faculty_account_creation.destroy
+      @research_area_creation.destroy
     end
   end
 end

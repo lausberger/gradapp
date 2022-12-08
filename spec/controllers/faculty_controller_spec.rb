@@ -22,9 +22,9 @@ end
 
 describe FacultiesController do
   describe 'search by research area' do
-    before(:all) do
+    before(:each) do
       @account = {
-        email: 'joe.smith2@gmail.com',
+        email: 'joe.smith3@gmail.com',
         first_name: 'Joesph',
         last_name: 'Smith',
         password: 'iloveselt23',
@@ -33,7 +33,7 @@ describe FacultiesController do
       }
       @account_creation = Account.create!(@account)
       @research_area = {
-        title: 'Networks',
+        title: 'Networks Five',
         summary: 'A test networks research area',
         detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
       }
@@ -60,13 +60,13 @@ describe FacultiesController do
         expect(flash[:message]).to eq 'No faculty found for given research area'
       end
       it 'should select faculties members only in CSE topic area' do
-        post :search, { search_research_area: 'Networks' }
+        post :search, { search_research_area: 'Networks Five' }
         expect(response).to render_template('search')
       end
     end
-    after(:all) do
+    after(:each) do
       @faculty_creation.destroy
-      @account_creation.destroy
+      @research_area_creation.destroy
     end
   end
 end
