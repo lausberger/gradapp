@@ -1,10 +1,14 @@
 Feature: Approve New Faculty Member Accounts
 
   Background:
+    Given The following research areas have been created:
+      | title    | summary                       | detailed_overview                                                                      |
+      | Networks | A test networks research area | This research area is made to tests faculty, and it represent a possible networks area |
+
     Given There are the following accounts created:
-      | first_name | last_name   | email                   | password    | password_confirmation | account_type     | topic_area  |
+      | first_name | last_name   | email                   | password    | password_confirmation | account_type     | research_area  |
       | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123 | Password123           | Faculty          | Networks    |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | password    | password              | Faculty          | Criminology |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | password    | password              | Faculty          | Networks |
       | Caleb      | Marx        | cmarx1@uiowa.edu        | Hawkeyes    | Hawkeyes              | Student          |             |
       | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | iL0V3iowA   | iL0V3iowA             | Department Chair |             |
 
