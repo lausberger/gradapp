@@ -9,7 +9,7 @@
         %a Subject:
         %a= message[:message].subject
       %div(class="box child")
-        %a Body:
+        label Body:
         %a= message[:message].body
       %div(class="box child")
         = link_to 'Reply', messages_reply_path(message[:message].id)
