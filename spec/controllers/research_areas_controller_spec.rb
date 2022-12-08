@@ -109,4 +109,18 @@ describe ResearchAreasController do
       expect(response).to render_template('index')
     end
   end
+  describe 'viewing a specific research are' do
+    before(:each) do
+      research_area = {
+        title: "Test",
+        summary: "Area for testing",
+        detailed_overview: "Research Area for Testing"
+      }
+      ResearchArea.create! research_area
+    end
+    it 'should load the show page' do
+      get :show, { id: ResearchArea.find_by(title: 'Test').id }
+      expect(response).to render_template('show')
+    end
+  end
 end
