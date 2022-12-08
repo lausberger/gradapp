@@ -3,10 +3,11 @@
 # Controller to Approve to Faculty Account
 class ApproveFacultiesController < ApplicationController
   before_action :require_login
+  
   def index
-    acc = Account.find_by(id: @current_user)
-    if acc.account_type != 'Department Chair'
-      flash[:alert] = 'You must be a department chair to approve new accounts'
+    if current_user.account_type != 'Department Chair'
+      flash[:alert] = 'You do not have permission to perform this action'
+      redirect_to home_path and return
     end
     @approval_needed_accounts = Faculty.where(approved: false)
   end
