@@ -3,6 +3,23 @@
 require 'spec_helper'
 require 'rails_helper'
 
+if RUBY_VERSION >= '2.6.0'
+  if Rails.version < '5'
+    module ActionController
+      class TestResponse < ActionDispatch::TestResponse
+        def recycle!
+          # HACK: to avoid MonitorMixin double-initialize error:
+          @mon_mutex_owner_object_id = nil
+          @mon_mutex = nil
+          initialize
+        end
+      end
+    end
+  else
+    puts 'Monkeypatch for ActionController::TestResponse no longer needed'
+  end
+end
+
 describe ResearchAreasController do
   describe 'accessing the form to create a new program' do
     context 'while not logged in ' do
@@ -45,6 +62,7 @@ describe ResearchAreasController do
         StaticsController.any_instance.stub(:current_user).and_return(@account)
       end
       it 'should render corresponding page' do
+        get 'new'
         expect(response).to render_template('new')
       end
     end
