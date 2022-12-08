@@ -223,7 +223,6 @@ research_areas.each do |research_area|
   ResearchArea.create! research_area
 end
 
-
 faculties = [
   {
     account_id: Account.find_by(first_name: 'Jack').id,
@@ -250,4 +249,3 @@ faculties = [
 faculties.each do |faculty|
   Faculty.create! faculty
 end
-

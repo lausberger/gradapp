@@ -58,7 +58,6 @@ describe FacultiesController do
         post :search, { search_research_area: 'fdfdfds' }
         expect(response).to redirect_to faculties_path
         expect(flash[:message]).to eq 'No faculty found for given research area'
-
       end
       it 'should select faculties members only in CSE topic area' do
         post :search, { search_research_area: 'Networks' }

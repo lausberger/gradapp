@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119018) do
+ActiveRecord::Schema.define(version: 30721148119019) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(version: 30721148119018) do
     t.datetime "updated_at",        null: false
     t.string   "summary"
   end
+
+  add_index "research_areas", ["title"], name: "index_research_areas_on_title", unique: true
 
   create_table "student_checklists", force: :cascade do |t|
     t.boolean  "citizenship",            default: false

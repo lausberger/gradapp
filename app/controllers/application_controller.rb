@@ -28,12 +28,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login_as_faculty_or_staff
-    if !logged_in? then
+    if !logged_in?
       (flash[:warning] = 'You must be logged in to perform that action') and (redirect_to login_path)
-    elsif ((current_user.account_type != 'Faculty') and (current_user.account_type != 'Department Chair')) then
+    elsif (current_user.account_type != 'Faculty') && (current_user.account_type != 'Department Chair')
       (flash[:warning] = 'You do not have permission to perform this action') and (redirect_to home_path)
     end
-
   end
 
   private

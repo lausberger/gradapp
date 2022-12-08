@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given(/^The following research areas have been created:$/) do |research_area_table|
   # table is a table.hashes.keys # => [:title, :summary, :detailed_overview]
   research_area_table.hashes.each do |research_area|
