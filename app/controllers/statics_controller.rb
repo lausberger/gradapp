@@ -11,7 +11,7 @@ class StaticsController < ApplicationController
       render 'student_home'
     elsif current_user.account_type == 'Faculty'
       render 'faculty_home'
-    elsif current_user.account_type == 'Chair'
+    elsif current_user.account_type == 'Department Chair'
       render 'chair_home'
     else
       render 'public_home'

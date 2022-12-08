@@ -55,7 +55,7 @@ describe StaticsController do
           email: 'test-chair@uiowa.edu',
           password: 'password',
           password_confirmation: 'password',
-          account_type: 'Chair',
+          account_type: 'Department Chair',
           id: 4
         )
         StaticsController.any_instance.stub(:current_user).and_return(@account)

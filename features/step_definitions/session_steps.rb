@@ -39,7 +39,7 @@ Given(/^I have created a department chair account$/) do
     email: 'test-chair@uiowa.edu',
     password: 'password',
     password_confirmation: 'password',
-    account_type: 'Chair'
+    account_type: 'Department Chair'
   )
 end
 
