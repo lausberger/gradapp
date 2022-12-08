@@ -68,5 +68,42 @@ describe ResearchAreasController do
     end
   end
   describe 'creating a new program' do
+    context 'with valid info' do
+      before(:all) do
+        @research_area = {
+          title: 'Networks',
+          summary: 'A test networks research area',
+          detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
+        }
+      end
+      it 'should redirect to home page' do
+        post :create, { research_area: @research_area }
+        expect(response).to redirect_to home_path
+      end
+      it 'should flash a success message' do
+        post :create, { research_area: @research_area }
+        expect(flash[:notice]).to eq 'Research area successfully added'
+      end
+    end
+    context 'with invalid info' do
+      context 'title already used' do
+        before(:all) do
+          @research_area = {
+            title: 'Networks',
+            summary: 'A test networks research area',
+            detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
+          }
+          allow(ResearchArea).to receive(:where).and_return(@research_area)
+        end
+        it 'should re-render new' do
+          post :create, { research_area: @research_area }
+          expect(response).to render_template('new')
+        end
+        it 'should display error message' do
+          post :create, { research_area: @research_area }
+          expect(flash[:warning]).to eq 'Research area title already exists'
+        end
+      end
+    end
   end
 end
