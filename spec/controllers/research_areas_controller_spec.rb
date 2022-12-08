@@ -112,9 +112,9 @@ describe ResearchAreasController do
   describe 'viewing a specific research are' do
     before(:each) do
       research_area = {
-        title: "Test",
-        summary: "Area for testing",
-        detailed_overview: "Research Area for Testing"
+        title: 'Test',
+        summary: 'Area for testing',
+        detailed_overview: 'Research Area for Testing'
       }
       ResearchArea.create! research_area
     end

@@ -8,6 +8,7 @@ class ResearchAreasController < ApplicationController
   def index
     @research_areas = ResearchArea.all
   end
+
   def new; end
 
   def show
