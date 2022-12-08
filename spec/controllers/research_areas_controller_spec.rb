@@ -69,25 +69,22 @@ describe ResearchAreasController do
   end
   describe 'creating a new program' do
     context 'with valid info' do
-      before(:all) do
+      before(:each) do
         @research_area = {
-          title: 'Networks',
+          title: 'Networks Two',
           summary: 'A test networks research area',
           detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
         }
       end
-      it 'should redirect to home page' do
+      it 'should redirect to home page and flash a success message' do
         post :create, { research_area: @research_area }
         expect(response).to redirect_to home_path
-      end
-      it 'should flash a success message' do
-        post :create, { research_area: @research_area }
         expect(flash[:notice]).to eq 'Research area successfully added'
       end
     end
     context 'with invalid info' do
       context 'title already used' do
-        before(:all) do
+        before(:each) do
           @research_area = {
             title: 'Networks',
             summary: 'A test networks research area',
