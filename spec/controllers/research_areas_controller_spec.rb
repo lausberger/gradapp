@@ -103,4 +103,10 @@ describe ResearchAreasController do
       end
     end
   end
+  describe 'viewing all research areas' do
+    it 'should load the index page' do
+      get :index
+      expect(response).to render_template('index')
+    end
+  end
 end
