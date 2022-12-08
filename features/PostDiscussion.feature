@@ -7,7 +7,7 @@ Feature: Post Discussion
 
   Scenario: Create new discussion without being signed in
     Given I am on the discussions page
-    Then I should not see a button called "Post new Discussion"
+    Then I should not see a button called "Post New Discussion"
 
   Scenario: Create new discussion being signed in
     Given I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"

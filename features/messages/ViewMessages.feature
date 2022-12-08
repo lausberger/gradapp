@@ -44,4 +44,4 @@ Feature: Allow a User to view their messages
     When I have logged in as John Doe
     When I have visited the messages page
     And I have clicked "Send Message"
-    Then I should see "Return to My Messages"
+    Then I should see "Go Back"

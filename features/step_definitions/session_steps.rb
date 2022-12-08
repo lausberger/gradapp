@@ -75,7 +75,6 @@ And(/^I should see a warning that says "(.*?)"$/) do |notice|
 end
 
 Given(/^I have logged out$/) do
-  visit profile_path
   click_on 'Log out'
 end
 

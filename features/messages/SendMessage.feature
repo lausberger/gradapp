@@ -42,6 +42,6 @@ Feature: Allow a User to Send a Message
   Scenario: I no longer want to send a message
     When I have logged in as John Doe
     And I have visited the send messages page
-    And I have clicked 'Return to My Messages'
+    And I have clicked 'Go Back'
     Then I should see 'My Messages'
     And I should not see 'New Message'

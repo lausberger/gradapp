@@ -5,7 +5,7 @@ Given(/^I am on the discussions page$/) do
 end
 
 When(/^I post a reply with body "([^"]*)"$/) do |body|
-  fill_in('Body', with: body)
+  fill_in('New Reply', with: body)
   click_button(id: 'post_reply_button')
 end
 
@@ -28,7 +28,7 @@ When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"
 end
 
 When(/^I post a new discussion with title "([^"]*)" and body "([^"]*)"$/) do |title, body|
-  find('a', text: 'Post new Discussion').click
+  find('a', text: 'Post New Discussion').click
   fill_in('Title', with: title)
   fill_in('Body', with: body)
   click_button(id: 'post_discussion_button')
@@ -72,7 +72,7 @@ And(/^I am on the reply page for post title "([^"]*)" and body "([^"]*)" and aut
       break
     end
   end
-  expect(find('#discussion_title').text).to eq title
+  expect(find('#discussion_title').text).to eq "\"#{title}\""
 end
 
 And(/^I change the(?: title to "([^"]*)" and)? body to "([^"]*)"$/) do |title, body|
