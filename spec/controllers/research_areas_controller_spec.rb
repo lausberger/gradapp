@@ -40,7 +40,7 @@ describe ResearchAreasController do
           account_type: 'Student',
           id: 1
         )
-        StaticsController.any_instance.stub(:current_user).and_return(@account)
+        ResearchAreasController.any_instance.stub(:current_user).and_return(@account)
       end
       it 'should render the home page with flash warning' do
         get 'new'
@@ -59,7 +59,7 @@ describe ResearchAreasController do
           account_type: 'Faculty',
           id: 2
         )
-        StaticsController.any_instance.stub(:current_user).and_return(@account)
+        ResearchAreasController.any_instance.stub(:current_user).and_return(@account)
       end
       it 'should render corresponding page' do
         get 'new'

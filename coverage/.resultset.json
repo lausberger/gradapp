@@ -29,7 +29,8 @@
           null,
           null,
           1,
-          null,
+          1,
+          1,
           null
         ],
         "branches": {
@@ -55,7 +56,11 @@
           1,
           null,
           1,
-          0,
+          1,
+          null,
+          null,
+          1,
+          3,
           null,
           null,
           1,
@@ -63,21 +68,18 @@
           null,
           null,
           1,
-          0,
-          null,
-          null,
+          3,
           1,
-          0,
-          0,
-          0,
-          0,
+          2,
+          1,
+          null,
           null,
           null,
           null,
           1,
           null,
           1,
-          0,
+          3,
           null,
           0,
           null,
@@ -91,23 +93,23 @@
         "branches": {
           "[:if, 0, 19, 4, 19, 81]": {
             "[:then, 1, 19, 4, 19, 60]": 0,
-            "[:else, 2, 19, 4, 19, 81]": 0
+            "[:else, 2, 19, 4, 19, 81]": 1
           },
           "[:unless, 3, 27, 4, 27, 117]": {
             "[:else, 4, 27, 4, 27, 117]": 0,
             "[:then, 5, 27, 4, 27, 99]": 0
           },
-          "[:unless, 6, 31, 4, 31, 117]": {
-            "[:else, 7, 31, 4, 31, 117]": 0,
-            "[:then, 8, 31, 4, 31, 99]": 0
+          "[:if, 6, 33, 4, 34, 105]": {
+            "[:then, 7, 34, 6, 34, 105]": 1,
+            "[:else, 8, 33, 4, 34, 105]": 1
           },
-          "[:unless, 9, 32, 4, 35, 7]": {
-            "[:else, 10, 32, 4, 35, 7]": 0,
-            "[:then, 11, 33, 6, 34, 89]": 0
+          "[:if, 9, 31, 4, 35, 7]": {
+            "[:then, 10, 32, 6, 32, 101]": 1,
+            "[:else, 11, 33, 4, 34, 105]": 2
           },
-          "[:if, 12, 41, 4, 41, 72]": {
-            "[:then, 13, 41, 4, 41, 10]": 0,
-            "[:else, 14, 41, 4, 41, 72]": 0
+          "[:if, 12, 42, 4, 42, 72]": {
+            "[:then, 13, 42, 4, 42, 10]": 3,
+            "[:else, 14, 42, 4, 42, 72]": 0
           }
         }
       },
@@ -133,48 +135,6 @@
           null
         ],
         "branches": {
-        }
-      },
-      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/statics_controller.rb": {
-        "lines": [
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null
-        ],
-        "branches": {
-          "[:if, 0, 14, 4, 17, 26]": {
-            "[:then, 1, 15, 6, 15, 25]": 0,
-            "[:else, 2, 17, 6, 17, 26]": 0
-          },
-          "[:if, 3, 12, 4, 17, 26]": {
-            "[:then, 4, 13, 6, 13, 27]": 0,
-            "[:else, 5, 14, 4, 17, 26]": 0
-          },
-          "[:if, 6, 10, 4, 17, 26]": {
-            "[:then, 7, 11, 6, 11, 27]": 0,
-            "[:else, 8, 12, 4, 17, 26]": 0
-          },
-          "[:if, 9, 8, 4, 18, 7]": {
-            "[:then, 10, 9, 6, 9, 26]": 0,
-            "[:else, 11, 10, 4, 17, 26]": 0
-          }
         }
       },
       "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/models/faculty.rb": {
@@ -474,6 +434,32 @@
           0,
           0,
           null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/elemker/Files/University of Iowa/Fall 2022/SE Tools/Project/selt2022_teamprojects-team-4/app/controllers/statics_controller.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0,
           0,
           0,
@@ -866,7 +852,7 @@
         }
       }
     },
-    "timestamp": 1670464432
+    "timestamp": 1670466112
   },
   "features": {
     "coverage": {
