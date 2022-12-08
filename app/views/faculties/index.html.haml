@@ -12,8 +12,12 @@
         %td= faculty[:last_name]
         %td= faculty[:topic_area]
 
-%p Search for faculty members in a given topic area
+%p Search for faculty members in a given topic area!
 
 = form_tag faculties_search_path do
-  %input{:name => "search_topic_area", :id => "search_topic_area"}
-  =submit_tag "Search Topic Area", id: "search_topic_area_button"
+  #formblock
+    #formrow
+      = label :search, 'Topic'
+      %input{:name => "search_topic_area", :id => "search_topic_area"}
+    #spacer
+    =submit_tag "Search", id: "search_topic_area_button"

@@ -1,4 +1,4 @@
-%h1.title= "The following faculties members focus in #{@topic_area}"
+%h1.title= "#{@topic_area} Faculty"
 
 %table
   %thead
@@ -10,4 +10,5 @@
         %td= faculty.account[:first_name]
         %td= faculty.account[:last_name]
 
-= link_to 'View All Faculty Members', faculties_path
+#spacer
+= link_to 'Go Back', faculties_path
