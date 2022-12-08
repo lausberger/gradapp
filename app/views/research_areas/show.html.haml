@@ -1,0 +1,22 @@
+%h1#application-header #{@research_area.title}}
+
+%h3 Summary
+= @research_area.summary
+
+%h3 Detailed Overview
+= @research_area.detailed_overview
+
+%h3 Faculty in This Area
+
+%div
+  %table
+  %thead
+    %th First Name
+    %th Last Name
+    %th E-Mail
+  %tbody
+    - @faculty_in_research_area.each do |faculty|
+      %tr
+        %td= faculty[:first_name]
+        %td= faculty[:last_name]
+        %td= faculty[:email]
