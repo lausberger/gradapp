@@ -1,18 +1,16 @@
 %h1.title New Message
 = form_tag 'send_message', :method => :post, :id => 'send_message' do
-  = label :to, 'To'
-  %div
-  = text_field_tag :to, params[:to], maxlength: 40, size: 31, :id => 'to_box'
-  %div
-  = label :subject, 'Subject'
-  %div
-  = text_field_tag :subject, params[:subject], maxlength: 40, size: 31, :id => 'subject_box'
-  %div
-  = label :body, 'Body'
-  %div
-  = text_area_tag :body, params[:body], cols: 40, rows: 10, :id => 'body_box'
-
+  #formblock
+    #formrowright
+      = label :to, 'To'
+      = text_field_tag :to, params[:to], maxlength: 40, size: 31, :id => 'to_box'
+    #formrowright
+      = label :subject, 'Subject'
+      = text_field_tag :subject, params[:subject], maxlength: 40, size: 31, :id => 'subject_box'
+    #formrow
+      = label :body, 'Body'
+    #formrow
+      = text_area_tag :body, params[:body], cols: 40, rows: 10, :id => 'body_box'
+    = submit_tag "Send", :id => 'send_button'
   #spacer
-    = submit_tag "Send Message", :id => 'send_button'
   = link_to "Go Back", messages_path
-

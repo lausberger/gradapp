@@ -1,31 +1,37 @@
 %h1.title My Messages
 - @messages.each do |message|
-  %div(class="container")
-    %div(class="box")
-      %div(class="box child")
-        %a Sender:
-        %a= message[:message].from_email
-      %div(class="box child")
-        %a Subject:
-        %a= message[:message].subject
-      %div(class="box child")
-        label Body:
-        %a= message[:message].body
-      %div(class="box child")
-        = link_to 'Reply', messages_reply_path(message[:message].id)
-  - message[:reply].each do |reply|
-    %center
-      %a Above Replies To:
-    %div(class="container")
-      %div(class="box")
-        %div(class="box child")
-          %a Sender:
-          %a= reply.from_email
-        %div(class="box child")
-          %a Subject:
-          %a= reply.subject
-        %div(class="box child")
-          %a Body:
-          %a= reply.body
-  %br
-= link_to 'Send Message', messages_new_path
+  #infoblock
+    #formrowleft
+      %strong= 'Sender: '
+      = message[:message].from_email
+    #formrowleft
+      %strong= 'Subject: '
+      = message[:message].subject
+    #formrowleft 
+      %strong= 'Body:'
+    #spacer
+    #formrowleft
+      = message[:message].body
+    #spacer
+    = link_to 'Reply', messages_reply_path(message[:message].id)
+    #spacer
+    - if message[:reply].any?
+      #spacer
+      %strong= 'Message Context'
+      #spacer
+    - message[:reply].each do |reply|
+      #formrowleft
+        %strong= 'Sender: '
+        = reply.from_email
+      #formrowleft 
+        %strong= 'Subject: '
+        = reply.subject
+      #formrowleft 
+        %strong= 'Body:'
+      #spacer
+      #formrowleft
+        = reply.body
+      #spacer
+  #spacer
+  
+= link_to 'New Message', messages_new_path
