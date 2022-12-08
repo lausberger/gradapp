@@ -1,4 +1,4 @@
-%h1.title#discussions_title Student Discussion Posts
+%h1.title#discussions_title Discussion Posts
 
 - if logged_in? and @discussions.any? { |d| d.account[:first_name] == current_user[:first_name] and d.account[:last_name] == current_user[:last_name] }
   - extra_cells = true
