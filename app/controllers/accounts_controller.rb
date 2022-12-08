@@ -15,8 +15,8 @@ class AccountsController < ApplicationController
       flash[:warning] = 'An account with that email already exists'
     end
     if @account.save
-      flash[:notice] = 'Account registration successful'
-      redirect_to root_path and return
+      flash[:notice] = 'Account registration successful. Please log in.'
+      redirect_to login_path and return
     else
       flash[:alert] = 'Account registration failed, please try again.'
     end
