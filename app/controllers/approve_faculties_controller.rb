@@ -3,7 +3,7 @@
 # Controller to Approve to Faculty Account
 class ApproveFacultiesController < ApplicationController
   before_action :require_login
-  
+
   def index
     if current_user.account_type != 'Department Chair'
       flash[:alert] = 'You do not have permission to perform this action'
@@ -13,6 +13,10 @@ class ApproveFacultiesController < ApplicationController
   end
 
   def update
+    if current_user.account_type != 'Department Chair'
+      flash[:alert] = 'You do not have permission to perform this action'
+      redirect_to home_path and return
+    end
     approved_account = Faculty.find(params[:id])
     approved_account.update(approved: true)
     redirect_to approve_faculties_path
