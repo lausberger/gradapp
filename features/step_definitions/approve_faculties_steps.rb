@@ -10,9 +10,9 @@ Given(/^There are the following accounts created:$/) do |accounts|
     account_creation = Account.create!(first_name: account[:first_name], last_name: account[:last_name], email: account[:email],
                                        password: account[:password], password_confirmation: account[:password_confirmation],
                                        account_type: account[:account_type])
-    next if account[:topic_area].empty?
+    next if account[:research_area].empty?
 
-    Faculty.create!(account_id: account_creation.id, topic_area: account[:topic_area])
+    Faculty.create!(account_id: account_creation.id, research_area_id: ResearchArea.find_by(title: account[:research_area]).id)
   end
 end
 
