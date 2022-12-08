@@ -1,4 +1,4 @@
-%h1.title= "Student Checklist for #{@student[:first_name]} #{@student[:last_name]}"
+%h1.title= "#{@student[:first_name]} #{@student[:last_name]}'s Checklist"
 
 = form_tag student_checklist_path(@current_user[:id]), method: :put do
   %table
@@ -57,7 +57,4 @@
       %tr
         %td Statement of Propose
         %td= check_box_tag "sop_checkbox", 1, @student_checklist[:sop]
-  = submit_tag "Update Checklist"
-
-
-
+  = submit_tag 'Update'
