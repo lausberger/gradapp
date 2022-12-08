@@ -1,16 +1,14 @@
 %h1.title#discussion_edit_title Edit Discussion Post
-
 = form_tag discussion_path(@discussion), :method => :put do
-
-  - if !@discussion[:title].empty?
-    = label :discussion, :title, 'Title'
-    %div
-    = text_field :discussion, 'title', value: @discussion[:title]
-    %div
-  = label :discussion, :body, 'Body'
-  %div
-  = text_area :discussion, 'body', cols: 40, rows: 10, value: @discussion[:body]
-
+  #formblock
+    - if !@discussion[:title].blank?
+      #formrow
+        = label :discussion, :title, 'Title'
+        = text_field :discussion, 'title', value: @discussion[:title]
+    #formrow
+      = label :discussion, :body, 'Body'
+    #formrow
+      = text_area :discussion, 'body', cols: 40, rows: 10, value: @discussion[:body]
+    = submit_tag 'Update', id: 'edit_discussion_post'
   #spacer
-    = submit_tag 'Update Discussion', id: 'edit_discussion_post'
   = link_to 'Go Back', discussions_path

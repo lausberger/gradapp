@@ -1,5 +1,10 @@
 %h1.title#discussions_title Student Discussion Posts
 
+- if logged_in? and @discussions.any? { |d| d.account[:first_name] == current_user[:first_name] and d.account[:last_name] == current_user[:last_name] }
+  - extra_cells = true
+- else
+  - extra_cells = false
+
 %table
   %thead
     %th
@@ -7,8 +12,11 @@
     %th Body
     %th Author
     %th View Replies
+    - if extra_cells
+      %th 
+      %th
   %tbody
-    - @discussions.each do | discussion |
+    - @discussions.each do |discussion|
       %tr
         - if discussion.account[:account_type] == 'Faculty' or discussion.account[:account_type] == 'Department Chair'
           %td= raw('&#9733;')
@@ -18,13 +26,14 @@
         %td= discussion[:body]
         %td= "#{discussion.account[:first_name]} #{discussion.account[:last_name]}"
         %td= link_to "View Replies", discussion_path(discussion)
-        %td
         - if logged_in? and current_user[:first_name] == discussion.account[:first_name] and current_user[:last_name] == discussion.account[:last_name]
           %td= link_to "Edit", edit_discussion_path(discussion)
-          %td
           %td= link_to "Delete", discussion_path(discussion), method: :delete
+        - elsif extra_cells
+          %td
+          %td
 
 %p &#9733; => Faculty Post
-#spacer
 - if logged_in?
-  =link_to "Post New Discussion", new_discussion_path, {:id => "post_new_discussion_button"}
+  #spacer
+  =link_to "New Discussion", new_discussion_path, {:id => "post_new_discussion_button"}
