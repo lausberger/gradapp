@@ -39,6 +39,6 @@ Feature: Approve New Faculty Member Accounts
     When I approve the following faculty account:
       | first_name | last_name   | email                   | password    | account_type     | research_area  |
       | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123 | Faculty          | Networks    |
-    Then I should no long see the following account:
+    Then I should no longer see the following account:
       | first_name | last_name   | email                   | password    | account_type     | research_area  |
       | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123 | Faculty          | Networks    |
