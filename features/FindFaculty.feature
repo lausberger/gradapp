@@ -24,3 +24,4 @@ Feature: View the 'Faculty' page to view specified faculty
     Then I should see Faculty Members:
       | first_name | last_name |
       | Jack       | Stockley  |
+    | Hans          | Johnson |

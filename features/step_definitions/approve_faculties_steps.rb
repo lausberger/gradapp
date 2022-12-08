@@ -52,10 +52,8 @@ Then(/^I should no longer see the following account:$/) do |accounts|
   page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
-    research_area = row.all('td')[2].text
     expect(accounts.hashes).not_to include(include('first_name' => first_name))
     expect(accounts.hashes).not_to include(include('last_name' => last_name))
-    expect(accounts.hashes).not_to include(include('research_area' => research_area))
   end
 end
 
