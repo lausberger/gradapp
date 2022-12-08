@@ -1,11 +1,12 @@
-= content_for(:title, "#{@root_discussion[:title]} - #{@root_discussion.account[:first_name]} #{@root_discussion.account[:last_name]}")
-
-%h1.title#discussion_title= @root_discussion[:title]
+%h1.title#discussion_title= "\"#{@root_discussion[:title]}\""
+%p= "by #{@root_discussion.account[:first_name]} #{@root_discussion.account[:last_name]}"
+#spacer
+%strong= @root_discussion.body
 
 %table
   %thead
     %th
-    %th Body
+    %th Reply
     %th Author
   %tbody
     - @discussions_with_replies.each do | discussion_with_reply|
@@ -17,7 +18,7 @@
         %td= discussion_with_reply[:body]
         %td= "#{discussion_with_reply.account[:first_name]} #{discussion_with_reply.account[:last_name]}"
         %td
-        - if !@current_user.nil? and @current_user[:first_name] == discussion_with_reply.account[:first_name] and @current_user[:last_name] == discussion_with_reply.account[:last_name]
+        - if logged_in? and @current_user[:first_name] == discussion_with_reply.account[:first_name] and @current_user[:last_name] == discussion_with_reply.account[:last_name]
           %td= link_to "Edit", edit_discussion_path(discussion_with_reply)
           %td
           %td= link_to "Delete", discussion_path(discussion_with_reply), method: :delete
@@ -26,11 +27,13 @@
 
 %br
 
-- if !@current_user.nil?
+- if logged_in?
   = form_tag discussions_create_reply_path do
     = hidden_field :discussion, :root_discussion_id, :value => @root_discussion[:id]
 
-    = label :discussion, :body, 'Body'
-    = text_field :discussion, 'body'
-
-    = submit_tag 'Post Reply', id: 'post_reply_button'
+    = label :discussion, :body, 'New Reply'
+    %div
+    = text_area :discussion, 'body', cols: 40, rows: 10
+    #spacer
+      = submit_tag 'Post Reply', id: 'post_reply_button'
+    = link_to 'Go Back', discussions_path

@@ -4,9 +4,13 @@
 
   - if !@discussion[:title].empty?
     = label :discussion, :title, 'Title'
+    %div
     = text_field :discussion, 'title', value: @discussion[:title]
-
+    %div
   = label :discussion, :body, 'Body'
-  = text_field :discussion, 'body', value: @discussion[:body]
+  %div
+  = text_area :discussion, 'body', cols: 40, rows: 10, value: @discussion[:body]
 
-  = submit_tag 'Update Discussion', id: 'edit_discussion_post'
+  #spacer
+    = submit_tag 'Update Discussion', id: 'edit_discussion_post'
+  = link_to 'Go Back', discussions_path

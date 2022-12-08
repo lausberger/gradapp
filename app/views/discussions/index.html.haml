@@ -10,7 +10,7 @@
   %tbody
     - @discussions.each do | discussion |
       %tr
-        - if discussion.account[:account_type] == 'Faculty'
+        - if discussion.account[:account_type] == 'Faculty' or discussion.account[:account_type] == 'Department Chair'
           %td= raw('&#9733;')
         - else
           %td= ''
@@ -19,14 +19,12 @@
         %td= "#{discussion.account[:first_name]} #{discussion.account[:last_name]}"
         %td= link_to "View Replies", discussion_path(discussion)
         %td
-        - if !@current_user.nil? and @current_user[:first_name] == discussion.account[:first_name] and @current_user[:last_name] == discussion.account[:last_name]
+        - if logged_in? and current_user[:first_name] == discussion.account[:first_name] and current_user[:last_name] == discussion.account[:last_name]
           %td= link_to "Edit", edit_discussion_path(discussion)
           %td
           %td= link_to "Delete", discussion_path(discussion), method: :delete
 
 %p &#9733; => Faculty Post
-
-%br
-
-- if !@current_user.nil?
-  =link_to "Post new Discussion", new_discussion_path, {:id => "post_new_discussion_button"}
+#spacer
+- if logged_in?
+  =link_to "Post New Discussion", new_discussion_path, {:id => "post_new_discussion_button"}

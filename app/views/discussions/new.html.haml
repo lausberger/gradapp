@@ -1,11 +1,13 @@
 %h1.title Post New Discussion
 
 = form_tag discussions_path do
-
   = label :discussion, :title, 'Title'
-  = text_field :discussion, 'title'
-
+  %div
+  = text_field :discussion, :title
+  %div
   = label :discussion, :body, 'Body'
-  = text_field :discussion, 'body'
-
-  = submit_tag 'Post Discussion', id: 'post_discussion_button'
+  %div
+  = text_area :discussion, :body, cols: 40, rows: 10
+  #spacer
+    = submit_tag 'Post Discussion', id: 'post_discussion_button'
+  = link_to 'Go Back', discussions_path
