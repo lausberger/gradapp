@@ -1,4 +1,4 @@
-%h1#application-header #{@research_area.title}}
+%h1#application-header #{@research_area.title}
 
 %h3 Summary
 = @research_area.summary
@@ -8,8 +8,7 @@
 
 %h3 Faculty in This Area
 
-%div
-  %table
+%table
   %thead
     %th First Name
     %th Last Name
@@ -17,6 +16,9 @@
   %tbody
     - @faculty_in_research_area.each do |faculty|
       %tr
-        %td= faculty[:first_name]
-        %td= faculty[:last_name]
-        %td= faculty[:email]
+        %td= Account.find(faculty[:account_id])[:first_name]
+        %td= Account.find(faculty[:account_id])[:last_name]
+        %td= Account.find(faculty[:account_id])[:email]
+
+%div
+  = link_to 'Back to All Resarch Areas', research_areas_path
