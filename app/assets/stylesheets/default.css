@@ -42,6 +42,26 @@ div#spacer {
 div#formrow {
   padding: 0;
 }
+div#formrowright {
+  padding: 0;
+  text-align: right;
+}
+div#formrowleft {
+  padding: 0;
+  text-align: left;
+}
+div#formblock {
+  margin: auto;
+  max-width: fit-content;
+  padding: 5px 10px 5px;
+  background-color: darkgray;
+}
+div#infoblock {
+  margin: auto;
+  max-width: fit-content;
+  padding: 5px 10px 5px;
+  background-color: lightgray;
+}
 p {
   line-height: .5;
 }
@@ -107,7 +127,7 @@ tr:nth-child(even) {
   background: lightyellow;
   padding: 4px 0 4px;
 }
-form label {
+label {
   line-height: 25px;
   font-weight: bold;
   color: gold;
