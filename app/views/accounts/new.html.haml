@@ -1,26 +1,29 @@
 %h1.title Create Account
 = form_tag register_path do
-  #formrow
-    = label :account, :first_name, "First Name"
-    = text_field :account, :first_name
-  #formrow
-    = label :account, :last_name, "Last Name"
-    = text_field :account, :last_name
-  #formrow
-    = label :account, :email, "Email"
-    = text_field :account, :email
-  #formrow
-    = label :account, :password, "Password"
-    = password_field :account, :password
-  #formrow
-    = label :account, :password_confirmation, "Confirm Password"
-    = password_field :account, :password_confirmation
-  #formrow
-    = label :account, :account_type, "I am a"
-    %select{ :name=> "account[account_type]" }
-      %option{ :value => "Student" }= Student
-      %option{ :value => "Faculty" }= Faculty
-  #spacer
+  #formblock
+    #formrowright
+      = label :account, :first_name, "First Name"
+      = text_field :account, :first_name
+    #formrowright
+      = label :account, :last_name, "Last Name"
+      = text_field :account, :last_name
+    #formrowright
+      = label :account, :email, "Email"
+      = text_field :account, :email
+    #formrowright
+      = label :account, :password, "Password"
+      = password_field :account, :password
+    #formrowright
+      = label :account, :password_confirmation, "Confirm Password"
+      = password_field :account, :password_confirmation
+    #formrow
+      = label :account, :account_type, "I am a"
+      %select{ :name=> "account[account_type]" }
+        %option{ :value => "Student" }= Student
+        %option{ :value => "Faculty" }= Faculty
+    #spacer
     = submit_tag 'Register'
-  = 'Already have an account? '
-  = link_to 'Log in', login_path
+    #spacer
+    = 'Already have an account? '
+    = link_to 'Log in', login_path
+    #spacer
