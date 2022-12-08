@@ -6,11 +6,10 @@
   #formrow
     = label :session, :password, "Password"
     = password_field :session, :password
-  #formrow
-    = submit_tag 'Log in'
   #spacer
+    = submit_tag 'Log in'
   #spacer
     = link_to 'Forgot your password?', root_path
   #spacer
-    = 'Don\'t have an account?'
-    = link_to 'Sign up', register_path
+  = 'Don\'t have an account?'
+  = link_to 'Sign up', register_path
