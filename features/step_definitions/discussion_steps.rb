@@ -72,7 +72,7 @@ And(/^I am on the reply page for post title "([^"]*)" and body "([^"]*)" and aut
       break
     end
   end
-  expect(find('#discussion_title').text).to eq "\"#{title}\""
+  expect(find('#discussion_title').text).to eq "Discussion: \"#{title}\""
 end
 
 And(/^I change the(?: title to "([^"]*)" and)? body to "([^"]*)"$/) do |title, body|
