@@ -1,15 +1,17 @@
 %h1.title Log In
 = form_tag login_path do
-  #formrow
-    = label :session, :email, "Email"
-    = text_field :session, :email
-  #formrow
-    = label :session, :password, "Password"
-    = password_field :session, :password
-  #spacer
+  #formblock
+    #formrowright
+      = label :session, :email, "Email"
+      = text_field :session, :email
+    #formrowright
+      = label :session, :password, "Password"
+      = password_field :session, :password
+    #spacer
     = submit_tag 'Log in'
-  #spacer
+    #spacer
     = link_to 'Forgot your password?', root_path
-  #spacer
-  = 'Don\'t have an account?'
-  = link_to 'Sign up', register_path
+    #spacer
+    = 'Don\'t have an account?'
+    = link_to 'Sign up', register_path
+    #spacer
