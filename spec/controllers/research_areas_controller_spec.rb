@@ -71,7 +71,7 @@ describe ResearchAreasController do
     context 'with valid info' do
       before(:each) do
         @research_area = {
-          title: 'Networks Two',
+          title: 'Networks',
           summary: 'A test networks research area',
           detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
         }
@@ -90,7 +90,7 @@ describe ResearchAreasController do
             summary: 'A test networks research area',
             detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
           }
-          allow(ResearchArea).to receive(:where).and_return(@research_area)
+          allow(ResearchArea).to receive(:find_by).and_return(@research_area)
         end
         it 'should re-render new' do
           post :create, { research_area: @research_area }
