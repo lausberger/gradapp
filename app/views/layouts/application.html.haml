@@ -28,12 +28,12 @@
             = link_to 'My Messages', messages_path
             = link_to 'My Profile', profile_path
             = link_to 'Log out', logout_path, method: :delete
-          - elsif current_user.account_type == 'Chair'
+          - elsif current_user.account_type == 'Department Chair'
             = link_to 'Home', home_path
             = link_to 'Student Applications', graduate_applications_path
             = link_to 'Student Discussions', discussions_path
             = link_to 'Research Areas', root_path
-            = link_to 'Approve Faculty', root_path
+            = link_to 'Approve Faculty', approve_faculties_path
             = link_to 'My Messages', messages_path
             = link_to 'My Profile', profile_path
             = link_to 'Log out', logout_path, method: :delete
