@@ -16,17 +16,3 @@ Feature: View Research Area
     Then I have visited the GradApp Home Page
     And I have clicked "Find Programs"
     Then I should see "Networks Test 1"
-
-  Scenario: Accessing the view all research areas page from the home page while signed in as a faculty
-    Given I have created a faculty account
-    And I am signed in to my account
-    Then I have visited the GradApp Home Page
-    And I have clicked "Find Programs"
-    Then I should see "Networks Test 1"
-
-  Scenario: Accessing the view all research areas page from the home page while signed in as a department chair
-    Given I have created a department chair account
-    And I am signed in to my account
-    Then I have visited the GradApp Home Page
-    And I have clicked "Find Programs"
-    Then I should see "Networks Test 1"
