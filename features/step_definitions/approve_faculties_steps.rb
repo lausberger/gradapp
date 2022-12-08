@@ -40,10 +40,10 @@ Then(/^I should see the following faculty accounts:$/) do |accounts|
   page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
-    topic_area = row.all('td')[2].text
+    research_area = row.all('td')[2].text
     expect(accounts.hashes).to include(include('first_name' => first_name))
     expect(accounts.hashes).to include(include('last_name' => last_name))
-    expect(accounts.hashes).to include(include('topic_area' => topic_area))
+    expect(accounts.hashes).to include(include('research_area' => research_area))
   end
 end
 

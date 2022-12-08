@@ -26,9 +26,9 @@ Given(/^The following accounts have been created:$/) do |account_table|
   end
 end
 
-And(/^I search for "([^"]*)" topic area$/) do |topic_area|
-  fill_in('search_topic_area', with: topic_area)
-  click_button('search_topic_area_button')
+And(/^I search for "([^"]*)" research area$/) do |research_area|
+  fill_in('search_research_area', with: research_area)
+  click_button('search_research_area_button')
 end
 
 Then(/^I should see Faculty Members:$/) do |faculty_table|
@@ -42,7 +42,7 @@ Then(/^I should see Faculty Members:$/) do |faculty_table|
     last_name = row.all('td')[1].text
     if expect_research_area
       research_area = row.all('td')[2].text
-      expected_hashes = { 'first_name' => first_name, 'last_name' => last_name, 'reserach_area' => research_area }
+      expected_hashes = { 'first_name' => first_name, 'last_name' => last_name, 'research_area' => research_area }
     else
       expected_hashes = { 'first_name' => first_name, 'last_name' => last_name }
     end

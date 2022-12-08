@@ -58,6 +58,14 @@ accounts = [
     account_type: 'Faculty'
   },
   {
+    first_name: 'San',
+    last_name: 'John',
+    email: 'San-john@uiowa.edu',
+    password: 'iloveselt2',
+    password_confirmation: 'iloveselt2',
+    account_type: 'Faculty'
+  },
+  {
     first_name: 'Caleb',
     last_name: 'Marx',
     email: 'caleb-marx@uiowa.edu',
@@ -229,6 +237,11 @@ faculties = [
   },
   {
     account_id: Account.find_by(first_name: 'Alex').id,
+    research_area_id: ResearchArea.find_by(title: 'Integrated Circuits').id,
+    approved: false
+  },
+  {
+    account_id: Account.find_by(first_name: 'San').id,
     research_area_id: ResearchArea.find_by(title: 'Integrated Circuits').id,
     approved: false
   }

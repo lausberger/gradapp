@@ -9,7 +9,7 @@ class FacultiesController < ApplicationController
       @faculties_and_research_area << {
         first_name: faculty.account[:first_name],
         last_name: faculty.account[:last_name],
-        research_area: ResearchArea.find_by(faculty[:research_area_id]).title
+        research_area: ResearchArea.find(faculty[:research_area_id]).title
       }
     end
   end

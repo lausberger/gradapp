@@ -20,7 +20,7 @@ Feature: View the 'Faculty' page to view specified faculty
 
   Scenario: View all the Faculty in a certain topic area
     Given I am on the Find Faculty page
-    And I search for "CSE" topic area
+    And I search for "Networks" research area
     Then I should see Faculty Members:
       | first_name | last_name |
       | Jack       | Stockley  |

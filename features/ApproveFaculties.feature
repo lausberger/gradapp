@@ -25,20 +25,20 @@ Feature: Approve New Faculty Member Accounts
     Given I am signed with the email "jdterwilleger@uiowa.edu" and the password "iL0V3iowA"
     And I am on the approve faculty accounts page
     Then I should see the following faculty accounts:
-      | first_name | last_name   | email                   | password    | account_type     | topic_area  |
+      | first_name | last_name   | email                   | password    | account_type     | research_area  |
       | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123 | Faculty          | Networks    |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | password    | Faculty          | Criminology |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | password    | Faculty          | Networks |
 
   Scenario: Approve Faculty Member needing approval
     Given I am signed with the email "jdterwilleger@uiowa.edu" and the password "iL0V3iowA"
     And I am on the approve faculty accounts page
     And I should see the following faculty accounts:
-      | first_name | last_name   | email                   | password    | account_type     | topic_area  |
+      | first_name | last_name   | email                   | password    | account_type     | research_area  |
       | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123 | Faculty          | Networks    |
-      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | password    | Faculty          | Criminology |
+      | Kaitlynn   | Fuller      | kaitfuller@uiowa.edu    | password    | Faculty          | Networks |
     When I approve the following faculty account:
-      | first_name | last_name   | email                   | password    | account_type     | topic_area  |
+      | first_name | last_name   | email                   | password    | account_type     | research_area  |
       | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123 | Faculty          | Networks    |
     Then I should no long see the following account:
-      | first_name | last_name   | email                   | password    | account_type     | topic_area  |
+      | first_name | last_name   | email                   | password    | account_type     | research_area  |
       | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123 | Faculty          | Networks    |
