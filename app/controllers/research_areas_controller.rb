@@ -10,6 +10,12 @@ class ResearchAreasController < ApplicationController
   end
   def new; end
 
+  def show
+    research_area_id = params[:id]
+    @research_area = ResearchArea.find_by(research_area_id)
+    @faculty_in_research_area = Faculty.where(research_area_id: research_area_id)
+  end
+
   def create
     @research_area = ResearchArea.new(creation_params)
     if ResearchArea.find_by(title: @research_area.title)
