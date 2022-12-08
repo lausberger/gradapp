@@ -1,0 +1,20 @@
+%h2 Add Research Area
+
+= form_tag insert do
+
+  = label :research_area, :title, "Title"
+  = text_field :research_area, :tile
+
+  %div
+  = label :research_area, :summary, "Summary"
+  = text_field :research_area, :summary
+
+  %div
+  = label :research_area, :detailed_overview, "Detailed Overview"
+  = text_field :research_area, :detailed_overview
+
+  %div
+  = submit_tag 'Register'
+
+  %div
+  = link_to 'Return to Home Page', root_path
