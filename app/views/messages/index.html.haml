@@ -1,6 +1,6 @@
 %h1.title My Messages
 - @messages.each do |message|
-  #infoblock
+  #infoblock{ :style => 'max-width: 30%' }
     #formrowleft
       %strong= 'Sender: '
       = message[:message].from_email
