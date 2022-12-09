@@ -21,10 +21,10 @@ if RUBY_VERSION >= '2.6.0'
 end
 
 describe FacultiesController do
-  describe 'search by topic area' do
-    before(:all) do
+  describe 'search by research area' do
+    before(:each) do
       @account = {
-        email: 'joe.smith@gmail.com',
+        email: 'joe.smith3@gmail.com',
         first_name: 'Joesph',
         last_name: 'Smith',
         password: 'iloveselt23',
@@ -32,33 +32,41 @@ describe FacultiesController do
         account_type: 'faculty'
       }
       @account_creation = Account.create!(@account)
+      @research_area = {
+        title: 'Networks Five',
+        summary: 'A test networks research area',
+        detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
+      }
+      @research_area_creation = ResearchArea.create! @research_area
       @faculty = {
         account_id: @account_creation.id,
-        topic_area: 'CSE'
+        research_area_id: @research_area_creation.id
       }
       @faculty_creation = Faculty.create!(@faculty)
     end
-    context 'search for professors in CSE topics are' do
-      it 'should select all faculties members in all topic areas' do
+    context 'search for professors in research area' do
+      it 'should select all faculties members in all research areas' do
         get :index
         expect(response).to render_template('index')
       end
-      it 'should return to index when invalid topic area searched' do
-        post :search, { search_topic_area: '' }
+      it 'should return to index and flash invalid research area when invalid research area searched' do
+        post :search, { search_research_area: '' }
         expect(response).to redirect_to faculties_path
+        expect(flash[:warning]).to eq 'Invalid research area specified!'
       end
       it 'should flash invalid topic area message' do
-        post :search, { search_topic_area: 'fdfdfds' }
+        post :search, { search_research_area: 'fdfdfds' }
         expect(response).to redirect_to faculties_path
+        expect(flash[:message]).to eq 'No faculty found for given research area'
       end
       it 'should select faculties members only in CSE topic area' do
-        post :search, { search_topic_area: 'CSE' }
+        post :search, { search_research_area: 'Networks Five' }
         expect(response).to render_template('search')
       end
     end
-    after(:all) do
+    after(:each) do
       @faculty_creation.destroy
-      @account_creation.destroy
+      @research_area_creation.destroy
     end
   end
 end

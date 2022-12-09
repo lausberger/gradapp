@@ -4,13 +4,13 @@
     %thead
       %th First Name
       %th Last Name
-      %th Topic Area
+      %th Research Area
     %tbody
       - @approval_needed_accounts.each do |faculty|
         %tr
           =form_tag approve_faculty_path(faculty[:id]), method: :put do
             %td= faculty.account[:first_name]
             %td= faculty.account[:last_name]
-            %td= faculty[:topic_area]
+            %td= ResearchArea.find(faculty[:research_area_id]).title
             %td= submit_tag "Approve", id: "approve_account_button"
 

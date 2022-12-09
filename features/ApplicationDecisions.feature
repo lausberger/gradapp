@@ -1,6 +1,9 @@
 Feature: Approve or Deny Student Applications
 
   Background:
+    Given The following research areas have been created:
+      | title    | summary                       | detailed_overview                                                                      |
+      | Networks1 | A test networks research area | This research area is made to tests faculty, and it represent a possible networks area |
     Given There are the following applications created:
       | first_name | last_name   | email                   | phone      | dob        | status    |
       | Jack       | Stockley    | jnstockley@uiowa.edu    | 7737261974 | 2000-10-13 | submitted |
@@ -8,8 +11,8 @@ Feature: Approve or Deny Student Applications
       | Caleb      | Marx        | cmarx1@uiowa.edu        | 1234567890 | 2004-04-10 | withdrawn |
       | Jonah      | Terwilleger | jdterwilleger@uiowa.edu | 8152544561 | 1998-06-12 | accepted  |
     Given There are the following accounts created:
-      | first_name | last_name   | email                   | password     | password_confirmation | account_type     | topic_area  |
-      | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123  | Password123           | Faculty          | Networks    |
+      | first_name | last_name   | email                   | password     | password_confirmation | account_type     | research_area  |
+      | Jack       | Stockley    | jnstockley@uiowa.edu    | Password123  | Password123           | Faculty          | Networks1    |
 
   Scenario: View Application without being signed in
     Given I am on the approve applications page

@@ -31,11 +31,16 @@ describe ApproveFacultiesController do
         password_confirmation: 'password123',
         account_type: 'Faculty'
       }
+      @research_area = {
+        title: 'Networks Four',
+        summary: 'A test networks research area',
+        detailed_overview: 'This research area is made to tests faculty, and it represent a possible networks area'
+      }
+      @research_area_creation = ResearchArea.create! @research_area
       @faculty_account_creation = Account.create! @faculty_account
-
       @faculty_account_two = {
         account_id: @faculty_account_creation.id,
-        topic_area: 'Networks',
+        research_area_id: @research_area_creation.id,
         approved: false
       }
       @faculty_account_two_creation = Faculty.create! @faculty_account_two
@@ -60,6 +65,10 @@ describe ApproveFacultiesController do
         put :update, { id: @faculty_account_two_creation.id }
         expect(response).to redirect_to approve_faculties_path
       end
+    end
+    after(:each) do
+      @faculty_account_creation.destroy
+      @research_area_creation.destroy
     end
   end
 end

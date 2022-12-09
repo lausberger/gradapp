@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119016) do
+ActiveRecord::Schema.define(version: 30721148119019) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -61,13 +61,14 @@ ActiveRecord::Schema.define(version: 30721148119016) do
 
   create_table "faculties", force: :cascade do |t|
     t.integer  "account_id"
-    t.string   "topic_area"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "approved",   default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "approved",         default: false
+    t.integer  "research_area_id"
   end
 
   add_index "faculties", ["account_id"], name: "index_faculties_on_account_id"
+  add_index "faculties", ["research_area_id"], name: "index_faculties_on_research_area_id"
 
   create_table "graduate_applications", force: :cascade do |t|
     t.string   "first_name"
@@ -91,6 +92,16 @@ ActiveRecord::Schema.define(version: 30721148119016) do
     t.datetime "updated_at",  null: false
     t.integer  "messages_id"
   end
+
+  create_table "research_areas", force: :cascade do |t|
+    t.string   "title",             null: false
+    t.string   "detailed_overview", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "summary"
+  end
+
+  add_index "research_areas", ["title"], name: "index_research_areas_on_title", unique: true
 
   create_table "student_checklists", force: :cascade do |t|
     t.boolean  "citizenship",            default: false

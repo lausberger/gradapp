@@ -1,0 +1,20 @@
+%h2 Add Research Area Form
+
+= form_tag research_areas_path do
+
+  = label :research_area, :title, "Title"
+  = text_field :research_area, :title
+
+  %div
+  = label :research_area, :summary, "Summary"
+  = text_field :research_area, :summary, size: 50
+
+  %div
+  = label :research_area, :detailed_overview, "Detailed Overview"
+  = text_area :research_area, :detailed_overview, rows: 10, cols: 50
+
+  %div
+  = submit_tag 'Create'
+
+  %div
+  = link_to 'Return to Home Page', root_path

@@ -5,28 +5,28 @@ Given(/^I am on the approve faculty accounts page$/) do
 end
 
 Given(/^There are the following accounts created:$/) do |accounts|
-  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :topic_area]
+  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :research_area]
   accounts.hashes.each do |account|
     account_creation = Account.create!(first_name: account[:first_name], last_name: account[:last_name], email: account[:email],
                                        password: account[:password], password_confirmation: account[:password_confirmation],
                                        account_type: account[:account_type])
-    next if account[:topic_area].empty?
+    next if account[:research_area].empty?
 
-    Faculty.create!(account_id: account_creation.id, topic_area: account[:topic_area])
+    Faculty.create!(account_id: account_creation.id, research_area_id: ResearchArea.find_by(title: account[:research_area]).id)
   end
 end
 
 When(/^I approve the following faculty account:$/) do |accounts|
-  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :topic_area]
+  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :research_area]
   # pending 'Change to use web ui'
   page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
-    topic_area = row.all('td')[2].text
+    research_area = row.all('td')[2].text
     next unless accounts.hashes.any? { |hash| hash['first_name'] == first_name } && accounts.hashes.any? do |hash|
                   hash['last_name'] == last_name
                 end && accounts.hashes.any? do |hash|
-                         hash['topic_area'] == topic_area
+                         hash['research_area'] == research_area
                        end
 
     row.click_button('Approve')
@@ -34,28 +34,26 @@ When(/^I approve the following faculty account:$/) do |accounts|
 end
 
 Then(/^I should see the following faculty accounts:$/) do |accounts|
-  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :topic_area]
+  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :research_area]
   num_faculty = page.all(:xpath, '//*[@id="main"]/table/tbody/tr').length
   expect(num_faculty).eql? accounts.hashes.length
   page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
-    topic_area = row.all('td')[2].text
+    research_area = row.all('td')[2].text
     expect(accounts.hashes).to include(include('first_name' => first_name))
     expect(accounts.hashes).to include(include('last_name' => last_name))
-    expect(accounts.hashes).to include(include('topic_area' => topic_area))
+    expect(accounts.hashes).to include(include('research_area' => research_area))
   end
 end
 
-Then(/^I should no long see the following account:$/) do |accounts|
-  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :topic_area]
+Then(/^I should no longer see the following account:$/) do |accounts|
+  # table is a table.hashes.keys # => [:first_name, :last_name, :email, :password, :password_confirmation, :account_type, :research_area]
   page.all(:xpath, '//*[@id="main"]/table/tbody/tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
-    topic_area = row.all('td')[2].text
     expect(accounts.hashes).not_to include(include('first_name' => first_name))
     expect(accounts.hashes).not_to include(include('last_name' => last_name))
-    expect(accounts.hashes).not_to include(include('topic_area' => topic_area))
   end
 end
 

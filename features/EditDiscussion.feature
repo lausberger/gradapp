@@ -2,7 +2,7 @@ Feature: Edit Discussion
 
   Background:
     Given There are the following accounts created:
-      | first_name | last_name | email               | password    | password_confirmation | account_type | topic_area |
+      | first_name | last_name | email               | password    | password_confirmation | account_type | research_area |
       | Jack       | Stockley  |jnstockley@uiowa.edu | Password123 | Password123           | Student      |            |
 
   Scenario: Edit existing discussion without being signed in
