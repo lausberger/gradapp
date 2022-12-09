@@ -3,10 +3,15 @@
 # Graduate application controller class for handling associated views for grad applications
 class GraduateApplicationsController < ApplicationController
   before_action :parse_educations_form_data, :upload_documents, only: [:create]
-  # before_action :require_login
+  before_action :require_login
 
   def index
-    @graduate_applications = GraduateApplication.all
+    if @current_user.account_type.eql? 'Faculty'
+      @graduate_applications = GraduateApplication.all
+      return
+    end
+
+    @graduate_applications = GraduateApplication.where(['account = ?', @current_user.id])
   end
 
   def show
