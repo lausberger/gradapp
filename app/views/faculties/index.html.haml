@@ -4,7 +4,7 @@
   %thead
     %th First Name
     %th Last Name
-    %th Topic Area
+    %th Research Area
   %tbody
     - @faculties_and_research_area.each do |faculty|
       %tr
@@ -12,7 +12,8 @@
         %td= faculty[:last_name]
         %td= faculty[:research_area]
 
-%p Search for faculty members in a given topic area!
+#spacer
+%p Search for faculty members in a given research area!
 
 = form_tag faculties_search_path do
   #formblock

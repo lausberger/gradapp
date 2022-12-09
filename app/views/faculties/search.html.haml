@@ -4,11 +4,13 @@
   %thead
     %th First Name
     %th Last Name
+    %th Email
   %tbody
     - @faculties.each do |faculty|
       %tr
         %td= faculty.account[:first_name]
         %td= faculty.account[:last_name]
+        %td= faculty.account[:email]
 
 #spacer
 = link_to 'Go Back', faculties_path

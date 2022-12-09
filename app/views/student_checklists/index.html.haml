@@ -1,7 +1,7 @@
 %h1.title= "#{@student[:first_name]} #{@student[:last_name]}'s Checklist"
 
 = form_tag student_checklist_path(@current_user[:id]), method: :put do
-  %table{ :style => 'max-width: 30%;' }
+  %table{ :style => 'max-width: 30%; min-width: 30%;' }
     %thead
       %th Item
       %th Completed
