@@ -20,16 +20,8 @@ class FacultiesController < ApplicationController
       flash[:warning] = 'Invalid research area specified!'
       return redirect_to faculties_path
     end
-<<<<<<< HEAD
-    @faculties = Faculty.where(topic_area: @topic_area)
-    (flash[:notice] = "No faculty members with topic area matching \"#{@topic_area}\" were found") and (redirect_to faculties_path) if @faculties.length.zero?
-=======
     @research_area_id = ResearchArea.where(title: @research_area)
     @faculties = Faculty.where(research_area_id: @research_area_id)
-    return unless @faculties.length.zero?
-
-    flash[:message] = 'No faculty found for given research area'
-    redirect_to faculties_path
->>>>>>> 9cb808b2988638559a409f3e2a95d9ea86195867
+    (flash[:notice] = "No faculty found with research area matching \"#{@research_area}\"") and (redirect_to faculties_path) if @faculties.length.zero?
   end
 end
