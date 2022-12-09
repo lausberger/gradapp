@@ -78,7 +78,7 @@ describe ResearchAreasController do
       end
       it 'should redirect to home page and flash a success message' do
         post :create, { research_area: @research_area }
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to research_areas_path
         expect(flash[:notice]).to eq 'Research area successfully added'
       end
     end
