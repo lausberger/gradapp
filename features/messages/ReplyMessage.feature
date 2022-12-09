@@ -29,13 +29,13 @@ Feature: Allow a user to reply to messages
     And I view the reply page for message "1"
     Then I should see "Hello."
     And I should see "Hi. Hey."
-    And I should see "Reply Body"
+    And I should see "Body"
 
   Scenario: Send a reply to a message
     When I have logged in as John Doe
     And I view the reply page for message "1"
     And I fill in the "body_box" with "This is a test message"
-    And I have clicked the button "Reply to Message"
+    And I have clicked the button "Reply"
     Then I should not see "This is a test message"
 
   Scenario: View a reply sent to you
@@ -43,7 +43,7 @@ Feature: Allow a user to reply to messages
     And I have visited the messages page
     Then I should see "A Reply."
     And I should see "To You."
-    And I should see "Above Replies To:"
+    And I should see "Message Context"
     And I should see "Talk."
     And I should see "Important."
 

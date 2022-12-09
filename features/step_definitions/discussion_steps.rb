@@ -28,7 +28,7 @@ When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"
 end
 
 When(/^I post a new discussion with title "([^"]*)" and body "([^"]*)"$/) do |title, body|
-  find('a', text: 'Post New Discussion').click
+  find('a', text: 'New Discussion').click
   fill_in('Title', with: title)
   fill_in('Body', with: body)
   click_button(id: 'post_discussion_button')
@@ -91,6 +91,14 @@ Then(/^I should not see any "([^"]*)" buttons$/) do |button_name|
   all('#main tr').each do |row|
     expect(row).not_to have_css('a', text: button_name)
   end
+end
+
+And(/^I should not see a link called "([^"]*)"$/) do |link_name|
+  expect(page).not_to have_css('a', text: link_name)
+end
+
+And(/^I see a link called "([^"]*)"$/) do |link_name|
+  expect(page).to have_css('a', text: link_name)
 end
 
 Then(/^I should see a discussion post with(?: title "([^"]*)" and)? body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|

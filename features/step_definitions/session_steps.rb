@@ -39,7 +39,7 @@ Given(/^I have created a department chair account$/) do
     email: 'test-chair@uiowa.edu',
     password: 'password',
     password_confirmation: 'password',
-    account_type: 'Chair'
+    account_type: 'Department Chair'
   )
 end
 
@@ -82,6 +82,6 @@ When(/^I attempt to visit the profile page$/) do
   visit profile_path
 end
 
-Then(/^I should be redirected to the login page$/) do
-  expect(page).to have_current_path(login_path)
+Then(/^I should be redirected to the home page$/) do
+  expect(page).to have_current_path(home_path)
 end

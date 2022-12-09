@@ -9,14 +9,14 @@ Background: I am on the registration page
 Scenario: create an account as a Student
     When I fill out the form with email "student@email.com" and "Student" selected
     And I submit the form
-    Then I should be redirected to the home page
-    And I should see a notice that says "Account registration successful" 
+    Then I should be redirected to the login page
+    And I should see a notice that says "Account registration successful. Please log in." 
 
 Scenario: create an account as a Faculty
     When I fill out the form with email "faculty@email.com" and "Faculty" selected
     And I submit the form
-    Then I should be redirected to the home page
-    And I should see a notice that says "Account registration successful"
+    Then I should be redirected to the login page
+    And I should see a notice that says "Account registration successful. Please log in."
 
 Scenario: attempt to create an account with non-matching passwords
     When I fill out the form with email "password-noob@email.com" and non-matching passwords

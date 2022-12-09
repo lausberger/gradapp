@@ -43,5 +43,5 @@ Feature: Allow a User to view their messages
   Scenario: Navigate to another page from the Messages Page
     When I have logged in as John Doe
     When I have visited the messages page
-    And I have clicked "Send Message"
+    And I have clicked "New Message"
     Then I should see "Go Back"

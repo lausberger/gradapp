@@ -7,12 +7,12 @@ Feature: Post Discussion
 
   Scenario: Create new discussion without being signed in
     Given I am on the discussions page
-    Then I should not see a button called "Post New Discussion"
+    Then I should not see a link called "New Discussion"
 
   Scenario: Create new discussion being signed in
     Given I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
     And I am on the discussions page
-    And I see a button called "Post new Discussion"
+    And I see a link called "New Discussion"
     When I post a new discussion with title "hello" and body "hello"
     Then I should see a discussion post with title "hello" and body "hello" and author "Jack Stockley"
 

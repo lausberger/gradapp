@@ -15,7 +15,7 @@ Feature: Approve New Faculty Member Accounts
   Scenario: View faculties needing approval without being signed in as a Departmental Chair user
     Given I am signed with the email "jnstockley@uiowa.edu" and the password "Password123"
     And I am on the approve faculty accounts page
-    Then I should see an error message saying "You must be a department chair to approve new accounts"
+    Then I should see an error message saying "You do not have permission to perform that action"
 
   Scenario: View faculties needing approval signed in as a Departmental Chair user
     Given I am signed with the email "jdterwilleger@uiowa.edu" and the password "iL0V3iowA"
