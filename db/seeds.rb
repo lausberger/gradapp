@@ -226,7 +226,7 @@ end
 faculties = [
   {
     account_id: Account.find_by(first_name: 'Jack').id,
-    research_area_id: ResearchArea.find_by(title: 'Applied Physics').id,
+    research_area_id: nil,
     approved: true
   },
   {

@@ -9,6 +9,7 @@ Feature: View the 'Faculty' page to view specified faculty
       | first_name | last_name | email                   | password    | password_confirmation | account_type | research_area |
       | Jack       | Stockley  | jack-stockley@uiowa.edu | Password123 | Password123           | Faculty      | Networks3      |
       | Hans       | Johnson   | hans-johnson@uiowa.edu  | iloveselt   | iloveselt             | Faculty      | Networks3       |
+      | Evan       | Lemmy     | lemmy@uiowa.edu          | ilove?selt | ilove?selt             | Faculty     |                 |
       | Caleb      | Marx      | caleb-marx@uiowa.edu    | pA55W0rd!   | pA55W0rd!             | Student      |            |
 
   Scenario: View all the Faculty
