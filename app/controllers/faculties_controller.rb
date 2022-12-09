@@ -9,7 +9,7 @@ class FacultiesController < ApplicationController
       @faculties_and_research_area << {
         first_name: faculty.account[:first_name],
         last_name: faculty.account[:last_name],
-        research_area: if !!ResearchArea.find_by(id: faculty[:research_area_id]) then ResearchArea.find(faculty[:research_area_id]).title else "None" end
+        research_area: !ResearchArea.find_by(id: faculty[:research_area_id]).nil? ? ResearchArea.find(faculty[:research_area_id]).title : 'None'
       }
     end
   end

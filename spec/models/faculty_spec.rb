@@ -43,10 +43,6 @@ describe Faculty do
     }
   end
   describe 'topic area validation' do
-    it 'should fail on nil research_area_id' do
-      @faculty[:research_area_id] = nil
-      expect(Faculty.new(@faculty).valid?).to eq false
-    end
     it 'should pass on valid faculty account' do
       @faculty[:research_area_id] = @research_area_creation.id
       expect(Faculty.new(@faculty).valid?).to eq true
