@@ -4,7 +4,18 @@
 class ResearchAreasController < ApplicationController
   before_action :validate_research_area_params, only: [:create]
   before_action :require_login_as_faculty_or_staff, only: [:new]
+
+  def index
+    @research_areas = ResearchArea.all
+  end
+
   def new; end
+
+  def show
+    research_area_id = params[:id]
+    @research_area = ResearchArea.find_by(research_area_id)
+    @faculty_in_research_area = Faculty.where(research_area_id: research_area_id)
+  end
 
   def create
     @research_area = ResearchArea.new(creation_params)

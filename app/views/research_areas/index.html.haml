@@ -1,0 +1,16 @@
+%h1 All Research Areas
+
+%table
+  %thead
+    %th Title
+    %th Summary
+    %th More Details
+  %tbody
+    - @research_areas.each do |research_area|
+      %tr
+        %td= research_area[:title]
+        %td= research_area[:summary]
+        %td=link_to "View More", research_area_path(research_area[:id])
+
+
+
