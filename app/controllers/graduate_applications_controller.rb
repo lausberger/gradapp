@@ -11,7 +11,7 @@ class GraduateApplicationsController < ApplicationController
       return
     end
 
-    @graduate_applications = GraduateApplication.where(['account = ?', @current_user.id])
+    @graduate_applications = GraduateApplication.where(['account_id = ?', @current_user.id])
   end
 
   def show
@@ -32,7 +32,7 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def create
-    @graduate_application = GraduateApplication.create(@graduate_application_params)
+    @graduate_application = @current_user.graduate_applications.create(@graduate_application_params)
     flash[:notice] = 'Graduate application was successfully submitted.' if @graduate_application.valid?
     flash[:notice] = 'Application submission failed, please retry.' unless @graduate_application.valid?
     @graduate_application.status = 'denied' unless @graduate_application.valid?
