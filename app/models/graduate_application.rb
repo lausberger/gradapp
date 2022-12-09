@@ -6,6 +6,7 @@ class GraduateApplication < ActiveRecord::Base
     %w[in-progress submitted denied accepted withdrawn]
   end
 
+  belongs_to :account
   has_many :educations, dependent: :destroy, inverse_of: :graduate_application
   has_many :documents, dependent: :destroy, inverse_of: :graduate_application
   accepts_nested_attributes_for :educations, allow_destroy: true, reject_if: :all_blank
