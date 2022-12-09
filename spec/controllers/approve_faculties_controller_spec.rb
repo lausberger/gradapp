@@ -45,7 +45,7 @@ describe ApproveFacultiesController do
       ApplicationController.any_instance.stub(:current_user).and_return acc
       get :index
       expect(response).to redirect_to home_path
-      expect(flash[:alert]).to eq 'You do not have permission to perform this action'
+      expect(flash[:alert]).to eq 'You do not have permission to perform that action'
     end
     describe 'approve faculty account as dept chair' do
       it 'should render the show template' do
@@ -61,7 +61,7 @@ describe ApproveFacultiesController do
         ApplicationController.any_instance.stub(:current_user).and_return acc
         put :update, { id: @faculty_account_two_creation.id }
         expect(response).to redirect_to home_path
-        expect(flash[:alert]).to eq 'You do not have permission to perform this action'
+        expect(flash[:alert]).to eq 'You do not have permission to perform that action'
       end
     end
   end

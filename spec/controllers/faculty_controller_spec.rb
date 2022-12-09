@@ -46,7 +46,7 @@ describe FacultiesController do
       it 'should return to index when invalid topic area searched' do
         post :search, { search_topic_area: '' }
         expect(response).to redirect_to faculties_path
-        expect(flash[:warning]).to eq "Invalid topic area specified!"
+        expect(flash[:warning]).to eq 'Invalid topic area specified!'
       end
       it 'should flash invalid topic area message' do
         topic_area = 'basketweaving'

@@ -11,6 +11,6 @@
       = label :body, 'Body'
     #formrow
       = text_area_tag :body, params[:body], cols: 40, rows: 10, :id => 'body_box'
-    = submit_tag "Send", :id => 'send_button'
+    = submit_tag 'Send', :id => 'send_button'
   #spacer
-  = link_to "Go Back", messages_path
+  = link_to 'Go Back', messages_path
