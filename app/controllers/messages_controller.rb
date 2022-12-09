@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
     to_id = to_acc.id
     subject = params[:subject]
     body = params[:body]
-    if body.length.zero?
+    if body.blank?
       flash[:warning] = 'Please enter a body for your message'
       redirect_to messages_new_path and return
     end
