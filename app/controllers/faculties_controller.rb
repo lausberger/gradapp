@@ -21,6 +21,6 @@ class FacultiesController < ApplicationController
       return redirect_to faculties_path
     end
     @faculties = Faculty.where(topic_area: @topic_area)
-    redirect_to faculties_path if @faculties.length.zero?
+    (flash[:notice] = "No faculty members with topic area matching \"#{@topic_area}\" were found") and (redirect_to faculties_path) if @faculties.length.zero?
   end
 end
