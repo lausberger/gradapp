@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119019) do
+ActiveRecord::Schema.define(version: 30721148119020) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -79,7 +79,10 @@ ActiveRecord::Schema.define(version: 30721148119019) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
+
+  add_index "graduate_applications", ["account_id"], name: "index_graduate_applications_on_account_id"
 
   create_table "messages", force: :cascade do |t|
     t.integer  "to_id",       null: false
