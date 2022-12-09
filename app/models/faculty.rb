@@ -2,6 +2,5 @@
 
 class Faculty < ActiveRecord::Base
   belongs_to :account
-
-  validates :topic_area, presence: true, allow_blank: false
+  belongs_to :research_area
 end

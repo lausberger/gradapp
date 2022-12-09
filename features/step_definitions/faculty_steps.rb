@@ -16,19 +16,19 @@ Given(/^The following accounts have been created:$/) do |account_table|
       account_type: account[:account_type]
     }
     account_creation = Account.create!(new_account)
-    next if account[:topic_area].empty?
+    next if account[:research_area].empty?
 
     faculty = {
       account_id: account_creation.id,
-      topic_area: account[:topic_area]
+      research_area_id: ResearchArea.find_by(title: account[:research_area]).id
     }
     Faculty.create!(faculty)
   end
 end
 
-And(/^I search for "([^"]*)" topic area$/) do |topic_area|
-  fill_in('search_topic_area', with: topic_area)
-  click_button('search_topic_area_button')
+And(/^I search for "([^"]*)" research area$/) do |research_area|
+  fill_in('search_research_area', with: research_area)
+  click_button('search_research_area_button')
 end
 
 Then(/^I should see Faculty Members:$/) do |faculty_table|
@@ -36,13 +36,13 @@ Then(/^I should see Faculty Members:$/) do |faculty_table|
   num_faculty = all('tbody tr').length
   expect(num_faculty).eql? faculty_table.hashes.length
   # needed for implementation detail where filtering by topic area produces different table rows
-  expect_topic_area = faculty_table.hashes[0].keys.length == 3
+  expect_research_area = faculty_table.hashes[0].keys.length == 3
   all('tbody tr').each do |row|
     first_name = row.all('td')[0].text
     last_name = row.all('td')[1].text
-    if expect_topic_area
-      topic_area = row.all('td')[2].text
-      expected_hashes = { 'first_name' => first_name, 'last_name' => last_name, 'topic_area' => topic_area }
+    if expect_research_area
+      research_area = row.all('td')[2].text
+      expected_hashes = { 'first_name' => first_name, 'last_name' => last_name, 'research_area' => research_area }
     else
       expected_hashes = { 'first_name' => first_name, 'last_name' => last_name }
     end
