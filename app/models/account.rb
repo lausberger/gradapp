@@ -5,6 +5,7 @@ class Account < ActiveRecord::Base
   # represents password in a secure manner, maps to password_digest
   has_secure_password
 
+  has_many :graduate_applications, dependent: :destroy
   has_many :to_messages, class_name: 'Message', foreign_key: 'to_id', dependent: :destroy
   has_many :from_messages, class_name: 'Message', foreign_key: 'from_id', dependent: :destroy
 
