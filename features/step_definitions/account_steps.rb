@@ -32,8 +32,8 @@ And(/^I submit the form$/) do
   click_button 'Register'
 end
 
-Then(/^I should be redirected to the home page$/) do
-  expect(page).to have_current_path(home_path)
+Then(/^I should be redirected to the login page$/) do
+  expect(page).to have_current_path(login_path)
 end
 
 And(/^I should see a notice that says "(.*?)"$/) do |notice|

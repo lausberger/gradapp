@@ -1,18 +1,62 @@
 !!!
 %html
   %head
-    %title College of Engineering Graduate Portal
+    %title Graduate Portal
     = stylesheet_link_tag 'application', 'media' => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
-    #main
-      - if flash[:notice]
-        #notice.message= flash[:notice]
-      - elsif flash[:warning]
-        #warning.message= flash[:warning]
-      - elsif flash[:alert]
-        #alert.message= flash[:alert]
+    %center
+      %h1 College of Engineering Graduate Portal
+      #navbar
+        - if logged_in?
+          - if current_user.account_type == 'Student'
+            = link_to 'Home', home_path
+            = link_to 'FAQ', faq_path
+            = link_to 'Discussions', discussions_path
+            = link_to 'My Application', root_path
+            = link_to 'My Checklist', student_checklists_path
+            = link_to 'My Messages', messages_path
+            = link_to 'My Profile', profile_path
+            = link_to 'Log out', logout_path, method: :delete
+          - elsif current_user.account_type == 'Faculty'
+            = link_to 'Home', home_path
+            = link_to 'Student Applications', graduate_applications_path
+            = link_to 'Discussions', discussions_path
+            = link_to 'Add Research Areas', new_research_area_path
+            = link_to 'My Messages', messages_path
+            = link_to 'My Profile', profile_path
+            = link_to 'Log out', logout_path, method: :delete
+          - elsif current_user.account_type == 'Department Chair'
+            = link_to 'Home', home_path
+            = link_to 'Student Applications', graduate_applications_path
+            = link_to 'Discussions', discussions_path
+            = link_to 'Add Research Areas', new_research_area_path
+            = link_to 'Approve Faculty', approve_faculties_path
+            = link_to 'My Messages', messages_path
+            = link_to 'My Profile', profile_path
+            = link_to 'Log out', logout_path, method: :delete
+        - else
+          = link_to 'Home', home_path
+          = link_to 'FAQ', faq_path
+          = link_to 'Discussions', discussions_path
+          = link_to 'Log In', login_path
+          = link_to 'Register', register_path
+    
+      #main
+        - if flash[:notice]
+          #notice.message= flash[:notice]
+        - elsif flash[:warning]
+          #warning.message= flash[:warning]
+        - elsif flash[:alert]
+          #alert.message= flash[:alert]
 
-      = yield
+        = yield
+
+        %h3 Contact Us
+        %p Office of the Dean
+        %p 201 Gilmore Hall
+        %p Phone: 319-335-2143
+        %p Email: gradcoll@uiowa.edu
+        %p Iowa City, IA 52242-1320

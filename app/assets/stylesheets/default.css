@@ -6,9 +6,61 @@ html, body {
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
 }
+input[type=submit] {
+  background-color: gold;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 200ms;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+input[type=submit]:not(:disabled):hover,
+input[type=submit]:not(:disabled):focus {
+  outline: 0;
+  background: rgb(201, 171, 0);
+  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+}
+input[type=submit]:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
+}
 div#main {
   margin: 0;
-  padding: 0 20px 20px;
+}
+div#spacer {
+  padding: 0 0 10px;
+}
+div#formrow {
+  padding: 0;
+}
+div#formrowright {
+  padding: 0;
+  text-align: right;
+}
+div#formrowleft {
+  padding: 0;
+  text-align: left;
+}
+div#formblock {
+  margin: auto;
+  max-width: fit-content;
+  padding: 5px 10px 5px;
+  background-color: darkgray;
+}
+div#infoblock {
+  margin: auto;
+  max-width: fit-content;
+  padding: 5px 10px 5px;
+  background-color: lightgray;
 }
 p {
   line-height: .5;
@@ -20,6 +72,12 @@ a {
   font-weight: bold;
   padding: 0 5px 5px;
 }
+div#navbar {
+  background: gray;
+  display: block;
+  width: 100%;
+  padding: 4px 0 10px;
+}
 h1 {
   color: gold;
   background: black;
@@ -28,11 +86,14 @@ h1 {
   display: block;
   width: 100%;
   border-bottom: 1px solid DarkSlateGrey;
+  margin: 0px;
+  padding: 2px 0 2px;
 }
 h1.title {
   margin: 0 0 1em;
   padding: 10px;
-  background-color: white;
+  background-color: lightgray;
+  width: 100%;
   color: black;
   border-bottom: 4px solid gold;
   font-size: 2em;
@@ -41,25 +102,33 @@ h1.title {
 table {
   margin: 10px;
   border-collapse: collapse;
-  width: 100%;
+  max-width: fit-content;
+  min-width: 50%;
   border-bottom: 2px solid black;
 }
-table {
+table th {
   border: 2px solid white;
   font-weight: bold;
   background-color: grey;
 }
-table {
+table th, table td{
   padding: 4px;
   text-align: left;
 }
-#notice #warning {
-  background: rosybrown;
-  margin: 1em 0;
-  padding: 4px;
+tr:nth-child(even) {
+  background-color: rgb(209, 209, 209);
 }
-form label {
-  display: block;
+.message#warning {
+  background: rosybrown;
+}
+.message#alert {
+  background: red;
+}
+.message {
+  background: lightyellow;
+  padding: 4px 0 4px;
+}
+label {
   line-height: 25px;
   font-weight: bold;
   color: gold;

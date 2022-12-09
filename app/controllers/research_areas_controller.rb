@@ -13,7 +13,7 @@ class ResearchAreasController < ApplicationController
 
   def show
     research_area_id = params[:id]
-    @research_area = ResearchArea.find_by(research_area_id)
+    @research_area = ResearchArea.find_by(id: research_area_id)
     @faculty_in_research_area = Faculty.where(research_area_id: research_area_id)
   end
 
@@ -23,7 +23,7 @@ class ResearchAreasController < ApplicationController
       flash[:warning] = 'Research area title already exists'
     elsif @research_area.save
       flash[:notice] = 'Research area successfully added'
-      redirect_to home_path and return
+      redirect_to research_areas_path and return
     else
       flash[:alert] = 'Research area creation failed, please try again'
     end

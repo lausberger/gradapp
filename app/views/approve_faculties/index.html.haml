@@ -1,16 +1,16 @@
-- if @current_user.account_type == 'Department Chair'
-  %h1 Faculty Members needing Account Approval
-  %table
-    %thead
-      %th First Name
-      %th Last Name
-      %th Research Area
-    %tbody
-      - @approval_needed_accounts.each do |faculty|
-        %tr
-          =form_tag approve_faculty_path(faculty[:id]), method: :put do
-            %td= faculty.account[:first_name]
-            %td= faculty.account[:last_name]
-            %td= ResearchArea.find(faculty[:research_area_id]).title
-            %td= submit_tag "Approve", id: "approve_account_button"
+%h1.title Faculty Accounts Requiring Approval
+%table
+  %thead
+    %th First Name
+    %th Last Name
+    %th Research Area
+    %th 
+  %tbody
+    - @approval_needed_accounts.each do |faculty|
+      %tr
+        =form_tag approve_faculty_path(faculty[:id]), id: "approve_#{faculty[:id]}", method: :put do
+          %td= faculty.account[:first_name]
+          %td= faculty.account[:last_name]
+          %td= ResearchArea.find(faculty[:research_area_id]).title
+          %td= link_to "Approve", "approve_faculties/#{faculty[:id]}", method: :put
 

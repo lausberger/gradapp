@@ -15,14 +15,14 @@ Scenario: Try to access the creation form while signed in as a faculty
   And I am signed in to my account
   When I have visited the GradApp Home Page
   And I have clicked "Add Research Areas"
-  Then I should see "Add Research Area Form"
+  Then I should see "New Research Area"
 
 Scenario: Try to access the creation form while signed in as a department chair
   Given I have created a department chair account
   And I am signed in to my account
   When I have visited the GradApp Home Page
   And I have clicked "Add Research Areas"
-  Then I should see "Add Research Area Form"
+  Then I should see "New Research Area"
 
 Scenario: Submit the form with valid input
   Given I have created a faculty account
@@ -30,5 +30,5 @@ Scenario: Submit the form with valid input
   When I have visited the GradApp Home Page
   And I have clicked "Add Research Areas"
   When I fill out the research area form with "Central Computers", "Studying Central Computers", and "By Studying Computer we can find centrals"
-  Then I should be redirected to the home page
+  Then I should be redirected to the research areas page
   And I should see a notice that says "Research area successfully added"

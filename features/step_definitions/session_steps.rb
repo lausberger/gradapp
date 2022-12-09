@@ -75,7 +75,6 @@ And(/^I should see a warning that says "(.*?)"$/) do |notice|
 end
 
 Given(/^I have logged out$/) do
-  visit profile_path
   click_on 'Log out'
 end
 
@@ -83,6 +82,6 @@ When(/^I attempt to visit the profile page$/) do
   visit profile_path
 end
 
-Then(/^I should be redirected to the login page$/) do
-  expect(page).to have_current_path(login_path)
+Then(/^I should be redirected to the home page$/) do
+  expect(page).to have_current_path(home_path)
 end

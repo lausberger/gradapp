@@ -1,27 +1,16 @@
-%h2 Profile
-
+%h1.title Profile
 = form_tag profile_path do
-  - if logged_in?
-    %div
-    = 'First name: '
-    = current_user.first_name
-    %div
-    = 'Last name: '
-    = current_user.last_name
-    %div
-    = 'Email: '
-    = current_user.email
-    %div
-    = link_to 'Log out', logout_path, method: :delete
-  - else
-    -# TODO: decide whether to leave this in case of bugs. this should be impossible 
-    - flash.now[:alert] = 'You must be logged in to view this page'
-    %div
-    = 'Please '
-    = link_to 'log in', login_path 
-    = ' or '
-    = link_to 'create an account', register_path
-    = '.'
-
-  %div
-  = link_to 'Return to Home Page', root_path
+  #infoblock
+    #formrowleft
+      %strong First Name: 
+      = current_user.first_name
+    #formrowleft
+      %strong Last Name: 
+      = current_user.last_name
+    #formrowleft
+      %strong Email: 
+      = current_user.email
+    #spacer
+    #formrow
+      = link_to 'Log out', logout_path, method: :delete
+    #spacer

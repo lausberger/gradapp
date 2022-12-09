@@ -33,13 +33,13 @@ describe AccountsController do
           account_type: 'Faculty'
         }
       end
-      it 'should redirect to home page' do
+      it 'should redirect to login page' do
         post :create, { account: @account }
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to login_path
       end
       it 'should flash a success message' do
         post :create, { account: @account }
-        expect(flash[:notice]).to eq 'Account registration successful'
+        expect(flash[:notice]).to eq 'Account registration successful. Please log in.'
       end
     end
 

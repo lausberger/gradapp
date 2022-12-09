@@ -24,13 +24,13 @@ Scenario: View the home page while signed in as department chair
 
 Scenario: View the Home Page
   When I have visited the GradApp Home Page
-  Then I should see "Graduate Programs"
+  Then I should see "College of Engineering Graduate Portal"
 
 Scenario: View the Home Page Manually
   When I go to the url "/home"
-  Then I should see "Graduate Programs"
+  Then I should see "Homepage"
 
 Scenario: Navigate to another page from the Home Page
   When I have visited the GradApp Home Page
   And I have clicked "FAQ"
-  Then I should not see "Graduate Programs"
+  Then I should not see "Homepage"

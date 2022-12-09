@@ -45,25 +45,28 @@ describe ApproveFacultiesController do
       }
       @faculty_account_two_creation = Faculty.create! @faculty_account_two
     end
-    it 'should redirect to login since no one is logged in' do
-      get :index
-      expect(response).to redirect_to login_path
-    end
-    it 'should flash message since signed isn\' dept. chair' do
+    it 'should redirect home with a flash if user isn\'t dept chair' do
       acc = create(:account, :faculty)
-      allow(controller).to receive(:logged_in?).and_return(true)
-      allow(Account).to receive(:find_by).and_return acc
+      ApplicationController.any_instance.stub(:current_user).and_return acc
       get :index
-      expect(response).to render_template('index')
-      expect(flash[:alert]).to be_present
+      expect(response).to redirect_to home_path
+      expect(flash[:alert]).to eq 'You do not have permission to perform that action'
     end
-    describe 'approve faculty account' do
+    describe 'approve faculty account as dept chair' do
       it 'should render the show template' do
         acc = create(:account, :department_chair)
-        allow(controller).to receive(:logged_in?).and_return(true)
-        allow(Account).to receive(:find_by).and_return acc
+        ApplicationController.any_instance.stub(:current_user).and_return acc
         put :update, { id: @faculty_account_two_creation.id }
         expect(response).to redirect_to approve_faculties_path
+      end
+    end
+    describe 'try to approve faculty account as non-dept chair account' do
+      it 'should redirect to home page with an alert' do
+        acc = create(:account, :faculty)
+        ApplicationController.any_instance.stub(:current_user).and_return acc
+        put :update, { id: @faculty_account_two_creation.id }
+        expect(response).to redirect_to home_path
+        expect(flash[:alert]).to eq 'You do not have permission to perform that action'
       end
     end
     after(:each) do

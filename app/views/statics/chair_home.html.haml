@@ -1,21 +1,10 @@
-%h1 Graduate Programs
 %h1.title Department Chair Homepage
-= link_to 'Student Applications', graduate_applications_path
-= link_to 'Student Discussions', discussions_path
-= link_to 'My Messages', messages_path
-= link_to 'My Profile', profile_path
-= link_to 'Add Research Areas', new_research_area_path
-// TODO: Need to add this still)
-= link_to 'Approve Faculty Accounts', root_path
-= link_to 'Log out', logout_path, method: :delete
-%body
-  %h3 Contact Us
-  %p Office of the Dean
-  %div
-  %p 201 Gilmore Hall
-  %div
-  %p Phone: 319-335-2143
-  %div
-  %p Email: gradcoll@uiowa.edu
-  %div
-  %p Iowa City, IA 52242-1320
+
+%header= link_to 'Find Research Areas', research_areas_path
+%p Dont know what program you are interested in?
+%p Click here to find information about all our programs!
+
+%header= link_to 'Discover Faculty', faculties_path
+%p Wondering what faculty our University has to support you in your Graduate program?
+%p Wondering what topic areas we cover?
+%p Click here and search for you favorite topic area to see if we have any faculty members you can contact!

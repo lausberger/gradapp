@@ -56,7 +56,7 @@ And(/^I fill in my school name as "(.*?)"$/) do |name|
 end
 
 And(/^the application's average GPA is "(\d*[.]\d*)"$/) do |gpa|
-  expect(page.find('#score_details')).to have_content gpa
+  expect(page).to have_content gpa
 end
 
 And(/^the application's name is "(.*?)" "(.*?)"$/) do |first, last|

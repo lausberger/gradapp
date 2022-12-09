@@ -1,20 +1,25 @@
-%h2 Reply:
-%a Sender:
-%a= @message.from_email
-%br
-%a Subject:
-%a= @message.subject
-%br
-%a Body:
-%a= @message.body
-%br
+%h1.title Reply To Message
+#infoblock
+  #formrowleft 
+    %strong= 'Sender: '
+    = @message.from_email
+  #formrowleft 
+    %strong= 'Subject: '
+    = @message.subject
+  #formrowleft 
+    %strong= 'Body:'
+  #spacer
+  #formrowleft
+    = @message.body
+  #spacer
+#spacer
 = form_tag 'reply_message', :method => :post, :id => 'reply_message' do
-  %br
-  %a Reply Body:
-  %br
-  = text_area_tag :body, params[:body], cols: 40, rows: 10, :id => 'body_box'
-  %br
-  = submit_tag "Reply to Message", :id => 'reply_button'
-  = hidden_field_tag :reply, @message.id
-
-= link_to "Return to My Messages", messages_path
+  #formblock
+    #formrow
+      = label :body, 'Body'
+    #formrow
+      = text_area_tag :body, params[:body], cols: 40, rows: 10, :id => 'body_box'
+    = submit_tag "Reply", :id => 'reply_button'
+    = hidden_field_tag :reply, @message.id
+#spacer
+= link_to "Go Back", messages_path

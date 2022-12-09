@@ -29,7 +29,7 @@ When(/^I approve the following faculty account:$/) do |accounts|
                          hash['research_area'] == research_area
                        end
 
-    row.click_button('Approve')
+    row.click_link('Approve')
   end
 end
 

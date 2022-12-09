@@ -5,7 +5,7 @@ Given(/^I am on the discussions page$/) do
 end
 
 When(/^I post a reply with body "([^"]*)"$/) do |body|
-  fill_in('Body', with: body)
+  fill_in('New Reply', with: body)
   click_button(id: 'post_reply_button')
 end
 
@@ -28,7 +28,7 @@ When(/^I click on "([^"]*)" button for post with(?: title "([^"]*)")? body "([^"
 end
 
 When(/^I post a new discussion with title "([^"]*)" and body "([^"]*)"$/) do |title, body|
-  find('a', text: 'Post new Discussion').click
+  find('a', text: 'New Discussion').click
   fill_in('Title', with: title)
   fill_in('Body', with: body)
   click_button(id: 'post_discussion_button')
@@ -72,7 +72,7 @@ And(/^I am on the reply page for post title "([^"]*)" and body "([^"]*)" and aut
       break
     end
   end
-  expect(find('#discussion_title').text).to eq title
+  expect(find('#discussion_title').text).to eq "Discussion: \"#{title}\""
 end
 
 And(/^I change the(?: title to "([^"]*)" and)? body to "([^"]*)"$/) do |title, body|
@@ -91,6 +91,14 @@ Then(/^I should not see any "([^"]*)" buttons$/) do |button_name|
   all('#main tr').each do |row|
     expect(row).not_to have_css('a', text: button_name)
   end
+end
+
+And(/^I should not see a link called "([^"]*)"$/) do |link_name|
+  expect(page).not_to have_css('a', text: link_name)
+end
+
+And(/^I see a link called "([^"]*)"$/) do |link_name|
+  expect(page).to have_css('a', text: link_name)
 end
 
 Then(/^I should see a discussion post with(?: title "([^"]*)" and)? body "([^"]*)" and author "([^"]*)"$/) do |title, body, author|

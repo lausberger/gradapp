@@ -1,13 +1,16 @@
-%h1= "The following faculties members focus in #{@research_area}"
+%h1.title= "#{@research_area} Faculty"
 
 %table
   %thead
     %th First Name
     %th Last Name
+    %th Email
   %tbody
     - @faculties.each do |faculty|
       %tr
         %td= faculty.account[:first_name]
         %td= faculty.account[:last_name]
+        %td= faculty.account[:email]
 
-= link_to 'View All Faculty Members', faculties_path
+#spacer
+= link_to 'Go Back', faculties_path

@@ -55,9 +55,9 @@ describe FacultiesController do
         expect(flash[:warning]).to eq 'Invalid research area specified!'
       end
       it 'should flash invalid topic area message' do
-        post :search, { search_research_area: 'fdfdfds' }
-        expect(response).to redirect_to faculties_path
-        expect(flash[:message]).to eq 'No faculty found for given research area'
+        research_area = 'basketweaving'
+        post :search, { search_research_area: research_area }
+        expect(flash[:notice]).to eq "No faculty found with research area matching \"#{research_area}\""
       end
       it 'should select faculties members only in CSE topic area' do
         post :search, { search_research_area: 'Networks Five' }

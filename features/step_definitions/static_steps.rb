@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 When('I have visited the GradApp Home Page') do
-  visit '/home'
+  visit home_path
 end
 
 When('I have clicked {string}') do |string|

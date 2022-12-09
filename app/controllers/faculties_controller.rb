@@ -22,9 +22,6 @@ class FacultiesController < ApplicationController
     end
     @research_area_id = ResearchArea.where(title: @research_area)
     @faculties = Faculty.where(research_area_id: @research_area_id)
-    return unless @faculties.length.zero?
-
-    flash[:message] = 'No faculty found for given research area'
-    redirect_to faculties_path
+    (flash[:notice] = "No faculty found with research area matching \"#{@research_area}\"") and (redirect_to faculties_path) if @faculties.length.zero?
   end
 end

@@ -17,5 +17,9 @@ When(/^I fill out the research area form with "(.*?)", "(.*?)", and "(.*?)"$/) d
   fill_in 'Title', with: title
   fill_in 'Summary', with: summary
   fill_in 'Detailed Overview', with: overview
-  click_button 'Create'
+  click_button 'Add Area'
+end
+
+Then(/^I should be redirected to the research areas page$/) do
+  expect(page).to have_current_path(research_areas_path)
 end

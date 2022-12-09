@@ -15,7 +15,7 @@ Feature: Allow a User to Send a Message
     And I fill in the 'to' with 'doe@gmail.com'
     And I fill in the 'subject' with 'Hello'
     And I fill in the 'body' with 'Test'
-    And I have clicked the button 'Send Message'
+    And I have clicked the button 'Send'
     Then I should see 'Please enter a correct email address'
     And I should see 'New Message'
 
@@ -24,7 +24,7 @@ Feature: Allow a User to Send a Message
     And I have visited the send messages page
     And I fill in the 'to' with 'jdoe@gmail.com'
     And I fill in the 'subject' with 'Hello'
-    And I have clicked the button 'Send Message'
+    And I have clicked the button 'Send'
     Then I should see 'Please enter a body for your message'
     And I should see 'New Message'
 
@@ -34,14 +34,16 @@ Feature: Allow a User to Send a Message
     And I fill in the 'to' with 'jdoe@gmail.com'
     And I fill in the 'subject' with 'Hello'
     And I fill in the 'body' with 'Test'
-    And I have clicked the button 'Send Message'
+    And I have clicked the button 'Send'
     Then I should see 'Message Sent'
     And I should see 'My Messages'
-    And I should not see 'New Message'
+    # will confuse with Sender: otherwise
+    And I should not see 'Send\n'
 
   Scenario: I no longer want to send a message
     When I have logged in as John Doe
     And I have visited the send messages page
-    And I have clicked 'Return to My Messages'
+    And I have clicked 'Go Back'
     Then I should see 'My Messages'
-    And I should not see 'New Message'
+    # will confuse with Sender: otherwise
+    And I should not see 'Send\n'

@@ -1,5 +1,5 @@
 - if @current_user.account_type == 'Department Chair'
-  %h1 Graduate Applications needing a Final Decision
+  %h1.title Student Applications Requiring Decision
   %table
     %thead
       %th First Name
@@ -7,6 +7,8 @@
       %th Email
       %th Phone
       %th DOB
+      %th
+      %th
     %tbody
       - @applications.each do |application|
         %tr
