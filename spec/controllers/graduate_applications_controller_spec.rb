@@ -21,6 +21,19 @@ if RUBY_VERSION >= '2.6.0'
 end
 
 describe GraduateApplicationsController do
+  before(:each) do
+    @account = {
+      first_name: 'Not Lucas',
+      last_name: 'Not Ausberger',
+      email: 'exampleemail@uiowa.edu',
+      password: 'password',
+      password_confirmation: 'password',
+      account_type: 'Faculty'
+    }
+    @test_account = Account.create!(@account)
+    controller.instance_variable_set(:@current_user, @test_account)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(true)
+  end
   describe 'submitting a graduate application' do
     before(:each) do
       @sample_application = {
