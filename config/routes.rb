@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   # Application Evaluations
   resources :application_evaluations
+  post 'evaluations/update', to: 'application_evaluations#update'
 
   # Student Checklist
   resources :student_checklists
