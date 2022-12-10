@@ -72,4 +72,4 @@
 = link_to 'Go Back', graduate_applications_path
 
 - if @current_user.account_type.eql? 'Faculty'
-  = render "evaluation_fields", my_eval: @my_evaluation
+  = render "evaluation_fields", my_eval: @my_evaluation, other_evals: @other_evaluations

@@ -17,4 +17,17 @@
           = e.submit 'Update'
         -else
           = e.button 'Create', type: :submit
-  %h3 Other Evaluations
+
+  #other_evals
+    %h3 Other Evaluations
+    - other_evals.each do |eval|
+      #eval
+        #name
+          %label Faculty:
+          %bold eval.name
+        #score
+          %label Score:
+          %bold #{eval.score}
+        #comment
+          %label Comments:
+          %p #{eval.comment}
