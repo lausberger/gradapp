@@ -21,6 +21,8 @@ class GraduateApplicationsController < ApplicationController
     if @current_user.account_type.eql? 'Faculty'
       @my_evaluation = @graduate_application.application_evaluations.find_by(account_id: @current_user.id)
       @my_evaluation = ApplicationEvaluation.new if @my_evaluation.nil?
+      @other_evaluations = @graduate_application.application_evaluations
+      @evaluations_list = evaluations_list
     end
   end
 
@@ -109,5 +111,20 @@ class GraduateApplicationsController < ApplicationController
 
   def save_file(temp_file_path, bucket_file_path)
     @student_document_bucket.create_file temp_file_path, bucket_file_path unless Rails.env.test?
+  end
+
+  def evaluations_list
+    result_set = []
+    @graduate_application.application_evaluations.each do |eval|
+      account = Account.find(eval.account_id)
+      new_eval = {
+        name: "#{account.first_name} #{account.last_name}",
+        score: eval.score,
+        comment: eval.comment
+      }
+      result_set.append(new_eval)
+    end
+
+    result_set
   end
 end
