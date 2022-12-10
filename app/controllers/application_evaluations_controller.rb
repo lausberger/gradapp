@@ -26,6 +26,7 @@ class ApplicationEvaluationsController < ApplicationController
 
   def add_user
     return unless params.key?('application_evaluation')
+
     params[:application_evaluation][:account_id] = @current_user.id
   end
 

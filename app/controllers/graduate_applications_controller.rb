@@ -18,12 +18,12 @@ class GraduateApplicationsController < ApplicationController
     id = params[:id]
     @graduate_application = GraduateApplication.find(id)
 
-    if @current_user.account_type.eql? 'Faculty'
-      @my_evaluation = @graduate_application.application_evaluations.find_by(account_id: @current_user.id)
-      @my_evaluation = ApplicationEvaluation.new if @my_evaluation.nil?
-      @other_evaluations = @graduate_application.application_evaluations
-      @evaluations_list = evaluations_list
-    end
+    return if @current_user.account_type.eql? 'Student'
+
+    @my_evaluation = @graduate_application.application_evaluations.find_by(account_id: @current_user.id)
+    @my_evaluation = ApplicationEvaluation.new if @my_evaluation.nil?
+    @other_evaluations = @graduate_application.application_evaluations
+    @evaluations_list = evaluations_list
   end
 
   def new
@@ -114,6 +114,7 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def evaluations_list
+    # TODO: Make this only show accounts that don't belong to the current_user
     result_set = []
     @graduate_application.application_evaluations.each do |eval|
       account = Account.find(eval.account_id)
