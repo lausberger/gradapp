@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 30721148119021) do
 
   create_table "application_evaluations", force: :cascade do |t|
     t.integer  "graduate_application_id"
+    t.integer  "account_id"
     t.integer  "score"
     t.string   "comment"
     t.datetime "created_at"
