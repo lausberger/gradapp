@@ -6,10 +6,10 @@
       %legend Personal Details
       .name_details
         = f.label :first_name, 'First Name:'
-        = f.text_field 'first_name'
+        = f.text_field 'first_name', required: true, value: @current_user.first_name
       .name_details
         = f.label :last_name, 'Last Name:'
-        = f.text_field 'last_name'
+        = f.text_field 'last_name', required: true, value: @current_user.last_name
 
       .age_details
         = f.label :dob, 'Date of Birth'
@@ -19,7 +19,7 @@
       %legend Contact Details
       .email_details
         = f.label :email, 'Email:'
-        = f.text_field 'email'
+        = f.text_field 'email', required: true, value: @current_user.email
 
       .phone_details
         = f.label :phone, 'Phone:'
@@ -36,7 +36,7 @@
       = f.fields_for :documents do |documents_form|
         = render "document_fields", f: documents_form
       = link_to_add_fields "Add", f, :documents
-      
+
     #spacer
     = f.submit 'Submit'
 

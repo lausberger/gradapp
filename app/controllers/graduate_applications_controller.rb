@@ -3,10 +3,15 @@
 # Graduate application controller class for handling associated views for grad applications
 class GraduateApplicationsController < ApplicationController
   before_action :parse_educations_form_data, :upload_documents, only: [:create]
-  # before_action :require_login
+  before_action :require_login
 
   def index
-    @graduate_applications = GraduateApplication.all
+    if @current_user.account_type.eql? 'Faculty'
+      @graduate_applications = GraduateApplication.all
+      return
+    end
+
+    @graduate_applications = GraduateApplication.where(['account_id = ?', @current_user.id])
   end
 
   def show
@@ -19,15 +24,27 @@ class GraduateApplicationsController < ApplicationController
   end
 
   def withdraw
-    current_application = GraduateApplication.find_by(email: params[:application][:email].to_s)
+    unless params.key? :id
+      flash[:notice] = 'Application withdraw failed'
+      redirect_to home_path
+      return
+    end
+
+    current_application = @current_user.graduate_applications.find_by(id: params[:id])
+    if current_application.nil?
+      flash[:notice] = 'Application withdraw failed'
+      redirect_to home_path
+      return
+    end
+
     Rails.logger.debug current_application
     current_application.withdraw
     flash[:notice] = 'Application has been withdrawn'
-    redirect_to home_path
+    redirect_to graduate_applications_path
   end
 
   def create
-    @graduate_application = GraduateApplication.create(@graduate_application_params)
+    @graduate_application = @current_user.graduate_applications.create(@graduate_application_params)
     flash[:notice] = 'Graduate application was successfully submitted.' if @graduate_application.valid?
     flash[:notice] = 'Application submission failed, please retry.' unless @graduate_application.valid?
     @graduate_application.status = 'denied' unless @graduate_application.valid?

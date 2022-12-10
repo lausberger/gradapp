@@ -5,6 +5,7 @@ Feature: Allow students to submit graduate applications
   I want to be able to submit my application.
 
   Background:
+    Given I am signed in as a student
     Given I am creating a new graduate application
 
   Scenario: Submit a new Application (Declarative)

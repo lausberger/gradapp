@@ -6,9 +6,10 @@ Feature: Display an navigate open graduate applications
 
   Background: applications have been added to GradApp
 
+    Given I am signed in as a faculty
     Given the following graduate applications have been submitted:
-      | first_name | last_name | dob          | phone      | email             | status    |
-      | John       | Doe       | 25-Nov-1992  | 4968514432 | johndoe@uiowa.edu | denied    |
+      | first_name | last_name | dob          | phone      | email             | status    | account_id |
+      | John       | Doe       | 25-Nov-1992  | 4968514432 | johndoe@uiowa.edu | denied    | 1          |
     Given the following educations for each application:
       | school_name        | start_date | end_date  | currently_attending | degree    | major            | gpa_value | gpa_scale |
       | University of Iowa | 23-8-2019  | 28-5-2023 | true                | bachelor  | Computer Science | 3.5       | 4.0       |

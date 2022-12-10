@@ -21,6 +21,19 @@ if RUBY_VERSION >= '2.6.0'
 end
 
 describe GraduateApplicationsController do
+  before(:each) do
+    @account = {
+      first_name: 'Not Lucas',
+      last_name: 'Not Ausberger',
+      email: 'exampleemail@uiowa.edu',
+      password: 'password',
+      password_confirmation: 'password',
+      account_type: 'Faculty'
+    }
+    @test_account = Account.create!(@account)
+    controller.instance_variable_set(:@current_user, @test_account)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(true)
+  end
   describe 'submitting a graduate application' do
     before(:each) do
       @sample_application = {
@@ -103,20 +116,18 @@ describe GraduateApplicationsController do
         dob: Date.new,
         status: 'submitted'
       }
-      GraduateApplication.create!(@sample_application)
+      @application = @test_account.graduate_applications.create!(@sample_application)
     end
     it 'should call the model method that does the withdrawal' do
-      mock = instance_double(GraduateApplication)
-      expect(GraduateApplication).to receive(:find_by).with(email: 'johndoe@uiowa.edu').and_return(mock)
-      expect(mock).to receive(:withdraw)
-      patch :withdraw, { application: @sample_application }
+      expect_any_instance_of(GraduateApplication).to receive(:withdraw)
+      patch :withdraw, { id: @application.id }
     end
     it 'should select the home page for rendering' do
       patch :withdraw, { application: @sample_application }
       expect(response).to redirect_to('/home')
     end
     it 'should flash message that application was withdrawn' do
-      patch :withdraw, { application: @sample_application }
+      patch :withdraw, { id: @application.id }
       expect(flash[:notice]).to match(/Application has been withdrawn/)
     end
   end

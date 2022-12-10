@@ -10,7 +10,11 @@ end
 
 Given(/^the following graduate applications have been submitted:/) do |application_table|
   application_table.hashes.each do |application|
-    GraduateApplication.create!(application)
+    account = Account.find(application[:account_id])
+    account.password = 'test1234'
+    account.password_confirmation = 'test1234'
+    account.graduate_applications.create!(application)
+    account.save!
   end
 end
 
@@ -32,8 +36,8 @@ Given(/^the following educations for each application:/) do |education_table|
 end
 
 Given(/I have already filled out my application personal details/) do
-  fill_in 'First Name:', with: 'Elon'
-  fill_in 'Last Name:', with: 'Musk'
+  fill_in 'graduate_application_first_name', with: 'Elon'
+  fill_in 'graduate_application_last_name', with: 'Musk'
 end
 
 Given(/I have already filled out my application contact details/) do
@@ -42,8 +46,8 @@ Given(/I have already filled out my application contact details/) do
 end
 
 Given(/^I fill in my name as "(.*?)" "(.*?)"$/) do |first, last|
-  fill_in 'First Name:', with: first
-  fill_in 'Last Name:', with: last
+  fill_in 'graduate_application_first_name', with: first
+  fill_in 'graduate_application_last_name', with: last
 end
 
 And(/^I fill in my email as "(.*?)" and my phone as "(.*?)"$/) do |email, phone|
@@ -83,12 +87,15 @@ When(/^I submit my graduate application$/) do
 end
 
 When(/^I select to view "(.*?)" "(.*?)"'s graduate application$/) do |first, last|
+  found = false
   all('tr').each do |tr|
     if tr.has_content? "#{first} #{last}"
       tr.click_on 'View Application'
-      break
+      found = true
     end
   end
+
+  raise StandardError, 'Unable to find Application' unless found
 end
 
 Then(/^I should see the application status "(.*?)"$/) do |status|

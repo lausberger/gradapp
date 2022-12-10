@@ -43,6 +43,42 @@ Given(/^I have created a department chair account$/) do
   )
 end
 
+Given(/^I am signed in as a student/) do
+  params = {
+    id: 1,
+    email: 'test@test.com',
+    first_name: 'Handy',
+    last_name: 'Johnson',
+    password: 'test1234',
+    password_confirmation: 'test1234',
+    account_type: 'Student'
+  }
+  Account.create!(params)
+
+  visit login_path
+  fill_in 'Email', with: 'test@test.com'
+  fill_in 'Password', with: 'test1234'
+  click_button 'Log in'
+end
+
+Given(/^I am signed in as a faculty/) do
+  params = {
+    id: 1,
+    email: 'test@test.com',
+    first_name: 'Handy',
+    last_name: 'Johnson',
+    password: 'test1234',
+    password_confirmation: 'test1234',
+    account_type: 'Faculty'
+  }
+  Account.create!(params)
+
+  visit login_path
+  fill_in 'Email', with: 'test@test.com'
+  fill_in 'Password', with: 'test1234'
+  click_button 'Log in'
+end
+
 Given(/^I am signed in to my account$/) do
   visit login_path
   fill_in 'Email', with: @my_account.email
