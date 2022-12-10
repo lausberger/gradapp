@@ -67,3 +67,7 @@ end
 Then(/^I should see an error message saying "([^"]*)"$/) do |error_msg|
   expect(page.all(:css, "div[id='alert']").first.text).to be == error_msg
 end
+
+Then(/^I should see a warning message saying "([^"]*)"$/) do |error_msg|
+  expect(page.find(:css, "div[id='warning']").text).to eq error_msg
+end
