@@ -11,6 +11,7 @@
         =form_tag approve_faculty_path(faculty[:id]), id: "approve_#{faculty[:id]}", method: :put do
           %td= faculty.account[:first_name]
           %td= faculty.account[:last_name]
-          %td= ResearchArea.find(faculty[:research_area_id]).title
-          %td= link_to "Approve", "approve_faculties/#{faculty[:id]}", method: :put
+          - research_area = ResearchArea.find_by(id: faculty[:research_area_id])
+          %td= research_area.nil? ? 'None' : research_area.title
+          %td= link_to 'Approve', "approve_faculties/#{faculty[:id]}", method: :put
 

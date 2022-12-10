@@ -17,6 +17,10 @@ class AccountsController < ApplicationController
     if @account.save
       if @account[:account_type] == 'Student'
         StudentChecklist.create!(account_id: @account.id)
+      elsif @account[:account_type] == 'Faculty'
+        faculty_account = Faculty.create(account_id: @account.id)
+        # fac = Faculty.find_by(account_id: @account.id)
+        # 10.times do puts fac.first_name end
       end
       flash[:notice] = 'Account registration successful. Please log in.'
       redirect_to login_path and return
