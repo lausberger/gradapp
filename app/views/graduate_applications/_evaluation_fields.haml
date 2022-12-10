@@ -11,8 +11,10 @@
       #my_eval_message
         = e.text_field :comment, placeholder: 'enter any comments here'
       #spacer
+        = e.hidden_field :graduate_application_id, value: @graduate_application.id
       #my_eval_submit
         -if my_eval.valid?
           = e.submit 'Update'
         -else
-          = e.submit 'Create'
+          = e.button 'Create', type: :submit
+  %h3 Other Evaluations
