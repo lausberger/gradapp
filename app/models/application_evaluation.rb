@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Graduate Application faculty evaluation model
-class ApplicationEvaluation
+class ApplicationEvaluation < ActiveRecord::Base
   def self.score_scale
     [1, 2, 3, 4, 5]
   end
