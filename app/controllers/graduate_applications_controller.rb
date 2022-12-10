@@ -17,6 +17,9 @@ class GraduateApplicationsController < ApplicationController
   def show
     id = params[:id]
     @graduate_application = GraduateApplication.find(id)
+
+    # TODO: Add logic for if it is a faculty/not and whether they already have an application/not
+    @my_evaluation = ApplicationEvaluation.new
   end
 
   def new
