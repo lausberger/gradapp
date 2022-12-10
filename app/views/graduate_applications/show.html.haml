@@ -12,7 +12,7 @@
   #formrow
     %h3 Contact Details
   #formrow
-    %strong Phone: 
+    %strong Phone:
     = @graduate_application.phone
   #formrow
     %strong Email:
@@ -67,4 +67,5 @@
       = @graduate_application.status
 
 #spacer
+=link_to "Withdraw", withdraw_application_path(id: @graduate_application.id), method: :patch
 = link_to 'Go Back', graduate_applications_path
