@@ -23,7 +23,6 @@ end
 describe ApplicationEvaluationsController do
   describe 'creating an application evaluation' do
     before(:each) do
-      allow_any_instance_of(ApplicationController).to receive(:find).and_return(double(GraduateApplication))
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(true)
       @sample_evaluation = {
         score: 5,
@@ -41,7 +40,6 @@ describe ApplicationEvaluationsController do
     end
     describe "creating an evaluation for an application that doesn't exist" do
       it 'should fail' do
-        pending
       end
     end
     describe 'updating an evaluation' do
