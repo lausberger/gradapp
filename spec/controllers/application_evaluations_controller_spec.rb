@@ -32,21 +32,18 @@ describe ApplicationEvaluationsController do
 
       @sample_request = {
         graduate_application: {
-          id: 1,
+          id: 1
         },
         application_evaluation: @sample_evaluation
       }
     end
     describe 'creating a valid application evaluation' do
-
     end
     describe "creating an evaluation for an application that doesn't exist" do
       it 'should fail' do
-
       end
     end
     describe 'updating an evaluation' do
-
     end
   end
 end
