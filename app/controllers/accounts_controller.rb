@@ -15,12 +15,11 @@ class AccountsController < ApplicationController
       flash[:warning] = 'An account with that email already exists'
     end
     if @account.save
-      if @account[:account_type] == 'Student'
+      case @account[:account_type]
+      when 'Student'
         StudentChecklist.create!(account_id: @account.id)
-      elsif @account[:account_type] == 'Faculty'
-        faculty_account = Faculty.create(account_id: @account.id)
-        # fac = Faculty.find_by(account_id: @account.id)
-        # 10.times do puts fac.first_name end
+      when 'Faculty'
+        Faculty.create!(account_id: @account.id)
       end
       flash[:notice] = 'Account registration successful. Please log in.'
       redirect_to login_path and return
