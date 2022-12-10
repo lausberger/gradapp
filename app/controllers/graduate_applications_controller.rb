@@ -18,8 +18,10 @@ class GraduateApplicationsController < ApplicationController
     id = params[:id]
     @graduate_application = GraduateApplication.find(id)
 
-    # TODO: Add logic for if it is a faculty/not and whether they already have an application/not
-    @my_evaluation = ApplicationEvaluation.new
+    if @current_user.account_type.eql? 'Faculty'
+      @my_evaluation = @graduate_application.application_evaluations.find_by(account_id: @current_user.id)
+      @my_evaluation = ApplicationEvaluation.new if @my_evaluation.nil?
+    end
   end
 
   def new
