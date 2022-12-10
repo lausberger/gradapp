@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
         messagehash = { message: message, reply: [parent] }
       end
       @messages.append(messagehash)
-      @messages.reverse!()
+      @messages.reverse!
     end
   end
 
