@@ -1,1 +1,15 @@
-%h1 EVALUATION
+#spacer
+
+#infoblock
+  %h1 EVALUATIONS
+  = form_for my_eval do |e|
+    %fieldset
+      %legend Your Evaluation:
+      #my_eval_score
+        = e.label :score, 'Score:'
+        = e.select :score, [1, 2, 3, 4, 5]
+      #my_eval_message
+        = e.text_field :comment, placeholder: 'enter any comments here'
+      #spacer
+      #my_eval_submit
+        = e.submit 'Create'
