@@ -3,7 +3,7 @@
 # Controller for creating application evaluations for an application
 class ApplicationEvaluationsController < ApplicationController
   before_action :require_login
-  before_action :check_if_application_exists, :format_params, only: %i[create update]
+  before_action :check_if_application_exists, :format_params, :add_user, only: %i[create update]
 
   def create
     unless params.key?('application_evaluation')
@@ -13,6 +13,7 @@ class ApplicationEvaluationsController < ApplicationController
 
     @graduate_application.application_evaluations.create(params[:application_evaluation].to_hash)
     flash[:warning] = 'Application evaluation creation failed' unless @graduate_application.valid?
+    flash[:notice] = 'Evaluation successfully created!' if @graduate_application.valid?
 
     redirect_to graduate_application_path(@graduate_application)
   end
@@ -22,6 +23,11 @@ class ApplicationEvaluationsController < ApplicationController
   end
 
   private
+
+  def add_user
+    return unless params.key?('application_evaluation')
+    params[:application_evaluation][:account_id] = @current_user.id
+  end
 
   def format_params
     return unless params.key?('application_evaluation') && params[:application_evaluation].key?('score')

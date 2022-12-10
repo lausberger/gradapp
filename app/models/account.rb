@@ -6,6 +6,7 @@ class Account < ActiveRecord::Base
   has_secure_password
 
   has_many :graduate_applications, dependent: :destroy
+  has_many :application_evaluations, dependent: :destroy
   has_many :to_messages, class_name: 'Message', foreign_key: 'to_id', dependent: :destroy
   has_many :from_messages, class_name: 'Message', foreign_key: 'from_id', dependent: :destroy
 

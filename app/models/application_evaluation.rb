@@ -7,6 +7,7 @@ class ApplicationEvaluation < ActiveRecord::Base
   end
 
   belongs_to :graduate_application
+  belongs_to :account
 
   validates :score, presence: true, numericality: true, inclusion: { in: score_scale }
   validates :comment, format: { with: /\A.*\z/, message: 'must be a valid string' }
