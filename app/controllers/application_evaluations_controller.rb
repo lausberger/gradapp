@@ -11,4 +11,8 @@ class ApplicationEvaluationsController < ApplicationController
   def create
     # TODO: implement
   end
+
+  def update
+    # TODO:
+  end
 end
