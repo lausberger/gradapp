@@ -7,8 +7,9 @@ class GraduateApplication < ActiveRecord::Base
   end
 
   belongs_to :account
+  has_many :documents, dependent: :destroy
   has_many :educations, dependent: :destroy, inverse_of: :graduate_application
-  has_many :documents, dependent: :destroy, inverse_of: :graduate_application
+  has_many :application_evaluations, dependent: :destroy, inverse_of: :graduate_application
   accepts_nested_attributes_for :educations, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :documents, allow_destroy: true, reject_if: :all_blank
 
