@@ -41,6 +41,10 @@ Rails.application.routes.draw do
   # Approve Applications
   resources :application_decisions
 
+  # Application Evaluations
+  resources :application_evaluations
+  post 'evaluations/update', to: 'application_evaluations#update'
+
   # Student Checklist
   resources :student_checklists
   # get 'checklist/:id', to: 'student_checklists#show'

@@ -1,0 +1,33 @@
+#spacer
+
+#infoblock
+  %h1 EVALUATIONS
+  = form_for my_eval do |e|
+    %fieldset
+      %legend Your Evaluation:
+      #my_eval_score
+        = e.label :score, 'Score:'
+        = e.select :score, [1, 2, 3, 4, 5], value: my_eval.score
+      #my_eval_message
+        = e.text_field :comment, placeholder: 'enter any comments here', value: my_eval.comment
+      #spacer
+        = e.hidden_field :graduate_application_id, value: @graduate_application.id
+      #my_eval_submit
+        -if my_eval.valid?
+          = e.submit 'Update'
+        -else
+          = e.button 'Create', type: :submit
+
+  #other_evals
+    %h3 Other Evaluations
+    - other_evals.each do |eval|
+      #eval
+        #name
+          %label Faculty:
+          %bold eval.name
+        #score
+          %label Score:
+          %bold #{eval.score}
+        #comment
+          %label Comments:
+          %p #{eval.comment}

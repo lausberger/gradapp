@@ -49,7 +49,7 @@
               %td= education.end_date.strftime('%m/%d/%Y')
               %td= education.currently_attending
 
-  - if (@graduate_application.documents.length > 0)
+  - if @graduate_application.documents.length > 0
     #formrow
       %h3 Attached Documents:
     #formrow
@@ -67,5 +67,9 @@
       = @graduate_application.status
 
 #spacer
-=link_to "Withdraw", withdraw_application_path(id: @graduate_application.id), method: :patch
+- if @current_user.account_type.eql? 'Student'
+  =link_to "Withdraw", withdraw_application_path(id: @graduate_application.id), method: :patch
 = link_to 'Go Back', graduate_applications_path
+
+- if @current_user.account_type.eql? 'Faculty'
+  = render "evaluation_fields", my_eval: @my_evaluation, other_evals: @other_evaluations
