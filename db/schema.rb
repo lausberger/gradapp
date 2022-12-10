@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30721148119020) do
+ActiveRecord::Schema.define(version: 30721148119021) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 30721148119020) do
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
+
+  create_table "application_evaluations", force: :cascade do |t|
+    t.integer  "score"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "discussions", force: :cascade do |t|
     t.string   "title"
