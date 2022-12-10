@@ -12,4 +12,7 @@
         = e.text_field :comment, placeholder: 'enter any comments here'
       #spacer
       #my_eval_submit
-        = e.submit 'Create'
+        -if my_eval.valid?
+          = e.submit 'Update'
+        -else
+          = e.submit 'Create'
