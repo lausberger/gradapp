@@ -7,10 +7,10 @@ describe ApplicationEvaluationsController do
   before_action :require_login
 
   def new
-    #TODO:
+    # TODO: implement
   end
 
   def create
-    #TODO:
+    # TODO: implement
   end
 end

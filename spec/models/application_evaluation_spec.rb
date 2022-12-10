@@ -4,5 +4,5 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe ApplicationEvaluation do
-  # TODO:
+  # TODO: implement
 end

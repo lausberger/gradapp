@@ -2,5 +2,5 @@
 
 # Controller for creating application evaluations for an application
 class ApplicationEvaluationsController < ApplicationController
-  # TODO:
+  # TODO: implement controller
 end
