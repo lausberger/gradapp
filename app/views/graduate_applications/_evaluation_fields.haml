@@ -7,9 +7,9 @@
       %legend Your Evaluation:
       #my_eval_score
         = e.label :score, 'Score:'
-        = e.select :score, [1, 2, 3, 4, 5]
+        = e.select :score, [1, 2, 3, 4, 5], value: my_eval.score
       #my_eval_message
-        = e.text_field :comment, placeholder: 'enter any comments here'
+        = e.text_field :comment, placeholder: 'enter any comments here', value: my_eval.comment
       #spacer
         = e.hidden_field :graduate_application_id, value: @graduate_application.id
       #my_eval_submit
