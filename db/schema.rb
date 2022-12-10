@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 30721148119021) do
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
 
   create_table "application_evaluations", force: :cascade do |t|
+    t.integer  "graduate_application_id"
     t.integer  "score"
     t.string   "comment"
     t.datetime "created_at"
