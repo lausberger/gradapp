@@ -45,7 +45,34 @@ Your site should now be live on Heroku!
 
 ## Project Organization Tools
 
+### Commit Messages
+
+We follow closesly with the [Conventional Commits Standard](https://www.conventionalcommits.org/en/v1.0.0/#specification). Below is a breif summary of this convention:
+
+**Format:**
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+- Main Types: *fix* or *feat*
+  - *fix:* A patch to a bug in your codebase. Use this if your changes resolve an existing bug
+  - *feat:* A new feature introduced. Use this if your change creates a new piece of functionality that did not previously exist
+  - **other types used:**
+    - *db:* for database related changes (typically a new migration etc.)
+    - *test:* rspec/feature related tests being added or modified
+    - *doc:* documentation related changes (such as READMEs)
+- Keep descriptions breif (<72 characters), you should be able to glance at a commit message and recognize what it is doing.
+- Utilize the body for technical discussion - think about what someone investigating your commit would appreciate knowing.
+
+
+
 ### Pull Requests
+
 An open pull request can only be merged to the main branch once the following have occured:
 1. Two other members of the team reviewed and approved the pull request
 2. There are no merge conflicts with main
