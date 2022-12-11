@@ -1,7 +1,7 @@
 # Welcome to the Grad App Project
 The ultimate graduate student application portal, social platform, and collective database for all your needs regarding graduate programs offered at the University of Iowa.
 
-Check out our website [here](https://uiowa-grad-app-v2.herokuapp.com/)!
+Check out our website [here](https://uiowa-grad-app-v3.herokuapp.com/)!
 
 ## Version Information
 Below are details regarding the tech stack of the project and versions utilized by the team.
@@ -79,7 +79,7 @@ An open pull request can only be merged to the main branch once the following ha
 3. All relevant stages of the [Actions Pipeline](#actions-pipeline) are passing
 
 ### Actions Pipeline
-To speed up development and maintain a consistent level of quality for our product, we implement a continuous integration, continuous deployment (CI/CD) pipeline, powered by GitHub Actions. Our workflow automatically performs a suite of tests to ensure changes merged to our main branch do not break existing features. We also perform multiple staged deployments to enable quality assurance leading up to a stable release. Any feature that is merged to the main branch will be automatically deployed to our [beta website](https://uiowa-grad-app-beta.herokuapp.com/). Tagged releases are deployed to a production channel that is programatically determined based on the current iteration. You can view the release from our most recent iteration [here](https://uiowa-grad-app-v2.herokuapp.com/).
+To speed up development and maintain a consistent level of quality for our product, we implement a continuous integration, continuous deployment (CI/CD) pipeline, powered by GitHub Actions. Our workflow automatically performs a suite of tests to ensure changes merged to our main branch do not break existing features. We also perform multiple staged deployments to enable quality assurance leading up to a stable release. Any feature that is merged to the main branch will be automatically deployed to our [beta website](https://uiowa-grad-app-beta.herokuapp.com/). Tagged releases are deployed to a production channel that is programatically determined based on the current iteration. You can view the release from our most recent iteration [here](https://uiowa-grad-app-v3.herokuapp.com/).
 
 #### Our workflow does the following:
 1. Assert that all tests are passing in Cucumber and rSpec, preventing the pull request from being merged if any are not
@@ -92,4 +92,4 @@ To speed up development and maintain a consistent level of quality for our produ
 ## Miscellaneous
 
 ### Code Coverage
-As of the latest release ([selt2022_sprint2](https://github.com/UIOWAjohnsonhj/selt2022_teamprojects-team-4/tree/selt2022_sprint2)), our line coverage is **93.09%**. You can view the latest line and branch coverage [here](https://github.com/UIOWAjohnsonhj/selt2022_teamprojects-team-4/blob/main/coverage/.last_run.json). 
+As of the latest release ([selt2022_sprint3](https://github.com/UIOWAjohnsonhj/selt2022_teamprojects-team-4/tree/selt2022_sprint3)), our line coverage is **92.44%**. You can view the latest line and branch coverage [here](https://github.com/UIOWAjohnsonhj/selt2022_teamprojects-team-4/blob/main/coverage/.last_run.json). 
