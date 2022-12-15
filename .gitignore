@@ -1,7 +1,13 @@
-# FROM https://raw.githubusercontent.com/github/gitignore/master/Ruby.gitignore
 # Local Environment
 /config/local_env.yml
 
+# Wiki pages
+wiki/
+
+# SimpleCov files
+coverage/
+
+# FROM https://raw.githubusercontent.com/github/gitignore/master/Ruby.gitignore
 *.gem
 *.rbc
 /.config
