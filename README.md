@@ -14,6 +14,12 @@ Created by **Lucas Ausberger, Austin Beschen, Brandon Egger, Evan Lemker, and Ja
 Here's an overview of a pipeline run triggered by one of our end-of-sprint releases!
 <img width="720" alt="pipeline-run" src="https://user-images.githubusercontent.com/74087830/208984045-eaf8f879-94ac-4b05-8233-282f5c47a651.png">
 
+## Product Presentation
+<details>
+  <summary>Click to reveal</summary>
+  <object data="FinalPresentation.pdf" width="1000" height="1000" type='application/pdf'></object>
+</details>
+
 ## App Preview
 <details>
   <summary>Click to reveal</summary>
