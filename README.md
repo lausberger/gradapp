@@ -16,12 +16,13 @@ Here's an overview of a pipeline run triggered by one of our end-of-sprint relea
 
 ## Product Presentation
 <details>
-  <summary>Click to reveal presentation</summary>
+  <summary>Click to reveal</summary>
   <object data="FinalPresentation.pdf" width="1000" height="1000" type='application/pdf'></object>
+</details>
 
 ## App Preview
 <details>
-  <summary>Click to reveal screenshots</summary>
+  <summary>Click to reveal</summary>
   
   ### Public Homepage
   <img width="720" alt="Screen Shot 2022-12-15 at 12 02 16 AM" src="https://user-images.githubusercontent.com/74087830/207787155-b2135ce1-823e-47f7-a00d-f6ef436a762f.png">
