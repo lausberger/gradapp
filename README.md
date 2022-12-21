@@ -16,7 +16,7 @@ Here's an overview of a pipeline run triggered by one of our end-of-sprint relea
 
 ## Product Presentation
 
-Click [here](https://docs.google.com/viewer?url=https://github.com/lausberger/gradapp/files/10280837/ProductPresentation.pdf) to open in Google Docs PDF viewer. To see the video demo, please see [ProductPresentation.pptx](https://github.com/lausberger/gradapp/blob/main/ProductPresentation.pptx)  
+Click [here](https://docs.google.com/viewer?url=https://github.com/lausberger/gradapp/files/10280912/ProductPresentation.pdf) to open in Google Docs PDF viewer. To see the video demo, please see [ProductPresentation.pptx](https://github.com/lausberger/gradapp/blob/main/ProductPresentation.pptx) 
 
 ## App Preview
 <details>
